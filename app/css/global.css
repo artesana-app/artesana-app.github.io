@@ -1,0 +1,80 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { margin: 0; font-weight: 600; line-height: 1.25; }
+h1 { font-size: 24px; }
+h2 { font-size: 18px; }
+h3 { font-size: 15px; }
+p { margin: 0 0 8px; }
+a { color: var(--moss); }
+button, input, select, textarea { font: inherit; color: inherit; }
+img, svg { max-width: 100%; display: block; }
+ul { list-style: none; margin: 0; padding: 0; }
+.muted { color: var(--ink-2); font-size: 13px; }
+.center { text-align: center; }
+.hidden { display: none !important; }
+
+/* wordmark em CSS: artesaná. */
+.wordmark {
+  font-family: var(--font);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--peach);
+  white-space: nowrap;
+}
+.wordmark b { font-weight: 700; }
+.wordmark.cream { color: var(--cream); }
+.wordmark.ink { color: var(--ink); }
+
+/* app shell */
+.app { min-height: 100vh; min-height: 100dvh; }
+main { display: block; }
+section[data-route] { display: none; }
+section[data-route].active { display: block; }
+.screen {
+  max-width: var(--app-w);
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-bottom: calc(var(--tab-h) + 16px);
+}
+.screen.no-tab { padding-bottom: 24px; }
+
+.header {
+  background: var(--moss-d);
+  color: var(--cream);
+  padding: 18px 20px 20px;
+  border-radius: 0 0 24px 24px;
+}
+.header.peach { background: var(--peach); color: var(--ink); }
+.header .top { display: flex; align-items: center; gap: 12px; min-height: 36px; }
+.header .top .wordmark { font-size: 22px; }
+.header .back {
+  background: rgba(255,255,255,0.14); border: 0; color: inherit;
+  width: 36px; height: 36px; border-radius: 50%; font-size: 20px; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.header.peach .back { background: rgba(44,26,30,0.1); }
+.header h1 { margin-top: 10px; }
+.header .sub { opacity: 0.85; font-size: 13px; margin-top: 2px; }
+.header .avatar {
+  margin-left: auto; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--peach); color: var(--ink); font-weight: 600; font-size: 18px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
+.content { padding: 16px; }
+.group-title {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--ink-2); margin: 18px 4px 8px; font-weight: 600;
+}
+.group-title:first-child { margin-top: 4px; }

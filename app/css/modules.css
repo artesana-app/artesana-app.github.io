@@ -1,0 +1,79 @@
+/* login */
+.login { padding: 40px 24px 24px; display: flex; flex-direction: column; min-height: 100dvh; }
+.login .brand { text-align: center; margin: 24px 0 8px; }
+.login .brand .wordmark { font-size: 52px; }
+.login .brand p { color: var(--ink-2); margin-top: 6px; }
+.login .opts { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+.login .beta { font-size: 12px; color: var(--ink-2); text-align: center; margin-top: 14px; }
+
+/* home */
+.home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.mod-card {
+  position: relative; background: var(--white); border-radius: var(--radius); padding: 14px;
+  box-shadow: var(--shadow); text-decoration: none; color: var(--ink); min-height: 96px;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 4px;
+}
+.mod-card .emoji { font-size: 28px; margin-bottom: auto; }
+.mod-card b { font-size: 14px; line-height: 1.2; }
+.mod-card .dot { position: absolute; top: 12px; right: 12px; }
+.tip { display: flex; gap: 10px; align-items: flex-start; }
+.tip .emoji { font-size: 22px; }
+
+/* checklist identidade */
+.check { display: flex; align-items: center; gap: 12px; padding: 12px 14px; }
+.check .mark {
+  width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line);
+  display: inline-flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; cursor: pointer;
+  background: var(--white);
+}
+.check.ok .mark { background: var(--moss); border-color: var(--moss); color: var(--cream); }
+.check .txt { flex: 1; }
+.check .txt b { display: block; font-size: 14.5px; }
+.check .txt span { font-size: 12px; color: var(--ink-2); }
+.check .btn { flex-shrink: 0; }
+.file-list li { font-size: 13px; padding: 8px 14px; color: var(--ink-2); }
+
+/* estilos de foto */
+.styles { display: flex; gap: 10px; overflow-x: auto; padding: 4px 2px 8px; }
+.style {
+  flex: 0 0 96px; border-radius: var(--radius); padding: 10px; cursor: pointer; border: 2px solid transparent;
+  color: var(--ink); text-align: center; font-size: 12px; font-weight: 600;
+}
+.style .sw { height: 44px; border-radius: 8px; margin-bottom: 6px; }
+.style.on { border-color: var(--moss); background: var(--white); }
+
+/* whatsapp */
+.wa-result { text-align: center; }
+.wa-result .link { font-weight: 600; word-break: break-all; margin: 8px 0; color: var(--moss); }
+.wa-result canvas, .wa-result img { margin: 12px auto; width: 180px; height: 180px; border-radius: 12px; background: #fff; padding: 8px; box-shadow: var(--shadow); }
+
+/* inci */
+.sel-list li { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+.sel-list li .n { width: 22px; height: 22px; border-radius: 50%; background: var(--peach); color: var(--ink); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.sel-list li .txt { flex: 1; min-width: 0; }
+.sel-list li .txt i { display: block; font-style: normal; font-size: 11.5px; color: var(--ink-2); }
+.sel-list li button { border: 0; background: var(--cream); width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+.suggest { background: var(--white); border: 1.5px solid var(--line); border-radius: var(--radius-s); max-height: 200px; overflow-y: auto; margin-top: -8px; margin-bottom: 12px; }
+.suggest button { display: block; width: 100%; text-align: left; border: 0; background: none; padding: 10px 12px; cursor: pointer; border-bottom: 1px solid var(--line); font-size: 14px; }
+.suggest button i { display: block; font-style: normal; font-size: 11.5px; color: var(--ink-2); }
+.suggest button:last-child { border-bottom: 0; }
+
+/* rótulo */
+.rot-preview-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 12px; overflow: hidden; }
+.rot { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 6%; font-family: var(--font); box-sizing: border-box; }
+.rot.redondo { border-radius: 50%; }
+.rot.tag { border-radius: 6px; }
+.rot .furo { position: absolute; top: 5%; left: 50%; transform: translateX(-50%); width: 9%; aspect-ratio: 1; border-radius: 50%; background: #fff; border: 1px solid rgba(0,0,0,0.12); }
+.rot .marca { font-weight: 400; letter-spacing: -0.03em; line-height: 1; }
+.rot .marca b { font-weight: 700; }
+.rot .produto { font-weight: 600; line-height: 1.15; margin-top: 2%; }
+.rot .frase { font-style: italic; line-height: 1.2; margin-top: 2%; opacity: 0.9; }
+.rot .peso { font-weight: 600; margin-top: 2%; }
+.rot .inci { line-height: 1.15; margin-top: 3%; opacity: 0.85; }
+.rot .qr { margin-top: 3%; }
+.rot .qr img { display: inline-block; }
+.rot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.rot-grid .field { margin-bottom: 0; }
+
+/* folha A4 só na impressão */
+#folha-a4 { display: none; }

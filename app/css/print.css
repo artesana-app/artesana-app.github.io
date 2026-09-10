@@ -1,0 +1,10 @@
+@page { size: A4; margin: 0; }
+@media print {
+  html, body { background: #fff !important; margin: 0; }
+  .app, .tabbar, #toast, #modal { display: none !important; }
+  #folha-a4 {
+    display: block !important; position: relative; width: 210mm; height: 297mm; overflow: hidden;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  #folha-a4 .rot { position: absolute; }
+}
