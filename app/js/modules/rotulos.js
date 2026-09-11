@@ -22,7 +22,8 @@ function desenharRotulo(r, escala, unidade, inciTexto, qrUrl) {
   const w = r.largura * escala; const hh = r.altura * escala;
   const base = Math.min(w, hh) / (unidade === 'mm' ? 1 : ESCALA); // em mm
   const fs = (mm) => `${(mm * escala).toFixed(2)}${unidade}`;
-  const el = h('div', { class: `rot ${r.tipo}`, style: { width: `${w}${unidade}`, height: `${hh}${unidade}`, background: r.fundo, color: cor } });
+  const pad = fs(base * (r.tipo === 'redondo' ? 0.13 : 0.07));
+  const el = h('div', { class: `rot ${r.tipo}`, style: { width: `${w}${unidade}`, height: `${hh}${unidade}`, padding: pad, background: r.fundo, color: cor } });
   if (r.tipo === 'tag') el.append(h('div', { class: 'furo' }));
   if (r.marca) el.append(h('div', { class: 'marca', style: { fontSize: fs(base * Math.min(0.11, 1.35 / Math.max(r.marca.length, 1))) } }, r.marca.replace(/\.$/, ''), h('b', {}, '.')));
   if (r.produto) el.append(h('div', { class: 'produto', style: { fontSize: fs(base * 0.075) } }, r.produto));

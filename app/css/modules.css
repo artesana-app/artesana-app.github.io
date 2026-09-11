@@ -60,8 +60,8 @@
 
 /* rótulo */
 .rot-preview-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 12px; overflow: hidden; }
-.rot { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: safe center; text-align: center; padding: 7%; font-family: var(--font); box-sizing: border-box; }
-.rot.redondo { padding: 12%; }
+.rot { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: safe center; text-align: center; font-family: var(--font); box-sizing: border-box; }
+.rot > * { flex-shrink: 0; }
 .rot.redondo { border-radius: 50%; }
 .rot.tag { border-radius: 6px; }
 .rot .furo { position: absolute; top: 5%; left: 50%; transform: translateX(-50%); width: 9%; aspect-ratio: 1; border-radius: 50%; background: #fff; border: 1px solid rgba(0,0,0,0.12); }

@@ -34,6 +34,8 @@ function render() {
   if (!logado() && nome !== 'login') { location.replace('#login'); return; }
   if (logado() && nome === 'login') { location.replace('#home'); return; }
 
+  const modalEl = document.getElementById('modal');
+  if (modalEl) { modalEl.classList.remove('show'); modalEl.innerHTML = ''; }
   document.querySelectorAll('section[data-route]').forEach((s) => s.classList.remove('active'));
   const section = document.querySelector(`section[data-route="${nome}"]`);
   if (!section) return;
