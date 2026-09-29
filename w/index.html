@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Abrindo o WhatsApp</title>
+  <link rel="icon" href="../assets/brand/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../app/css/variables.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 24px; font-family: var(--font); color: var(--ink); background: var(--cream); text-align: center; }
+    main { width: min(100%, 420px); }
+    h1 { margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+    p { margin: 10px 0 0; color: var(--ink-2); }
+    .botao { display: flex; align-items: center; justify-content: center; min-height: 50px; margin-top: 24px; border-radius: 10px; background: var(--moss); color: var(--white); font-weight: 600; text-decoration: none; }
+    .botao:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .feito { margin-top: 36px; font-size: 13px; }
+    .feito a { color: var(--peach-d); font-weight: 400; letter-spacing: -0.04em; font-size: 22px; text-decoration: none; display: block; margin-top: 2px; }
+    .feito b { font-weight: 700; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <div id="ok" hidden>
+      <h1 id="titulo">Abrindo o WhatsApp</h1>
+      <p id="numero"></p>
+      <a class="botao" id="abrir" href="#">Abrir conversa</a>
+    </div>
+    <div id="erro" hidden>
+      <h1>Esse link está incompleto</h1>
+      <p>Peça pra quem te enviou mandar de novo.</p>
+    </div>
+    <p class="feito">link criado no <a href="../">artesaná<b>.</b></a></p>
+  </main>
+  <script type="module">
+    import { lerLinkCurto, destinoLinkCurto, numeroFormatado } from '../app/js/lib/whatsapp.js';
+    const dados = lerLinkCurto(location.search);
+    if (!dados) {
+      document.getElementById('erro').hidden = false;
+    } else {
+      const destino = destinoLinkCurto(dados);
+      document.getElementById('titulo').textContent = dados.marca ? `Abrindo o WhatsApp de ${dados.marca}` : 'Abrindo o WhatsApp';
+      document.title = dados.marca ? `WhatsApp de ${dados.marca}` : 'Abrindo o WhatsApp';
+      document.getElementById('numero').textContent = numeroFormatado(dados);
+      document.getElementById('abrir').href = destino;
+      document.getElementById('ok').hidden = false;
+      setTimeout(() => location.replace(destino), 900);
+    }
+  </script>
+</body>
+</html>

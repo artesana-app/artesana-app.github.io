@@ -2,21 +2,9 @@
 import { h, modal, toast } from './ui.js';
 import * as store from './store.js';
 import { calcularProgresso } from './lib/progresso.js';
+import { NICHOS, PERSONALIDADES } from './lib/perfil.js';
 
-export const NICHOS = [
-  { id: 'sabonetes', nome: 'Sabonetes e saboaria', emoji: '🧼' },
-  { id: 'velas', nome: 'Velas e aromas', emoji: '🕯️' },
-  { id: 'cosmeticos', nome: 'Cosméticos naturais', emoji: '🌿' },
-  { id: 'alimentos', nome: 'Alimentos artesanais', emoji: '🍯' },
-  { id: 'artesanato', nome: 'Artesanato em geral', emoji: '🧶' },
-];
-
-export const PERSONALIDADES = [
-  { id: 'delicada', nome: 'Delicada', emoji: '🌸' },
-  { id: 'rustica', nome: 'Rústica', emoji: '🪵' },
-  { id: 'sofisticada', nome: 'Sofisticada', emoji: '✨' },
-  { id: 'alegre', nome: 'Alegre', emoji: '🌞' },
-];
+export { NICHOS, PERSONALIDADES };
 
 export function progresso() {
   return calcularProgresso({ user: store.usuario(), onboarding: store.get('onboarding', {}), instagram: store.get('instagram', {}) });

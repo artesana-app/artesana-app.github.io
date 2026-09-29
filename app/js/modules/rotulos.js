@@ -115,7 +115,7 @@ function abaCriar(section, render) {
       h('div', { class: 'field' }, h('label', {}, 'Data comemorativa'), datas),
       h('div', { class: 'field' }, h('label', {}, 'Cor de fundo'), cores),
       toggle('Incluir lista INCI', 'usarInci', inciTexto ? `${inciTexto.slice(0, 60)}…` : 'Monte a lista na aba INCI'),
-      toggle('Incluir QR do WhatsApp', 'usarQr', wa.link ? wa.link.replace('https://', '') : 'Crie seu link em Mais → WhatsApp'),
+      toggle('Incluir QR do WhatsApp', 'usarQr', wa.link ? (wa.linkCurto || wa.link).replace(/^https?:\/\//, '') : 'Crie seu link em Mais → WhatsApp'),
       h('button', { class: 'btn peach block', style: { marginTop: '8px' }, onClick: exportar }, 'Exportar PDF · pronto pra gráfica'),
     ),
   );

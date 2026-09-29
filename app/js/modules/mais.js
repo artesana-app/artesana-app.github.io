@@ -22,7 +22,7 @@ export function montar(section) {
       ])),
       grupo('Contato', lista([
         wa.link
-          ? { emoji: '📲', titulo: 'Link do WhatsApp', sub: wa.link.replace('https://', ''), extra: h('button', { class: 'btn soft sm', onClick: (e) => { e.stopPropagation(); copiar(wa.link, 'Link copiado!'); } }, 'Copiar'), href: '#whatsapp' }
+          ? { emoji: '📲', titulo: 'Link do WhatsApp', sub: (wa.linkCurto || wa.link).replace(/^https?:\/\//, ''), extra: h('button', { class: 'btn soft sm', onClick: (e) => { e.stopPropagation(); copiar(wa.linkCurto || wa.link, 'Link copiado!'); } }, 'Copiar'), href: '#whatsapp' }
           : { emoji: '📲', titulo: 'Criar link do WhatsApp', sub: 'Com QR code pro rótulo', href: '#whatsapp', badge: 'Criar' },
       ])),
       grupo('Sua conta', lista([

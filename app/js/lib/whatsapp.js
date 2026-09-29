@@ -29,3 +29,51 @@ export const SUGESTOES_MENSAGEM = [
   'Oi! Vi seus produtos e amei 💛',
   'Olá! Quero saber mais sobre os produtos',
 ];
+
+// ---- link curto com identificação: <base>?<marca>-<ddd><numero>[-m<n>][&t=<texto>]
+const CONECTIVOS = new Set(['de', 'da', 'do', 'das', 'dos', 'e', 'em', 'a', 'o']);
+
+export function slugMarca(marca) {
+  let s = String(marca ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  if (s.length > 24) s = s.slice(0, 24).replace(/-+$/g, '');
+  return s;
+}
+
+export function marcaLegivel(slug) {
+  return String(slug ?? '').split('-').filter(Boolean)
+    .map((p, i) => (i > 0 && CONECTIVOS.has(p) ? p : p.charAt(0).toUpperCase() + p.slice(1))).join(' ');
+}
+
+export function montarLinkCurto({ base, marca, ddd, numero, mensagem = '' } = {}) {
+  const slug = slugMarca(marca);
+  let q = `${slug ? `${slug}-` : ''}${digitos(ddd)}${digitos(numero)}`;
+  const msg = String(mensagem ?? '').trim();
+  const pronta = SUGESTOES_MENSAGEM.indexOf(msg);
+  if (pronta >= 0) q += `-m${pronta + 1}`;
+  else if (msg) q += `&t=${encodeURIComponent(msg)}`;
+  return `${base}?${q}`;
+}
+
+export function lerLinkCurto(query) {
+  const bruto = String(query ?? '').replace(/^\?/, '');
+  if (!bruto) return null;
+  const [parte, ...resto] = bruto.split('&');
+  const m = /^(?:([a-z0-9]+(?:-[a-z0-9]+)*)-)?(\d{10,11})(?:-m([1-9]))?$/.exec(parte);
+  if (!m) return null;
+  let texto = '';
+  for (const r of resto) {
+    if (!r.startsWith('t=')) continue;
+    try { texto = decodeURIComponent(r.slice(2)).slice(0, 300); } catch { texto = ''; }
+  }
+  const slug = m[1] || '';
+  return { slug, marca: marcaLegivel(slug), ddd: m[2].slice(0, 2), numero: m[2].slice(2), sugestao: m[3] ? Number(m[3]) : 0, texto };
+}
+
+export function destinoLinkCurto(dados) {
+  if (!dados) return null;
+  const corpo = (dados.sugestao && SUGESTOES_MENSAGEM[dados.sugestao - 1]) || dados.texto || '';
+  let mensagem = corpo;
+  if (dados.marca) mensagem = corpo ? `${corpo} (vim pelo link da ${dados.marca})` : `Olá! Vim pelo link da ${dados.marca}.`;
+  return montarLink({ ddd: dados.ddd, numero: dados.numero, mensagem });
+}

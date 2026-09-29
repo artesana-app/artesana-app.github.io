@@ -38,8 +38,8 @@ export function montar(section) {
 
     const cardWa = wa.link
       ? h('div', { class: 'card moss' }, h('div', { class: 'row' },
-        h('div', { class: 'grow' }, h('b', {}, 'Seu link do WhatsApp'), h('div', { style: { fontSize: '13px', wordBreak: 'break-all', opacity: 0.9 } }, wa.link.replace('https://', ''))),
-        h('button', { class: 'btn soft sm', onClick: () => copiar(wa.link, 'Link copiado!') }, 'Copiar')))
+        h('div', { class: 'grow' }, h('b', {}, 'Seu link do WhatsApp'), h('div', { style: { fontSize: '13px', wordBreak: 'break-all', opacity: 0.9 } }, (wa.linkCurto || wa.link).replace(/^https?:\/\//, ''))),
+        h('button', { class: 'btn soft sm', onClick: () => copiar(wa.linkCurto || wa.link, 'Link copiado!') }, 'Copiar')))
       : h('a', { class: 'card moss', href: '#whatsapp', style: { display: 'block', textDecoration: 'none' } }, h('div', { class: 'row' },
         h('div', { class: 'grow' }, h('b', {}, 'Crie seu link do WhatsApp'), h('div', { style: { fontSize: '13px', opacity: 0.9 } }, 'Pra bio, rótulo e end card')),
         h('span', { class: 'badge' }, 'Criar')));

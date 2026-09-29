@@ -88,7 +88,7 @@ export function montar(section) {
         grupo('Criar com IA', lista([
           { emoji: '💠', titulo: 'Gerador de Logo', sub: '3 opções exclusivas + caixa de remix', href: '#detalhe/logo-ia' },
           { emoji: '💬', titulo: 'Frase de Impacto', sub: 'Baseada na história da marca', href: '#detalhe/frase-ia' },
-          { emoji: '🪧', titulo: 'End Card para Reels', sub: wa.link ? `Com seu WhatsApp ${wa.link.replace('https://', '')}` : 'Crie seu link do WhatsApp primeiro', href: wa.link ? '#detalhe/endcard' : '#whatsapp' },
+          { emoji: '🪧', titulo: 'End Card para Reels', sub: wa.link ? `Com seu WhatsApp ${(wa.linkCurto || wa.link).replace(/^https?:\/\//, '')}` : 'Crie seu link do WhatsApp primeiro', href: wa.link ? '#detalhe/endcard' : '#whatsapp' },
           { emoji: '🖼️', titulo: 'Fotos Coringas', sub: 'Sugestões de fotos de produto', href: '#detalhe/fotos-coringas' },
         ])),
         grupo('Arquivos aceitos', h('div', { class: 'card' },

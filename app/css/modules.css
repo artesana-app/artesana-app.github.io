@@ -78,3 +78,34 @@
 
 /* folha A4 só na impressão */
 #folha-a4 { display: none; }
+
+/* whatsapp: identificação e link curto */
+.wa-id-topo { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.wa-id-marca { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+.wa-rotulo { font-size: 12px; font-weight: 600; color: var(--ink-2); margin: 12px 0 4px; }
+.wa-result .wa-rotulo { margin-top: 0; }
+.wa-link { font-size: 15.5px; font-weight: 600; color: var(--moss); word-break: break-all; line-height: 1.35; }
+.wa-msg { font-size: 13.5px; background: var(--cream); border-radius: var(--radius-s); padding: 10px 12px; margin: 0; word-break: break-word; }
+.wa-direto { margin-top: 12px; text-align: left; font-size: 13px; }
+.wa-direto summary { cursor: pointer; color: var(--ink-2); min-height: 36px; display: flex; align-items: center; }
+.wa-direto .wa-msg { margin: 6px 0 10px; }
+
+/* perfil em formulário */
+.etapas { margin-top: 10px; }
+.etapas button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 40px; padding: 4px 0; border: 0; background: none; text-align: left; font-size: 13.5px; cursor: pointer; color: inherit; }
+.etapas .marca { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+.etapas .ok .marca { background: var(--moss); border-color: var(--moss); color: var(--cream); }
+.etapas .badge { margin-left: auto; }
+.obrig { color: var(--peach-d); font-weight: 700; }
+.falta-msg { display: none; color: var(--erro); font-size: 12px; margin-top: 4px; }
+.field.falta .falta-msg { display: block; }
+.field.falta .input, .field.falta .textarea { border-color: var(--erro); }
+.field.falta .chips { outline: 1.5px solid var(--erro); outline-offset: 6px; border-radius: 8px; }
+.perfil-whats { display: flex; align-items: center; gap: 12px; padding: 12px; margin-bottom: 14px; border: 1.5px solid var(--line); border-radius: var(--radius-s); text-decoration: none; color: inherit; }
+.perfil-whats div { flex: 1; min-width: 0; }
+.perfil-whats b { display: block; font-size: 14px; }
+.perfil-whats span:not(.badge) { display: block; font-size: 12.5px; color: var(--ink-2); word-break: break-all; }
+.perfil-situacao { font-size: 13.5px; margin-bottom: 12px; color: var(--ink-2); }
+.perfil-situacao.ok { color: var(--ok); font-weight: 600; }
+.perfil-enviar .muted { margin: 10px 0 0; }
+.perfil-resumo { white-space: pre-wrap; font-family: var(--font); font-size: 13px; line-height: 1.5; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-s); padding: 12px; margin: 10px 0 0; max-height: 42vh; overflow-y: auto; }
