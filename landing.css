@@ -200,6 +200,8 @@ ul, ol { padding: 0; list-style: none; }
 .rodape .wordmark { font-size: 36px; display: inline-block; margin-bottom: 10px; }
 .rodape h2 { font-family: var(--font-title); font-weight: 400; font-size: 13.5px; letter-spacing: 0.04em; margin-bottom: 14px; }
 .rodape p { font-size: 13.5px; color: var(--cinza); max-width: 34ch; }
+.rodape .rede { margin-top: 12px; }
+.rodape .rede a { color: var(--ink); font-weight: 600; }
 .rodape ul { display: grid; gap: 9px; font-size: 13.5px; }
 .rodape ul a { text-decoration: none; }
 .rodape ul a:hover { text-decoration: underline; }
