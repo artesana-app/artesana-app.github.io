@@ -1,8 +1,10 @@
 ﻿artesaná. — Instagram @artesana.app
 Publicar na ordem 1, 2, 3, em dias diferentes.
+Cada publicação tem imagem principal e alternativa. Use uma das duas.
 
 ============================================================
-PUBLICAÇÃO 1 — Propósito — arquivo post-1.jpg
+PUBLICAÇÃO 1 — Você produz, vende e divulga sozinha
+Imagem: post-1.jpg ou post-1b.jpg
 ============================================================
 
 LEGENDA
@@ -19,13 +21,18 @@ Conta pra gente: qual dessas três partes mais pesa no seu dia?
 
 #artesanato #feitoamao #artesanatobrasileiro #saboariaartesanal #velasartesanais #cosmeticosnaturais #empreendedorismofeminino #pequenosnegocios
 
-TEXTO ALTERNATIVO
+TEXTO ALTERNATIVO (post-1.jpg)
 
-Mulher sorrindo, apoiada numa mesa ao ar livre, segurando um celular. Texto: Você produz, vende e divulga. O artesaná. nasceu pra ajudar quem faz tudo isso sozinha.
+Ceramista de óculos e avental segura uma caneca feita à mão diante de uma parede de azulejos. Texto: Você produz, vende e divulga sozinha? Esse app é pra você.
+
+TEXTO ALTERNATIVO (post-1b.jpg)
+
+Dois sabonetes artesanais empilhados sobre linho, com ramos de flores secas. Texto: Você produz, vende e divulga sozinha? Esse app é pra você.
 
 
 ============================================================
-PUBLICAÇÃO 2 — O app — arquivo post-2.jpg
+PUBLICAÇÃO 2 — Marketing na palma da mão
+Imagem: post-2.jpg ou post-2b.jpg
 ============================================================
 
 LEGENDA
@@ -46,16 +53,23 @@ Abre no navegador e instala na tela inicial, no Android e no iPhone. O link est�
 
 #artesanato #rotulos #saboariaartesanal #cosmeticosnaturais #velasartesanais #identidadevisual #feitoamao #pequenosnegocios
 
-TEXTO ALTERNATIVO
+TEXTO ALTERNATIVO (post-2.jpg)
 
-Mulher de camisa cinza e faixa branca no cabelo mostra um celular com a tela inicial do app artesaná. Texto: Seu ateliê cabe no celular. Rótulo em PDF, link do WhatsApp e identidade da marca num app só. Selo: grátis pra começar.
+Mulher ruiva de óculos, sentada no sofá, usa o celular. Texto: Todo o marketing da sua marca na palma da sua mão.
+
+TEXTO ALTERNATIVO (post-2b.jpg)
+
+Mão segura um celular com a tela inicial do app artesaná., com uma lareira desfocada ao fundo. Texto: Todo o marketing da sua marca na palma da sua mão.
 
 
 ============================================================
-PUBLICAÇÃO 3 — Chamada — arquivo post-3.jpg
+PUBLICAÇÃO 3 — Mais tempo com a família
+Imagem: post-3.jpg ou post-3b.jpg
 ============================================================
 
 LEGENDA
+
+Menos tempo resolvendo rótulo e link, mais tempo com quem você ama.
 
 A versão beta do artesaná. está aberta, e começar é grátis.
 
@@ -71,7 +85,11 @@ Conhece alguém que faz sabonete, vela, cosmético natural ou artesanato? Marca 
 
 #artesanato #feitoamao #saboariaartesanal #velasartesanais #cosmeticosnaturais #empreendedorismofeminino #artesanatobrasileiro #pequenosnegocios
 
-TEXTO ALTERNATIVO
+TEXTO ALTERNATIVO (post-3.jpg)
 
-Mulher de chapéu vermelho fotografa com o celular uma vela artesanal perto de uma janela. Texto: Comece grátis hoje. Versão beta aberta pra quem faz sabonete, vela, cosmético natural e artesanato. Selo: beta aberto.
+Mulher de cabelos grisalhos e uma menina decoram um bolo juntas na cozinha. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço.
+
+TEXTO ALTERNATIVO (post-3b.jpg)
+
+Mãe e filha pintam ovos numa mesa de madeira, diante de uma parede rosada. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço.
 

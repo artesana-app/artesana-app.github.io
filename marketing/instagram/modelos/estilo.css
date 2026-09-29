@@ -1,56 +1,63 @@
 /* Publicações do Instagram do artesaná. — 1080 x 1350 (4:5).
-   Margem de segurança lateral de 64px: a grade do perfil corta para 3:4. */
+   A foto ocupa a peça inteira. O texto vai direto sobre a imagem, numa área calma da foto,
+   e a marca acompanha o texto em tamanho pequeno. Margem lateral de 64px: a grade do perfil corta para 3:4. */
 @import url('../../../app/css/variables.css');
 
 *, *::before, *::after { box-sizing: border-box; }
-html, body { margin: 0; width: 1080px; height: 1350px; overflow: hidden; background: #fff; }
+html, body { margin: 0; width: 1080px; height: 1350px; overflow: hidden; background: #000; }
 body { font-family: 'Poppins', sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
 
 .post { position: relative; width: 1080px; height: 1350px; overflow: hidden; }
-.foto { position: absolute; display: block; max-width: none; }
-.texto { position: absolute; left: 64px; right: 64px; }
-.titulo { margin: 0; font-weight: 600; font-size: 90px; line-height: 1.03; letter-spacing: -0.03em; }
-.apoio { margin: 22px 0 0; font-weight: 400; font-size: 35px; line-height: 1.3; }
+.foto { position: absolute; left: 0; top: 0; width: 1080px; max-width: none; display: block; }
+.veu { position: absolute; left: 0; right: 0; top: 0; height: 560px; background: linear-gradient(180deg, rgba(44, 26, 30, 0.62) 0%, rgba(44, 26, 30, 0.34) 55%, rgba(44, 26, 30, 0) 100%); }
 
-.wordmark { font-weight: 400; letter-spacing: -0.04em; line-height: 1; white-space: nowrap; }
-.wordmark b { font-weight: 700; }
+/* frase solta sobre a foto */
+.frase { position: absolute; left: 64px; right: 64px; text-align: center; }
+.frase span { display: block; }
+.frase .leve { font-weight: 300; font-size: 46px; line-height: 1.22; letter-spacing: -0.01em; }
+.frase .forte { font-weight: 700; font-size: 64px; line-height: 1.08; letter-spacing: -0.03em; }
+.frase .marca { margin-top: 26px; font-weight: 400; font-size: 38px; letter-spacing: -0.04em; line-height: 1; }
+.frase .marca b { font-weight: 700; }
+.frase.escura { color: var(--ink); }
+.frase.clara { color: var(--cream); text-shadow: 0 2px 22px rgba(44, 26, 30, 0.45); }
 
-/* assinatura: igual nas três peças */
-.assinatura {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 132px; padding: 0 64px;
-  display: flex; align-items: center; justify-content: space-between; background: var(--cream);
-}
-.assinatura .wordmark { font-size: 68px; color: var(--peach-d); margin-top: -8px; }
-.assinatura .bio { font-family: 'Lexend Exa', sans-serif; font-size: 25px; letter-spacing: 0.02em; }
+/* tiras: texto em negrito sobre faixas de cor, levemente tortas */
+.tiras { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; transform: rotate(-2.2deg); }
+.tira { padding: 8px 30px 12px; background: var(--cream); color: var(--ink); font-weight: 700; font-size: 64px; line-height: 1.1; letter-spacing: -0.03em; white-space: nowrap; }
+.tira + .tira { margin-top: -2px; }
+.tira:nth-child(2) { margin-left: 56px; }
+.tira.pessego { background: var(--peach); margin-top: 16px; margin-left: -40px; }
+.tira.assina { margin-top: 18px; margin-left: 250px; padding: 6px 20px 9px; font-weight: 400; font-size: 36px; letter-spacing: -0.04em; background: var(--ink); color: var(--cream); }
+.tira.assina b { font-weight: 700; }
 
-/* selo: o rótulo redondo do app como marca registrada das peças */
-.selo {
-  position: absolute; width: 236px; height: 236px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; text-align: center;
-  font-weight: 600; font-size: 35px; line-height: 1.1; letter-spacing: -0.02em;
-  box-shadow: 0 22px 34px -16px rgba(44, 26, 30, 0.6);
-}
-.selo.pessego { background: var(--peach); color: var(--ink); }
-.selo.musgo { background: var(--moss); color: var(--cream); }
+/* 1 — você produz, vende e divulga sozinha (ceramista) */
+.p1 .foto { top: -100px; }
+.p1 .tiras { top: 596px; }
 
-/* 1 — propósito */
-.p1 .foto { width: 1080px; left: 0; top: -60px; }
-.p1 .veu { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(22, 30, 23, 0.86) 0%, rgba(22, 30, 23, 0.6) 26%, rgba(22, 30, 23, 0) 48%); }
-.p1 .texto { top: 68px; color: var(--cream); }
-.p1 .apoio { max-width: 640px; }
-.p1 .selo { left: 64px; bottom: 92px; transform: rotate(-8deg); }
+/* 1b — mesma chamada, com produto */
+.p1b .frase { top: 64px; }
+.p1b .frase .leve { font-size: 44px; }
+.p1b .frase .forte { font-size: 60px; margin-top: 4px; }
+.p1b .frase .marca { margin-top: 18px; font-size: 34px; }
 
-/* 2 — o app */
-.p2 { background: var(--peach); }
-.p2 .foto { width: 1350px; left: -150px; top: -130px; }
-.p2 .texto { top: 64px; }
-.p2 .apoio { max-width: 350px; font-size: 33px; }
-.p2 .selo { right: 60px; top: 936px; transform: rotate(8deg); }
+/* 2 — marketing na palma da mão (mulher com o celular) */
+.p2 .foto { width: 1280px; left: -236px; top: -56px; }
+.p2 .frase { left: auto; right: 52px; top: 92px; width: 384px; text-align: left; }
+.p2 .frase .leve { font-size: 41px; }
+.p2 .frase .forte { margin-top: 6px; font-size: 56px; }
+.p2 .frase .marca { margin-top: 22px; font-size: 34px; }
 
-/* 3 — chamada */
-.p3 .janela { position: absolute; left: 0; top: 0; width: 1080px; height: 880px; overflow: hidden; }
-.p3 .foto { width: 1080px; left: 0; top: -30px; }
-.p3 .bloco { position: absolute; left: 0; right: 0; top: 880px; bottom: 132px; padding: 50px 64px 0; background: var(--moss); color: var(--cream); }
-.p3 .titulo { font-size: 96px; }
-.p3 .apoio { max-width: 880px; font-size: 33px; margin-top: 16px; }
-.p3 .selo { left: 56px; top: 600px; transform: rotate(-7deg); }
+/* 2b — mesma chamada, com a tela do app na mão */
+.p2b .foto { top: -150px; }
+.p2b .frase { top: 70px; }
+
+/* 3 — mais tempo com a família (mulher e menina) */
+.p3 .frase { top: 38px; }
+.p3 .frase .forte { font-size: 60px; }
+.p3 .frase .leve { font-size: 37px; font-weight: 400; margin-top: 4px; }
+.p3 .canto { position: absolute; right: 56px; bottom: 40px; font-size: 38px; letter-spacing: -0.04em; line-height: 1; color: var(--cream); text-shadow: 0 2px 14px rgba(44, 26, 30, 0.6); }
+.p3 .canto b { font-weight: 700; }
+
+/* 3b — mesma chamada, mãe e filha pintando */
+.p3b .frase { top: 120px; }
+.p3b .frase .leve { margin-top: 8px; font-size: 42px; }

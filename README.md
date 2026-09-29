@@ -5,6 +5,8 @@ O app da empreendedora que faz, vende e fotografa. Artesanato, saboaria e beleza
 - **Site:** https://bebezinbtc-droid.github.io/artesana/
 - **App (PWA):** https://bebezinbtc-droid.github.io/artesana/app/
 
+Domínio oficial: `artesana-mktdigital.com.br`. Passa a valer quando o DNS for criado, veja `docs/dominio.md`.
+
 ## O que tem na v1
 
 - Landing de apresentação (`index.html`).
@@ -34,6 +36,10 @@ Commit + push na `main`. GitHub Pages serve a raiz do repo. Ao mudar arquivos do
 ## Landing
 
 Formato de vitrine de loja (`index.html` + `landing.css`). As miniaturas das ferramentas são telas reais do app, geradas por `python scripts/gen-site-shots.py` em `assets/site/`. Rode de novo quando o visual do app mudar.
+
+## Instagram
+
+Peças e legendas em `marketing/instagram/`. `python scripts/gen-instagram.py` gera as imagens e `python scripts/gen-instagram-pagina.py` gera a página de entrega.
 
 ## Marca
 

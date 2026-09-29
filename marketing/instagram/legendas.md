@@ -1,13 +1,15 @@
 # Instagram @artesana.app — primeiras três publicações
 
 Formato: 1080 × 1350 (4:5), JPG. Publicar na ordem 1, 2, 3, em dias diferentes.
-Na grade do perfil a mais recente aparece primeiro, então a fileira fica: chamada, app, propósito.
+Na grade do perfil a mais recente aparece primeiro, então a fileira fica: família, palma da mão, sozinha.
+
+Cada publicação tem uma imagem principal e uma alternativa com a mesma chamada. Use uma das duas.
 
 Antes de publicar: colocar o endereço do site no campo "Site" da bio.
 
 ---
 
-## 1. Propósito — `post-1.jpg`
+## 1. Você produz, vende e divulga sozinha — `post-1.jpg`
 
 **Legenda**
 
@@ -25,11 +27,15 @@ Conta pra gente: qual dessas três partes mais pesa no seu dia?
 
 **Texto alternativo**
 
-Mulher sorrindo, apoiada numa mesa ao ar livre, segurando um celular. Texto: Você produz, vende e divulga. O artesaná. nasceu pra ajudar quem faz tudo isso sozinha.
+Ceramista de óculos e avental segura uma caneca feita à mão diante de uma parede de azulejos. Texto: Você produz, vende e divulga sozinha? Esse app é pra você.
+
+**Alternativa — `post-1b.jpg`**
+
+Dois sabonetes artesanais empilhados sobre linho, com ramos de flores secas. Texto: Você produz, vende e divulga sozinha? Esse app é pra você.
 
 ---
 
-## 2. O app — `post-2.jpg`
+## 2. Marketing na palma da mão — `post-2.jpg`
 
 **Legenda**
 
@@ -51,13 +57,19 @@ Abre no navegador e instala na tela inicial, no Android e no iPhone. O link est�
 
 **Texto alternativo**
 
-Mulher de camisa cinza e faixa branca no cabelo mostra um celular com a tela inicial do app artesaná. Texto: Seu ateliê cabe no celular. Rótulo em PDF, link do WhatsApp e identidade da marca num app só. Selo: grátis pra começar.
+Mulher ruiva de óculos, sentada no sofá, usa o celular. Texto: Todo o marketing da sua marca na palma da sua mão.
+
+**Alternativa — `post-2b.jpg`**
+
+Mão segura um celular com a tela inicial do app artesaná., com uma lareira desfocada ao fundo. Texto: Todo o marketing da sua marca na palma da sua mão.
 
 ---
 
-## 3. Chamada — `post-3.jpg`
+## 3. Mais tempo com a família — `post-3.jpg`
 
 **Legenda**
+
+Menos tempo resolvendo rótulo e link, mais tempo com quem você ama.
 
 A versão beta do artesaná. está aberta, e começar é grátis.
 
@@ -75,18 +87,22 @@ Conhece alguém que faz sabonete, vela, cosmético natural ou artesanato? Marca 
 
 **Texto alternativo**
 
-Mulher de chapéu vermelho fotografa com o celular uma vela artesanal perto de uma janela. Texto: Comece grátis hoje. Versão beta aberta pra quem faz sabonete, vela, cosmético natural e artesanato. Selo: beta aberto.
+Mulher de cabelos grisalhos e uma menina decoram um bolo juntas na cozinha. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço.
+
+**Alternativa — `post-3b.jpg`**
+
+Mãe e filha pintam ovos numa mesa de madeira, diante de uma parede rosada. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço.
 
 ---
 
 ## Como regenerar
 
 ```bash
-python scripts/gen-instagram.py                    # assinatura "link na bio"
-python scripts/gen-instagram.py --bio artesana.app # depois de registrar o domínio
+python scripts/gen-instagram.py          # as seis imagens
+python scripts/gen-instagram-pagina.py   # página de entrega e legendas.txt
 ```
 
-Modelos em `modelos/post-N.html` e `modelos/estilo.css`. Textos das peças ficam nos HTML.
+Modelos em `modelos/post-N.html` e `modelos/estilo.css`. Os textos das peças ficam nos HTML.
 
 ## Fotos
 
@@ -94,8 +110,11 @@ Banco Pexels, licença livre para uso comercial, sem obrigação de crédito. As
 
 | Peça | Autor | Página |
 |---|---|---|
-| 1 | Matheus Bertelli | https://www.pexels.com/photo/smiling-woman-in-blouse-holding-a-smartphone-11749490/ |
-| 2 | Tima Miroshnichenko | https://www.pexels.com/photo/woman-in-gray-long-sleeve-shirt-standing-while-holding-smartphone-6612222/ |
-| 3 | RDNE Stock project | https://www.pexels.com/photo/woman-taking-pictures-using-a-smartphone-7309930/ |
+| 1 | Kampus Production | https://www.pexels.com/photo/a-woman-wearing-an-apron-and-eyeglasses-6023599/ |
+| 1b | Polina | https://www.pexels.com/photo/handmade-organic-soaps-5420572/ |
+| 2 | Anna Shvets | https://www.pexels.com/photo/a-woman-using-a-smartphone-5257217/ |
+| 2b | Jakub Zerdzicki | https://www.pexels.com/photo/smartphone-mockup-with-cozy-fireplace-background-30991026/ |
+| 3 | olia danilevich | https://www.pexels.com/photo/an-elderly-woman-making-a-cake-with-her-granddaughter-7246868/ |
+| 3b | Mikhail Nilov | https://www.pexels.com/photo/a-woman-and-a-young-girl-painting-easter-eggs-6957844/ |
 
-Na peça 2 o fundo rosa da foto foi levado para o pêssego da marca e a tela do celular mostra a tela inicial real do app.
+Na peça 2b a tela do celular mostra a tela inicial real do app.

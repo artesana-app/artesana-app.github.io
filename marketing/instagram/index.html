@@ -25,20 +25,22 @@
     .intro { padding-block: 36px 8px; }
     .intro h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
     .intro p { margin-top: 10px; max-width: 62ch; color: var(--ink-2); }
-    .peca { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 32px; padding-block: 36px; border-bottom: 1px solid #ECE4DE; }
-    .peca figure { margin: 0; }
-    .peca figure img { border-radius: 4px; border: 1px solid #ECE4DE; }
-    .peca h2 { font-family: 'Lexend Exa', sans-serif; font-weight: 400; font-size: 17px; letter-spacing: 0.04em; }
+    .peca { padding-block: 36px; border-bottom: 1px solid #ECE4DE; }
+    .peca h2 { font-family: 'Lexend Exa', sans-serif; font-weight: 400; font-size: 17px; letter-spacing: 0.04em; margin-bottom: 18px; }
     .peca h3 { font-size: 13px; font-weight: 600; margin: 22px 0 8px; }
-    .caixa { white-space: pre-wrap; font-family: var(--font); font-size: 14.5px; line-height: 1.55; margin: 0; padding: 16px; background: var(--cream); border: 1px solid #ECE4DE; border-radius: 4px; }
+    .imagens { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 780px; }
+    .imagens figure { margin: 0; }
+    .imagens figcaption { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+    .imagens img { border-radius: 4px; border: 1px solid #ECE4DE; }
+    .caixa { white-space: pre-wrap; font-family: var(--font); font-size: 14.5px; line-height: 1.55; margin: 0; padding: 16px; max-width: 780px; background: var(--cream); border: 1px solid #ECE4DE; border-radius: 4px; }
     .acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
     .botao { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 4px; border: 1px solid var(--moss); background: var(--moss); color: var(--white); font: inherit; font-weight: 600; font-size: 14.5px; text-decoration: none; cursor: pointer; }
     .botao:hover { background: var(--moss-d); }
     .botao.claro { background: var(--white); color: var(--ink); border-color: var(--ink); }
     .botao.claro:hover { background: var(--cream); }
-    .dica { font-size: 13px; color: var(--ink-2); margin-top: 10px; }
+    .dica { font-size: 13px; color: var(--ink-2); margin-top: 12px; }
     .fim { padding-block: 28px 48px; font-size: 13px; color: var(--ink-2); }
-    @media (max-width: 760px) { .peca { grid-template-columns: 1fr; gap: 20px; } .peca figure { max-width: 420px; } }
+    @media (max-width: 560px) { .imagens { gap: 12px; } .imagens .botao { padding: 0 10px; font-size: 13px; width: 100%; } }
   </style>
 </head>
 <body>
@@ -46,18 +48,25 @@
   <main class="wrap">
     <section class="intro">
       <h1>Primeiras três publicações</h1>
-      <p>Baixe a imagem, copie a legenda e publique na ordem 1, 2, 3, em dias diferentes. Formato 1080 × 1350, que é o retrato 4:5 do Instagram.</p>
+      <p>Cada publicação tem duas opções de imagem com a mesma chamada. Escolha uma, baixe, copie a legenda e publique na ordem 1, 2, 3, em dias diferentes. Formato 1080 × 1350, o retrato 4:5 do Instagram.</p>
     </section>
     <article class="peca">
-      <figure>
-        <img src="./post-1.jpg" alt="Mulher sorrindo, apoiada numa mesa ao ar livre, segurando um celular. Texto: Você produz, vende e divulga. O artesaná. nasceu pra ajudar quem faz tudo isso sozinha." width="1080" height="1350">
-        <div class="acoes"><a class="botao" href="./post-1.jpg" download="artesana-post-1.jpg">Baixar imagem 1</a></div>
-        <p class="dica">No celular, também dá pra segurar o dedo na imagem e escolher salvar.</p>
-      </figure>
-      <div>
-        <h2>1. Propósito</h2>
-        <h3>Legenda</h3>
-        <pre class="caixa" id="legenda-1">Você faz o produto, tira a foto, responde cliente no WhatsApp e ainda pensa no post de amanhã.
+      <h2>1. Você produz, vende e divulga sozinha</h2>
+      <div class="imagens">
+        <figure>
+          <figcaption>Principal</figcaption>
+          <img src="./post-1.jpg" alt="Ceramista de óculos e avental segura uma caneca feita à mão diante de uma parede de azulejos. Texto: Você produz, vende e divulga sozinha? Esse app é pra você." width="1080" height="1350" loading="lazy">
+          <div class="acoes"><a class="botao" href="./post-1.jpg" download="artesana-post-1.jpg">Baixar imagem 1</a></div>
+        </figure>
+        <figure>
+          <figcaption>Alternativa</figcaption>
+          <img src="./post-1b.jpg" alt="Dois sabonetes artesanais empilhados sobre linho, com ramos de flores secas. Texto: Você produz, vende e divulga sozinha? Esse app é pra você." width="1080" height="1350" loading="lazy">
+          <div class="acoes"><a class="botao" href="./post-1b.jpg" download="artesana-post-1b.jpg">Baixar alternativa 1</a></div>
+        </figure>
+      </div>
+      <p class="dica">No celular, também dá pra segurar o dedo na imagem e escolher salvar.</p>
+      <h3>Legenda</h3>
+      <pre class="caixa" id="legenda-1">Você faz o produto, tira a foto, responde cliente no WhatsApp e ainda pensa no post de amanhã.
 
 A gente sabe como é, porque o artesaná. nasceu olhando pra essa rotina. É um app feito pra quem vive de artesanato e cuida de tudo sozinha: produzir, vender e divulgar.
 
@@ -68,22 +77,31 @@ Já está no ar, em versão beta, e é grátis pra começar. O link está na bio
 Conta pra gente: qual dessas três partes mais pesa no seu dia?
 
 #artesanato #feitoamao #artesanatobrasileiro #saboariaartesanal #velasartesanais #cosmeticosnaturais #empreendedorismofeminino #pequenosnegocios</pre>
-        <div class="acoes"><button class="botao" type="button" data-copiar="legenda-1">Copiar legenda</button></div>
-        <h3>Texto alternativo</h3>
-        <pre class="caixa" id="alt-1">Mulher sorrindo, apoiada numa mesa ao ar livre, segurando um celular. Texto: Você produz, vende e divulga. O artesaná. nasceu pra ajudar quem faz tudo isso sozinha.</pre>
-        <div class="acoes"><button class="botao claro" type="button" data-copiar="alt-1">Copiar texto alternativo</button></div>
-      </div>
+      <div class="acoes"><button class="botao" type="button" data-copiar="legenda-1">Copiar legenda</button></div>
+      <h3>Texto alternativo da imagem principal</h3>
+      <pre class="caixa" id="alt-1">Ceramista de óculos e avental segura uma caneca feita à mão diante de uma parede de azulejos. Texto: Você produz, vende e divulga sozinha? Esse app é pra você.</pre>
+      <div class="acoes"><button class="botao claro" type="button" data-copiar="alt-1">Copiar texto alternativo</button></div>
+      <h3>Texto alternativo da alternativa</h3>
+      <pre class="caixa" id="altb-1">Dois sabonetes artesanais empilhados sobre linho, com ramos de flores secas. Texto: Você produz, vende e divulga sozinha? Esse app é pra você.</pre>
+      <div class="acoes"><button class="botao claro" type="button" data-copiar="altb-1">Copiar texto alternativo</button></div>
     </article>
     <article class="peca">
-      <figure>
-        <img src="./post-2.jpg" alt="Mulher de camisa cinza e faixa branca no cabelo mostra um celular com a tela inicial do app artesaná. Texto: Seu ateliê cabe no celular. Rótulo em PDF, link do WhatsApp e identidade da marca num app só. Selo: grátis pra começar." width="1080" height="1350">
-        <div class="acoes"><a class="botao" href="./post-2.jpg" download="artesana-post-2.jpg">Baixar imagem 2</a></div>
-        <p class="dica">No celular, também dá pra segurar o dedo na imagem e escolher salvar.</p>
-      </figure>
-      <div>
-        <h2>2. O app</h2>
-        <h3>Legenda</h3>
-        <pre class="caixa" id="legenda-2">Seu ateliê cabe no celular.
+      <h2>2. Marketing na palma da mão</h2>
+      <div class="imagens">
+        <figure>
+          <figcaption>Principal</figcaption>
+          <img src="./post-2.jpg" alt="Mulher ruiva de óculos, sentada no sofá, usa o celular. Texto: Todo o marketing da sua marca na palma da sua mão." width="1080" height="1350" loading="lazy">
+          <div class="acoes"><a class="botao" href="./post-2.jpg" download="artesana-post-2.jpg">Baixar imagem 2</a></div>
+        </figure>
+        <figure>
+          <figcaption>Alternativa</figcaption>
+          <img src="./post-2b.jpg" alt="Mão segura um celular com a tela inicial do app artesaná., com uma lareira desfocada ao fundo. Texto: Todo o marketing da sua marca na palma da sua mão." width="1080" height="1350" loading="lazy">
+          <div class="acoes"><a class="botao" href="./post-2b.jpg" download="artesana-post-2b.jpg">Baixar alternativa 2</a></div>
+        </figure>
+      </div>
+      <p class="dica">No celular, também dá pra segurar o dedo na imagem e escolher salvar.</p>
+      <h3>Legenda</h3>
+      <pre class="caixa" id="legenda-2">Seu ateliê cabe no celular.
 
 O que já dá pra fazer hoje no artesaná.:
 
@@ -98,22 +116,33 @@ Checklist da identidade da marca, pra ver o que você já tem e o que ainda falt
 Abre no navegador e instala na tela inicial, no Android e no iPhone. O link está na bio.
 
 #artesanato #rotulos #saboariaartesanal #cosmeticosnaturais #velasartesanais #identidadevisual #feitoamao #pequenosnegocios</pre>
-        <div class="acoes"><button class="botao" type="button" data-copiar="legenda-2">Copiar legenda</button></div>
-        <h3>Texto alternativo</h3>
-        <pre class="caixa" id="alt-2">Mulher de camisa cinza e faixa branca no cabelo mostra um celular com a tela inicial do app artesaná. Texto: Seu ateliê cabe no celular. Rótulo em PDF, link do WhatsApp e identidade da marca num app só. Selo: grátis pra começar.</pre>
-        <div class="acoes"><button class="botao claro" type="button" data-copiar="alt-2">Copiar texto alternativo</button></div>
-      </div>
+      <div class="acoes"><button class="botao" type="button" data-copiar="legenda-2">Copiar legenda</button></div>
+      <h3>Texto alternativo da imagem principal</h3>
+      <pre class="caixa" id="alt-2">Mulher ruiva de óculos, sentada no sofá, usa o celular. Texto: Todo o marketing da sua marca na palma da sua mão.</pre>
+      <div class="acoes"><button class="botao claro" type="button" data-copiar="alt-2">Copiar texto alternativo</button></div>
+      <h3>Texto alternativo da alternativa</h3>
+      <pre class="caixa" id="altb-2">Mão segura um celular com a tela inicial do app artesaná., com uma lareira desfocada ao fundo. Texto: Todo o marketing da sua marca na palma da sua mão.</pre>
+      <div class="acoes"><button class="botao claro" type="button" data-copiar="altb-2">Copiar texto alternativo</button></div>
     </article>
     <article class="peca">
-      <figure>
-        <img src="./post-3.jpg" alt="Mulher de chapéu vermelho fotografa com o celular uma vela artesanal perto de uma janela. Texto: Comece grátis hoje. Versão beta aberta pra quem faz sabonete, vela, cosmético natural e artesanato. Selo: beta aberto." width="1080" height="1350">
-        <div class="acoes"><a class="botao" href="./post-3.jpg" download="artesana-post-3.jpg">Baixar imagem 3</a></div>
-        <p class="dica">No celular, também dá pra segurar o dedo na imagem e escolher salvar.</p>
-      </figure>
-      <div>
-        <h2>3. Chamada</h2>
-        <h3>Legenda</h3>
-        <pre class="caixa" id="legenda-3">A versão beta do artesaná. está aberta, e começar é grátis.
+      <h2>3. Mais tempo com a família</h2>
+      <div class="imagens">
+        <figure>
+          <figcaption>Principal</figcaption>
+          <img src="./post-3.jpg" alt="Mulher de cabelos grisalhos e uma menina decoram um bolo juntas na cozinha. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço." width="1080" height="1350" loading="lazy">
+          <div class="acoes"><a class="botao" href="./post-3.jpg" download="artesana-post-3.jpg">Baixar imagem 3</a></div>
+        </figure>
+        <figure>
+          <figcaption>Alternativa</figcaption>
+          <img src="./post-3b.jpg" alt="Mãe e filha pintam ovos numa mesa de madeira, diante de uma parede rosada. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço." width="1080" height="1350" loading="lazy">
+          <div class="acoes"><a class="botao" href="./post-3b.jpg" download="artesana-post-3b.jpg">Baixar alternativa 3</a></div>
+        </figure>
+      </div>
+      <p class="dica">No celular, também dá pra segurar o dedo na imagem e escolher salvar.</p>
+      <h3>Legenda</h3>
+      <pre class="caixa" id="legenda-3">Menos tempo resolvendo rótulo e link, mais tempo com quem você ama.
+
+A versão beta do artesaná. está aberta, e começar é grátis.
 
 Como entrar:
 
@@ -126,11 +155,13 @@ Leva poucos minutos e seus dados ficam só no seu aparelho.
 Conhece alguém que faz sabonete, vela, cosmético natural ou artesanato? Marca aqui nos comentários.
 
 #artesanato #feitoamao #saboariaartesanal #velasartesanais #cosmeticosnaturais #empreendedorismofeminino #artesanatobrasileiro #pequenosnegocios</pre>
-        <div class="acoes"><button class="botao" type="button" data-copiar="legenda-3">Copiar legenda</button></div>
-        <h3>Texto alternativo</h3>
-        <pre class="caixa" id="alt-3">Mulher de chapéu vermelho fotografa com o celular uma vela artesanal perto de uma janela. Texto: Comece grátis hoje. Versão beta aberta pra quem faz sabonete, vela, cosmético natural e artesanato. Selo: beta aberto.</pre>
-        <div class="acoes"><button class="botao claro" type="button" data-copiar="alt-3">Copiar texto alternativo</button></div>
-      </div>
+      <div class="acoes"><button class="botao" type="button" data-copiar="legenda-3">Copiar legenda</button></div>
+      <h3>Texto alternativo da imagem principal</h3>
+      <pre class="caixa" id="alt-3">Mulher de cabelos grisalhos e uma menina decoram um bolo juntas na cozinha. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço.</pre>
+      <div class="acoes"><button class="botao claro" type="button" data-copiar="alt-3">Copiar texto alternativo</button></div>
+      <h3>Texto alternativo da alternativa</h3>
+      <pre class="caixa" id="altb-3">Mãe e filha pintam ovos numa mesa de madeira, diante de uma parede rosada. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço.</pre>
+      <div class="acoes"><button class="botao claro" type="button" data-copiar="altb-3">Copiar texto alternativo</button></div>
     </article>
 
     <p class="fim">Fotos do banco Pexels, com licença livre para uso comercial.</p>

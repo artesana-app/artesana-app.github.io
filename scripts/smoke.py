@@ -51,13 +51,22 @@ def main() -> int:
         browser = p.chromium.launch(headless=not args.headed)
         ctx = browser.new_context(viewport={"width": 375, "height": 812}, device_scale_factor=2, is_mobile=True, has_touch=True)
         page = ctx.new_page()
-        page.on("console", lambda m: erros.append(f"console.{m.type}: {m.text}") if m.type == "error" else None)
+        page.on("console", lambda m: erros.append(f"console.{m.type}: {m.text}") if m.type == "error" and "ERR_FAILED" not in m.text else None)
         page.on("pageerror", lambda e: erros.append(f"pageerror: {e}"))
 
         # landing
         page.goto(f"{base}/", wait_until="networkidle")
         if not page.locator("h1").count():
             falhas.append("landing sem <h1>")
+
+        # página dos links curtos de WhatsApp (não deixa sair navegando pro wa.me)
+        ctx.route("**/wa.me/**", lambda r: r.abort())
+        page.goto(f"{base}/w/?flor-de-sal-11900000000-m1", wait_until="domcontentloaded")
+        page.wait_for_timeout(300)
+        if "Flor de Sal" not in (page.locator("#titulo").inner_text() or ""):
+            falhas.append("/w/ não identificou a marca do link curto")
+        if not (page.locator("#abrir").get_attribute("href") or "").startswith("https://wa.me/5511900000000"):
+            falhas.append("/w/ não montou o destino do WhatsApp")
 
         # app: login
         page.goto(f"{base}/app/#login", wait_until="networkidle")

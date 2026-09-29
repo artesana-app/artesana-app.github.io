@@ -1,74 +1,70 @@
 # Domínio do artesaná.
 
-Consulta feita em 29/09/2026 direto nos registros oficiais (RDAP do Google Registry, Registro.br e Verisign).
+## Domínio oficial: artesana-mktdigital.com.br
 
-## Disponibilidade
+Registrado no Registro.br em 29/09/2026, em nome de Bibiana Kohls Silveira, válido até 29/09/2027.
+Usa o DNS do próprio Registro.br (`a.auto.dns.br` e `b.auto.dns.br`).
 
-| Domínio | Situação | Observação |
-|---|---|---|
-| artesana.app | **livre** | igual ao Instagram @artesana.app |
-| artesana.app.br | **livre** | categoria "Aplicativos" do Registro.br, aceita CPF |
-| artesana.net.br | livre | |
-| useartesana.com.br | livre | |
-| appartesana.com.br | livre | |
-| artesanaapp.com | livre | |
-| artesana.com.br | ocupado | Artesana Divisórias e Forros Ltda, desde 1998 |
-| artesana.com | ocupado | estacionado desde 1998, renovado até 2031 |
-| artesana.art.br | ocupado | pessoa física, desde 04/2025 |
-| artesanaapp.com.br | ocupado | registrado em 24/04/2026 por "Igor Daniel" |
+Situação em 29/09/2026: o domínio existe, mas ainda não tem nenhum registro de DNS. Enquanto isso o site segue em
+https://bebezinbtc-droid.github.io/artesana/.
 
-## Recomendação
+## O que falta: criar o DNS no Registro.br
 
-Registrar **artesana.app** como endereço oficial e **artesana.app.br** como reserva, apontando pro mesmo site.
+Quem faz: a titular, com o login dela no Registro.br.
 
-## Preço
-
-| Domínio | Onde | 1º ano | Renovação |
-|---|---|---|---|
-| artesana.app | Porkbun | US$ 8,75 | US$ 14,93 por ano |
-| artesana.app.br | Registro.br | R$ 40,00 | R$ 40,00 por ano |
-
-Valores lidos na API pública da Porkbun e na busca do Registro.br em 29/09/2026. Outras empresas vendem `.app` com preço próprio.
-
-## O que precisa pra comprar
-
-**artesana.app** (qualquer empresa que venda `.app`)
-- Conta com e-mail que você não vai perder.
-- Nome, endereço e telefone do titular. Quem consta como titular é o dono legal do domínio.
-- Cartão de crédito internacional ou PayPal.
-- Não exige CPF nem CNPJ.
-- Ativar a privacidade do WHOIS, que costuma ser gratuita.
-- Ativar a renovação automática.
-
-**artesana.app.br** (registro.br)
-- Conta no Registro.br com CPF ou CNPJ do titular.
-- Pagamento por Pix, boleto ou cartão.
-
-## Depois da compra: DNS
-
-No painel de DNS do domínio, criar:
+1. Entrar em https://registro.br e abrir o domínio `artesana-mktdigital.com.br`.
+2. Na parte de DNS, abrir a configuração da zona e ativar o modo avançado, que libera a criação de entradas.
+3. Criar as entradas abaixo e salvar.
 
 | Tipo | Nome | Valor |
 |---|---|---|
-| A | @ | 185.199.108.153 |
-| A | @ | 185.199.109.153 |
-| A | @ | 185.199.110.153 |
-| A | @ | 185.199.111.153 |
-| AAAA | @ | 2606:50c0:8000::153 |
-| AAAA | @ | 2606:50c0:8001::153 |
-| AAAA | @ | 2606:50c0:8002::153 |
-| AAAA | @ | 2606:50c0:8003::153 |
+| A | (vazio) | 185.199.108.153 |
+| A | (vazio) | 185.199.109.153 |
+| A | (vazio) | 185.199.110.153 |
+| A | (vazio) | 185.199.111.153 |
 | CNAME | www | bebezinbtc-droid.github.io |
 
-Domínio `.app` só abre em HTTPS. O GitHub Pages emite o certificado sozinho depois que o DNS propaga.
+Opcionais, para quem acessa por IPv6:
 
-## Depois do DNS: no repositório
+| Tipo | Nome | Valor |
+|---|---|---|
+| AAAA | (vazio) | 2606:50c0:8000::153 |
+| AAAA | (vazio) | 2606:50c0:8001::153 |
+| AAAA | (vazio) | 2606:50c0:8002::153 |
+| AAAA | (vazio) | 2606:50c0:8003::153 |
 
-1. Criar o arquivo `CNAME` na raiz com `artesana.app`.
-2. Definir o domínio no Pages e forçar HTTPS.
-3. Verificar o domínio na conta do GitHub, pra ninguém mais conseguir usá-lo.
-4. Trocar os endereços no README e regenerar as peças com `python scripts/gen-instagram.py --bio artesana.app`.
+Os nomes dos botões no painel podem variar um pouco. O que importa são as entradas da tabela.
+A propagação costuma levar de alguns minutos a poucas horas.
 
-O site usa só caminhos relativos, então funciona na raiz do domínio sem mudança de código.
+## Depois do DNS: virar o site
 
-Não criar o arquivo `CNAME` antes de o domínio existir: o Pages passa a redirecionar pra um endereço que não resolve e o site sai do ar.
+```bash
+python scripts/ativar-dominio.py --verificar   # só confere
+python scripts/ativar-dominio.py               # confere e vira
+```
+
+O script só vira o site se o DNS já estiver apontando certo. Ele cria o arquivo `CNAME`, define o domínio no
+GitHub Pages, liga o HTTPS obrigatório e troca os endereços no README.
+
+Não criar o arquivo `CNAME` à mão antes disso: o endereço antigo passa a redirecionar para um domínio que ainda
+não abre e o site sai do ar.
+
+O site usa só caminhos relativos, então funciona na raiz do domínio sem mudança de código. Os links curtos de
+WhatsApp já criados no endereço antigo continuam funcionando, porque o GitHub redireciona para o domínio novo.
+
+## Depois de virar
+
+- Trocar o link da bio do Instagram para `https://artesana-mktdigital.com.br`.
+- Verificar o domínio na conta do GitHub, em Settings, Pages, pra ninguém mais conseguir usá-lo.
+- Deixar a renovação automática ligada no Registro.br.
+
+## Outros nomes consultados em 29/09/2026
+
+| Domínio | Situação | Observação |
+|---|---|---|
+| artesana.app | livre | igual ao Instagram @artesana.app. Porkbun: US$ 8,75 no 1º ano, US$ 14,93 na renovação |
+| artesana.app.br | livre | Registro.br, R$ 40,00 por ano |
+| artesana.com.br | ocupado | Artesana Divisórias e Forros Ltda, desde 1998 |
+| artesana.com | ocupado | estacionado desde 1998 |
+| artesana.art.br | ocupado | pessoa física, desde 04/2025 |
+| artesanaapp.com.br | ocupado | registrado em 24/04/2026 por "Igor Daniel" |
