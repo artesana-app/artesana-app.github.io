@@ -115,3 +115,19 @@
 .nota { display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 64px; padding: 8px 2px; border: 1.5px solid var(--line); border-radius: var(--radius-s); background: var(--white); font-size: 11px; cursor: pointer; color: inherit; }
 .nota-emoji { font-size: 24px; line-height: 1; }
 .nota.on { border-color: var(--moss); background: var(--moss-l); font-weight: 600; }
+
+/* rótulo completo com os dados da Anvisa */
+.tabs button { padding-left: 4px; padding-right: 4px; }
+.rc-palco { display: flex; justify-content: center; max-width: 100%; overflow-x: auto; }
+.rot-completo { box-sizing: border-box; overflow: hidden; background: #fff; color: #000; border: 1px solid #000; font-family: var(--font); line-height: 1.18; text-align: left; flex-shrink: 0; }
+.rot-completo .rc-marca { font-size: 1.5em; letter-spacing: -0.02em; line-height: 1.05; }
+.rot-completo .rc-produto { font-size: 1.2em; font-weight: 600; line-height: 1.1; margin-bottom: 0.35em; }
+.rot-completo .rc-destaque { font-weight: 700; letter-spacing: 0.04em; margin: 0.2em 0; }
+.rot-completo .rc-linha b { font-weight: 600; }
+.rc-aviso { margin: 0; text-align: center; }
+.rc-aviso.erro { color: var(--erro); font-weight: 600; }
+.rc-lista { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; }
+.rc-lista li { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--ink-2); }
+.rc-lista .marca { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line); display: inline-flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; }
+.rc-lista .ok { color: var(--ink); }
+.rc-lista .ok .marca { background: var(--moss); border-color: var(--moss); color: var(--cream); }

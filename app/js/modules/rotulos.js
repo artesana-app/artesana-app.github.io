@@ -7,6 +7,7 @@ import { DATAS } from '../data/datas.js';
 import { gerarInci, sugerirAlergenos, buscar } from '../lib/inci.js';
 import { gradeA4, corTexto, PRESETS, CORES_FUNDO } from '../lib/rotulo.js';
 import { gerarQrDataUrl } from './whatsapp.js';
+import { abaAnvisa } from './rotulo-completo.js';
 
 const ESCALA = 3; // px por mm no preview
 
@@ -200,8 +201,8 @@ export function montar(section, param) {
     if (nova) aba = nova;
     section.innerHTML = '';
     const tabs = h('div', { class: 'tabs' },
-      ...[['criar', 'Criar'], ['inci', 'INCI'], ['datas', 'Datas'], ['embalagem', 'Papel']].map(([id, nome]) => h('button', { class: aba === id ? 'on' : '', onClick: () => render(id) }, nome)));
-    const corpo = aba === 'inci' ? abaInci(section, render) : aba === 'datas' ? abaDatas() : aba === 'embalagem' ? abaEmbalagem() : abaCriar(section, render);
+      ...[['criar', 'Criar'], ['inci', 'INCI'], ['anvisa', 'Anvisa'], ['datas', 'Datas'], ['embalagem', 'Papel']].map(([id, nome]) => h('button', { class: aba === id ? 'on' : '', onClick: () => render(id) }, nome)));
+    const corpo = aba === 'anvisa' ? abaAnvisa() : aba === 'inci' ? abaInci(section, render) : aba === 'datas' ? abaDatas() : aba === 'embalagem' ? abaEmbalagem() : abaCriar(section, render);
     section.append(h('div', { class: 'screen' },
       header({ titulo: 'Rótulos & Etiquetas', sub: 'Redondo, retangular e tag · PDF pra gráfica' }),
       h('div', { class: 'content' }, tabs, corpo),

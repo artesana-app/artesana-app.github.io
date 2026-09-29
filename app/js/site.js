@@ -2,7 +2,7 @@
 export const SITE = {
   dominio: 'artesana-mktdigital.com.br',
   instagram: 'artesana.app',
-  versao: '1.2.0',
+  versao: '1.3.0',
   // Teste beta: tudo liberado, sem trava de plano. Troque pra false quando os planos entrarem em vigor.
   beta: true,
   // WhatsApp da equipe artesaná. que recebe os perfis enviados, no formato { ddd: '51', numero: '999999999' }.

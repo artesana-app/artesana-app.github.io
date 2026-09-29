@@ -6,5 +6,5 @@
     display: block !important; position: relative; width: 210mm; height: 297mm; overflow: hidden;
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
-  #folha-a4 .rot { position: absolute; }
+  #folha-a4 .rot, #folha-a4 .rot-completo { position: absolute; }
 }
