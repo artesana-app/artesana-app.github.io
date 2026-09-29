@@ -90,7 +90,6 @@ def main() -> None:
         page.wait_for_timeout(600)
         page.evaluate("""() => {
           const sec = document.querySelector('section[data-route=whatsapp]');
-          sec.querySelector('.wa-link').textContent = 'artesana-app.github.io/w/?flor-de-sal-11900000000';
           window.scrollTo(0, sec.querySelector('.wa-id').getBoundingClientRect().top + scrollY - 96);
         }""")
         page.wait_for_timeout(300)

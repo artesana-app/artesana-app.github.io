@@ -1,6 +1,6 @@
 import { h, header, toast, copiar } from '../ui.js';
 import * as store from '../store.js';
-import { validar, numeroFormatado, montarLinkCurto, lerLinkCurto, destinoLinkCurto, SUGESTOES_MENSAGEM } from '../lib/whatsapp.js';
+import { validar, numeroFormatado, versoesDoLink, SUGESTOES_MENSAGEM } from '../lib/whatsapp.js';
 import { baseLinkCurto, semProtocolo } from '../site.js';
 
 // QR em data URL (PNG) usando qrcode-generator (window.qrcode). px = lado em pixels.
@@ -46,12 +46,10 @@ export function montar(section) {
     }
     erro.classList.add('hidden');
     const dados = { ddd: v.ddd, numero: v.numero, mensagem: msg.value.trim() };
-    const linkCurto = montarLinkCurto({ base: baseLinkCurto(), marca, ...dados });
-    const lido = lerLinkCurto(new URL(linkCurto).search);
-    const link = destinoLinkCurto(lido); // para onde o link curto leva: wa.me com a mensagem identificada
-    const enviada = decodeURIComponent((link.split('?text=')[1] || ''));
-    store.set('whatsapp', { ...dados, link, linkCurto });
-    const qrUrl = gerarQrDataUrl(link);
+    const links = versoesDoLink({ base: baseLinkCurto(), marca, ...dados });
+    // link: o que vai no QR e nos rótulos. linkCurto: o que aparece e se copia pra bio.
+    store.set('whatsapp', { ...dados, link: links.comMensagem || links.curto, linkCurto: links.curto, linkMarca: links.comMarca });
+    const qrUrl = gerarQrDataUrl(links.comMensagem || links.curto);
 
     resultado.innerHTML = '';
     resultado.append(
@@ -59,38 +57,44 @@ export function montar(section) {
         h('div', { class: 'wa-id-topo' },
           h('span', { class: 'wa-id-marca' }, marca || 'Sua marca'),
           h('span', { class: 'muted' }, numeroFormatado(dados))),
-        marca ? null : h('p', { class: 'muted' }, 'Seu link ainda está sem nome. ', h('a', { href: '#perfil' }, 'Informe a marca no perfil'), ' pra ele sair identificado.'),
         h('div', { class: 'wa-rotulo' }, 'Link curto'),
-        h('div', { class: 'wa-link' }, semProtocolo(linkCurto)),
+        h('div', { class: 'wa-link' }, semProtocolo(links.curto)),
         h('div', { class: 'btn-row' },
-          h('button', { class: 'btn', onClick: () => copiar(linkCurto, 'Link copiado! Cole na bio.') }, 'Copiar link'),
-          h('a', { class: 'btn ghost', href: linkCurto, target: '_blank', rel: 'noopener' }, 'Testar')),
-        enviada ? h('div', {}, h('div', { class: 'wa-rotulo' }, 'O que a cliente envia'), h('p', { class: 'wa-msg' }, enviada)) : null,
+          h('button', { class: 'btn', onClick: () => copiar(links.curto, 'Link copiado! Cole na bio.') }, 'Copiar link'),
+          h('a', { class: 'btn ghost', href: links.curto, target: '_blank', rel: 'noopener' }, 'Testar')),
+        h('p', { class: 'muted', style: { margin: '10px 0 0' } }, 'É o link do próprio WhatsApp. Abre a conversa com você, sem mensagem pronta.'),
       ),
+      links.comMensagem ? h('div', { class: 'card wa-mensagem' },
+        h('div', { class: 'wa-rotulo', style: { marginTop: 0 } }, 'Link com mensagem pronta'),
+        h('p', { class: 'wa-msg' }, links.mensagemEnviada),
+        h('p', { class: 'muted', style: { margin: '8px 0 0' } }, 'A cliente já chega com esse texto escrito. O link fica mais comprido.'),
+        h('div', { class: 'btn-row' },
+          h('button', { class: 'btn white', onClick: () => copiar(links.comMensagem, 'Link com mensagem copiado') }, 'Copiar link com mensagem'))) : null,
       h('div', { class: 'card wa-result' },
         h('div', { class: 'wa-rotulo' }, 'QR code pra embalagem e rótulo'),
         qrUrl ? h('img', { src: qrUrl, alt: `QR code do WhatsApp de ${marca || 'sua marca'}` }) : h('p', { class: 'muted' }, 'QR indisponível'),
         qrUrl ? h('a', { class: 'btn soft block', href: qrUrl, download: 'qr-whatsapp.png' }, 'Baixar QR') : null,
-        h('p', { class: 'muted', style: { marginTop: '10px' } }, 'O QR abre o WhatsApp direto, então continua valendo em rótulo impresso.'),
+        h('p', { class: 'muted', style: { marginTop: '10px' } }, links.comMensagem ? 'O QR abre a conversa já com a mensagem pronta.' : 'O QR abre a conversa com você.'),
         h('details', { class: 'wa-direto' },
-          h('summary', {}, 'Ver o link direto do WhatsApp'),
-          h('p', { class: 'wa-msg' }, semProtocolo(link)),
-          h('button', { class: 'btn white sm', onClick: () => copiar(link, 'Link direto copiado') }, 'Copiar link direto')),
+          h('summary', {}, 'Ver o link com o nome da marca'),
+          h('p', { class: 'wa-msg' }, semProtocolo(links.comMarca)),
+          h('p', { class: 'muted', style: { margin: '0 0 10px' } }, 'Passa por uma página do artesaná. antes de abrir o WhatsApp.'),
+          h('button', { class: 'btn white sm', onClick: () => copiar(links.comMarca, 'Link copiado') }, 'Copiar')),
       ),
     );
     resultado.classList.remove('hidden');
     if (!silencioso) toast('Link gerado e salvo');
-    return linkCurto;
+    return links.curto;
   };
 
   section.append(h('div', { class: 'screen' },
-    header({ titulo: 'Link do WhatsApp', sub: 'Curto e com o nome da sua marca', voltar: '#mais' }),
+    header({ titulo: 'Link do WhatsApp', sub: 'Curto, pra bio e pra embalagem', voltar: '#mais' }),
     h('div', { class: 'content' },
       h('div', { class: 'card' },
         h('div', { class: 'field' }, h('label', {}, 'Seu número'),
           h('div', { class: 'inline' }, h('span', { class: 'prefix' }, '+55'), ddd, numero), erro),
         h('div', { class: 'field' }, h('label', {}, 'Mensagem automática'), msg, chips,
-          h('div', { class: 'hint' }, 'Com uma das mensagens prontas o link fica mais curto.')),
+          h('div', { class: 'hint' }, 'Opcional. Vale pro link com mensagem e pro QR code.')),
         h('button', { class: 'btn peach block', onClick: () => gerar() }, 'Gerar link'),
       ),
       resultado,

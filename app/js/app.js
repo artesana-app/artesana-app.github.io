@@ -16,7 +16,7 @@ import * as meta from './modules/meta.js';
 import * as tutorial from './modules/tutorial.js';
 import * as detalhe from './modules/detalhe.js';
 
-export const VERSAO = '1.3.0';
+export const VERSAO = '1.3.1';
 
 router.iniciar({
   login: login.montar,

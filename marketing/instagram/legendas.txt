@@ -12,7 +12,7 @@ O artesaná. por dentro, em cinco telas.
 
 Rótulo e etiqueta em PDF, no formato redondo, retangular ou tag de presente, com a folha A4 já montada. Tem também o rótulo completo, com os dados que a Anvisa exige.
 
-Link do WhatsApp curto, com o nome da sua marca, mensagem pronta e QR code pra embalagem.
+Link do WhatsApp curto, com mensagem pronta e QR code pra embalagem.
 
 Lista de ingredientes no padrão INCI, com a composição em português.
 
@@ -27,7 +27,7 @@ Está em versão beta e é grátis pra começar. O link está na bio.
 TEXTO ALTERNATIVO
 carrossel-1.jpg: Mulher de cabelos grisalhos sorri olhando o celular, sentada num sofá verde. Texto: Conheça o app por dentro. Tudo pra sua marca, no celular.
 carrossel-2.jpg: Pote azul com etiqueta em branco sobre uma superfície clara. Texto: Rótulo e etiqueta. Em PDF, com os dados que a Anvisa exige.
-carrossel-3.jpg: Mãos seguram um celular com a tela do link do WhatsApp no app artesaná., com QR code. Texto: Link do WhatsApp. Curto e com o nome da sua marca.
+carrossel-3.jpg: Mãos seguram um celular com a tela do link do WhatsApp no app artesaná., com QR code. Texto: Link do WhatsApp. Curto, com mensagem pronta e QR code.
 carrossel-4.jpg: Dois sabonetes artesanais empilhados sobre linho, com ramos de flores secas. Texto: Identidade e guias. A cara da marca e como divulgar.
 carrossel-5.jpg: Mulher de cabelos brancos e camisa branca sorri segurando um conta-gotas e um frasco. Texto: Instala no celular e funciona sem internet. Comece grátis. Link na bio.
 
@@ -65,7 +65,7 @@ Use a imagem 4:5 no feed e a 9:16 em Stories e Reels. No Gerenciador de Anúncio
 ================================================================
 
 TEXTO PRINCIPAL
-Você produz, vende e divulga sozinha? O artesaná. monta o rótulo do seu produto, cria o link do WhatsApp com o nome da sua marca e organiza a identidade dela, tudo pelo celular. Está em versão beta e é grátis pra começar.
+Você produz, vende e divulga sozinha? O artesaná. monta o rótulo do seu produto, cria o link curto do WhatsApp e organiza a identidade dela, tudo pelo celular. Está em versão beta e é grátis pra começar.
 
 TÍTULO
 Rótulo, link e marca no celular

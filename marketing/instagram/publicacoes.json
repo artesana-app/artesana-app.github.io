@@ -6,11 +6,11 @@
     "imagens": [
       { "arquivo": "carrossel-1.jpg", "rotulo": "Página 1", "alt": "Mulher de cabelos grisalhos sorri olhando o celular, sentada num sofá verde. Texto: Conheça o app por dentro. Tudo pra sua marca, no celular." },
       { "arquivo": "carrossel-2.jpg", "rotulo": "Página 2", "alt": "Pote azul com etiqueta em branco sobre uma superfície clara. Texto: Rótulo e etiqueta. Em PDF, com os dados que a Anvisa exige." },
-      { "arquivo": "carrossel-3.jpg", "rotulo": "Página 3", "alt": "Mãos seguram um celular com a tela do link do WhatsApp no app artesaná., com QR code. Texto: Link do WhatsApp. Curto e com o nome da sua marca." },
+      { "arquivo": "carrossel-3.jpg", "rotulo": "Página 3", "alt": "Mãos seguram um celular com a tela do link do WhatsApp no app artesaná., com QR code. Texto: Link do WhatsApp. Curto, com mensagem pronta e QR code." },
       { "arquivo": "carrossel-4.jpg", "rotulo": "Página 4", "alt": "Dois sabonetes artesanais empilhados sobre linho, com ramos de flores secas. Texto: Identidade e guias. A cara da marca e como divulgar." },
       { "arquivo": "carrossel-5.jpg", "rotulo": "Página 5", "alt": "Mulher de cabelos brancos e camisa branca sorri segurando um conta-gotas e um frasco. Texto: Instala no celular e funciona sem internet. Comece grátis. Link na bio." }
     ],
-    "legenda": "O artesaná. por dentro, em cinco telas.\n\nRótulo e etiqueta em PDF, no formato redondo, retangular ou tag de presente, com a folha A4 já montada. Tem também o rótulo completo, com os dados que a Anvisa exige.\n\nLink do WhatsApp curto, com o nome da sua marca, mensagem pronta e QR code pra embalagem.\n\nLista de ingredientes no padrão INCI, com a composição em português.\n\nChecklist da identidade da marca e guias de foto com celular, página no Facebook e datas que mais vendem.\n\nInstala na tela inicial do celular e funciona sem internet.\n\nEstá em versão beta e é grátis pra começar. O link está na bio.\n\n#artesanato #feitoamao #saboariaartesanal #velasartesanais #cosmeticosnaturais #rotulos #empreendedorismofeminino #pequenosnegocios"
+    "legenda": "O artesaná. por dentro, em cinco telas.\n\nRótulo e etiqueta em PDF, no formato redondo, retangular ou tag de presente, com a folha A4 já montada. Tem também o rótulo completo, com os dados que a Anvisa exige.\n\nLink do WhatsApp curto, com mensagem pronta e QR code pra embalagem.\n\nLista de ingredientes no padrão INCI, com a composição em português.\n\nChecklist da identidade da marca e guias de foto com celular, página no Facebook e datas que mais vendem.\n\nInstala na tela inicial do celular e funciona sem internet.\n\nEstá em versão beta e é grátis pra começar. O link está na bio.\n\n#artesanato #feitoamao #saboariaartesanal #velasartesanais #cosmeticosnaturais #rotulos #empreendedorismofeminino #pequenosnegocios"
   },
   {
     "id": 5,
@@ -30,7 +30,7 @@
       { "arquivo": "anuncio-stories.jpg", "rotulo": "Stories e Reels, 9:16", "alt": "Artesã de cabelos grisalhos e jardineira bege sorri segurando o celular perto de uma janela. Texto: Rótulo, link e marca prontos no celular. Comece grátis hoje." }
     ],
     "textos": [
-      { "campo": "Texto principal", "valor": "Você produz, vende e divulga sozinha? O artesaná. monta o rótulo do seu produto, cria o link do WhatsApp com o nome da sua marca e organiza a identidade dela, tudo pelo celular. Está em versão beta e é grátis pra começar." },
+      { "campo": "Texto principal", "valor": "Você produz, vende e divulga sozinha? O artesaná. monta o rótulo do seu produto, cria o link curto do WhatsApp e organiza a identidade dela, tudo pelo celular. Está em versão beta e é grátis pra começar." },
       { "campo": "Título", "valor": "Rótulo, link e marca no celular" },
       { "campo": "Descrição", "valor": "Grátis na versão beta" },
       { "campo": "Botão", "valor": "Saiba mais" },

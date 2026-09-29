@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { slugMarca, montarLinkCurto, lerLinkCurto, destinoLinkCurto, SUGESTOES_MENSAGEM } from '../app/js/lib/whatsapp.js';
+import { slugMarca, montarLinkCurto, lerLinkCurto, destinoLinkCurto, versoesDoLink, SUGESTOES_MENSAGEM } from '../app/js/lib/whatsapp.js';
 
 const BASE = 'https://artesana-mktdigital.com.br/w/';
 
@@ -69,4 +69,34 @@ test('ida e volta preserva os dados', () => {
   assert.equal(dados.ddd, '51');
   assert.equal(dados.numero, '987654321');
   assert.equal(dados.slug, 'atelie-luz');
+});
+
+test('link curto é o do próprio WhatsApp, só com o número', () => {
+  const v = versoesDoLink({ base: BASE, marca: 'Flor de Sal', ddd: '11', numero: '90000-0000', mensagem: SUGESTOES_MENSAGEM[0] });
+  assert.equal(v.curto, 'https://wa.me/5511900000000');
+  assert.ok(!v.curto.includes('%'));
+  assert.ok(!v.curto.includes('?'));
+});
+
+test('versão com mensagem identifica a marca', () => {
+  const v = versoesDoLink({ base: BASE, marca: 'Flor de Sal', ddd: '11', numero: '900000000', mensagem: SUGESTOES_MENSAGEM[0] });
+  assert.ok(v.comMensagem.startsWith('https://wa.me/5511900000000?text='));
+  assert.equal(v.mensagemEnviada, `${SUGESTOES_MENSAGEM[0]} (vim pelo link da Flor de Sal)`);
+  assert.equal(decodeURIComponent(v.comMensagem.split('?text=')[1]), v.mensagemEnviada);
+  assert.equal(v.comMarca, 'https://artesana-mktdigital.com.br/w/?flor-de-sal-11900000000-m1');
+});
+
+test('sem marca e sem mensagem só existe o link curto', () => {
+  const v = versoesDoLink({ base: BASE, marca: '', ddd: '21', numero: '33334444', mensagem: '' });
+  assert.equal(v.curto, 'https://wa.me/552133334444');
+  assert.equal(v.comMensagem, '');
+  assert.equal(v.mensagemEnviada, '');
+});
+
+test('todas as versões abrem o WhatsApp pelo wa.me', () => {
+  const v = versoesDoLink({ base: BASE, marca: 'Ateliê Luz', ddd: '51', numero: '987654321', mensagem: 'Quero o kit de Natal' });
+  assert.ok(v.curto.startsWith('https://wa.me/'));
+  assert.ok(v.comMensagem.startsWith('https://wa.me/'));
+  assert.ok(destinoLinkCurto(lerLinkCurto(new URL(v.comMarca).search)).startsWith('https://wa.me/'));
+  assert.ok(![v.curto, v.comMensagem].some((l) => l.includes('wa.com')));
 });

@@ -77,3 +77,16 @@ export function destinoLinkCurto(dados) {
   if (dados.marca) mensagem = corpo ? `${corpo} (vim pelo link da ${dados.marca})` : `Olá! Vim pelo link da ${dados.marca}.`;
   return montarLink({ ddd: dados.ddd, numero: dados.numero, mensagem });
 }
+
+// As versões do link de uma marca.
+// curto: o link do próprio WhatsApp, só com o número. É o que vai na bio.
+// comMensagem: o mesmo link com a mensagem pronta, identificando a marca. Vazio se não houver o que escrever.
+// comMarca: passa pela página /w/ do artesaná., que mostra o nome da marca e abre o WhatsApp.
+export function versoesDoLink({ base, marca, ddd, numero, mensagem = '' } = {}) {
+  const curto = montarLink({ ddd, numero });
+  const comMarca = montarLinkCurto({ base, marca, ddd, numero, mensagem });
+  const destino = destinoLinkCurto(lerLinkCurto(comMarca.slice(comMarca.indexOf('?')))) || curto;
+  const comMensagem = destino === curto ? '' : destino;
+  const mensagemEnviada = comMensagem ? decodeURIComponent(comMensagem.split('?text=')[1] || '') : '';
+  return { curto, comMensagem, comMarca, mensagemEnviada };
+}
