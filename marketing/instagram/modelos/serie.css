@@ -1,0 +1,65 @@
+/* Série ateliê do Instagram do artesaná. — 1080 x 1350 (4:5).
+   Duas composições que se alternam na grade do perfil:
+     .inteira  foto na peça toda, texto na área calma da foto
+     .bilhete  foto em cima, papel embaixo com o texto
+   Três fontes por peça: Fraunces (frase), Homemade Apple (recado à mão), Poppins (marca e aviso).
+   Margem de segurança: nenhum texto a menos de 120px de qualquer borda.
+   A grade do perfil corta 34px de cada lado; a foto aguenta esse corte. */
+@import url('../../../app/css/variables.css');
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; width: 1080px; height: 1350px; overflow: hidden; background: var(--cream); }
+body { color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+.peca { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: var(--cream); }
+
+/* foto: mesmo tratamento de cor em todas, pra série ter um tom só */
+.janela { position: absolute; left: 0; top: 0; width: 1080px; overflow: hidden; }
+.inteira .janela { height: 1350px; }
+.bilhete .janela { height: 820px; }
+.janela img { position: absolute; left: 0; top: 0; width: 1080px; max-width: none; display: block; filter: saturate(0.88) contrast(0.96) brightness(1.03) sepia(0.08); }
+.janela::after { content: ''; position: absolute; inset: 0; background: url('./papel.png'); mix-blend-mode: multiply; opacity: 0.5; }
+.veu { position: absolute; pointer-events: none; }
+
+/* papel: a parte de baixo das peças .bilhete */
+.papel { position: absolute; left: 0; right: 0; top: 820px; bottom: 0; background: var(--cream) url('./papel.png'); }
+
+/* texto */
+.texto { position: absolute; left: 120px; right: 120px; }
+.frase { margin: 0; font-family: 'Fraunces', serif; font-weight: 400; font-variation-settings: 'SOFT' 100, 'WONK' 0; font-size: 70px; line-height: 1.07; letter-spacing: -0.022em; }
+.recado { width: fit-content; max-width: 100%; margin: 14px 0 0 8px; font-family: 'Homemade Apple', cursive; font-size: 42px; line-height: 1.5; transform: rotate(-2.5deg); transform-origin: left center; color: var(--moss); }
+.aviso { margin: 26px 0 0; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 28px; line-height: 1.35; letter-spacing: -0.005em; }
+.marca { position: absolute; right: 120px; bottom: 120px; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 32px; letter-spacing: -0.04em; line-height: 1; }
+.marca b { font-weight: 700; color: var(--peach-d); }
+
+/* sobre foto escura: texto creme */
+.claro .frase, .claro .aviso, .marca.clara { color: var(--cream); text-shadow: 0 2px 26px rgba(44, 26, 30, 0.55); }
+.claro .recado { color: var(--peach-l); text-shadow: 0 2px 18px rgba(44, 26, 30, 0.6); }
+.marca.clara b { color: var(--peach); }
+
+.bilhete .texto { top: 916px; }
+
+/* 1 — as horas que cabem numa peça (costureira) */
+.a1 .janela img { top: -150px; }
+.a1 .veu { left: 0; top: 0; width: 760px; height: 760px; background: radial-gradient(ellipse at 22% 30%, rgba(44, 26, 30, 0.62) 0%, rgba(44, 26, 30, 0.36) 45%, rgba(44, 26, 30, 0) 72%); }
+.a1 .texto { top: 132px; right: auto; width: 430px; }
+
+/* 2 — o rótulo é o primeiro oi (pote e barbante) */
+.a2 .janela img { top: -250px; }
+
+/* 3 — ponto por ponto (tricô) */
+.a3 .janela img { top: 0; }
+.a3 .texto { top: 132px; }
+
+/* 4 — toda venda começa numa conversa (celular) */
+.a4 .janela img { top: -120px; }
+
+/* 5 — pode chegar (janela) */
+.a5 .janela img { top: -470px; }
+.a5 .texto { top: 968px; }
+
+/* 6 — a marca em dia, o domingo livre (avó e neta) */
+.a6 .janela img { top: -262px; }
+
+/* na 1 a marca assina logo abaixo do recado: o canto de baixo da foto é movimentado */
+.a1 .marca { right: auto; bottom: auto; left: 120px; top: 584px; }

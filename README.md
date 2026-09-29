@@ -41,7 +41,7 @@ Formato de vitrine de loja (`index.html` + `landing.css`). As miniaturas das fer
 
 ## Instagram
 
-Peças e legendas em `marketing/instagram/`. `python scripts/gen-instagram.py` gera as imagens e `python scripts/gen-instagram-pagina.py` gera a página de entrega.
+Peças e legendas em `marketing/instagram/`. A linha atual é a série ateliê (`atelie-1.jpg` a `atelie-6.jpg`): três fontes, texto a pelo menos 120px das bordas, conferido pelo gerador. `python scripts/gen-instagram.py` gera as imagens e `python scripts/gen-instagram-pagina.py` gera a página de entrega.
 
 ## Marca
 

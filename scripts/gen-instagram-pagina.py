@@ -74,6 +74,12 @@ PAGINA = """<!doctype html>
     details .caixa { margin-bottom: 10px; font-size: 13.5px; }
     .secao { font-size: clamp(20px, 3vw, 26px); font-weight: 600; letter-spacing: -0.02em; margin-top: 48px; }
     .secao + p { color: var(--ink-2); margin-top: 6px; }
+    .grade { margin: 24px 0 0; max-width: 420px; }
+    .grade img { border: 1px solid #ECE4DE; border-radius: 4px; }
+    .grade figcaption { margin-top: 8px; font-size: 13px; color: var(--ink-2); }
+    .antigas { max-width: none; margin-top: 40px; }
+    .antigas > summary { font-size: 17px; }
+    .antigas > p { color: var(--ink-2); font-size: 14px; }
     .fim { padding-block: 28px 48px; font-size: 13px; color: var(--ink-2); }
   </style>
 </head>
@@ -81,13 +87,19 @@ PAGINA = """<!doctype html>
   <header class="topo"><div class="wrap"><a class="wordmark" href="../../">artesaná<b>.</b></a><span>Instagram @artesana.app</span></div></header>
   <main class="wrap">
     <section class="intro">
-      <h1>Publicações novas</h1>
-      <p>Baixe as imagens, copie o texto e publique. Todas seguem o padrão das que já estão no perfil: foto inteira, frase curta e a marca pequena.</p>
+      <h1>Série ateliê: seis publicações</h1>
+      <p>Foto de gente de verdade trabalhando, frase curta e um recado escrito à mão. Publique na ordem, da 1 à 6. No perfil, a 6 fica em cima à esquerda e a 1 embaixo à direita, como na prévia.</p>
+      <figure class="grade">
+        <img src="./grade-atelie.jpg" alt="Prévia das seis publicações na grade do perfil, alternando foto inteira e foto com papel embaixo.">
+        <figcaption>Prévia da grade do perfil</figcaption>
+      </figure>
     </section>
 __NOVAS__
-    <h2 class="secao">Já publicadas</h2>
-    <p>Ficam aqui com a alternativa de cada uma, caso você queira reaproveitar.</p>
+    <details class="antigas">
+      <summary>Peças anteriores</summary>
+      <p>Saíram da linha do perfil. Ficam guardadas aqui, caso você queira consultar.</p>
 __ANTIGAS__
+    </details>
     <p class="fim">Fotos do banco Pexels, com licença livre para uso comercial.</p>
   </main>
   <script>
@@ -145,9 +157,9 @@ def bloco(p):
 
 
 def texto_puro(pubs):
-    linhas = ["artesaná. — Instagram @artesana.app", ""]
+    linhas = ["artesaná. Instagram @artesana.app", "Série ateliê: publique na ordem, da 1 à 6.", ""]
     for p in pubs:
-        estado = " (já publicada)" if p.get("publicada") else ""
+        estado = " (peça anterior)" if p.get("arquivada") else ""
         linhas += ["=" * 64, f"{p['id']}. {p['titulo']}{estado}", "Imagens: " + ", ".join(im["arquivo"] for im in p["imagens"])]
         if p.get("como"):
             linhas.append(p["como"])
@@ -166,7 +178,7 @@ def texto_puro(pubs):
 def markdown(pubs):
     s = "# Instagram @artesana.app\n\nGerado de `publicacoes.json` por `python scripts/gen-instagram-pagina.py`. Edite o JSON, não este arquivo.\n\n"
     for p in pubs:
-        estado = " (já publicada)" if p.get("publicada") else ""
+        estado = " (peça anterior)" if p.get("arquivada") else ""
         s += f"## {p['id']}. {p['titulo']}{estado}\n\n"
         if p.get("como"):
             s += p["como"] + "\n\n"
@@ -186,14 +198,14 @@ def markdown(pubs):
 
 def main() -> None:
     pubs = json.loads((PASTA / "publicacoes.json").read_text(encoding="utf-8"))
-    novas = [p for p in pubs if not p.get("publicada")]
-    antigas = [p for p in pubs if p.get("publicada")]
+    novas = [p for p in pubs if not p.get("arquivada")]
+    antigas = [p for p in pubs if p.get("arquivada")]
     pagina = PAGINA.replace("__NOVAS__", "".join(bloco(p) for p in novas)).replace("__ANTIGAS__", "".join(bloco(p) for p in antigas))
     (PASTA / "index.html").write_text(pagina, encoding="utf-8", newline="\n")
     (PASTA / "legendas.txt").write_text(texto_puro(pubs).replace("\n", "\r\n"), encoding="utf-8-sig", newline="")
     (PASTA / "legendas.md").write_text(markdown(pubs), encoding="utf-8", newline="\n")
     for p in pubs:
-        print(p["id"], "publicada" if p.get("publicada") else "nova     ", len(p["imagens"]), "imagens |", p["titulo"])
+        print(p["id"], "anterior" if p.get("arquivada") else "série   ", len(p["imagens"]), "imagens |", p["titulo"])
     print("gerados: index.html, legendas.txt, legendas.md")
 
 

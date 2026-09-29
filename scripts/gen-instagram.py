@@ -1,6 +1,7 @@
 """Gera as peças do Instagram a partir dos modelos HTML em marketing/instagram/modelos/.
 
-Foto ocupa a peça inteira; o texto vai direto sobre a imagem, com a marca pequena junto dele.
+Série ateliê (atelie-1 a atelie-6): foto inteira ou foto com papel embaixo, três fontes, texto a 120px das bordas.
+Peças anteriores: foto na peça inteira, texto direto sobre a imagem, com a marca pequena junto dele.
 Fotos: Pexels (licença livre para uso comercial). Se faltarem em marketing/instagram/fotos/, são baixadas.
 
 Uso:
@@ -28,6 +29,7 @@ FOTOS = PASTA / "fotos"
 FEED = (1080, 1350)
 STORIES = (1080, 1920)
 PECAS = {
+    "atelie-1": FEED, "atelie-2": FEED, "atelie-3": FEED, "atelie-4": FEED, "atelie-5": FEED, "atelie-6": FEED,
     "post-1": FEED, "post-1b": FEED, "post-2": FEED, "post-2b": FEED, "post-3": FEED, "post-3b": FEED,
     "carrossel-1": FEED, "carrossel-2": FEED, "carrossel-3": FEED, "carrossel-4": FEED, "carrossel-5": FEED,
     "anvisa": FEED,
@@ -36,6 +38,12 @@ PECAS = {
 
 # id Pexels -> (onde é usada, autor, página)
 CREDITOS = {
+    37455823: ("atelie-1", "lucas correa", "https://www.pexels.com/photo/senior-woman-sewing-at-home-in-manaus-37455823/"),
+    6588483: ("atelie-2", "ROMAN ODINTSOV", "https://www.pexels.com/photo/closing-jar-of-jam-6588483/"),
+    5585246: ("atelie-3", "cottonbro studio", "https://www.pexels.com/photo/person-knitting-a-gray-thread-5585246/"),
+    7331674: ("atelie-4", "Wayne Fotografias", "https://www.pexels.com/photo/an-elderly-woman-using-a-smartphone-7331674/"),
+    35627278: ("atelie-5", "Felipe souza", "https://www.pexels.com/photo/portrait-of-smiling-woman-with-polka-dot-sculpture-35627278/"),
+    5585245: ("atelie-6", "cottonbro studio", "https://www.pexels.com/photo/elderly-woman-with-her-granddaughter-5585245/"),
     6023599: ("post-1", "Kampus Production", "https://www.pexels.com/photo/a-woman-wearing-an-apron-and-eyeglasses-6023599/"),
     5420572: ("post-1b, carrossel-4", "Polina", "https://www.pexels.com/photo/handmade-organic-soaps-5420572/"),
     5257217: ("post-2", "Anna Shvets", "https://www.pexels.com/photo/a-woman-using-a-smartphone-5257217/"),
@@ -68,6 +76,23 @@ def baixar_fotos() -> None:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         destino.write_bytes(urllib.request.urlopen(req, timeout=90).read())
         print("baixada", destino.name)
+
+
+def papel() -> None:
+    """Textura de papel usada no fundo creme e como grão sobre as fotos da série ateliê."""
+    destino = PASTA / "modelos" / "papel.png"
+    if destino.exists():
+        return
+    rng = np.random.default_rng(7)
+    lado = 512
+    fino = rng.normal(0, 1, (lado, lado))
+    largo = np.asarray(Image.fromarray((rng.random((lado, lado)) * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(9))).astype(np.float32) / 255 - 0.5
+    alfa = np.clip(10 + fino * 7 + largo * 60, 0, 40).astype(np.uint8)
+    rgba = np.zeros((lado, lado, 4), np.uint8)
+    rgba[..., :3] = (120, 92, 80)
+    rgba[..., 3] = alfa
+    Image.fromarray(rgba, "RGBA").save(destino, optimize=True)
+    print("gerada", destino.name)
 
 
 def coeficientes(quad, tamanho):
@@ -117,6 +142,20 @@ class _Quieto(http.server.SimpleHTTPRequestHandler):
         pass
 
 
+MARGEM = 120  # nenhum texto da série ateliê chega mais perto que isso de uma borda
+
+
+def conferir_margem(page, nome: str, larg: int, alt: int) -> None:
+    caixas = page.evaluate("""() => [...document.querySelectorAll('.frase, .recado, .aviso, .marca')].map(e => {
+        const r = e.getBoundingClientRect();
+        return { classe: e.className, x0: r.left, y0: r.top, x1: r.right, y1: r.bottom };
+    })""")
+    assert caixas, f"{nome}: não achei texto pra conferir"
+    folga = min(min(c["x0"], c["y0"], larg - c["x1"], alt - c["y1"]) for c in caixas)
+    assert folga >= MARGEM - 1, f"{nome}: texto a {folga:.0f}px da borda, o mínimo é {MARGEM}px: {caixas}"
+    print(f"  margem de segurança: texto mais próximo da borda a {folga:.0f}px")
+
+
 def renderizar(filtro: str) -> None:
     socketserver.TCPServer.allow_reuse_address = True
     srv = socketserver.TCPServer(("127.0.0.1", 0), functools.partial(_Quieto, directory=str(RAIZ)))
@@ -134,6 +173,8 @@ def renderizar(filtro: str) -> None:
             page.evaluate("document.fonts.ready")
             page.wait_for_timeout(400)
             assert not falhas, f"{nome}: arquivo não carregou: {falhas}"
+            if nome.startswith("atelie"):
+                conferir_margem(page, nome, larg, alt)
             png = page.screenshot(clip={"x": 0, "y": 0, "width": larg, "height": alt})
             img = Image.open(io.BytesIO(png)).convert("RGB")
             img.save(PASTA / f"{nome}.jpg", quality=93, optimize=True)
@@ -143,12 +184,30 @@ def renderizar(filtro: str) -> None:
     srv.shutdown()
 
 
+def grade() -> None:
+    """Prévia de como a série fica na grade do perfil: corte 3:4 no centro, a mais nova em cima à esquerda."""
+    ordem = [6, 5, 4, 3, 2, 1]
+    lado_l, lado_a, vao = 405, 540, 6
+    folha = Image.new("RGB", (3 * lado_l + 2 * vao, 2 * lado_a + vao), "white")
+    for n, peca in enumerate(ordem):
+        im = Image.open(PASTA / f"atelie-{peca}.jpg").convert("RGB")
+        corte = round(im.height * 3 / 4)
+        x0 = (im.width - corte) // 2
+        im = im.crop((x0, 0, x0 + corte, im.height)).resize((lado_l, lado_a), Image.LANCZOS)
+        folha.paste(im, ((n % 3) * (lado_l + vao), (n // 3) * (lado_a + vao)))
+    folha.save(PASTA / "grade-atelie.jpg", quality=92, optimize=True)
+    print("grade-atelie.jpg", folha.size)
+
+
 def main() -> None:
     filtro = sys.argv[1] if len(sys.argv) > 1 else ""
     baixar_fotos()
+    papel()
     for pid in TELAS:
         por_tela_do_app(pid)
     renderizar(filtro)
+    if "atelie".startswith(filtro) or filtro.startswith("atelie"):
+        grade()
 
 
 if __name__ == "__main__":
