@@ -1,7 +1,8 @@
 """Publica o site num endereço novo e gratuito do GitHub, com o nome da marca: https://<nome>.github.io
 
 No GitHub o endereço é sempre <dono>.github.io, então o nome novo precisa existir como organização gratuita.
-Criar a organização é um passo manual da dona da conta. Este script confere se ela existe e faz o resto.
+Criar a organização e o repositório é um passo manual de quem é dona dela. Este script aceita o convite,
+envia o site, liga o GitHub Pages e testa.
 
 Uso:
   python scripts/mudar-endereco.py --verificar              # só confere
@@ -46,24 +47,37 @@ def verificar(nome: str) -> bool:
     if saida.strip() != "Organization":
         print(f"'{nome}' já existe no GitHub, mas é uma conta de usuário de outra pessoa. Escolha outro nome.")
         return False
-    _, minhas = gh("api", "user/orgs", "--jq", ".[].login")
-    _, eu = gh("api", "user", "--jq", ".login")
-    if nome not in minhas.split():
-        eu = eu.strip()
-        print(f"A organização '{nome}' existe, mas a conta {eu} não tem acesso a ela.")
-        print()
-        print(f"Abra https://github.com/orgs/{nome}/people e veja quem aparece como Owner.")
-        print()
-        print(f"Se aparecer {eu}: falta liberar a linha de comando. Abra")
-        print(f"  https://github.com/organizations/{nome}/settings/oauth_application_policy")
-        print("  e clique em 'Remove restrictions'.")
-        print()
-        print(f"Se aparecer outra conta: nessa mesma tela clique em 'Invite member', digite {eu},")
-        print(f"  escolha o papel 'Owner' e envie. Depois, logada como {eu}, aceite em")
-        print(f"  https://github.com/orgs/{nome}/invitation")
-        return False
-    print(f"Organização '{nome}' encontrada e esta conta é dona. Pode publicar.")
-    return True
+    repo = f"{nome}/{nome}.github.io"
+    eu = gh("api", "user", "--jq", ".login")[1].strip()
+
+    # convite de colaborador no repositório: esta conta consegue aceitar sozinha
+    _, convites = gh("api", "user/repository_invitations", "--jq", f'.[] | select(.repository.full_name == "{repo}") | .id')
+    for convite in convites.split():
+        if convite.isdigit() and gh("api", "-X", "PATCH", f"user/repository_invitations/{convite}")[0] == 0:
+            print(f"convite pro repositório {repo} aceito")
+
+    codigo, admin = gh("api", f"repos/{repo}", "--jq", ".permissions.admin")
+    if codigo == 0 and admin.strip() == "true":
+        print(f"Repositório {repo} encontrado e a conta {eu} é administradora dele. Pode publicar.")
+        return True
+    if nome in gh("api", "user/orgs", "--jq", ".[].login")[1].split():
+        print(f"A conta {eu} faz parte da organização '{nome}'. Pode publicar.")
+        return True
+
+    print(f"A organização '{nome}' existe, mas a conta {eu} ainda não tem acesso.")
+    print("Quem é dona da organização precisa fazer dois passos, logada no GitHub:")
+    print()
+    if codigo != 0:
+        print(f"  1. Criar o repositório em https://github.com/organizations/{nome}/repositories/new")
+        print(f"       Repository name: {nome}.github.io")
+        print("       Marcar Public e não marcar README nem nenhuma outra opção")
+    else:
+        print(f"  1. O repositório {repo} já existe.")
+    print(f"  2. Me dar acesso em https://github.com/{repo}/settings/access")
+    print(f"       Add people, digitar {eu}, escolher o papel Admin")
+    print()
+    print(f"Depois rode de novo: python scripts/mudar-endereco.py --nome {nome}")
+    return False
 
 
 def publicar(nome: str) -> int:
