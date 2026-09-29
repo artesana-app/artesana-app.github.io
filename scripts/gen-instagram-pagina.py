@@ -88,19 +88,20 @@ PAGINA = """<!doctype html>
   <main class="wrap">
     <section class="intro">
       <h1>Série ateliê: seis publicações</h1>
-      <p>Foto de gente de verdade trabalhando, frase curta e um recado escrito à mão. Publique na ordem, da 1 à 6. No perfil, a 6 fica em cima à esquerda e a 1 embaixo à direita, como na prévia.</p>
+      <p>Imagem realista de quem faz à mão, frase curta e um recado escrito à mão. Publique na ordem, da 1 à 6. No perfil, a 6 fica em cima à esquerda e a 1 embaixo à direita, como na prévia.</p>
       <figure class="grade">
         <img src="./grade-atelie.jpg" alt="Prévia das seis publicações na grade do perfil, alternando foto inteira e foto com papel embaixo.">
         <figcaption>Prévia da grade do perfil</figcaption>
       </figure>
     </section>
 __NOVAS__
+__BIO__
     <details class="antigas">
       <summary>Peças anteriores</summary>
       <p>Saíram da linha do perfil. Ficam guardadas aqui, caso você queira consultar.</p>
 __ANTIGAS__
     </details>
-    <p class="fim">Fotos do banco Pexels, com licença livre para uso comercial.</p>
+    <p class="fim">As imagens da série ateliê foram geradas por inteligência artificial. As pessoas que aparecem nelas não existem. As peças anteriores usam fotos do banco Pexels, com licença livre para uso comercial.</p>
   </main>
   <script>
     document.querySelectorAll('[data-copiar]').forEach(function (botao) {
@@ -156,6 +157,31 @@ def bloco(p):
     return s
 
 
+def contar(texto):
+    """Conta como o Instagram: emoji vale dois."""
+    return len(texto.encode("utf-16-le")) // 2
+
+
+def bloco_bio(bio):
+    e = html.escape
+    s = ('    <article class="peca" id="bio">\n      <h2>Bio do perfil</h2>\n'
+         '      <p class="como">Em Editar perfil, cole cada texto no campo de mesmo nome. A bio aceita até 150 caracteres.</p>\n'
+         '      <div class="campos">\n')
+    campos = [("Nome", bio["nome"]), ("Categoria", bio["categoria"]), ("Link", bio["link"])]
+    campos += [(f"Bio, opção {i + 1}: {o['titulo'].lower()} ({contar(o['texto'])} caracteres)", o["texto"]) for i, o in enumerate(bio["opcoes"])]
+    for i, (campo, valor) in enumerate(campos):
+        s += (f'        <div><b>{e(campo)}</b><pre class="caixa" id="bio-{i}">{e(valor)}</pre>\n'
+              f'          <div class="acoes"><button class="botao claro" type="button" data-copiar="bio-{i}">Copiar</button></div></div>\n')
+    return s + '      </div>\n    </article>\n'
+
+
+def bio_em_texto(bio):
+    linhas = ["=" * 64, "BIO DO PERFIL", "=" * 64, "", "NOME", bio["nome"], "", "CATEGORIA", bio["categoria"], "", "LINK", bio["link"], ""]
+    for i, o in enumerate(bio["opcoes"]):
+        linhas += [f"BIO, OPÇÃO {i + 1}: {o['titulo'].upper()} ({contar(o['texto'])} caracteres)", o["texto"], ""]
+    return "\n".join(linhas) + "\n\n"
+
+
 def texto_puro(pubs):
     linhas = ["artesaná. Instagram @artesana.app", "Série ateliê: publique na ordem, da 1 à 6.", ""]
     for p in pubs:
@@ -188,7 +214,7 @@ def markdown(pubs):
         for t in p.get("textos", []):
             s += f"**{t['campo']}:** {t['valor']}\n\n"
         s += "**Texto alternativo**\n\n" + "\n".join(f"- `{im['arquivo']}`: {im['alt']}" for im in p["imagens"]) + "\n\n---\n\n"
-    s += ("## Fotos\n\nBanco Pexels, licença livre para uso comercial, sem obrigação de crédito. As pessoas são modelos de banco de imagem: "
+    s += ("## Imagens da série ateliê\n\nGeradas por inteligência artificial, com o modelo RealVisXL V5.0 (licença OpenRAIL++). As pessoas que aparecem nelas não existem. O texto que gerou cada imagem e a semente usada estão em `ia/cenas.json`, e `scripts/gen-fotos-ia.py` gera de novo. Ao publicar, ative o rótulo de IA do Instagram.\n\n## Fotos das peças anteriores\n\nBanco Pexels, licença livre para uso comercial, sem obrigação de crédito. As pessoas são modelos de banco de imagem: "
           "a licença não permite dar a entender que elas usam ou recomendam o produto, por isso nenhum texto das peças está em forma de depoimento. "
           "Nenhuma foto mostra marca de terceiros.\n\n| Peça | Autor | Página |\n|---|---|---|\n")
     for _, uso, autor, url in creditos():
@@ -200,9 +226,12 @@ def main() -> None:
     pubs = json.loads((PASTA / "publicacoes.json").read_text(encoding="utf-8"))
     novas = [p for p in pubs if not p.get("arquivada")]
     antigas = [p for p in pubs if p.get("arquivada")]
-    pagina = PAGINA.replace("__NOVAS__", "".join(bloco(p) for p in novas)).replace("__ANTIGAS__", "".join(bloco(p) for p in antigas))
+    bio = json.loads((PASTA / "bio.json").read_text(encoding="utf-8"))
+    for o in bio["opcoes"]:
+        assert contar(o["texto"]) <= 150, f"bio {o['titulo']} com {contar(o['texto'])} caracteres"
+    pagina = PAGINA.replace("__BIO__", bloco_bio(bio)).replace("__NOVAS__", "".join(bloco(p) for p in novas)).replace("__ANTIGAS__", "".join(bloco(p) for p in antigas))
     (PASTA / "index.html").write_text(pagina, encoding="utf-8", newline="\n")
-    (PASTA / "legendas.txt").write_text(texto_puro(pubs).replace("\n", "\r\n"), encoding="utf-8-sig", newline="")
+    (PASTA / "legendas.txt").write_text((bio_em_texto(bio) + texto_puro(pubs)).replace("\n", "\r\n"), encoding="utf-8-sig", newline="")
     (PASTA / "legendas.md").write_text(markdown(pubs), encoding="utf-8", newline="\n")
     for p in pubs:
         print(p["id"], "anterior" if p.get("arquivada") else "série   ", len(p["imagens"]), "imagens |", p["titulo"])

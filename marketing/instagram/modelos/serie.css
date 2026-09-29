@@ -3,6 +3,7 @@
      .inteira  foto na peça toda, texto na área calma da foto
      .bilhete  foto em cima, papel embaixo com o texto
    Três fontes por peça: Fraunces (frase), Homemade Apple (recado à mão), Poppins (marca e aviso).
+   As fotos são geradas por IA: ficam em marketing/instagram/ia/ e saem de scripts/gen-fotos-ia.py.
    Margem de segurança: nenhum texto a menos de 120px de qualquer borda.
    A grade do perfil corta 34px de cada lado; a foto aguenta esse corte. */
 @import url('../../../app/css/variables.css');
@@ -39,27 +40,30 @@ body { color: var(--ink); -webkit-font-smoothing: antialiased; }
 
 .bilhete .texto { top: 916px; }
 
-/* 1 — as horas que cabem numa peça (costureira) */
-.a1 .janela img { top: -150px; }
-.a1 .veu { left: 0; top: 0; width: 760px; height: 760px; background: radial-gradient(ellipse at 22% 30%, rgba(44, 26, 30, 0.62) 0%, rgba(44, 26, 30, 0.36) 45%, rgba(44, 26, 30, 0) 72%); }
+/* 1 — as horas que cabem numa peça (costureira): texto na parede escura, à esquerda */
+.a1 .janela img { top: 0; }
+.a1 .veu { left: 0; top: 0; width: 700px; height: 760px; background: radial-gradient(ellipse at 20% 32%, rgba(44, 26, 30, 0.5) 0%, rgba(44, 26, 30, 0.28) 45%, rgba(44, 26, 30, 0) 72%); }
 .a1 .texto { top: 132px; right: auto; width: 430px; }
+/* a marca assina logo abaixo do recado: o canto de baixo da foto é movimentado */
+.a1 .marca { right: auto; bottom: auto; left: 120px; top: 584px; }
 
-/* 2 — o rótulo é o primeiro oi (pote e barbante) */
-.a2 .janela img { top: -250px; }
+/* 2 — o rótulo é o primeiro oi (pote com faixa de papel e barbante) */
+.a2 .janela img { top: -10px; }
 
-/* 3 — ponto por ponto (tricô) */
+/* 3 — ponto por ponto (bordado): a frase fica dentro do bastidor, no centro vazio da guirlanda */
 .a3 .janela img { top: 0; }
-.a3 .texto { top: 132px; }
+.a3 .texto { left: 270px; right: 270px; top: 590px; text-align: center; }
+.a3 .frase { font-size: 60px; }
+.a3 .recado { margin: 12px auto 0; transform-origin: center; font-size: 38px; }
 
 /* 4 — toda venda começa numa conversa (celular) */
-.a4 .janela img { top: -120px; }
+.a4 .janela img { top: 0; }
 
-/* 5 — pode chegar (janela) */
-.a5 .janela img { top: -470px; }
-.a5 .texto { top: 968px; }
+/* 5 — pode chegar (janela): enquadramento fechado no rosto, texto na parede branca */
+.a5 .janela img { width: 1331px; left: -143px; top: 0; }
+.a5 .texto { top: 372px; right: auto; width: 640px; }
+.a5 .recado { font-size: 38px; white-space: nowrap; }
+.a5 .aviso { margin-top: 22px; white-space: nowrap; }
 
 /* 6 — a marca em dia, o domingo livre (avó e neta) */
-.a6 .janela img { top: -262px; }
-
-/* na 1 a marca assina logo abaixo do recado: o canto de baixo da foto é movimentado */
-.a1 .marca { right: auto; bottom: auto; left: 120px; top: 584px; }
+.a6 .janela img { top: -10px; }

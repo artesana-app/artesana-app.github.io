@@ -1,0 +1,56 @@
+[
+  {
+    "nome": "costura",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      105
+    ],
+    "prompt": "candid photo of a 58 year old Brazilian seamstress, curly gray hair, glasses, brown skin, striped sleeveless blouse, measuring tape around neck, sewing white fabric on a sewing machine at home, looking down, window light, dark wall, wrinkles, natural skin, 50mm f1.8, film grain"
+  },
+  {
+    "nome": "rotulo",
+    "largura": 1152,
+    "altura": 896,
+    "sementes": [
+      1008
+    ],
+    "prompt": "close-up photo of a 50 year old woman's hands tying a blank kraft paper tag with twine around a small glass jar of handmade candle, jars and dried flowers on a worn wooden table, side window light, real skin, short nails, linen apron, 35mm f2, film grain"
+  },
+  {
+    "nome": "bordado",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      1102
+    ],
+    "prompt": "overhead photo of a large plain natural linen tablecloth, minimalist, lots of empty fabric in the upper half, at the bottom of the frame a 45 year old woman's hands embroidering small flowers in a small round wooden embroidery hoop, needle and thread, soft window light, real skin, film grain"
+  },
+  {
+    "nome": "conversa",
+    "largura": 1152,
+    "altura": 896,
+    "sementes": [
+      904
+    ],
+    "prompt": "candid photo of a 50 year old Black Brazilian woman, short natural afro hair with gray strands, beige linen apron, smiling softly while looking at the smartphone in her hands, small home workshop, handmade candles in glass jars on wooden shelf blurred behind, window light, natural skin, no makeup, 50mm f1.8, film grain"
+  },
+  {
+    "nome": "janela",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      807
+    ],
+    "prompt": "wide shot photo of an old colonial house wall, a 45 year old Brazilian woman with long dark braids smiling, leaning on the sill of a small blue wooden window at the top of the frame, large plain white lime wall below, morning sun, soft palm leaf shadows, 35mm, film grain"
+  },
+  {
+    "nome": "domingo",
+    "largura": 1152,
+    "altura": 896,
+    "sementes": [
+      606
+    ],
+    "prompt": "candid photo of a 62 year old Brazilian grandmother, gray hair, glasses, laughing with her 9 year old granddaughter at a wooden kitchen table, coffee cups and homemade cake, heads close together, simple kitchen, sunday morning window light, wrinkles, no makeup, 35mm f2, film grain"
+  }
+]

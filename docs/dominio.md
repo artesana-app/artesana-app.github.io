@@ -10,12 +10,22 @@ Situação em 29/09/2026: **funcionando por redirecionamento.** Quem acessa `art
 
 O que o redirecionamento do Registro.br faz e não faz, conferido em teste:
 
-- responde em `http`. Em `https://` o domínio não abre, então divulgue sem nada na frente;
+- responde em `http` e em `https`. No teste de 29/09/2026 o `https` abriu com certificado válido (Let's Encrypt).
+  A ajuda oficial só garante `http`, então divulgue o endereço sem nada na frente: `artesana-mktdigital.com.br`;
 - leva sempre para a página inicial. O resto do endereço é descartado, por isso os links curtos de WhatsApp
   usam `artesana-app.github.io/w/...` e não o domínio;
 - depois do redirecionamento, a barra do navegador mostra `artesana-app.github.io`.
 
-Para o site abrir no próprio domínio, com `https` e sem mostrar o endereço do GitHub, vale o caminho completo abaixo.
+Para o site abrir no próprio domínio, sem mostrar o endereço do GitHub na barra do navegador, vale o caminho completo abaixo.
+A hospedagem continua no GitHub, de graça, mas quem visita só vê o domínio.
+
+Antes de começar o caminho completo, saiba que:
+
+- o redirecionamento só existe no modo básico. Ao passar o DNS para o modo avançado ele para, e o domínio fica sem abrir
+  até as entradas novas valerem. A ajuda oficial fala em horas para a troca de modo. O endereço
+  `artesana-app.github.io` segue funcionando nesse intervalo;
+- os dados do app ficam guardados no navegador, por endereço. Quem já usava o app em `artesana-app.github.io/app/`
+  começa do zero no domínio novo. Avise quem está testando.
 
 ## O registro está pago. O que falta é só configuração
 

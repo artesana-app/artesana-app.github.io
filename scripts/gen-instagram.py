@@ -2,7 +2,8 @@
 
 Série ateliê (atelie-1 a atelie-6): foto inteira ou foto com papel embaixo, três fontes, texto a 120px das bordas.
 Peças anteriores: foto na peça inteira, texto direto sobre a imagem, com a marca pequena junto dele.
-Fotos: Pexels (licença livre para uso comercial). Se faltarem em marketing/instagram/fotos/, são baixadas.
+Fotos da série ateliê: geradas por IA, em marketing/instagram/ia/ (ver scripts/gen-fotos-ia.py).
+Fotos das peças anteriores: Pexels. Se faltarem em marketing/instagram/fotos/, são baixadas.
 
 Uso:
   python scripts/gen-instagram.py            # todas as peças
@@ -38,12 +39,6 @@ PECAS = {
 
 # id Pexels -> (onde é usada, autor, página)
 CREDITOS = {
-    37455823: ("atelie-1", "lucas correa", "https://www.pexels.com/photo/senior-woman-sewing-at-home-in-manaus-37455823/"),
-    6588483: ("atelie-2", "ROMAN ODINTSOV", "https://www.pexels.com/photo/closing-jar-of-jam-6588483/"),
-    5585246: ("atelie-3", "cottonbro studio", "https://www.pexels.com/photo/person-knitting-a-gray-thread-5585246/"),
-    7331674: ("atelie-4", "Wayne Fotografias", "https://www.pexels.com/photo/an-elderly-woman-using-a-smartphone-7331674/"),
-    35627278: ("atelie-5", "Felipe souza", "https://www.pexels.com/photo/portrait-of-smiling-woman-with-polka-dot-sculpture-35627278/"),
-    5585245: ("atelie-6", "cottonbro studio", "https://www.pexels.com/photo/elderly-woman-with-her-granddaughter-5585245/"),
     6023599: ("post-1", "Kampus Production", "https://www.pexels.com/photo/a-woman-wearing-an-apron-and-eyeglasses-6023599/"),
     5420572: ("post-1b, carrossel-4", "Polina", "https://www.pexels.com/photo/handmade-organic-soaps-5420572/"),
     5257217: ("post-2", "Anna Shvets", "https://www.pexels.com/photo/a-woman-using-a-smartphone-5257217/"),

@@ -4,6 +4,8 @@ Gerado de `publicacoes.json` por `python scripts/gen-instagram-pagina.py`. Edite
 
 ## 1. As horas que cabem numa peça
 
+Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
+
 Imagens: `atelie-1.jpg`
 
 **Legenda**
@@ -22,11 +24,13 @@ Conta pra gente: qual é a sua peça mais demorada?
 
 **Texto alternativo**
 
-- `atelie-1.jpg`: Costureira de cabelos grisalhos e óculos, com a fita métrica no pescoço, trabalha um tecido branco ao lado da máquina de costura. Texto: Ninguém vê as horas que cabem numa peça. A gente vê.
+- `atelie-1.jpg`: Costureira de cabelos grisalhos cacheados e óculos, de pé entre duas máquinas de costura, alisa um tecido com a mão. Texto: Ninguém vê as horas que cabem numa peça. A gente vê.
 
 ---
 
 ## 2. O rótulo é o primeiro oi
+
+Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
 
 Imagens: `atelie-2.jpg`
 
@@ -44,11 +48,13 @@ Grátis na versão beta. O link está na bio.
 
 **Texto alternativo**
 
-- `atelie-2.jpg`: Mãos amarram com barbante vermelho e branco a tampa de papel de um pote de doce feito em casa. Texto: O rótulo é o primeiro oi do seu produto. E ele fala por você.
+- `atelie-2.jpg`: Mãos de uma senhora amarram barbante num potinho, ao lado de um pote de vela com faixa de papel kraft e de um ramo de flores secas, numa mesa de madeira perto da janela. Texto: O rótulo é o primeiro oi do seu produto. E ele fala por você.
 
 ---
 
 ## 3. Ponto por ponto, a marca ganha rosto
+
+Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
 
 Imagens: `atelie-3.jpg`
 
@@ -66,11 +72,13 @@ Grátis na versão beta. O link está na bio.
 
 **Texto alternativo**
 
-- `atelie-3.jpg`: Mãos de uma senhora tricotam uma peça cinza sobre uma colcha clara, com um novelo ao lado. Texto: Ponto por ponto, a marca ganha rosto. A sua já começou.
+- `atelie-3.jpg`: Bastidor grande de bordado visto de cima, com uma guirlanda de flores miúdas bordada no linho e duas mãos passando a linha na agulha. Dentro da guirlanda, o texto: Ponto por ponto, a marca ganha rosto. A sua já começou.
 
 ---
 
 ## 4. Toda venda boa começa numa conversa
+
+Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
 
 Imagens: `atelie-4.jpg`
 
@@ -90,11 +98,13 @@ Qual foi a mensagem de cliente que fez o seu dia?
 
 **Texto alternativo**
 
-- `atelie-4.jpg`: Senhora de cabelos grisalhos e óculos sorri olhando o celular, sentada diante de uma parede de azulejos azuis. Texto: Toda venda boa começa numa conversa. Oi, ainda tem aquele de lavanda?
+- `atelie-4.jpg`: Mulher negra de cabelo crespo curto e avental de linho sorri olhando o celular, perto da janela, com velas artesanais acesas ao redor. Texto: Toda venda boa começa numa conversa. Oi, ainda tem aquele de lavanda?
 
 ---
 
 ## 5. Pode chegar
+
+Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
 
 Imagens: `atelie-5.jpg`
 
@@ -120,11 +130,13 @@ Conhece alguém que faz sabonete, vela, cosmético natural, comida ou artesanato
 
 **Texto alternativo**
 
-- `atelie-5.jpg`: Mulher de tranças sorri apoiada numa janela azul, ao lado de uma namoradeira de cerâmica. Texto: Pode chegar. A casa é de quem faz à mão. Versão beta aberta. Grátis pra começar.
+- `atelie-5.jpg`: Mulher de tranças longas sorri debruçada numa janela de madeira azul, numa casa de parede caiada, com folhas de palmeira no alto. Texto: Pode chegar. A casa é de quem faz à mão. Versão beta aberta. Grátis pra começar.
 
 ---
 
 ## 6. A marca em dia, o domingo livre
+
+Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
 
 Imagens: `atelie-6.jpg`
 
@@ -142,7 +154,7 @@ Grátis na versão beta. O link está na bio.
 
 **Texto alternativo**
 
-- `atelie-6.jpg`: Avó de cabelos brancos e óculos encosta a cabeça na da neta, as duas sorrindo à mesa. Texto: A marca em dia. O domingo livre. E o café ainda quente.
+- `atelie-6.jpg`: Avó de cabelos grisalhos e óculos ri com a neta à mesa da cozinha, com café e uma fatia de bolo, diante da janela. Texto: A marca em dia. O domingo livre. E o café ainda quente.
 
 ---
 
@@ -314,18 +326,16 @@ Imagens: `anuncio.jpg`, `anuncio-stories.jpg`
 
 ---
 
-## Fotos
+## Imagens da série ateliê
+
+Geradas por inteligência artificial, com o modelo RealVisXL V5.0 (licença OpenRAIL++). As pessoas que aparecem nelas não existem. O texto que gerou cada imagem e a semente usada estão em `ia/cenas.json`, e `scripts/gen-fotos-ia.py` gera de novo. Ao publicar, ative o rótulo de IA do Instagram.
+
+## Fotos das peças anteriores
 
 Banco Pexels, licença livre para uso comercial, sem obrigação de crédito. As pessoas são modelos de banco de imagem: a licença não permite dar a entender que elas usam ou recomendam o produto, por isso nenhum texto das peças está em forma de depoimento. Nenhuma foto mostra marca de terceiros.
 
 | Peça | Autor | Página |
 |---|---|---|
-| atelie-1 | lucas correa | https://www.pexels.com/photo/senior-woman-sewing-at-home-in-manaus-37455823/ |
-| atelie-2 | ROMAN ODINTSOV | https://www.pexels.com/photo/closing-jar-of-jam-6588483/ |
-| atelie-3 | cottonbro studio | https://www.pexels.com/photo/person-knitting-a-gray-thread-5585246/ |
-| atelie-4 | Wayne Fotografias | https://www.pexels.com/photo/an-elderly-woman-using-a-smartphone-7331674/ |
-| atelie-5 | Felipe souza | https://www.pexels.com/photo/portrait-of-smiling-woman-with-polka-dot-sculpture-35627278/ |
-| atelie-6 | cottonbro studio | https://www.pexels.com/photo/elderly-woman-with-her-granddaughter-5585245/ |
 | post-1 | Kampus Production | https://www.pexels.com/photo/a-woman-wearing-an-apron-and-eyeglasses-6023599/ |
 | post-1b, carrossel-4 | Polina | https://www.pexels.com/photo/handmade-organic-soaps-5420572/ |
 | post-2 | Anna Shvets | https://www.pexels.com/photo/a-woman-using-a-smartphone-5257217/ |
