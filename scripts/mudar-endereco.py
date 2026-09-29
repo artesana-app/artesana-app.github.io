@@ -46,10 +46,20 @@ def verificar(nome: str) -> bool:
     if saida.strip() != "Organization":
         print(f"'{nome}' já existe no GitHub, mas é uma conta de usuário de outra pessoa. Escolha outro nome.")
         return False
-    codigo, papel = gh("api", f"user/memberships/orgs/{nome}", "--jq", ".role + ' ' + .state")
-    if codigo != 0 or not papel.startswith("admin"):
-        print(f"A organização '{nome}' existe, mas esta conta não aparece como dona dela ({papel or 'sem acesso'}).")
-        print(f"Se você acabou de criar, libere o acesso da linha de comando em:\n  {LIBERAR_CLI}\n  botão 'Grant' ao lado de {nome}")
+    _, minhas = gh("api", "user/orgs", "--jq", ".[].login")
+    _, eu = gh("api", "user", "--jq", ".login")
+    if nome not in minhas.split():
+        print(f"A organização '{nome}' existe, mas a conta {eu} não tem acesso a ela.
+")
+        print(f"Abra https://github.com/orgs/{nome}/people e veja quem aparece como Owner.
+")
+        print(f"Se aparecer {eu}: falta liberar a linha de comando. Abra")
+        print(f"  https://github.com/organizations/{nome}/settings/oauth_application_policy")
+        print("  e clique em 'Remove restrictions'.
+")
+        print(f"Se aparecer outra conta: nessa mesma tela clique em 'Invite member', digite {eu},")
+        print(f"  escolha o papel 'Owner' e envie. Depois, logada como {eu}, aceite em")
+        print(f"  https://github.com/orgs/{nome}/invitation")
         return False
     print(f"Organização '{nome}' encontrada e esta conta é dona. Pode publicar.")
     return True
