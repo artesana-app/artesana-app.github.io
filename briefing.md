@@ -64,7 +64,7 @@ Simplifica a vida de quem é produtora, vendedora, fotógrafa e gestora ao mesmo
 
 ### 5. Formulário de Feedback
 - Coleta desafios, sugestões e avaliação
-- IA analisa respostas e gera resumo com sugestão de ação para a Bibiana
+- IA analisa respostas e gera resumo com sugestão de ação para a Maria
 
 ### 6. Verificação INPI
 - Busca de disponibilidade do nome
@@ -105,7 +105,7 @@ Freemium com 3 planos:
 
 ## Próximos Passos
 - [ ] Hospedar PWA em servidor (Vercel, Netlify ou similar)
-- [ ] Testar e iterar ferramentas com a Bibiana
+- [ ] Testar e iterar ferramentas com a Maria
 - [x ] Criar página de apresentação do artesaná.
 - [ ] Integrar APIs de IA (geração de logo, legenda, foto)
 - [ ] Publicar na App Store e Google Play

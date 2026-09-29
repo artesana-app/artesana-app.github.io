@@ -19,7 +19,7 @@ LADO = 375  # viewport do app
 
 SEMENTE = """() => {
   const s = (k, v) => localStorage.setItem('artesana_' + k, JSON.stringify(v));
-  s('user', {logado: true, nome: 'Bibiana', marca: 'Flor de Sal', loginTipo: 'instagram'});
+  s('user', {logado: true, nome: 'Maria', marca: 'Flor de Sal', loginTipo: 'instagram'});
   s('onboarding', {nicho: 'sabonetes', historia: 'Comecei fazendo sabonetes pra família.', personalidade: 'delicada',
     publicoAlvo: 'mulheres que valorizam o natural', tipoProduto: 'Sabonete de lavanda',
     vistos: {identidade: true, social: true, rotulos: true}});

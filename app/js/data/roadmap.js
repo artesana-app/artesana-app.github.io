@@ -20,6 +20,6 @@ export const ROADMAP = {
   endcard: { emoji: '🪧', titulo: 'End Card para Reels', modulo: 'identidade', descricao: 'Cartão final com seu logo, WhatsApp, @ e formas de compra, pronto pra colar no fim de qualquer reel.' },
   'fotos-coringas': { emoji: '🖼️', titulo: 'Fotos Coringas', modulo: 'identidade', descricao: 'Sugestões de fotos de produto que fazem a cliente se imaginar usando a sua marca: em casa, no banho, de presente.' },
   // Outros
-  feedback: { emoji: '💬', titulo: 'Feedback', modulo: 'feedback', descricao: 'Conte seus desafios, sugestões e avalie o app. A IA resume tudo e sugere ações pra Bibiana.' },
+  feedback: { emoji: '💬', titulo: 'Feedback', modulo: 'feedback', descricao: 'Conte seus desafios, sugestões e avalie o app. A IA resume tudo e sugere ações pra equipe.' },
   inpi: { emoji: '🔍', titulo: 'Verificação INPI', modulo: 'inpi', descricao: 'Verifique se o nome da sua marca está disponível e siga o passo a passo de registro como pessoa física, sem CNPJ, com custos e prazos atualizados.' },
 };

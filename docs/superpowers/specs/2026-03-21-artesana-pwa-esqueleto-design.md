@@ -32,7 +32,7 @@ App PWA para pequenas empreendedoras de artesanato, saboaria e beleza natural. O
 ## 2. Estrutura de Arquivos
 
 ```
-bibi/
+artesana/
 ├── index.html              ← Shell do app (todas as telas como <section>)
 ├── manifest.json            ← Configuração PWA
 ├── sw.js                    ← Service Worker para cache offline

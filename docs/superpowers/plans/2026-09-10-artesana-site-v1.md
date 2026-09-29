@@ -20,7 +20,7 @@
 - Mobile-first 375px, largura máx. do app 480px, alvos de toque ≥ 44px.
 - Sem dependência externa além de Google Fonts e `vendor/qrcode.min.js`.
 - Commits pequenos, mensagem em PT, rodapé `Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>`.
-- Git: `git -C C:/Users/ramom/Downloads/bibi ...` com `-c user.name=bebezinbtc-droid -c user.email=asic.reparos@gmail.com`.
+- Git: `git -C <pasta do projeto> ...` com `-c user.name=bebezinbtc-droid -c user.email=asic.reparos@gmail.com`.
 
 ---
 
@@ -111,7 +111,7 @@ test('vazio = 0 de 5', () => {
 });
 test('nome+marca conta 1; nicho 2; historia 3; personalidade+publico 4; instagram 5', () => {
   const p = calcularProgresso({
-    user:{nome:'Bibi', marca:'Flor'}, onboarding:{nicho:'sabonetes', historia:'x', personalidade:'delicada', publicoAlvo:'mulheres'},
+    user:{nome:'Maria', marca:'Flor'}, onboarding:{nicho:'sabonetes', historia:'x', personalidade:'delicada', publicoAlvo:'mulheres'},
     instagram:{arroba:'@flor', perfisReferencia:['@a']} });
   assert.equal(p.feitas, 5);
 });

@@ -12,7 +12,7 @@ test('vazio = 0 de 5', () => {
 
 test('todas as etapas preenchidas = 5', () => {
   const p = calcularProgresso({
-    user: { nome: 'Bibi', marca: 'Flor' },
+    user: { nome: 'Maria', marca: 'Flor' },
     onboarding: { nicho: 'sabonetes', historia: 'x', personalidade: 'delicada', publicoAlvo: 'mulheres' },
     instagram: { arroba: '@flor', perfisReferencia: ['@a'] },
   });
@@ -20,7 +20,7 @@ test('todas as etapas preenchidas = 5', () => {
 });
 
 test('nome sem marca nao conta a etapa 1', () => {
-  assert.equal(calcularProgresso({ user: { nome: 'Bibi' } }).etapas[0].ok, false);
+  assert.equal(calcularProgresso({ user: { nome: 'Maria' } }).etapas[0].ok, false);
 });
 
 test('personalidade sem publico nao conta', () => {

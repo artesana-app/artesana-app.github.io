@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { camposFaltando, resumoPerfil, CAMPOS_OBRIGATORIOS } from '../app/js/lib/perfil.js';
 
 const COMPLETO = {
-  user: { nome: 'Bibiana', marca: 'Flor de Sal', email: 'bibi@exemplo.com' },
+  user: { nome: 'Maria', marca: 'Flor de Sal', email: 'maria@exemplo.com' },
   onboarding: { nicho: 'sabonetes', historia: 'Comecei em casa.', personalidade: 'delicada', publicoAlvo: 'mulheres 30+', tipoProduto: 'Sabonete de lavanda' },
   instagram: { arroba: '@flordesal', perfisReferencia: ['@a', '@b'] },
   whatsapp: { ddd: '11', numero: '900000000', linkCurto: 'https://artesana-mktdigital.com.br/w/?flor-de-sal-11900000000' },
@@ -28,7 +28,7 @@ test('campo só com espaço conta como vazio', () => {
 test('resumo traz marca, contato e rótulos legíveis', () => {
   const r = resumoPerfil(COMPLETO);
   assert.match(r, /Flor de Sal/);
-  assert.match(r, /Bibiana/);
+  assert.match(r, /Maria/);
   assert.match(r, /Sabonetes e saboaria/);
   assert.match(r, /Delicada/);
   assert.match(r, /@flordesal/);

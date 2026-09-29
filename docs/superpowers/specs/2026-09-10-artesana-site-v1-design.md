@@ -46,7 +46,7 @@
 ## 3. Estrutura do repositório
 
 ```
-bibi/  (raiz do repo = raiz do site)
+artesana/  (raiz do repo = raiz do site)
 ├── index.html                 landing
 ├── landing.css
 ├── assets/brand/              wordmark.svg, icon-*.png, lockups
@@ -182,7 +182,7 @@ artesana_rotulos    → { inci: [{pt, inci}], ultimoRotulo: {...campos §5.4} }
 
 ## 10. Deploy
 
-1. `git init` em bibi, `.gitignore`, commit inicial.
+1. `git init` na pasta do projeto, `.gitignore`, commit inicial.
 2. `gh repo create artesana --public --source=. --push`.
 3. Ativar Pages: `gh api -X POST repos/bebezinbtc-droid/artesana/pages -f build_type=legacy -f source[branch]=main -f source[path]=/`.
 4. Esperar build e verificar `curl -I` na URL.

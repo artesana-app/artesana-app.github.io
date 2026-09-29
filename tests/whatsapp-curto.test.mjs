@@ -6,7 +6,7 @@ const BASE = 'https://artesana-mktdigital.com.br/w/';
 
 test('slug tira acento, espaço e símbolo', () => {
   assert.equal(slugMarca('Flor de Sal'), 'flor-de-sal');
-  assert.equal(slugMarca('  Ateliê da Bibi & Cia.  '), 'atelie-da-bibi-cia');
+  assert.equal(slugMarca('  Ateliê da Maria & Cia.  '), 'atelie-da-maria-cia');
   assert.equal(slugMarca(''), '');
   assert.equal(slugMarca(undefined), '');
 });

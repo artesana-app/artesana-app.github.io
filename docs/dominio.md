@@ -2,7 +2,7 @@
 
 ## Domínio oficial: artesana-mktdigital.com.br
 
-Registrado no Registro.br em 29/09/2026, em nome de Bibiana Kohls Silveira, válido até 29/09/2027.
+Registrado no Registro.br em 29/09/2026, em nome da titular, válido até 29/09/2027.
 Usa o DNS do próprio Registro.br (`a.auto.dns.br` e `b.auto.dns.br`).
 
 Situação em 29/09/2026: **funcionando por redirecionamento.** Quem acessa `artesana-mktdigital.com.br` ou
