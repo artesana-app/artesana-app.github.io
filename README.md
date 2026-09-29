@@ -5,7 +5,7 @@ O app da empreendedora que faz, vende e fotografa. Artesanato, saboaria e beleza
 - **Site:** https://artesana-app.github.io/
 - **App (PWA):** https://artesana-app.github.io/app/
 
-Domínio oficial: `artesana-mktdigital.com.br`. Passa a valer quando o DNS for criado, veja `docs/dominio.md`.
+Domínio: `artesana-mktdigital.com.br` redireciona para o site. Detalhes e limites em `docs/dominio.md`.
 
 Endereço anterior, que continua no ar e recebe as mesmas atualizações: https://bebezinbtc-droid.github.io/artesana/
 

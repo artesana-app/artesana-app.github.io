@@ -5,8 +5,17 @@
 Registrado no Registro.br em 29/09/2026, em nome de Bibiana Kohls Silveira, válido até 29/09/2027.
 Usa o DNS do próprio Registro.br (`a.auto.dns.br` e `b.auto.dns.br`).
 
-Situação em 29/09/2026: o domínio existe, mas ainda não tem nenhum registro de DNS. Enquanto isso o site segue em
-https://artesana-app.github.io/.
+Situação em 29/09/2026: **funcionando por redirecionamento.** Quem acessa `artesana-mktdigital.com.br` ou
+`www.artesana-mktdigital.com.br` é levado para https://artesana-app.github.io/, onde o site está hospedado.
+
+O que o redirecionamento do Registro.br faz e não faz, conferido em teste:
+
+- responde em `http`. Em `https://` o domínio não abre, então divulgue sem nada na frente;
+- leva sempre para a página inicial. O resto do endereço é descartado, por isso os links curtos de WhatsApp
+  usam `artesana-app.github.io/w/...` e não o domínio;
+- depois do redirecionamento, a barra do navegador mostra `artesana-app.github.io`.
+
+Para o site abrir no próprio domínio, com `https` e sem mostrar o endereço do GitHub, vale o caminho completo abaixo.
 
 ## O registro está pago. O que falta é só configuração
 
