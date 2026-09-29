@@ -1,32 +1,27 @@
-"""Monta a página de entrega das publicações a partir de marketing/instagram/legendas.md.
+"""Monta a página de entrega das publicações a partir de marketing/instagram/publicacoes.json.
 
-Saída: marketing/instagram/index.html (baixar imagem + copiar legenda) e legendas.txt (texto puro).
-Uso:   python scripts/gen-instagram-pagina.py
+Saída em marketing/instagram/:
+  index.html    página pra baixar as imagens e copiar os textos
+  legendas.txt  os mesmos textos em texto puro, abre no Bloco de Notas
+  legendas.md   os mesmos textos pra ler no repositório
+
+Uso: python scripts/gen-instagram-pagina.py
 """
 import html
+import json
 import re
+import sys
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 PASTA = RAIZ / "marketing" / "instagram"
+sys.path.insert(0, str(RAIZ / "scripts"))
 
 
-def ler_pecas():
-    texto = (PASTA / "legendas.md").read_text(encoding="utf-8")
-    pecas = []
-    for bloco in texto.split("\n---\n"):
-        m = re.search(r"^## (\d+)\. (.+?) — `(post-\w+\.jpg)`", bloco, re.M)
-        if not m:
-            continue
-        legenda = re.search(r"\*\*Legenda\*\*\s*\n(.+?)\n\*\*Texto alternativo\*\*", bloco, re.S)
-        alt = re.search(r"\*\*Texto alternativo\*\*\s*\n(.+?)(?=\n\*\*Alternativa|\Z)", bloco, re.S)
-        outra = re.search(r"\*\*Alternativa — `(post-\w+\.jpg)`\*\*\s*\n(.+)", bloco, re.S)
-        pecas.append({
-            "n": int(m.group(1)), "titulo": m.group(2).strip(), "arquivo": m.group(3),
-            "legenda": legenda.group(1).strip(), "alt": alt.group(1).strip(),
-            "arquivo_b": outra.group(1) if outra else "", "alt_b": outra.group(2).strip() if outra else "",
-        })
-    return pecas
+def creditos():
+    """Lê a tabela de créditos do gerador de imagens, sem executar o gerador."""
+    fonte = (RAIZ / "scripts" / "gen-instagram.py").read_text(encoding="utf-8")
+    return re.findall(r'^\s+(\d+): \("([^"]+)", "([^"]*)", "([^"]+)"\),', fonte, re.M)
 
 
 PAGINA = """<!doctype html>
@@ -57,31 +52,42 @@ PAGINA = """<!doctype html>
     .intro h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
     .intro p { margin-top: 10px; max-width: 62ch; color: var(--ink-2); }
     .peca { padding-block: 36px; border-bottom: 1px solid #ECE4DE; }
-    .peca h2 { font-family: 'Lexend Exa', sans-serif; font-weight: 400; font-size: 17px; letter-spacing: 0.04em; margin-bottom: 18px; }
+    .peca h2 { font-family: 'Lexend Exa', sans-serif; font-weight: 400; font-size: 17px; letter-spacing: 0.04em; }
+    .peca .como { margin: 6px 0 18px; color: var(--ink-2); font-size: 14px; }
     .peca h3 { font-size: 13px; font-weight: 600; margin: 22px 0 8px; }
-    .imagens { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 780px; }
+    .imagens { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px; align-items: start; }
     .imagens figure { margin: 0; }
     .imagens figcaption { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
     .imagens img { border-radius: 4px; border: 1px solid #ECE4DE; }
     .caixa { white-space: pre-wrap; font-family: var(--font); font-size: 14.5px; line-height: 1.55; margin: 0; padding: 16px; max-width: 780px; background: var(--cream); border: 1px solid #ECE4DE; border-radius: 4px; }
-    .acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-    .botao { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 4px; border: 1px solid var(--moss); background: var(--moss); color: var(--white); font: inherit; font-weight: 600; font-size: 14.5px; text-decoration: none; cursor: pointer; }
+    .acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .botao { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border-radius: 4px; border: 1px solid var(--moss); background: var(--moss); color: var(--white); font: inherit; font-weight: 600; font-size: 14px; text-decoration: none; cursor: pointer; }
     .botao:hover { background: var(--moss-d); }
     .botao.claro { background: var(--white); color: var(--ink); border-color: var(--ink); }
     .botao.claro:hover { background: var(--cream); }
-    .dica { font-size: 13px; color: var(--ink-2); margin-top: 12px; }
+    .imagens .botao { width: 100%; padding: 0 8px; }
+    .campos { display: grid; gap: 14px; max-width: 780px; }
+    .campos .caixa { padding: 12px 14px; }
+    .campos b { display: block; font-size: 13px; margin-bottom: 6px; }
+    details { margin-top: 12px; max-width: 780px; }
+    summary { cursor: pointer; font-size: 13px; font-weight: 600; min-height: 40px; display: flex; align-items: center; }
+    details .caixa { margin-bottom: 10px; font-size: 13.5px; }
+    .secao { font-size: clamp(20px, 3vw, 26px); font-weight: 600; letter-spacing: -0.02em; margin-top: 48px; }
+    .secao + p { color: var(--ink-2); margin-top: 6px; }
     .fim { padding-block: 28px 48px; font-size: 13px; color: var(--ink-2); }
-    @media (max-width: 560px) { .imagens { gap: 12px; } .imagens .botao { padding: 0 10px; font-size: 13px; width: 100%; } }
   </style>
 </head>
 <body>
   <header class="topo"><div class="wrap"><a class="wordmark" href="../../">artesaná<b>.</b></a><span>Instagram @artesana.app</span></div></header>
   <main class="wrap">
     <section class="intro">
-      <h1>Primeiras três publicações</h1>
-      <p>Cada publicação tem duas opções de imagem com a mesma chamada. Escolha uma, baixe, copie a legenda e publique na ordem 1, 2, 3, em dias diferentes. Formato 1080 × 1350, o retrato 4:5 do Instagram.</p>
+      <h1>Publicações novas</h1>
+      <p>Baixe as imagens, copie o texto e publique. Todas seguem o padrão das que já estão no perfil: foto inteira, frase curta e a marca pequena.</p>
     </section>
-__PECAS__
+__NOVAS__
+    <h2 class="secao">Já publicadas</h2>
+    <p>Ficam aqui com a alternativa de cada uma, caso você queira reaproveitar.</p>
+__ANTIGAS__
     <p class="fim">Fotos do banco Pexels, com licença livre para uso comercial.</p>
   </main>
   <script>
@@ -107,62 +113,88 @@ __PECAS__
 </html>
 """
 
-FIGURA = """        <figure>
-          <figcaption>{rotulo}</figcaption>
-          <img src="./{arquivo}" alt="{alt}" width="1080" height="1350" loading="lazy">
-          <div class="acoes"><a class="botao" href="./{arquivo}" download="artesana-{arquivo}">Baixar {nome}</a></div>
-        </figure>
-"""
 
-PECA = """    <article class="peca">
-      <h2>{n}. {titulo}</h2>
-      <div class="imagens">
-{figuras}      </div>
-      <p class="dica">No celular, também dá pra segurar o dedo na imagem e escolher salvar.</p>
-      <h3>Legenda</h3>
-      <pre class="caixa" id="legenda-{n}">{legenda}</pre>
-      <div class="acoes"><button class="botao" type="button" data-copiar="legenda-{n}">Copiar legenda</button></div>
-      <h3>Texto alternativo da imagem principal</h3>
-      <pre class="caixa" id="alt-{n}">{alt}</pre>
-      <div class="acoes"><button class="botao claro" type="button" data-copiar="alt-{n}">Copiar texto alternativo</button></div>
-{alt_b}    </article>
-"""
+def bloco(p):
+    n = p["id"]
+    e = html.escape
+    figuras = ""
+    for im in p["imagens"]:
+        arq = im["arquivo"]
+        assert (PASTA / arq).exists(), f"falta a imagem {arq}"
+        figuras += (f'        <figure>\n          <figcaption>{e(im["rotulo"])}</figcaption>\n'
+                    f'          <img src="./{arq}" alt="{e(im["alt"], quote=True)}" loading="lazy">\n'
+                    f'          <div class="acoes"><a class="botao" href="./{arq}" download="artesana-{arq}">Baixar</a></div>\n        </figure>\n')
+    s = f'    <article class="peca" id="p{n}">\n      <h2>{n}. {e(p["titulo"])}</h2>\n'
+    if p.get("como"):
+        s += f'      <p class="como">{e(p["como"])}</p>\n'
+    s += f'      <div class="imagens">\n{figuras}      </div>\n'
+    if p.get("legenda"):
+        s += (f'      <h3>Legenda</h3>\n      <pre class="caixa" id="legenda-{n}">{e(p["legenda"])}</pre>\n'
+              f'      <div class="acoes"><button class="botao" type="button" data-copiar="legenda-{n}">Copiar legenda</button></div>\n')
+    if p.get("textos"):
+        s += '      <h3>Textos do anúncio</h3>\n      <div class="campos">\n'
+        for i, t in enumerate(p["textos"]):
+            s += (f'        <div><b>{e(t["campo"])}</b><pre class="caixa" id="txt-{n}-{i}">{e(t["valor"])}</pre>\n'
+                  f'          <div class="acoes"><button class="botao claro" type="button" data-copiar="txt-{n}-{i}">Copiar</button></div></div>\n')
+        s += '      </div>\n'
+    s += '      <details>\n        <summary>Texto alternativo das imagens</summary>\n'
+    for i, im in enumerate(p["imagens"]):
+        s += (f'        <pre class="caixa" id="alt-{n}-{i}">{e(im["alt"])}</pre>\n')
+    s += '      </details>\n    </article>\n'
+    return s
 
-ALT_B = """      <h3>Texto alternativo da alternativa</h3>
-      <pre class="caixa" id="altb-{n}">{alt}</pre>
-      <div class="acoes"><button class="botao claro" type="button" data-copiar="altb-{n}">Copiar texto alternativo</button></div>
-"""
+
+def texto_puro(pubs):
+    linhas = ["artesaná. — Instagram @artesana.app", ""]
+    for p in pubs:
+        estado = " (já publicada)" if p.get("publicada") else ""
+        linhas += ["=" * 64, f"{p['id']}. {p['titulo']}{estado}", "Imagens: " + ", ".join(im["arquivo"] for im in p["imagens"])]
+        if p.get("como"):
+            linhas.append(p["como"])
+        linhas += ["=" * 64, ""]
+        if p.get("legenda"):
+            linhas += ["LEGENDA", "", p["legenda"], ""]
+        for t in p.get("textos", []):
+            linhas += [t["campo"].upper(), t["valor"], ""]
+        linhas += ["TEXTO ALTERNATIVO"]
+        for im in p["imagens"]:
+            linhas += [f"{im['arquivo']}: {im['alt']}"]
+        linhas += ["", ""]
+    return "\n".join(linhas)
+
+
+def markdown(pubs):
+    s = "# Instagram @artesana.app\n\nGerado de `publicacoes.json` por `python scripts/gen-instagram-pagina.py`. Edite o JSON, não este arquivo.\n\n"
+    for p in pubs:
+        estado = " (já publicada)" if p.get("publicada") else ""
+        s += f"## {p['id']}. {p['titulo']}{estado}\n\n"
+        if p.get("como"):
+            s += p["como"] + "\n\n"
+        s += "Imagens: " + ", ".join(f"`{im['arquivo']}`" for im in p["imagens"]) + "\n\n"
+        if p.get("legenda"):
+            s += "**Legenda**\n\n" + p["legenda"] + "\n\n"
+        for t in p.get("textos", []):
+            s += f"**{t['campo']}:** {t['valor']}\n\n"
+        s += "**Texto alternativo**\n\n" + "\n".join(f"- `{im['arquivo']}`: {im['alt']}" for im in p["imagens"]) + "\n\n---\n\n"
+    s += ("## Fotos\n\nBanco Pexels, licença livre para uso comercial, sem obrigação de crédito. As pessoas são modelos de banco de imagem: "
+          "a licença não permite dar a entender que elas usam ou recomendam o produto, por isso nenhum texto das peças está em forma de depoimento. "
+          "Nenhuma foto mostra marca de terceiros.\n\n| Peça | Autor | Página |\n|---|---|---|\n")
+    for _, uso, autor, url in creditos():
+        s += f"| {uso} | {autor} | {url} |\n"
+    return s
 
 
 def main() -> None:
-    pecas = ler_pecas()
-    assert len(pecas) == 3, f"esperava 3 peças em legendas.md, achei {len(pecas)}"
-    blocos = ""
-    for p in pecas:
-        assert (PASTA / p["arquivo"]).exists(), f"falta {p['arquivo']}"
-        figuras = FIGURA.format(rotulo="Principal", arquivo=p["arquivo"], alt=html.escape(p["alt"], quote=True), nome=f"imagem {p['n']}")
-        alt_b = ""
-        if p["arquivo_b"]:
-            assert (PASTA / p["arquivo_b"]).exists(), f"falta {p['arquivo_b']}"
-            figuras += FIGURA.format(rotulo="Alternativa", arquivo=p["arquivo_b"], alt=html.escape(p["alt_b"], quote=True), nome=f"alternativa {p['n']}")
-            alt_b = ALT_B.format(n=p["n"], alt=html.escape(p["alt_b"]))
-        blocos += PECA.format(n=p["n"], titulo=html.escape(p["titulo"]), figuras=figuras,
-                              legenda=html.escape(p["legenda"]), alt=html.escape(p["alt"]), alt_b=alt_b)
-    (PASTA / "index.html").write_text(PAGINA.replace("__PECAS__", blocos), encoding="utf-8", newline="\n")
-
-    linhas = ["artesaná. — Instagram @artesana.app", "Publicar na ordem 1, 2, 3, em dias diferentes.",
-              "Cada publicação tem imagem principal e alternativa. Use uma das duas.", ""]
-    for p in pecas:
-        arquivos = p["arquivo"] + (f" ou {p['arquivo_b']}" if p["arquivo_b"] else "")
-        linhas += ["=" * 60, f"PUBLICAÇÃO {p['n']} — {p['titulo']}", f"Imagem: {arquivos}", "=" * 60, "",
-                   "LEGENDA", "", p["legenda"], "", f"TEXTO ALTERNATIVO ({p['arquivo']})", "", p["alt"], ""]
-        if p["arquivo_b"]:
-            linhas += [f"TEXTO ALTERNATIVO ({p['arquivo_b']})", "", p["alt_b"], ""]
-        linhas.append("")
-    (PASTA / "legendas.txt").write_text("\r\n".join("\r\n".join(l.split("\n")) for l in linhas), encoding="utf-8-sig", newline="")
-    for p in pecas:
-        print(p["n"], p["arquivo"], p["arquivo_b"], "| legenda", len(p["legenda"]), "caracteres")
-    print("gerados: index.html, legendas.txt")
+    pubs = json.loads((PASTA / "publicacoes.json").read_text(encoding="utf-8"))
+    novas = [p for p in pubs if not p.get("publicada")]
+    antigas = [p for p in pubs if p.get("publicada")]
+    pagina = PAGINA.replace("__NOVAS__", "".join(bloco(p) for p in novas)).replace("__ANTIGAS__", "".join(bloco(p) for p in antigas))
+    (PASTA / "index.html").write_text(pagina, encoding="utf-8", newline="\n")
+    (PASTA / "legendas.txt").write_text(texto_puro(pubs).replace("\n", "\r\n"), encoding="utf-8-sig", newline="")
+    (PASTA / "legendas.md").write_text(markdown(pubs), encoding="utf-8", newline="\n")
+    for p in pubs:
+        print(p["id"], "publicada" if p.get("publicada") else "nova     ", len(p["imagens"]), "imagens |", p["titulo"])
+    print("gerados: index.html, legendas.txt, legendas.md")
 
 
 if __name__ == "__main__":

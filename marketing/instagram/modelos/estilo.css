@@ -61,3 +61,43 @@ body { font-family: 'Poppins', sans-serif; color: var(--ink); -webkit-font-smoot
 /* 3b — mesma chamada, mãe e filha pintando */
 .p3b .frase { top: 120px; }
 .p3b .frase .leve { margin-top: 8px; font-size: 42px; }
+
+/* ---------- peças novas: carrossel, Anvisa e anúncio ---------- */
+.frase .detalhe { margin-top: 14px; font-weight: 300; font-size: 31px; line-height: 1.3; }
+.arraste { position: absolute; left: 0; right: 0; bottom: 44px; text-align: center; font-weight: 400; font-size: 27px; color: var(--cream); text-shadow: 0 2px 16px rgba(44, 26, 30, 0.7); }
+
+/* carrossel: mesmo bloco de texto no topo em todas as páginas */
+.c1 .frase, .c2 .frase, .c3 .frase, .c4 .frase, .c5 .frase { top: 66px; }
+.c2 .foto { top: 0; }
+.c2 .frase { top: 120px; }
+.c3 .foto { top: -250px; }
+.c3 .frase { top: 58px; }
+.c3 .frase .forte { font-size: 58px; }
+.c3 .frase .marca { margin-top: 18px; }
+.c4 .frase { top: 50px; }
+.c4 .frase .leve { font-size: 42px; }
+.c4 .frase .forte { font-size: 50px; white-space: nowrap; }
+.c4 .frase .marca { margin-top: 14px; font-size: 32px; }
+.c5 .frase { top: 40px; }
+.c5 .frase .leve { font-size: 38px; }
+.c5 .frase .forte { font-size: 58px; margin-top: 2px; }
+.c5 .frase .marca { margin-top: 14px; font-size: 32px; }
+
+/* Anvisa */
+.anv .frase { top: 84px; left: 64px; right: 64px; }
+.anv .frase .forte { margin-top: 4px; }
+.anv .frase .detalhe { max-width: 760px; margin-left: auto; margin-right: auto; }
+
+/* anúncio: tiras como na peça da ceramista, com a chamada em destaque */
+.anu .tiras.topo { top: 70px; }
+.anu .tiras.topo .tira { font-size: 60px; }
+.anu .tiras.chamada { top: 950px; transform: rotate(-2.2deg); }
+.tira.grande { font-size: 92px; padding: 10px 40px 16px; margin: 0; }
+.anu .tira.assina { margin-left: 330px; margin-top: 16px; }
+
+/* anúncio vertical pra Stories e Reels: 1080 x 1920, com folga em cima e embaixo pros botões do Instagram */
+html.stories, html.stories body { height: 1920px; }
+.post.stories { height: 1920px; }
+.post.stories .foto { width: 1280px; left: -100px; top: 0; }
+.post.stories .tiras.topo { top: 270px; }
+.post.stories .tiras.chamada { top: 1170px; }

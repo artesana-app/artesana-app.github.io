@@ -85,6 +85,17 @@ def main() -> None:
         page.wait_for_timeout(500)
         salvar(page.screenshot(), "tela-home.png", 540)
 
+        # tela do link do WhatsApp, usada dentro do celular nas peças do Instagram
+        page.goto(base + "#whatsapp")
+        page.wait_for_timeout(600)
+        page.evaluate("""() => {
+          const sec = document.querySelector('section[data-route=whatsapp]');
+          sec.querySelector('.wa-link').textContent = 'artesana-mktdigital.com.br/w/?flor-de-sal-11900000000';
+          window.scrollTo(0, sec.querySelector('.wa-id').getBoundingClientRect().top + scrollY - 96);
+        }""")
+        page.wait_for_timeout(300)
+        salvar(page.screenshot(), "tela-whatsapp.png", 540)
+
         page.add_style_tag(content=".tabbar{display:none!important}")
         for rota, seletor, nome, lado, centrar in [
             ("#rotulos", ".rot", "rotulo.png", 210, True),

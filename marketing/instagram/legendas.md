@@ -1,15 +1,95 @@
-# Instagram @artesana.app — primeiras três publicações
+# Instagram @artesana.app
 
-Formato: 1080 × 1350 (4:5), JPG. Publicar na ordem 1, 2, 3, em dias diferentes.
-Na grade do perfil a mais recente aparece primeiro, então a fileira fica: família, palma da mão, sozinha.
+Gerado de `publicacoes.json` por `python scripts/gen-instagram-pagina.py`. Edite o JSON, não este arquivo.
 
-Cada publicação tem uma imagem principal e uma alternativa com a mesma chamada. Use uma das duas.
+## 4. Carrossel: o que tem no app
 
-Antes de publicar: colocar o endereço do site no campo "Site" da bio.
+Publicar as cinco imagens juntas, como carrossel, nessa ordem.
+
+Imagens: `carrossel-1.jpg`, `carrossel-2.jpg`, `carrossel-3.jpg`, `carrossel-4.jpg`, `carrossel-5.jpg`
+
+**Legenda**
+
+O artesaná. por dentro, em cinco telas.
+
+Rótulo e etiqueta em PDF, no formato redondo, retangular ou tag de presente, com a folha A4 já montada. Tem também o rótulo completo, com os dados que a Anvisa exige.
+
+Link do WhatsApp curto, com o nome da sua marca, mensagem pronta e QR code pra embalagem.
+
+Lista de ingredientes no padrão INCI, com a composição em português.
+
+Checklist da identidade da marca e guias de foto com celular, página no Facebook e datas que mais vendem.
+
+Instala na tela inicial do celular e funciona sem internet.
+
+Está em versão beta e é grátis pra começar. O link está na bio.
+
+#artesanato #feitoamao #saboariaartesanal #velasartesanais #cosmeticosnaturais #rotulos #empreendedorismofeminino #pequenosnegocios
+
+**Texto alternativo**
+
+- `carrossel-1.jpg`: Mulher de cabelos grisalhos sorri olhando o celular, sentada num sofá verde. Texto: Conheça o app por dentro. Tudo pra sua marca, no celular.
+- `carrossel-2.jpg`: Pote azul com etiqueta em branco sobre uma superfície clara. Texto: Rótulo e etiqueta. Em PDF, com os dados que a Anvisa exige.
+- `carrossel-3.jpg`: Mãos seguram um celular com a tela do link do WhatsApp no app artesaná., com QR code. Texto: Link do WhatsApp. Curto e com o nome da sua marca.
+- `carrossel-4.jpg`: Dois sabonetes artesanais empilhados sobre linho, com ramos de flores secas. Texto: Identidade e guias. A cara da marca e como divulgar.
+- `carrossel-5.jpg`: Mulher de cabelos brancos e camisa branca sorri segurando um conta-gotas e um frasco. Texto: Instala no celular e funciona sem internet. Comece grátis. Link na bio.
 
 ---
 
-## 1. Você produz, vende e divulga sozinha — `post-1.jpg`
+## 5. Rótulo com os campos que a Anvisa exige
+
+Publicação de imagem única.
+
+Imagens: `anvisa.jpg`
+
+**Legenda**
+
+Rótulo de cosmético não é só nome bonito e lista de ingredientes.
+
+A norma da Anvisa que vale hoje, a RDC nº 907 de 2024, diz o que precisa aparecer: nome e marca, conteúdo, lote, validade, ingredientes no padrão INCI, dados de quem fabrica com CNPJ, número da autorização da empresa e do processo do produto, canal de atendimento e país de origem. A composição também precisa estar em português.
+
+No artesaná. você preenche esses campos uma vez. O app mostra o que ainda falta e monta a etiqueta em PDF, já na folha A4.
+
+Um aviso honesto: o app organiza o rótulo. A regularização do produto e da empresa na Anvisa continua sendo um passo seu.
+
+E a lei do cosmético artesanal? Ela existe desde 2025, mas até agosto de 2026 a Anvisa ainda não tinha publicado as regras pra esse caso.
+
+Grátis na versão beta. O link está na bio.
+
+#saboariaartesanal #cosmeticosnaturais #cosmeticosartesanais #rotulagem #anvisa #artesanato #feitoamao #pequenosnegocios
+
+**Texto alternativo**
+
+- `anvisa.jpg`: Frasco conta-gotas com etiqueta em branco e pote com tampa de madeira sobre fundo marrom. Texto: Rótulo de cosmético. Com os campos que a Anvisa exige. Lote, validade, composição em português e dados de quem fabrica.
+
+---
+
+## 6. Anúncio patrocinado
+
+Use a imagem 4:5 no feed e a 9:16 em Stories e Reels. No Gerenciador de Anúncios, envie as duas no mesmo anúncio.
+
+Imagens: `anuncio.jpg`, `anuncio-stories.jpg`
+
+**Texto principal:** Você produz, vende e divulga sozinha? O artesaná. monta o rótulo do seu produto, cria o link do WhatsApp com o nome da sua marca e organiza a identidade dela, tudo pelo celular. Está em versão beta e é grátis pra começar.
+
+**Título:** Rótulo, link e marca no celular
+
+**Descrição:** Grátis na versão beta
+
+**Botão:** Saiba mais
+
+**Link de destino:** https://bebezinbtc-droid.github.io/artesana/
+
+**Texto alternativo**
+
+- `anuncio.jpg`: Artesã de cabelos grisalhos e jardineira bege sorri segurando o celular perto de uma janela. Texto: Rótulo, link e marca prontos no celular. Comece grátis hoje.
+- `anuncio-stories.jpg`: Artesã de cabelos grisalhos e jardineira bege sorri segurando o celular perto de uma janela. Texto: Rótulo, link e marca prontos no celular. Comece grátis hoje.
+
+---
+
+## 1. Você produz, vende e divulga sozinha (já publicada)
+
+Imagens: `post-1.jpg`, `post-1b.jpg`
 
 **Legenda**
 
@@ -27,15 +107,14 @@ Conta pra gente: qual dessas três partes mais pesa no seu dia?
 
 **Texto alternativo**
 
-Ceramista de óculos e avental segura uma caneca feita à mão diante de uma parede de azulejos. Texto: Você produz, vende e divulga sozinha? Esse app é pra você.
-
-**Alternativa — `post-1b.jpg`**
-
-Dois sabonetes artesanais empilhados sobre linho, com ramos de flores secas. Texto: Você produz, vende e divulga sozinha? Esse app é pra você.
+- `post-1.jpg`: Ceramista de óculos e avental segura uma caneca feita à mão diante de uma parede de azulejos. Texto: Você produz, vende e divulga sozinha? Esse app é pra você.
+- `post-1b.jpg`: Dois sabonetes artesanais empilhados sobre linho, com ramos de flores secas. Texto: Você produz, vende e divulga sozinha? Esse app é pra você.
 
 ---
 
-## 2. Marketing na palma da mão — `post-2.jpg`
+## 2. Marketing na palma da mão (já publicada)
+
+Imagens: `post-2b.jpg`, `post-2.jpg`
 
 **Legenda**
 
@@ -57,15 +136,14 @@ Abre no navegador e instala na tela inicial, no Android e no iPhone. O link est�
 
 **Texto alternativo**
 
-Mulher ruiva de óculos, sentada no sofá, usa o celular. Texto: Todo o marketing da sua marca na palma da sua mão.
-
-**Alternativa — `post-2b.jpg`**
-
-Mão segura um celular com a tela inicial do app artesaná., com uma lareira desfocada ao fundo. Texto: Todo o marketing da sua marca na palma da sua mão.
+- `post-2b.jpg`: Mão segura um celular com a tela inicial do app artesaná., com uma lareira desfocada ao fundo. Texto: Todo o marketing da sua marca na palma da sua mão.
+- `post-2.jpg`: Mulher ruiva de óculos, sentada no sofá, usa o celular. Texto: Todo o marketing da sua marca na palma da sua mão.
 
 ---
 
-## 3. Mais tempo com a família — `post-3.jpg`
+## 3. Mais tempo com a família (já publicada)
+
+Imagens: `post-3b.jpg`, `post-3.jpg`
 
 **Legenda**
 
@@ -87,34 +165,26 @@ Conhece alguém que faz sabonete, vela, cosmético natural ou artesanato? Marca 
 
 **Texto alternativo**
 
-Mulher de cabelos grisalhos e uma menina decoram um bolo juntas na cozinha. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço.
-
-**Alternativa — `post-3b.jpg`**
-
-Mãe e filha pintam ovos numa mesa de madeira, diante de uma parede rosada. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço.
+- `post-3b.jpg`: Mãe e filha pintam ovos numa mesa de madeira, diante de uma parede rosada. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço.
+- `post-3.jpg`: Mulher de cabelos grisalhos e uma menina decoram um bolo juntas na cozinha. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço.
 
 ---
 
-## Como regenerar
-
-```bash
-python scripts/gen-instagram.py          # as seis imagens
-python scripts/gen-instagram-pagina.py   # página de entrega e legendas.txt
-```
-
-Modelos em `modelos/post-N.html` e `modelos/estilo.css`. Os textos das peças ficam nos HTML.
-
 ## Fotos
 
-Banco Pexels, licença livre para uso comercial, sem obrigação de crédito. As pessoas são modelos de banco de imagem: a licença não permite dar a entender que elas usam ou recomendam o produto, por isso nenhum texto das peças está em forma de depoimento.
+Banco Pexels, licença livre para uso comercial, sem obrigação de crédito. As pessoas são modelos de banco de imagem: a licença não permite dar a entender que elas usam ou recomendam o produto, por isso nenhum texto das peças está em forma de depoimento. Nenhuma foto mostra marca de terceiros.
 
 | Peça | Autor | Página |
 |---|---|---|
-| 1 | Kampus Production | https://www.pexels.com/photo/a-woman-wearing-an-apron-and-eyeglasses-6023599/ |
-| 1b | Polina | https://www.pexels.com/photo/handmade-organic-soaps-5420572/ |
-| 2 | Anna Shvets | https://www.pexels.com/photo/a-woman-using-a-smartphone-5257217/ |
-| 2b | Jakub Zerdzicki | https://www.pexels.com/photo/smartphone-mockup-with-cozy-fireplace-background-30991026/ |
-| 3 | olia danilevich | https://www.pexels.com/photo/an-elderly-woman-making-a-cake-with-her-granddaughter-7246868/ |
-| 3b | Mikhail Nilov | https://www.pexels.com/photo/a-woman-and-a-young-girl-painting-easter-eggs-6957844/ |
-
-Na peça 2b a tela do celular mostra a tela inicial real do app.
+| post-1 | Kampus Production | https://www.pexels.com/photo/a-woman-wearing-an-apron-and-eyeglasses-6023599/ |
+| post-1b, carrossel-4 | Polina | https://www.pexels.com/photo/handmade-organic-soaps-5420572/ |
+| post-2 | Anna Shvets | https://www.pexels.com/photo/a-woman-using-a-smartphone-5257217/ |
+| post-2b | Jakub Zerdzicki | https://www.pexels.com/photo/smartphone-mockup-with-cozy-fireplace-background-30991026/ |
+| post-3 | olia danilevich | https://www.pexels.com/photo/an-elderly-woman-making-a-cake-with-her-granddaughter-7246868/ |
+| post-3b | Mikhail Nilov | https://www.pexels.com/photo/a-woman-and-a-young-girl-painting-easter-eggs-6957844/ |
+| carrossel-1 | Yaroslav Shuraev | https://www.pexels.com/photo/elderly-woman-smiling-while-holding-a-smartphone-8087568/ |
+| carrossel-2 | https://kaboompics.com/ | https://www.pexels.com/photo/empty-container-with-a-blank-label-8947553/ |
+| carrossel-3 | Artem Podrez | https://www.pexels.com/photo/hands-holding-smartphone-6786892/ |
+| carrossel-5 | Anna Shvets | https://www.pexels.com/photo/a-woman-holding-a-bottle-dropper-5682670/ |
+| anvisa | Polina | https://www.pexels.com/photo/photo-of-products-on-brown-surface-8100788/ |
+| anuncio, anuncio-stories | MART  PRODUCTION | https://www.pexels.com/photo/woman-using-a-smartphone-by-the-window-7330711/ |

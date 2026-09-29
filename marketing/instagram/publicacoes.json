@@ -1,0 +1,70 @@
+[
+  {
+    "id": 4,
+    "titulo": "Carrossel: o que tem no app",
+    "como": "Publicar as cinco imagens juntas, como carrossel, nessa ordem.",
+    "imagens": [
+      { "arquivo": "carrossel-1.jpg", "rotulo": "Página 1", "alt": "Mulher de cabelos grisalhos sorri olhando o celular, sentada num sofá verde. Texto: Conheça o app por dentro. Tudo pra sua marca, no celular." },
+      { "arquivo": "carrossel-2.jpg", "rotulo": "Página 2", "alt": "Pote azul com etiqueta em branco sobre uma superfície clara. Texto: Rótulo e etiqueta. Em PDF, com os dados que a Anvisa exige." },
+      { "arquivo": "carrossel-3.jpg", "rotulo": "Página 3", "alt": "Mãos seguram um celular com a tela do link do WhatsApp no app artesaná., com QR code. Texto: Link do WhatsApp. Curto e com o nome da sua marca." },
+      { "arquivo": "carrossel-4.jpg", "rotulo": "Página 4", "alt": "Dois sabonetes artesanais empilhados sobre linho, com ramos de flores secas. Texto: Identidade e guias. A cara da marca e como divulgar." },
+      { "arquivo": "carrossel-5.jpg", "rotulo": "Página 5", "alt": "Mulher de cabelos brancos e camisa branca sorri segurando um conta-gotas e um frasco. Texto: Instala no celular e funciona sem internet. Comece grátis. Link na bio." }
+    ],
+    "legenda": "O artesaná. por dentro, em cinco telas.\n\nRótulo e etiqueta em PDF, no formato redondo, retangular ou tag de presente, com a folha A4 já montada. Tem também o rótulo completo, com os dados que a Anvisa exige.\n\nLink do WhatsApp curto, com o nome da sua marca, mensagem pronta e QR code pra embalagem.\n\nLista de ingredientes no padrão INCI, com a composição em português.\n\nChecklist da identidade da marca e guias de foto com celular, página no Facebook e datas que mais vendem.\n\nInstala na tela inicial do celular e funciona sem internet.\n\nEstá em versão beta e é grátis pra começar. O link está na bio.\n\n#artesanato #feitoamao #saboariaartesanal #velasartesanais #cosmeticosnaturais #rotulos #empreendedorismofeminino #pequenosnegocios"
+  },
+  {
+    "id": 5,
+    "titulo": "Rótulo com os campos que a Anvisa exige",
+    "como": "Publicação de imagem única.",
+    "imagens": [
+      { "arquivo": "anvisa.jpg", "rotulo": "Imagem", "alt": "Frasco conta-gotas com etiqueta em branco e pote com tampa de madeira sobre fundo marrom. Texto: Rótulo de cosmético. Com os campos que a Anvisa exige. Lote, validade, composição em português e dados de quem fabrica." }
+    ],
+    "legenda": "Rótulo de cosmético não é só nome bonito e lista de ingredientes.\n\nA norma da Anvisa que vale hoje, a RDC nº 907 de 2024, diz o que precisa aparecer: nome e marca, conteúdo, lote, validade, ingredientes no padrão INCI, dados de quem fabrica com CNPJ, número da autorização da empresa e do processo do produto, canal de atendimento e país de origem. A composição também precisa estar em português.\n\nNo artesaná. você preenche esses campos uma vez. O app mostra o que ainda falta e monta a etiqueta em PDF, já na folha A4.\n\nUm aviso honesto: o app organiza o rótulo. A regularização do produto e da empresa na Anvisa continua sendo um passo seu.\n\nE a lei do cosmético artesanal? Ela existe desde 2025, mas até agosto de 2026 a Anvisa ainda não tinha publicado as regras pra esse caso.\n\nGrátis na versão beta. O link está na bio.\n\n#saboariaartesanal #cosmeticosnaturais #cosmeticosartesanais #rotulagem #anvisa #artesanato #feitoamao #pequenosnegocios"
+  },
+  {
+    "id": 6,
+    "titulo": "Anúncio patrocinado",
+    "como": "Use a imagem 4:5 no feed e a 9:16 em Stories e Reels. No Gerenciador de Anúncios, envie as duas no mesmo anúncio.",
+    "imagens": [
+      { "arquivo": "anuncio.jpg", "rotulo": "Feed, 4:5", "alt": "Artesã de cabelos grisalhos e jardineira bege sorri segurando o celular perto de uma janela. Texto: Rótulo, link e marca prontos no celular. Comece grátis hoje." },
+      { "arquivo": "anuncio-stories.jpg", "rotulo": "Stories e Reels, 9:16", "alt": "Artesã de cabelos grisalhos e jardineira bege sorri segurando o celular perto de uma janela. Texto: Rótulo, link e marca prontos no celular. Comece grátis hoje." }
+    ],
+    "textos": [
+      { "campo": "Texto principal", "valor": "Você produz, vende e divulga sozinha? O artesaná. monta o rótulo do seu produto, cria o link do WhatsApp com o nome da sua marca e organiza a identidade dela, tudo pelo celular. Está em versão beta e é grátis pra começar." },
+      { "campo": "Título", "valor": "Rótulo, link e marca no celular" },
+      { "campo": "Descrição", "valor": "Grátis na versão beta" },
+      { "campo": "Botão", "valor": "Saiba mais" },
+      { "campo": "Link de destino", "valor": "https://bebezinbtc-droid.github.io/artesana/" }
+    ]
+  },
+  {
+    "id": 1,
+    "publicada": true,
+    "titulo": "Você produz, vende e divulga sozinha",
+    "imagens": [
+      { "arquivo": "post-1.jpg", "rotulo": "Publicada", "alt": "Ceramista de óculos e avental segura uma caneca feita à mão diante de uma parede de azulejos. Texto: Você produz, vende e divulga sozinha? Esse app é pra você." },
+      { "arquivo": "post-1b.jpg", "rotulo": "Alternativa", "alt": "Dois sabonetes artesanais empilhados sobre linho, com ramos de flores secas. Texto: Você produz, vende e divulga sozinha? Esse app é pra você." }
+    ],
+    "legenda": "Você faz o produto, tira a foto, responde cliente no WhatsApp e ainda pensa no post de amanhã.\n\nA gente sabe como é, porque o artesaná. nasceu olhando pra essa rotina. É um app feito pra quem vive de artesanato e cuida de tudo sozinha: produzir, vender e divulgar.\n\nEle ajuda naquilo que toma tempo e ninguém ensina: o rótulo do produto, a lista de ingredientes, o link do WhatsApp e a cara da marca.\n\nJá está no ar, em versão beta, e é grátis pra começar. O link está na bio.\n\nConta pra gente: qual dessas três partes mais pesa no seu dia?\n\n#artesanato #feitoamao #artesanatobrasileiro #saboariaartesanal #velasartesanais #cosmeticosnaturais #empreendedorismofeminino #pequenosnegocios"
+  },
+  {
+    "id": 2,
+    "publicada": true,
+    "titulo": "Marketing na palma da mão",
+    "imagens": [
+      { "arquivo": "post-2b.jpg", "rotulo": "Publicada", "alt": "Mão segura um celular com a tela inicial do app artesaná., com uma lareira desfocada ao fundo. Texto: Todo o marketing da sua marca na palma da sua mão." },
+      { "arquivo": "post-2.jpg", "rotulo": "Alternativa", "alt": "Mulher ruiva de óculos, sentada no sofá, usa o celular. Texto: Todo o marketing da sua marca na palma da sua mão." }
+    ],
+    "legenda": "Seu ateliê cabe no celular.\n\nO que já dá pra fazer hoje no artesaná.:\n\nRótulo em PDF, redondo, retangular ou tag de presente, com a folha A4 montada pra imprimir em casa ou mandar pra gráfica.\n\nLista de ingredientes no padrão INCI. Você escolhe em português e copia pronta.\n\nLink do WhatsApp com mensagem automática e QR code pra colocar na bio e na embalagem.\n\nChecklist da identidade da marca, pra ver o que você já tem e o que ainda falta.\n\nAbre no navegador e instala na tela inicial, no Android e no iPhone. O link está na bio.\n\n#artesanato #rotulos #saboariaartesanal #cosmeticosnaturais #velasartesanais #identidadevisual #feitoamao #pequenosnegocios"
+  },
+  {
+    "id": 3,
+    "publicada": true,
+    "titulo": "Mais tempo com a família",
+    "imagens": [
+      { "arquivo": "post-3b.jpg", "rotulo": "Publicada", "alt": "Mãe e filha pintam ovos numa mesa de madeira, diante de uma parede rosada. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço." },
+      { "arquivo": "post-3.jpg", "rotulo": "Alternativa", "alt": "Mulher de cabelos grisalhos e uma menina decoram um bolo juntas na cozinha. Texto: Mais tempo com a família. E a sua marca em dia, sem esforço." }
+    ],
+    "legenda": "Menos tempo resolvendo rótulo e link, mais tempo com quem você ama.\n\nA versão beta do artesaná. está aberta, e começar é grátis.\n\nComo entrar:\n\n1. Toque no link da bio.\n2. Abra o app e diga o nome da sua marca.\n3. Crie o primeiro rótulo do produto que você mais vende.\n\nLeva poucos minutos e seus dados ficam só no seu aparelho.\n\nConhece alguém que faz sabonete, vela, cosmético natural ou artesanato? Marca aqui nos comentários.\n\n#artesanato #feitoamao #saboariaartesanal #velasartesanais #cosmeticosnaturais #empreendedorismofeminino #artesanatobrasileiro #pequenosnegocios"
+  }
+]
