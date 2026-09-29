@@ -31,6 +31,10 @@ python scripts/smoke.py --base https://bebezinbtc-droid.github.io/artesana
 
 Commit + push na `main`. GitHub Pages serve a raiz do repo. Ao mudar arquivos do app, suba a constante `CACHE` em `app/sw.js` pra forçar atualização nos celulares.
 
+## Landing
+
+Formato de vitrine de loja (`index.html` + `landing.css`). As miniaturas das ferramentas são telas reais do app, geradas por `python scripts/gen-site-shots.py` em `assets/site/`. Rode de novo quando o visual do app mudar.
+
 ## Marca
 
 Tokens em `app/css/variables.css`. Logo, ícones e wordmark em `assets/brand/` (gerados por `scripts/gen-brand.py` a partir dos glifos Poppins do logo; as fontes ficam em `scripts/fonts/`, fora do git).
