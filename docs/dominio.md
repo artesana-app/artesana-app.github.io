@@ -8,7 +8,33 @@ Usa o DNS do próprio Registro.br (`a.auto.dns.br` e `b.auto.dns.br`).
 Situação em 29/09/2026: o domínio existe, mas ainda não tem nenhum registro de DNS. Enquanto isso o site segue em
 https://bebezinbtc-droid.github.io/artesana/.
 
-## O que falta: criar o DNS no Registro.br
+## O registro está pago. O que falta é só configuração
+
+Os R$ 40,00 pagam o registro do nome por um ano. Não há mais nada a pagar: a hospedagem no GitHub e o
+certificado HTTPS são gratuitos. Falta dizer ao domínio onde o site mora, e isso é feito no painel do
+Registro.br, de graça. Há dois caminhos.
+
+### Caminho rápido: redirecionamento
+
+O DNS do Registro.br, no modo básico, tem um redirecionamento pronto. Segundo a ajuda oficial
+(registro.br/ajuda/gerenciamento-de-conta, seção 7):
+
+- aceita qualquer endereço como destino;
+- vale para o domínio e para `www.`;
+- fica ativo em até 2 minutos quando o domínio já está no modo básico;
+- atende só em `http`, sem `https` no domínio.
+
+Passos: entrar no Registro.br, abrir o domínio, ir na parte de DNS, escolher o redirecionamento e informar
+`https://bebezinbtc-droid.github.io/artesana/` como destino.
+
+Resultado: quem digita `artesana-mktdigital.com.br` cai no site. A barra do navegador passa a mostrar o endereço
+do GitHub. Para divulgar, escrever `artesana-mktdigital.com.br` sem `https://` na frente.
+
+### Caminho completo: o site morando no domínio
+
+Com as entradas de DNS abaixo, o site abre no próprio domínio, com `https` e sem mostrar o endereço do GitHub.
+
+## Caminho completo, passo a passo
 
 Quem faz: a titular, com o login dela no Registro.br.
 
