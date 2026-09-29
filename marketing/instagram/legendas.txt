@@ -77,7 +77,7 @@ BOTÃO
 Saiba mais
 
 LINK DE DESTINO
-https://bebezinbtc-droid.github.io/artesana/
+https://artesana-app.github.io/
 
 TEXTO ALTERNATIVO
 anuncio.jpg: Artesã de cabelos grisalhos e jardineira bege sorri segurando o celular perto de uma janela. Texto: Rótulo, link e marca prontos no celular. Comece grátis hoje.

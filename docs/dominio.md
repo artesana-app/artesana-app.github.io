@@ -48,7 +48,7 @@ Quem faz: a titular, com o login dela no Registro.br.
 | A | (vazio) | 185.199.109.153 |
 | A | (vazio) | 185.199.110.153 |
 | A | (vazio) | 185.199.111.153 |
-| CNAME | www | bebezinbtc-droid.github.io |
+| CNAME | www | artesana-app.github.io |
 
 Opcionais, para quem acessa por IPv6:
 
