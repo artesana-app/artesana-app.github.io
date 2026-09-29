@@ -49,14 +49,15 @@ def verificar(nome: str) -> bool:
     _, minhas = gh("api", "user/orgs", "--jq", ".[].login")
     _, eu = gh("api", "user", "--jq", ".login")
     if nome not in minhas.split():
-        print(f"A organização '{nome}' existe, mas a conta {eu} não tem acesso a ela.
-")
-        print(f"Abra https://github.com/orgs/{nome}/people e veja quem aparece como Owner.
-")
+        eu = eu.strip()
+        print(f"A organização '{nome}' existe, mas a conta {eu} não tem acesso a ela.")
+        print()
+        print(f"Abra https://github.com/orgs/{nome}/people e veja quem aparece como Owner.")
+        print()
         print(f"Se aparecer {eu}: falta liberar a linha de comando. Abra")
         print(f"  https://github.com/organizations/{nome}/settings/oauth_application_policy")
-        print("  e clique em 'Remove restrictions'.
-")
+        print("  e clique em 'Remove restrictions'.")
+        print()
         print(f"Se aparecer outra conta: nessa mesma tela clique em 'Invite member', digite {eu},")
         print(f"  escolha o papel 'Owner' e envie. Depois, logada como {eu}, aceite em")
         print(f"  https://github.com/orgs/{nome}/invitation")
@@ -73,7 +74,7 @@ def publicar(nome: str) -> int:
         codigo, saida = gh("repo", "create", repo, "--public", "--description", "artesaná. — o app da empreendedora que faz, vende e fotografa",
                            "--homepage", f"https://{novo}/")
         if codigo != 0:
-            print(f"Não consegui criar o repositório {repo}:\n{saida}\n\nLibere o acesso da linha de comando em:\n  {LIBERAR_CLI}")
+            print(f"Não consegui criar o repositório {repo}:\n{saida}\n\nA conta precisa ser Owner da organização. Veja https://github.com/orgs/{nome}/people")
             return 1
         print("repositório criado:", repo)
 
