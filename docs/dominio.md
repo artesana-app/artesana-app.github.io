@@ -6,7 +6,7 @@ Registrado no Registro.br em 29/09/2026, em nome de Bibiana Kohls Silveira, vál
 Usa o DNS do próprio Registro.br (`a.auto.dns.br` e `b.auto.dns.br`).
 
 Situação em 29/09/2026: o domínio existe, mas ainda não tem nenhum registro de DNS. Enquanto isso o site segue em
-https://bebezinbtc-droid.github.io/artesana/.
+https://artesana-app.github.io/.
 
 ## O registro está pago. O que falta é só configuração
 
@@ -25,7 +25,7 @@ O DNS do Registro.br, no modo básico, tem um redirecionamento pronto. Segundo a
 - atende só em `http`, sem `https` no domínio.
 
 Passos: entrar no Registro.br, abrir o domínio, ir na parte de DNS, escolher o redirecionamento e informar
-`https://bebezinbtc-droid.github.io/artesana/` como destino.
+`https://artesana-app.github.io/` como destino.
 
 Resultado: quem digita `artesana-mktdigital.com.br` cai no site. A barra do navegador passa a mostrar o endereço
 do GitHub. Para divulgar, escrever `artesana-mktdigital.com.br` sem `https://` na frente.

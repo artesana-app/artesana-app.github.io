@@ -78,7 +78,7 @@ Imagens: `anuncio.jpg`, `anuncio-stories.jpg`
 
 **Botão:** Saiba mais
 
-**Link de destino:** https://bebezinbtc-droid.github.io/artesana/
+**Link de destino:** https://artesana-app.github.io/
 
 **Texto alternativo**
 

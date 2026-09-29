@@ -2,8 +2,8 @@
 
 O app da empreendedora que faz, vende e fotografa. Artesanato, saboaria e beleza natural.
 
-- **Site:** https://bebezinbtc-droid.github.io/artesana/
-- **App (PWA):** https://bebezinbtc-droid.github.io/artesana/app/
+- **Site:** https://artesana-app.github.io/
+- **App (PWA):** https://artesana-app.github.io/app/
 
 Domínio oficial: `artesana-mktdigital.com.br`. Passa a valer quando o DNS for criado, veja `docs/dominio.md`.
 
@@ -26,7 +26,7 @@ python -m http.server 8080
 ```bash
 node --test tests/*.test.mjs      # lógica pura (whatsapp, inci, rótulo, progresso)
 python scripts/smoke.py           # Playwright: abre todas as rotas, falha em erro de console
-python scripts/smoke.py --base https://bebezinbtc-droid.github.io/artesana
+python scripts/smoke.py --base https://artesana-app.github.io
 ```
 
 ## Publicar
