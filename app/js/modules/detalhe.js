@@ -10,6 +10,7 @@ export function montar(section, param) {
       h('h2', {}, item.titulo),
       h('p', { style: { marginTop: '10px' } }, item.descricao),
       h('span', { class: 'badge gold', style: { marginTop: '12px' } }, 'Em breve'),
+      h('p', { class: 'muted', style: { marginTop: '12px' } }, 'Essa função ainda não ficou pronta, então não entra neste teste.'),
       h('p', { class: 'muted', style: { marginTop: '16px' } }, 'Enquanto isso, complete o perfil da marca: é ele que alimenta esta função.'),
       h('a', { class: 'btn ghost', href: '#perfil', style: { marginTop: '8px' } }, 'Completar perfil'),
     )

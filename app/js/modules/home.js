@@ -1,6 +1,7 @@
 import { h, header, saudacao, inicial, copiar } from '../ui.js';
 import * as store from '../store.js';
 import * as onboarding from '../onboarding.js';
+import { SITE } from '../site.js';
 
 const MODULOS = [
   { emoji: '🎨', titulo: 'Identidade Visual', href: '#identidade', pendente: (p) => !p.etapas[1].ok || !p.etapas[2].ok },
@@ -44,9 +45,13 @@ export function montar(section) {
         h('div', { class: 'grow' }, h('b', {}, 'Crie seu link do WhatsApp'), h('div', { style: { fontSize: '13px', opacity: 0.9 } }, 'Pra bio, rótulo e end card')),
         h('span', { class: 'badge' }, 'Criar')));
 
-    const cardPlano = h('div', { class: 'card gold-border' }, h('div', { class: 'row' },
-      h('div', { class: 'grow' }, h('b', {}, `Plano ${PLANOS[plano] || PLANOS.semente}`), h('div', { class: 'muted' }, plano === 'semente' ? 'Grátis · funcionalidades limitadas' : 'Obrigada por apoiar 💛')),
-      h('a', { class: 'btn ghost sm', href: '#planos' }, 'Evoluir')));
+    const cardPlano = SITE.beta
+      ? h('div', { class: 'card gold-border' }, h('div', { class: 'row' },
+        h('div', { class: 'grow' }, h('b', {}, 'Teste beta: tudo liberado'), h('div', { class: 'muted' }, 'Use à vontade e conte o que achou')),
+        h('a', { class: 'btn ghost sm', href: '#feedback' }, 'Dar feedback')))
+      : h('div', { class: 'card gold-border' }, h('div', { class: 'row' },
+        h('div', { class: 'grow' }, h('b', {}, `Plano ${PLANOS[plano] || PLANOS.semente}`), h('div', { class: 'muted' }, plano === 'semente' ? 'Grátis' : 'Obrigada por apoiar')),
+        h('a', { class: 'btn ghost sm', href: '#planos' }, 'Evoluir')));
 
     section.append(h('div', { class: 'screen' },
       header({ titulo: `${saudacao()}, ${user.nome || 'artesã'}!`, sub: user.marca || 'sua marca ainda sem nome', avatar: inicial(user.marca || user.nome), extra: barra }),

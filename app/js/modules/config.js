@@ -2,7 +2,9 @@ import { h, header, lista, grupo, toast, confirmar } from '../ui.js';
 import * as store from '../store.js';
 import * as router from '../router.js';
 
-const VERSAO = '1.1.0';
+import { SITE } from '../site.js';
+
+const VERSAO = SITE.versao;
 
 export function montar(section) {
   const cfg = store.get('config', { notificacoes: false });

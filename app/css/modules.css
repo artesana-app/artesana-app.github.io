@@ -109,3 +109,9 @@
 .perfil-situacao.ok { color: var(--ok); font-weight: 600; }
 .perfil-enviar .muted { margin: 10px 0 0; }
 .perfil-resumo { white-space: pre-wrap; font-family: var(--font); font-size: 13px; line-height: 1.5; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-s); padding: 12px; margin: 10px 0 0; max-height: 42vh; overflow-y: auto; }
+
+/* feedback do teste beta */
+.notas { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.nota { display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 64px; padding: 8px 2px; border: 1.5px solid var(--line); border-radius: var(--radius-s); background: var(--white); font-size: 11px; cursor: pointer; color: inherit; }
+.nota-emoji { font-size: 24px; line-height: 1; }
+.nota.on { border-color: var(--moss); background: var(--moss-l); font-weight: 600; }

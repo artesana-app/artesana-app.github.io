@@ -8,7 +8,7 @@ export const ROADMAP = {
   'perfis-referencia': { emoji: '🌟', titulo: 'Perfis de Referência', modulo: 'social', descricao: 'A partir de 3 perfis que você admira, criamos um estilo visual e de texto só seu, com formatos bonitos que viram venda.' },
   'analise-publico': { emoji: '🎯', titulo: 'Análise de Público', modulo: 'social', descricao: 'Conecta a personalidade da sua marca com quem compra de você: linguagem, horários, dores e desejos do seu público-alvo.' },
   agendar: { emoji: '⏰', titulo: 'Agendar Publicação', modulo: 'social', descricao: 'Agende post, story ou reel direto pelo app via Meta Business, sem sair do artesaná.' },
-  metricas: { emoji: '📊', titulo: 'Métricas', modulo: 'social', descricao: 'Alcance, engajamento e melhores horários pra postar, em linguagem simples. Disponível no plano Florescer.' },
+  metricas: { emoji: '📊', titulo: 'Métricas', modulo: 'social', descricao: 'Alcance, engajamento e melhores horários pra postar, em linguagem simples.' },
   // Fotos & Vídeos
   'editar-foto': { emoji: '🪄', titulo: 'Editar Foto com IA', modulo: 'fotos', descricao: 'Tira o fundo da foto do produto, aplica sua identidade visual e entrega imagem pronta pra feed, catálogo e rótulo.' },
   estilos: { emoji: '🎨', titulo: 'Estilos de Foto', modulo: 'fotos', descricao: 'Natural, Botânico, Rústico, Blush, Estúdio e Eco: escolha o clima antes de editar e todas as fotos saem no mesmo padrão.' },

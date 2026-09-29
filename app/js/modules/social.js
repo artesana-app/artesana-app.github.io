@@ -3,6 +3,7 @@ import * as store from '../store.js';
 import * as router from '../router.js';
 import * as onboarding from '../onboarding.js';
 import { proximas } from '../data/datas.js';
+import { SITE } from '../site.js';
 
 export function montar(section) {
   const render = () => {
@@ -38,7 +39,7 @@ export function montar(section) {
         ])),
         grupo('Agendar', lista([
           { emoji: '⏰', titulo: 'Agendar Publicação', sub: 'Via Meta Business', onClick: () => { if (!meta.conectado) { toast('Conecte o Meta Business primeiro'); router.ir('#meta'); } else router.ir('#detalhe/agendar'); } },
-          { emoji: '📊', titulo: 'Métricas', sub: 'Alcance, engajamento, melhores horários', badge: 'PRO', badgeClasse: 'gold', onClick: () => router.ir('#planos') },
+          { emoji: '📊', titulo: 'Métricas', sub: 'Alcance, engajamento, melhores horários', badge: SITE.beta ? null : 'PRO', badgeClasse: 'gold', onClick: () => router.ir(SITE.beta ? '#detalhe/metricas' : '#planos') },
         ])),
         cardDatas,
       ),

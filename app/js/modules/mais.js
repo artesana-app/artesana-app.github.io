@@ -2,6 +2,7 @@ import { h, header, lista, grupo, copiar, inicial } from '../ui.js';
 import * as store from '../store.js';
 import * as router from '../router.js';
 import * as onboarding from '../onboarding.js';
+import { SITE } from '../site.js';
 
 const PLANOS = { semente: '🌱 Semente', florescer: '🌸 Florescer', prosperar: '🌳 Prosperar' };
 
@@ -13,11 +14,11 @@ export function montar(section) {
   const plano = store.get('plano', 'semente');
   section.innerHTML = '';
   section.append(h('div', { class: 'screen' },
-    header({ titulo: user.marca || user.nome || 'Sua marca', sub: `Plano ${PLANOS[plano] || PLANOS.semente}`, avatar: inicial(user.marca || user.nome) }),
+    header({ titulo: user.marca || user.nome || 'Sua marca', sub: SITE.beta ? 'Teste beta: tudo liberado' : `Plano ${PLANOS[plano] || PLANOS.semente}`, avatar: inicial(user.marca || user.nome) }),
     h('div', { class: 'content' },
       grupo('Ferramentas', lista([
         { emoji: '🎨', titulo: 'Identidade Visual', sub: 'Checklist, upload e geradores', href: '#identidade' },
-        { emoji: '💬', titulo: 'Feedback', sub: 'Conte o que falta', href: '#feedback' },
+        { emoji: '💬', titulo: 'Feedback', sub: 'Conte como foi o teste', href: '#feedback', badge: SITE.beta ? 'beta' : null },
         { emoji: '🔍', titulo: 'Verificação INPI', sub: 'Registre sua marca', href: '#inpi' },
       ])),
       grupo('Contato', lista([
@@ -28,7 +29,7 @@ export function montar(section) {
       grupo('Sua conta', lista([
         { emoji: '👤', titulo: 'Meu Perfil', sub: 'Dados da marca e onboarding', href: '#perfil', badge: `${p.feitas}/${p.total}`, badgeClasse: p.completo ? 'ok' : 'soft' },
         { emoji: '🏢', titulo: 'Meta Business', sub: meta.conectado ? 'Página conectada' : 'Não conectado', href: '#meta', badge: meta.conectado ? 'Conectado' : 'Conectar', badgeClasse: meta.conectado ? 'ok' : 'off' },
-        { emoji: '💎', titulo: 'Planos', sub: 'Semente · Florescer · Prosperar', href: '#planos', badge: 'Evoluir', badgeClasse: 'gold' },
+        { emoji: '💎', titulo: 'Planos', sub: SITE.beta ? 'Tudo liberado durante o teste' : 'Semente, Florescer e Prosperar', href: '#planos', badge: SITE.beta ? 'liberado' : 'Evoluir', badgeClasse: SITE.beta ? 'ok' : 'gold' },
         { emoji: '⚙️', titulo: 'Configurações', sub: 'Notificações, dados', href: '#config' },
       ])),
       h('a', { class: 'card peach', href: '#tutorial-meta', style: { display: 'block', textDecoration: 'none' } },

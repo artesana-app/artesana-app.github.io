@@ -1,5 +1,5 @@
-import { h, header, toast } from '../ui.js';
-import * as store from '../store.js';
+import { h, header } from '../ui.js';
+import { SITE } from '../site.js';
 
 const PLANOS = [
   { id: 'semente', emoji: '🌱', nome: 'Semente', preco: 'Grátis', desc: 'Pra começar', itens: ['Link do WhatsApp com QR', 'Checklist de identidade', 'Gerador INCI', 'Rótulo básico em PDF', 'Tutoriais'] },
@@ -8,23 +8,26 @@ const PLANOS = [
 ];
 
 export function montar(section) {
-  const atual = store.get('plano', 'semente');
   section.innerHTML = '';
+  const aviso = SITE.beta
+    ? h('div', { class: 'card moss' },
+      h('h3', {}, 'Teste beta: tudo liberado'),
+      h('p', { style: { margin: '6px 0 12px', fontSize: '13.5px' } }, 'Durante o teste você usa o app inteiro sem pagar e sem limite. Nenhum plano precisa ser escolhido.'),
+      h('a', { class: 'btn soft block', href: '#feedback' }, 'Contar como foi o teste'))
+    : null;
+
   section.append(h('div', { class: 'screen' },
-    header({ titulo: 'Planos', sub: 'Cresça no seu ritmo', voltar: '#mais', peach: true }),
+    header({ titulo: 'Planos', sub: SITE.beta ? 'Como vai ficar depois do teste' : 'Cresça no seu ritmo', voltar: '#mais', peach: true }),
     h('div', { class: 'content' },
-      ...PLANOS.map((p) => h('div', { class: `card ${p.id === atual ? 'gold-border' : ''}` },
+      aviso,
+      ...PLANOS.map((p) => h('div', { class: 'card' },
         h('div', { class: 'row' },
           h('div', { class: 'grow' }, h('h3', {}, `${p.emoji} ${p.nome}`), h('div', { class: 'muted' }, p.desc)),
           h('b', {}, p.preco)),
         h('ul', { style: { margin: '10px 0' } }, ...p.itens.map((i) => h('li', { style: { fontSize: '13.5px', padding: '2px 0' } }, `✓ ${i}`))),
-        p.id === atual
-          ? h('span', { class: 'badge moss' }, 'Seu plano atual')
-          : p.id === 'semente'
-            ? h('button', { class: 'btn ghost sm', onClick: () => { store.set('plano', 'semente'); toast('Plano Semente ativo'); montar(section); } }, 'Voltar pro grátis')
-            : h('button', { class: 'btn peach sm', onClick: () => toast('Assinatura em breve. Por enquanto tudo é grátis 💛') }, 'Em breve'),
+        h('span', { class: 'badge soft' }, SITE.beta ? 'liberado no teste' : 'em breve'),
       )),
-      h('p', { class: 'muted center' }, 'Valores de layout. Os preços finais serão definidos antes de ativar o pagamento.'),
+      h('p', { class: 'muted center' }, 'Valores de referência. Os preços finais serão definidos antes de ativar o pagamento.'),
     ),
   ));
 }
