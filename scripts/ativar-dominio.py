@@ -17,11 +17,21 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 DOMINIO = "artesana-mktdigital.com.br"
-REPO = "bebezinbtc-droid/artesana"
-ANTIGO = "bebezinbtc-droid.github.io/artesana"
+
+
+def _repo_atual() -> str:
+    """Repositório do remoto origin, pra funcionar também depois de mudar o endereço do GitHub."""
+    r = subprocess.run(["git", "remote", "get-url", "origin"], cwd=RAIZ, capture_output=True, text=True)
+    url = (r.stdout or "").strip().removesuffix(".git")
+    return "/".join(url.split("/")[-2:]) if url else "bebezinbtc-droid/artesana"
+
+
+REPO = _repo_atual()
+DONO, NOME_REPO = REPO.split("/")
+ANTIGO = f"{DONO}.github.io" if NOME_REPO == f"{DONO}.github.io" else f"{DONO}.github.io/{NOME_REPO}"
 PAGES_A = {"185.199.108.153", "185.199.109.153", "185.199.110.153", "185.199.111.153"}
 PAGES_AAAA = {"2606:50c0:8000::153", "2606:50c0:8001::153", "2606:50c0:8002::153", "2606:50c0:8003::153"}
-PAGES_WWW = "bebezinbtc-droid.github.io"
+PAGES_WWW = f"{DONO}.github.io"
 
 
 def consulta(nome: str, tipo: str) -> list[str]:
