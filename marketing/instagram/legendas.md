@@ -154,7 +154,7 @@ Grátis na versão beta. O link está na bio.
 
 **Texto alternativo**
 
-- `atelie-6.jpg`: Avó de cabelos grisalhos e óculos ri com a neta à mesa da cozinha, com café e uma fatia de bolo, diante da janela. Texto: A marca em dia. O domingo livre. E o café ainda quente.
+- `atelie-6.jpg`: Avó de cabelos grisalhos mexe o café da neta à mesa da cozinha, as duas de cabeça baixa sorrindo, com a janela e as árvores atrás. Texto: A marca em dia. O domingo livre. E o café ainda quente.
 
 ---
 
