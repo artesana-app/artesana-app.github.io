@@ -146,11 +146,11 @@ def bloco(p):
         assert (PASTA / arq).exists(), f"falta a imagem {arq}"
         if im.get("video"):
             capa = arq.replace("-reel.mp4", "-capa.jpg")
-            midia = f'          <video src="./{arq}" poster="./{capa}" controls muted playsinline preload="metadata" aria-label="{e(im["alt"], quote=True)}"></video>\n'
+            midia = f'          <video src="./{arq}?v={versao(arq)}" poster="./{capa}?v={versao(capa)}" controls muted playsinline preload="metadata" aria-label="{e(im["alt"], quote=True)}"></video>\n'
         else:
-            midia = f'          <img src="./{arq}" alt="{e(im["alt"], quote=True)}" loading="lazy">\n'
+            midia = f'          <img src="./{arq}?v={versao(arq)}" alt="{e(im["alt"], quote=True)}" loading="lazy">\n'
         figuras += (f'        <figure>\n          <figcaption>{e(im["rotulo"])}</figcaption>\n' + midia
-                    + f'          <div class="acoes"><a class="botao" href="./{arq}" download="artesana-{arq}">Baixar</a></div>\n        </figure>\n')
+                    + f'          <div class="acoes"><a class="botao" href="./{arq}?v={versao(arq)}" download="artesana-{arq}">Baixar</a></div>\n        </figure>\n')
     cabeca = e(p.get("rotulo") or str(n))
     s = f'    <article class="peca" id="p{n}">\n      <h2>{cabeca}: {e(p["titulo"])}</h2>\n'
     if p.get("como"):
