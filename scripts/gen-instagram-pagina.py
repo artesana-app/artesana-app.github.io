@@ -18,6 +18,12 @@ PASTA = RAIZ / "marketing" / "instagram"
 sys.path.insert(0, str(RAIZ / "scripts"))
 
 
+def versao(arq):
+    """Sufixo de versão pro navegador não mostrar uma imagem antiga guardada: muda quando o arquivo muda."""
+    import hashlib
+    return hashlib.sha256((PASTA / arq).read_bytes()).hexdigest()[:8]
+
+
 def creditos():
     """Lê a tabela de créditos do gerador de imagens, sem executar o gerador."""
     fonte = (RAIZ / "scripts" / "gen-instagram.py").read_text(encoding="utf-8")
@@ -94,7 +100,7 @@ PAGINA = """<!doctype html>
       <h1>Publicações prontas</h1>
       <p>Baixe as imagens e os vídeos, copie a legenda e publique. Todas as imagens são geradas por IA: ao publicar, ative o rótulo de IA do Instagram. O guia do estilo, com as ideias de foto pra você fazer em casa, está em <a href="./estilo.html">estilo.html</a>.</p>
       <figure class="grade">
-        <img src="./grade-perfil.jpg" alt="Prévia das publicações na grade do perfil, a mais nova em cima à esquerda.">
+        <img src="./grade-perfil.jpg?v=__GRADE__" alt="Prévia das publicações na grade do perfil, a mais nova em cima à esquerda.">
         <figcaption>Prévia da grade do perfil com tudo publicado</figcaption>
       </figure>
     </section>
@@ -140,11 +146,11 @@ def bloco(p):
         assert (PASTA / arq).exists(), f"falta a imagem {arq}"
         if im.get("video"):
             capa = arq.replace("-reel.mp4", "-capa.jpg")
-            midia = f'          <video src="./{arq}" poster="./{capa}" controls muted playsinline preload="metadata" aria-label="{e(im["alt"], quote=True)}"></video>\n'
+            midia = f'          <video src="./{arq}?v={versao(arq)}" poster="./{capa}?v={versao(capa)}" controls muted playsinline preload="metadata" aria-label="{e(im["alt"], quote=True)}"></video>\n'
         else:
-            midia = f'          <img src="./{arq}" alt="{e(im["alt"], quote=True)}" loading="lazy">\n'
+            midia = f'          <img src="./{arq}?v={versao(arq)}" alt="{e(im["alt"], quote=True)}" loading="lazy">\n'
         figuras += (f'        <figure>\n          <figcaption>{e(im["rotulo"])}</figcaption>\n' + midia
-                    + f'          <div class="acoes"><a class="botao" href="./{arq}" download="artesana-{arq}">Baixar</a></div>\n        </figure>\n')
+                    + f'          <div class="acoes"><a class="botao" href="./{arq}?v={versao(arq)}" download="artesana-{arq}">Baixar</a></div>\n        </figure>\n')
     cabeca = e(p.get("rotulo") or str(n))
     s = f'    <article class="peca" id="p{n}">\n      <h2>{cabeca}: {e(p["titulo"])}</h2>\n'
     if p.get("como"):
@@ -319,7 +325,7 @@ def main() -> None:
     bio = json.loads((PASTA / "bio.json").read_text(encoding="utf-8"))
     for o in bio["opcoes"]:
         assert contar(o["texto"]) <= 150, f"bio {o['titulo']} com {contar(o['texto'])} caracteres"
-    pagina = PAGINA.replace("__BIO__", bloco_bio(bio)).replace("__SERIES__", secoes(novas)).replace("__ANTIGAS__", "".join(bloco(p) for p in antigas))
+    pagina = PAGINA.replace("__GRADE__", versao("grade-perfil.jpg")).replace("__BIO__", bloco_bio(bio)).replace("__SERIES__", secoes(novas)).replace("__ANTIGAS__", "".join(bloco(p) for p in antigas))
     (PASTA / "index.html").write_text(pagina, encoding="utf-8", newline="\n")
     estilo = md_para_html((PASTA / "estilo.md").read_text(encoding="utf-8"))
     (PASTA / "estilo.html").write_text(ESTILO_PAGINA.replace("__CORPO__", estilo), encoding="utf-8", newline="\n")

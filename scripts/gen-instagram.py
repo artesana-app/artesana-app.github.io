@@ -24,6 +24,9 @@ from playwright.sync_api import sync_playwright
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import bordado  # noqa: E402
+import importlib.util as _iu
+_spec = _iu.spec_from_file_location("rotulo_na_foto", Path(__file__).resolve().parent / "rotulo-na-foto.py")
+rotulo_na_foto = _iu.module_from_spec(_spec); _spec.loader.exec_module(rotulo_na_foto)  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parent.parent
 PASTA = RAIZ / "marketing" / "instagram"
@@ -44,6 +47,12 @@ PECAS = {
 
 # id Pexels -> (onde é usada, autor, página)
 CREDITOS = {
+    4865722: ("dia2-4", "Anna Shvets", "https://www.pexels.com/photo/4865722/"),
+    6348104: ("dia2-5", "Liza Summer", "https://www.pexels.com/photo/crop-faceless-woman-showing-small-gift-box-on-palms-6348104/"),
+    19149300: ("dia5-4", "Ioana Motoc", "https://www.pexels.com/photo/woman-holding-a-christmas-present-wrapped-with-red-ribbon-19149300/"),
+    37937447: ("atelie-1", "Harriet Fletcher", "https://www.pexels.com/photo/senior-woman-sewing-at-home-with-machine-37937447/"),
+    7006154: ("atelie-2", "Vie Studio", "https://www.pexels.com/photo/person-holding-a-brown-glass-spray-bottle-7006154/"),
+    5585288: ("atelie-6", "cottonbro studio", "https://www.pexels.com/photo/elderly-woman-talking-to-her-grand-daugther-5585288/"),
     6023599: ("post-1", "Kampus Production", "https://www.pexels.com/photo/a-woman-wearing-an-apron-and-eyeglasses-6023599/"),
     5420572: ("post-1b, carrossel-4", "Polina", "https://www.pexels.com/photo/handmade-organic-soaps-5420572/"),
     5257217: ("post-2", "Anna Shvets", "https://www.pexels.com/photo/a-woman-using-a-smartphone-5257217/"),
@@ -60,7 +69,12 @@ CREDITOS = {
 
 # textos que saem bordados no tecido em vez de impressos: peça -> [(seletor, cor da linha, opções)]
 BORDADOS = {
-    "atelie-3": [(".frase", "#3D2325", {}), (".recado", "#43593F", {"engrossar": 2, "espaco": 1.7})],
+    "atelie-3": [(".frase", "#3D2325", {}), (".recado", "#F1E6D6", {"engrossar": 2, "espaco": 1.7}), (".marca", "#3D2325", {"engrossar": 1, "espaco": 1.6}), (".marca b", "#F1E6D6", {"engrossar": 2, "espaco": 1.6})],
+}
+
+# etiquetas em branco que recebem o texto da marca: foto -> (ponto dentro da etiqueta, limiar de claro, linhas)
+ROTULOS = {
+    7006154: ((870, 1900), 200, [("sua marca.", "Poppins-400-full.ttf", 0.19, (44, 26, 30)), ("feito à mão · 60 ml", "Poppins-400-full.ttf", 0.075, (107, 90, 93))]),
 }
 
 # celulares com tela em branco que recebem uma tela real do app:
@@ -163,7 +177,7 @@ def conferir_margem(page, nome: str, larg: int, alt: int) -> None:
 
 def com_bordado(navegador, page, url, nome, larg, alt):
     """A peça sem os textos bordados, mais uma máscara de cada texto em escala maior, entregues ao bordado."""
-    seletores = ", ".join(sel for sel, _c, _o in BORDADOS[nome])
+    seletores = ", ".join(sel for sel, _c, _o in BORDADOS[nome] if not sel.endswith(" b"))
     page.evaluate("(sel) => document.querySelectorAll(sel).forEach(e => e.style.visibility = 'hidden')", seletores)
     base_img = Image.open(io.BytesIO(page.screenshot(clip={"x": 0, "y": 0, "width": larg, "height": alt}))).convert("RGB")
     grande = navegador.new_page(viewport={"width": larg, "height": alt}, device_scale_factor=bordado.ESCALA)
@@ -176,8 +190,16 @@ def com_bordado(navegador, page, url, nome, larg, alt):
     }""")
     camadas = []
     for sel, cor, opcoes in BORDADOS[nome]:
-        grande.evaluate("""([todos, sel]) => document.querySelectorAll(todos).forEach(e => {
-            e.style.visibility = e.matches(sel) ? 'visible' : 'hidden'; e.style.color = '#000'; e.style.textShadow = 'none'; })""", [seletores, sel])
+        grande.evaluate("""([todos, sel]) => {
+            document.querySelectorAll(todos).forEach(e => { e.style.visibility = e.matches(sel) ? 'visible' : 'hidden'; e.style.color = '#000'; e.style.textShadow = 'none'; });
+            if (sel.endsWith(' b')) {
+                const pai = sel.slice(0, -2);
+                document.querySelectorAll(pai).forEach(e => { e.style.visibility = 'visible'; e.style.color = 'transparent'; });
+                document.querySelectorAll(sel).forEach(b => { b.style.visibility = 'visible'; b.style.color = '#000'; });
+            } else if (todos.includes(sel + ' b')) {
+                document.querySelectorAll(sel + ' b').forEach(b => { b.style.color = 'transparent'; });
+            }
+        }""", [seletores, sel])
         mascara = Image.open(io.BytesIO(grande.screenshot(omit_background=True))).getchannel("A")
         camadas.append((mascara, cor, opcoes))
     grande.close()
@@ -245,6 +267,10 @@ def main() -> None:
     papel()
     for pid in TELAS:
         por_tela_do_app(pid)
+    for pid, (ponto, limiar, linhas) in ROTULOS.items():
+        if not (FOTOS / f"{pid}-rotulo.jpg").exists():
+            info = rotulo_na_foto.rotular(FOTOS / f"{pid}.jpg", FOTOS / f"{pid}-rotulo.jpg", ponto, limiar, linhas)
+            print(f"preparada {pid}-rotulo.jpg  etiqueta {info['cobertura']}% da foto")
     renderizar(filtro)
     if "atelie".startswith(filtro) or filtro.startswith("atelie"):
         grade()

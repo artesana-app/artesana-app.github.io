@@ -35,6 +35,18 @@ Referências que a equipe curtiu em 30/09/2026 (perfis de vela e saboaria), apli
 - `grito`: frase grande em Poppins leve + negrito tomando a foto ("Em terra de IA, o feito à mão é o verdadeiro luxo").
 - `anotada`: recados à mão com setas apontando pro produto, como quem explica o que tem dentro.
 
+## Ajustes aprovados em 30/09/2026
+
+- Letra de mão sempre alinhada à esquerda com a frase de cima, sem inclinação.
+- Nada de fundo bege liso em carrossel: foto inteira com um painel creme alinhado às margens.
+- Etiqueta de produto na foto sempre com texto ("sua marca"), nunca em branco.
+- Reel tem que ser vídeo de verdade (Pexels ou gravado), com texto animado alinhado.
+- Foto de pessoa: banco de imagens ou IA conferida em zoom; rosto deformado não passa.
+- A marca pode virar só "a." discreto quando a foto já é forte.
+- Letra de mão: bege claro com sombra quando está sobre foto; a distância pra frase de cima é curta (metade de uma linha).
+- Reels: só a marca embaixo do texto, sem linha de apoio.
+- Bordado: linha bege pro recado e pro ponto da marca; a marca vai dentro do bastidor. Foto sem mãos: scripts/bordado-sem-maos.py.
+
 ## Reels
 
 - 1080 × 1920, 10 a 12 segundos, foto com zoom lento e o texto entrando em camadas (`scripts/gen-reels.py`).
