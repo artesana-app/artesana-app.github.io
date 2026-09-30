@@ -72,7 +72,7 @@ Grátis na versão beta. O link está na bio.
 
 **Texto alternativo**
 
-- `atelie-3.jpg`: Bastidor grande de bordado visto de cima, com uma guirlanda de flores miúdas bordada no linho e duas mãos passando a linha na agulha. Dentro da guirlanda, o texto: Ponto por ponto, a marca ganha rosto. A sua já começou.
+- `atelie-3.jpg`: Bastidor grande de bordado visto de cima, com uma guirlanda de flores miúdas bordada no linho e duas mãos passando a linha na agulha. Dentro da guirlanda, bordado em linha escura e verde: Ponto por ponto, a marca ganha rosto. A sua já começou.
 
 ---
 

@@ -22,6 +22,9 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 from playwright.sync_api import sync_playwright
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import bordado  # noqa: E402
+
 RAIZ = Path(__file__).resolve().parent.parent
 PASTA = RAIZ / "marketing" / "instagram"
 FOTOS = PASTA / "fotos"
@@ -51,6 +54,11 @@ CREDITOS = {
     5682670: ("carrossel-5", "Anna Shvets", "https://www.pexels.com/photo/a-woman-holding-a-bottle-dropper-5682670/"),
     8100788: ("anvisa", "Polina", "https://www.pexels.com/photo/photo-of-products-on-brown-surface-8100788/"),
     7330711: ("anuncio, anuncio-stories", "MART  PRODUCTION", "https://www.pexels.com/photo/woman-using-a-smartphone-by-the-window-7330711/"),
+}
+
+# textos que saem bordados no tecido em vez de impressos: peça -> [(seletor, cor da linha, opções)]
+BORDADOS = {
+    "atelie-3": [(".frase", "#3D2325", {}), (".recado", "#43593F", {"engrossar": 2, "espaco": 1.7})],
 }
 
 # celulares com tela em branco que recebem uma tela real do app:
@@ -151,6 +159,31 @@ def conferir_margem(page, nome: str, larg: int, alt: int) -> None:
     print(f"  margem de segurança: texto mais próximo da borda a {folga:.0f}px")
 
 
+def com_bordado(navegador, page, url, nome, larg, alt):
+    """A peça sem os textos bordados, mais uma máscara de cada texto em escala maior, entregues ao bordado."""
+    seletores = ", ".join(sel for sel, _c, _o in BORDADOS[nome])
+    page.evaluate("(sel) => document.querySelectorAll(sel).forEach(e => e.style.visibility = 'hidden')", seletores)
+    base_img = Image.open(io.BytesIO(page.screenshot(clip={"x": 0, "y": 0, "width": larg, "height": alt}))).convert("RGB")
+    grande = navegador.new_page(viewport={"width": larg, "height": alt}, device_scale_factor=bordado.ESCALA)
+    grande.goto(url, wait_until="networkidle")
+    grande.evaluate("document.fonts.ready")
+    grande.wait_for_timeout(300)
+    grande.evaluate("""() => {
+        for (const e of [document.documentElement, document.body, document.querySelector('.peca')]) e.style.background = 'transparent';
+        document.querySelectorAll('.janela, .papel, .veu, .marca').forEach(e => e.style.visibility = 'hidden');
+    }""")
+    camadas = []
+    for sel, cor, opcoes in BORDADOS[nome]:
+        grande.evaluate("""([todos, sel]) => document.querySelectorAll(todos).forEach(e => {
+            e.style.visibility = e.matches(sel) ? 'visible' : 'hidden'; e.style.color = '#000'; e.style.textShadow = 'none'; })""", [seletores, sel])
+        mascara = Image.open(io.BytesIO(grande.screenshot(omit_background=True))).getchannel("A")
+        camadas.append((mascara, cor, opcoes))
+    grande.close()
+    img = bordado.bordar(base_img, camadas)
+    print(f"  {nome}: {len(camadas)} textos bordados")
+    return img
+
+
 def renderizar(filtro: str) -> None:
     socketserver.TCPServer.allow_reuse_address = True
     srv = socketserver.TCPServer(("127.0.0.1", 0), functools.partial(_Quieto, directory=str(RAIZ)))
@@ -170,8 +203,11 @@ def renderizar(filtro: str) -> None:
             assert not falhas, f"{nome}: arquivo não carregou: {falhas}"
             if nome.startswith("atelie"):
                 conferir_margem(page, nome, larg, alt)
-            png = page.screenshot(clip={"x": 0, "y": 0, "width": larg, "height": alt})
-            img = Image.open(io.BytesIO(png)).convert("RGB")
+            if nome in BORDADOS:
+                img = com_bordado(b, page, f"{base}/{nome}.html", nome, larg, alt)
+            else:
+                png = page.screenshot(clip={"x": 0, "y": 0, "width": larg, "height": alt})
+                img = Image.open(io.BytesIO(png)).convert("RGB")
             img.save(PASTA / f"{nome}.jpg", quality=93, optimize=True)
             print(f"{nome}.jpg", img.size, (PASTA / f"{nome}.jpg").stat().st_size // 1024, "KB")
             page.close()
