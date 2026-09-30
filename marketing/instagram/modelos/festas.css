@@ -36,7 +36,8 @@
 
 /* .anotada: recados à mão com setas, brancos sobre a foto */
 .anotada .nota { position: absolute; margin: 0; font-family: 'Homemade Apple', cursive; font-size: 34px; line-height: 1.25; color: var(--cream); text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55); white-space: nowrap; }
-.anotada .nota.escura { color: #fff; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8), 0 0 18px rgba(0, 0, 0, 0.65), 0 0 40px rgba(0, 0, 0, 0.5); }
+/* a foto escurece suavemente atrás de cada nota (sem barra): um halo escuro difuso, e o texto em branco */
+.anotada .nota.escura { color: #fff; padding: 16px 44px 20px; margin: -16px -44px -20px; border-radius: 999px; background: radial-gradient(ellipse at center, rgba(20, 14, 12, 0.55) 0%, rgba(20, 14, 12, 0.38) 45%, rgba(20, 14, 12, 0) 72%); text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); }
 .anotada svg.setas { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; pointer-events: none; }
 .anotada svg.setas path { fill: none; stroke: var(--cream); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.5)); }
 .anotada svg.setas path.escura { stroke: #fff; filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.7)); }
@@ -47,8 +48,11 @@
 .f1 .janela img { top: 0; }
 .f1 .texto { top: 150px; }
 .f2a .janela img { top: 0; }
+.f2a .veu { left: 0; top: 0; width: 1080px; height: 520px; background: radial-gradient(ellipse 520px 260px at 60% 42%, rgba(20, 14, 12, 0.6) 0%, rgba(20, 14, 12, 0.36) 50%, rgba(20, 14, 12, 0) 75%); }
 .f2a .texto { left: 330px; right: 120px; top: 186px; }
-.f2a .frase { font-size: 48px; line-height: 1.05; }
+.f2a .frase { font-size: 48px; line-height: 1.05; color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55); }
+.f2a .marca { color: var(--cream); text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6); }
+.f2a .marca b { color: var(--peach); }
 .f2a .n1 { left: 500px; top: 1096px; }
 .f2a .n2 { left: 640px; top: 868px; }
 .f2a .n3 { left: 630px; top: 744px; }

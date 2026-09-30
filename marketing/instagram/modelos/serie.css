@@ -52,9 +52,11 @@ body { color: var(--ink); -webkit-font-smoothing: antialiased; }
 
 /* 2 — o rótulo é o primeiro oi (pote com faixa de papel e barbante) */
 .a2 .janela img { top: -60px; }
-.a2 .veu { left: 0; top: 0; width: 1080px; height: 600px; background: radial-gradient(ellipse at 30% 48%, rgba(44, 26, 30, 0.42) 0%, rgba(44, 26, 30, 0.22) 45%, rgba(44, 26, 30, 0) 72%); }
+/* sombra na foto atrás de todo o texto, mais forte onde fica o 'você', sobre a cortina clara */
+.a2 .veu { left: 0; top: 0; width: 1080px; height: 720px; background: radial-gradient(ellipse 560px 300px at 40% 44%, rgba(44, 26, 30, 0.62) 0%, rgba(44, 26, 30, 0.42) 45%, rgba(44, 26, 30, 0) 75%), radial-gradient(ellipse 620px 360px at 30% 35%, rgba(44, 26, 30, 0.45) 0%, rgba(44, 26, 30, 0) 70%); }
 .a2 .texto { top: 150px; right: auto; width: 620px; }
-.a2 .recado { text-shadow: 0 1px 10px rgba(44, 26, 30, 0.35); }
+.a2 .recado { color: #EFE3D2; text-shadow: 0 1px 3px rgba(44, 26, 30, 0.8), 0 0 18px rgba(44, 26, 30, 0.6); }
+.a2 .frase { color: var(--cream); text-shadow: 0 2px 22px rgba(44, 26, 30, 0.55); }
 
 /* 3 — ponto por ponto (bordado): a frase fica dentro do bastidor, no centro vazio da guirlanda */
 .a3 .janela img { top: 0; }
