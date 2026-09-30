@@ -61,13 +61,13 @@ Salva pra montar o seu.
 - `dia2-3.jpg`: Mãos colocam um sabonete numa caixinha de kraft forrada com papel de seda. Texto: 2. Caixa de kraft e papel de seda. Simples fica bonito. E cabe no correio.
 - `dia2-4.jpg`: Mãos amarram uma tag de kraft em branco numa caixinha de presente. Texto: 3. Tag com o nome de quem recebe e o rótulo com Feliz Natal. O app monta o rótulo com a data.
 - `dia2-5.jpg`: Mãos seguram uma caixinha de kraft com fita vermelha na porta de casa. Texto: 4. QR do WhatsApp na caixa. Quem ganhou acha você. É o presente que traz cliente.
-- `dia2-6.jpg`: Página de papel creme. Texto: 5. Abra as encomendas agora. Feche em 10 de dezembro. Produção leva tempo, e o correio também. Rótulo, tag e QR prontos no artesaná. Grátis na versão beta. O link está na bio.
+- `dia2-6.jpg`: Agenda aberta com listas escritas à mão, caixinhas de kraft e rolo de etiquetas na mesa. Painel creme com o texto: 5. Abra as encomendas agora. Feche em 10 de dezembro. Produção leva tempo, e o correio também. Rótulo, tag e QR prontos no artesaná. Grátis na versão beta. O link está na bio.
 
 ---
 
 ## d3. Toda virada de ano começa com uma luz
 
-Reel sem áudio: ao publicar, escolha uma música na biblioteca do Instagram e use a capa como miniatura. Imagem gerada por IA: ative o rótulo de IA.
+Reel sem áudio: ao publicar, escolha uma música na biblioteca do Instagram e use a capa como miniatura. Vídeo de banco de imagens (Pexels).
 
 Imagens: `dia3-reel.mp4`, `dia3-capa.jpg`
 
@@ -85,8 +85,8 @@ Qual é o seu ritual de virada?
 
 **Texto alternativo**
 
-- `dia3-reel.mp4`: Vídeo: uma mão acende uma vela branca com um fósforo, num ambiente escuro. A frase Toda virada de ano começa com uma luz aparece em arco em volta da chama, depois o recado à mão que alguém acendeu, e a marca artesaná.
-- `dia3-capa.jpg`: Mão acendendo uma vela branca com fósforo, ambiente escuro. Texto em arco: Toda virada de ano começa com uma luz. Recado à mão: que alguém acendeu.
+- `dia3-reel.mp4`: Vídeo: mãos com avental marrom seguram uma vela em vidro e acendem o pavio com um fósforo. As frases Toda virada de ano começa com uma luz e que alguém acendeu aparecem alinhadas à esquerda, depois a marca artesaná.
+- `dia3-capa.jpg`: Mãos com avental marrom seguram uma vela em vidro acesa. Texto: Toda virada de ano começa com uma luz, que alguém acendeu.
 
 ---
 
@@ -110,7 +110,7 @@ No artesaná. o rótulo completo, com os dados que a Anvisa pede pra cosmético,
 
 **Texto alternativo**
 
-- `dia4.jpg`: Vela em vidro, vista de cima, no centro de papel de seda amassado, com luz de janela. Texto: O brinde de fim de ano pode ser feito à mão. Empresas encomendam em outubro. A sua marca pode estar na lista.
+- `dia4.jpg`: Vela em vidro, vista de cima, no centro de papel de seda amassado, com luz de janela. Texto impresso no papel: O brinde de fim de ano pode ser feito à mão. Empresas encomendam em outubro. A sua marca pode estar na lista.
 
 ---
 
@@ -199,7 +199,7 @@ Está em versão beta e é grátis. O link está na bio. E se algo faltar, tem u
 
 ## 1. As horas que cabem numa peça
 
-Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
+Foto de banco de imagens (Pexels).
 
 Imagens: `atelie-1.jpg`
 
@@ -219,13 +219,13 @@ Conta pra gente: qual é a sua peça mais demorada?
 
 **Texto alternativo**
 
-- `atelie-1.jpg`: Costureira de cabelos grisalhos cacheados e óculos, de pé entre duas máquinas de costura, alisa um tecido com a mão. Texto: Ninguém vê as horas que cabem numa peça. A gente vê.
+- `atelie-1.jpg`: Costureira de cabelos brancos sorri enquanto guia um tecido listrado na máquina de costura, num ateliê claro. Texto: Ninguém vê as horas que cabem numa peça. A gente vê.
 
 ---
 
 ## 2. O rótulo é o primeiro oi
 
-Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
+Foto de banco de imagens (Pexels), com o rótulo montado pelo app.
 
 Imagens: `atelie-2.jpg`
 
@@ -243,7 +243,7 @@ Grátis na versão beta. O link está na bio.
 
 **Texto alternativo**
 
-- `atelie-2.jpg`: Mãos de uma senhora amarram barbante num potinho, ao lado de um pote de vela com faixa de papel kraft e de um ramo de flores secas, numa mesa de madeira perto da janela. Texto: O rótulo é o primeiro oi do seu produto. E ele fala por você.
+- `atelie-2.jpg`: Mão segura um frasco de vidro âmbar com rótulo branco onde se lê sua marca, feito à mão, contra uma parede clara com luz de fim de tarde. Texto: O rótulo é o primeiro oi do seu produto. E ele fala por você.
 
 ---
 
@@ -325,13 +325,13 @@ Conhece alguém que faz sabonete, vela, cosmético natural, comida ou artesanato
 
 **Texto alternativo**
 
-- `atelie-5.jpg`: Mulher de tranças longas sorri debruçada numa janela de madeira azul, numa casa de parede caiada, com folhas de palmeira no alto. Texto: Pode chegar. A casa é de quem faz à mão. Versão beta aberta. Grátis pra começar.
+- `atelie-5.jpg`: Mulher de tranças longas sorri debruçada numa janela de madeira azul de uma casa de parede branca. Texto: Pode chegar. A casa é de quem faz à mão. Versão beta aberta. Grátis pra começar.
 
 ---
 
 ## 6. A marca em dia, o domingo livre
 
-Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
+Foto de banco de imagens (Pexels).
 
 Imagens: `atelie-6.jpg`
 
@@ -349,7 +349,7 @@ Grátis na versão beta. O link está na bio.
 
 **Texto alternativo**
 
-- `atelie-6.jpg`: Avó de cabelos grisalhos mexe o café da neta à mesa da cozinha, as duas de cabeça baixa sorrindo, com a janela e as árvores atrás. Texto: A marca em dia. O domingo livre. E o café ainda quente.
+- `atelie-6.jpg`: Avó de cabelos brancos e neta de trança à mesa, com xícaras de chá, bule e balas, perto da janela. Texto: A marca em dia. O domingo livre. E o café ainda quente.
 
 ---
 
@@ -531,6 +531,9 @@ Banco Pexels, licença livre para uso comercial, sem obrigação de crédito. As
 
 | Peça | Autor | Página |
 |---|---|---|
+| atelie-1 | Harriet Fletcher | https://www.pexels.com/photo/senior-woman-sewing-at-home-with-machine-37937447/ |
+| atelie-2 | Vie Studio | https://www.pexels.com/photo/person-holding-a-brown-glass-spray-bottle-7006154/ |
+| atelie-6 | cottonbro studio | https://www.pexels.com/photo/elderly-woman-talking-to-her-grand-daugther-5585288/ |
 | post-1 | Kampus Production | https://www.pexels.com/photo/a-woman-wearing-an-apron-and-eyeglasses-6023599/ |
 | post-1b, carrossel-4 | Polina | https://www.pexels.com/photo/handmade-organic-soaps-5420572/ |
 | post-2 | Anna Shvets | https://www.pexels.com/photo/a-woman-using-a-smartphone-5257217/ |

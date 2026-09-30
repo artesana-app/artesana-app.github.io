@@ -40,9 +40,9 @@
     "largura": 1024,
     "altura": 1280,
     "sementes": [
-      807
+      5009
     ],
-    "prompt": "wide shot photo of an old colonial house wall, a 45 year old Brazilian woman with long dark braids smiling, leaning on the sill of a small blue wooden window at the top of the frame, large plain white lime wall below, morning sun, soft palm leaf shadows, 35mm, film grain"
+    "prompt": "candid photo of a 45 year old Brazilian woman with long dark braids and brown skin, gentle natural smile with eyes open, leaning on the sill of a small blue wooden window of a whitewashed colonial house, large plain white wall above, morning sun, natural skin, no makeup, 35mm, film grain"
   },
   {
     "nome": "domingo",
@@ -187,5 +187,14 @@
       3606
     ],
     "prompt": "candid photo of a 50 year old Brazilian woman writing in a notebook at a wooden table at night, lit by a candle and a small lamp, handmade candles and soap bars beside her, dark warm room, real skin, no makeup, 50mm, film grain"
+  },
+  {
+    "nome": "encomendas",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      5104
+    ],
+    "prompt": "overhead photo of an open paper planner with handwritten lists and a pen, small kraft boxes tied with twine and a roll of kraft labels beside it, wooden table, soft window light, minimal, film grain"
   }
 ]

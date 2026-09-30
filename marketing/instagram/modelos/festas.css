@@ -14,8 +14,8 @@
 .festas .marca.centro { right: auto; left: 50%; transform: translateX(-50%); white-space: nowrap; bottom: 120px; }
 
 /* .noite: frase pequena, leve, itálica */
-.noite .frase { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-variation-settings: 'SOFT' 100, 'WONK' 1; font-size: 44px; line-height: 1.32; letter-spacing: 0; color: var(--cream); text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55); }
-.noite .recado { font-size: 36px; color: var(--peach-l); text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6); }
+.noite .frase { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-variation-settings: 'SOFT' 100, 'WONK' 1; font-size: 50px; line-height: 1.32; letter-spacing: 0; color: var(--cream); text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55); }
+.noite .recado { font-size: 42px; color: var(--peach-l); text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6); }
 .noite .marca { color: var(--cream); text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6); }
 .noite .marca b { color: var(--peach); }
 
@@ -36,7 +36,7 @@
 
 /* .anotada: recados à mão com setas, brancos sobre a foto */
 .anotada .nota { position: absolute; margin: 0; font-family: 'Homemade Apple', cursive; font-size: 34px; line-height: 1.25; color: var(--cream); text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55); white-space: nowrap; }
-.anotada .nota.escura { color: var(--ink); text-shadow: 0 1px 10px rgba(255, 255, 255, 0.6); }
+.anotada .nota.escura { color: var(--ink); text-shadow: none; background: var(--cream); padding: 4px 18px 8px; border-radius: 999px; box-shadow: 0 2px 10px rgba(44, 26, 30, 0.18); }
 .anotada svg.setas { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; pointer-events: none; }
 .anotada svg.setas path { fill: none; stroke: var(--cream); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.5)); }
 .anotada svg.setas path.escura { stroke: var(--ink); filter: drop-shadow(0 1px 6px rgba(255, 255, 255, 0.5)); }
@@ -49,24 +49,33 @@
 .f2a .janela img { top: 0; }
 .f2a .texto { left: 330px; right: 120px; top: 186px; }
 .f2a .frase { font-size: 48px; line-height: 1.05; }
-.f2a .n1 { left: 560px; top: 1178px; }
+.f2a .n1 { left: 500px; top: 1096px; }
 .f2a .n2 { left: 640px; top: 868px; }
-.f2a .n3 { left: 836px; top: 744px; }
+.f2a .n3 { left: 630px; top: 744px; }
 .f2a .n4 { left: 705px; top: 390px; }
 .f2a .marca { right: 120px; bottom: 120px; }
 .f4 .janela img { top: 0; }
-.f4 .texto { top: 150px; }
+.f4 .texto { top: 150px; right: auto; width: 840px; }
+.f4 .frase { font-size: 64px; }
+.f4 .recado { font-size: 40px; color: var(--moss); white-space: nowrap; }
+.f4 .aviso { font-weight: 500; font-size: 27px; color: var(--ink-2); }
+/* texto impresso no papel: multiplica com a foto, as dobras aparecem por cima da tinta */
+.impresso .frase, .impresso .recado, .impresso .aviso { mix-blend-mode: multiply; }
 .f5a .janela img { top: 0; }
 .f5a .texto { top: 150px; }
+.f5a .veu { left: 0; right: 0; top: 0; height: 640px; background: linear-gradient(180deg, rgba(18, 12, 10, 0.72) 0%, rgba(18, 12, 10, 0.45) 55%, rgba(18, 12, 10, 0) 100%); }
 .f7 .janela img { top: 0; }
 .f7 .texto { top: 150px; }
+.f7 .frase { font-size: 54px; }
+.f7 .recado { font-size: 46px; }
+.f7 .veu { left: 0; right: 0; top: 0; height: 560px; background: linear-gradient(180deg, rgba(18, 12, 10, 0.5) 0%, rgba(18, 12, 10, 0) 100%); }
 
 /* ---- páginas de carrossel: número grande + frase, sobre papel ---- */
 .festas.bilhete .janela { height: 820px; }
 .festas.bilhete .texto { top: 900px; }
 .num { margin: 0 0 6px; font-family: 'Fraunces', serif; font-weight: 500; font-variation-settings: 'SOFT' 100, 'WONK' 0; font-size: 84px; line-height: 1; letter-spacing: -0.03em; color: var(--peach-d); }
-.festas.bilhete .frase { font-size: 52px; line-height: 1.12; }
-.festas.bilhete .recado { font-size: 36px; margin-top: 10px; }
+.festas.bilhete .frase { font-size: 56px; line-height: 1.12; }
+.festas.bilhete .recado { font-size: 40px; margin-top: 10px; }
 .papel-so .papel { top: 0; }
 .papel-so .texto { top: 300px; }
 .papel-so .frase { font-size: 62px; }
@@ -94,3 +103,18 @@ html.reel-doc, html.reel-doc body { height: 1920px; background: transparent; }
 .r6 .l1 { top: 330px; } .r6 .l2 { top: 420px; } .r6 .l3 { top: 510px; } .r6 .l4 { top: 600px; }
 .r6 .assina { top: 1090px; left: auto; right: 120px; justify-items: end; text-align: right; }
 .reel .veu-topo { left: 0; top: 0; width: 1080px; height: 900px; background: linear-gradient(180deg, rgba(20, 14, 12, 0.6) 0%, rgba(20, 14, 12, 0.4) 55%, rgba(20, 14, 12, 0) 100%); }
+
+/* ---- carrossel do kit: foto inteira com um painel creme alinhado às margens ---- */
+.painel-foto .janela { height: 1350px; }
+.painel { position: absolute; left: 120px; right: 120px; bottom: 120px; padding: 40px 44px 44px; background: rgba(255, 245, 239, 0.94); border-radius: 22px; box-shadow: 0 10px 40px rgba(44, 26, 30, 0.18); }
+.painel .num { margin: 0 0 4px; font-size: 64px; }
+.painel .frase { font-size: 46px; line-height: 1.12; }
+.painel .recado { font-size: 34px; margin-top: 8px; }
+.painel .aviso { margin-top: 18px; font-weight: 400; font-size: 24px; color: var(--ink-2); }
+.painel .marca { position: static; display: block; text-align: right; margin-top: 18px; }
+.painel-foto .veu { left: 0; right: 0; bottom: 0; height: 700px; background: linear-gradient(0deg, rgba(44, 26, 30, 0.35) 0%, rgba(44, 26, 30, 0) 100%); }
+/* 2: reel do dia 3 em vídeo, texto alinhado à esquerda no avental */
+.r3 .linha { left: 120px; right: 120px; margin: 0; font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-variation-settings: 'SOFT' 100, 'WONK' 1; font-size: 74px; line-height: 1.1; color: var(--cream); text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55); }
+.r3 .l1 { top: 330px; } .r3 .l2 { top: 418px; }
+.r3 .r3-recado { top: 540px; left: 120px; right: auto; width: 700px; text-align: left; font-size: 48px; }
+.r3 .assina { top: 690px; left: 120px; right: auto; justify-items: start; text-align: left; }
