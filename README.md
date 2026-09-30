@@ -9,13 +9,15 @@ Domínio: `artesana-mktdigital.com.br` redireciona para o site. Detalhes e limit
 
 Endereço anterior, que serve de espelho: https://bebezinbtc-droid.github.io/artesana/ (atualizado com `python scripts/espelho.py`, que publica a main sem o CNAME).
 
-## O que tem na v1
+## O que tem na v2
 
-- Landing de apresentação (`index.html`).
-- App PWA em `app/`: HTML/CSS/JS puro, sem build, instalável no celular, funciona offline.
-- Funcionando sem backend: link do WhatsApp com QR, checklist de identidade com upload, gerador de lista INCI (~150 ingredientes), rótulo redondo/retangular/tag exportado em PDF (folha A4, vetorial), tutoriais, onboarding progressivo, perfil, planos, configurações.
-- Funções de IA e Meta Business aparecem como "em breve" (`app/js/data/roadmap.js`).
-- Falar em vez de digitar (`app/js/ditado.js`): microfone nos campos de texto do perfil, do WhatsApp e do feedback, com o reconhecimento de voz do navegador. Onde não existe, o campo fica normal.
+- Landing de apresentação (`index.html`), com a mesma cara no computador e no celular.
+- App PWA em `app/`: HTML/CSS/JS puro, sem build, instalável no celular, funciona offline. No computador ganha barra lateral e duas colunas (`app/css/layout.css`, a partir de 900px).
+- Entrada por rede (Instagram, Facebook, os dois, nenhuma) e conversa guiada de perfil, uma pergunta por tela, com "fazer depois" e "ver tudo que preciso preencher" (`app/js/modules/conversa.js`).
+- Falar em vez de digitar em todo campo de texto (`app/js/campos.js` + `app/js/ditado.js`); onde o navegador não tem reconhecimento de voz o microfone fica apagado e explica.
+- Identidade (paleta, logo, frase, end card, fotos coringas: cada item com envio de arquivo ou "criar" no app), rótulos com galeria de modelos, mockup por produto e sugestão de tamanho pra caber mais na folha, campos da Anvisa, INCI, datas e papel; link do WhatsApp; social (legendas, calendário, roteiro de reel, análise de perfil e de público, agenda, métricas); fotos (editor com a marca por cima, estilos, locução, capa do vídeo); referências do Pinterest filtradas pelo perfil; guia pra criar a conta do Instagram; INPI; planos; botão beta sempre visível pra avaliar.
+- Ajuda: chat com respostas prontas que aguenta erro de digitação (`app/js/lib/suporte.js`) e, com backend, chama uma atendente sem mostrar número nenhum.
+- Backend opcional em `backend/` (Cloudflare Worker + D1): painel de admin em `/app/admin/` (acessos, até onde cada pessoa chegou, e-mail, cidade, faixa etária), atendimento pelo Telegram, pagamentos pelo Mercado Pago. Enquanto `SITE.backend` for null o app não manda nada pra fora. Passo a passo em `docs/backend.md`.
 - Referências pro redesenho do app em `marketing/referencias-app/` (dez apps, três caminhos).
 
 ## Rodar local
@@ -28,8 +30,8 @@ python -m http.server 8080
 ## Testes
 
 ```bash
-node --test tests/*.test.mjs      # lógica pura (whatsapp, inci, rótulo, progresso)
-python scripts/smoke.py           # Playwright: abre todas as rotas, falha em erro de console
+node --test                       # lógica pura (whatsapp, inci, rótulo, progresso, suporte, geradores, backend) + sintaxe ES de todo módulo
+python scripts/smoke.py           # Playwright: abre todas as rotas no celular e no computador, falha em erro de console
 python scripts/smoke.py --base https://artesana-mktdigital.com.br
 ```
 

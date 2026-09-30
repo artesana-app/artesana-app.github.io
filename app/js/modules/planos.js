@@ -4,10 +4,18 @@ import * as analitica from '../analitica.js';
 import { SITE, diasDeBeta } from '../site.js';
 import { PLANOS, precoFormatado } from '../lib/planos.js';
 
-export function montar(section) {
+export function montar(section, param) {
   const atual = store.get('plano', 'semente');
   const dias = diasDeBeta();
   section.innerHTML = '';
+  if (param === 'obrigada') {
+    const pend = store.get('pagamento_pendente', null);
+    if (pend && pend.plano) store.set('plano', pend.plano);
+    store.remove('pagamento_pendente');
+    toast('Pagamento recebido. Obrigada por florescer com a gente! 🌸', 4000);
+  } else if (param === 'pendente') {
+    toast('Pagamento em análise. Assim que o Mercado Pago confirmar, o plano ativa.', 4000);
+  }
   const aviso = SITE.beta
     ? h('div', { class: 'card moss' },
       h('h3', {}, dias > 0 ? `Beta: tudo liberado por mais ${dias} ${dias === 1 ? 'dia' : 'dias'}` : 'O beta terminou'),
@@ -15,12 +23,23 @@ export function montar(section) {
       h('a', { class: 'btn soft block', href: '#feedback' }, 'Contar como foi o teste'))
     : null;
 
-  const assinar = (p) => {
+  const assinar = async (p) => {
     analitica.evento('plano_clique', { plano: p.id });
-    const link = SITE.pagamentos[p.id];
     if (!p.preco) { store.set('plano', 'semente'); toast('Plano Semente escolhido'); return; }
-    if (!link) { toast('O pagamento abre em breve. Durante o beta está tudo liberado.', 3500); return; }
-    window.open(link, '_blank', 'noopener');
+    const fixo = SITE.pagamentos[p.id];
+    if (fixo) { window.open(fixo, '_blank', 'noopener'); return; }
+    if (!SITE.backend) { toast('O pagamento abre em breve. Durante o beta está tudo liberado.', 3500); return; }
+    const user = store.usuario();
+    let email = user.email || '';
+    if (!email && p.id === 'florescer') {
+      email = (window.prompt('A assinatura mensal precisa do seu e-mail (é onde o Mercado Pago avisa cada cobrança):', '') || '').trim();
+      if (!email.includes('@')) { toast('Sem e-mail não dá pra assinar o mensal.'); return; }
+      store.patch('user', { email });
+    }
+    toast('Abrindo o pagamento...');
+    const r = await analitica.enviar(`/v1/pagar/${p.id}`, { email });
+    if (r.ok && r.url) { store.set('pagamento_pendente', { plano: p.id, referencia: r.referencia, t: Date.now() }); window.open(r.url, '_blank', 'noopener'); return; }
+    toast(r.semPagamento ? 'O pagamento ainda não está ligado. Durante o beta está tudo liberado.' : 'Não consegui abrir o pagamento agora. Tente de novo em instantes.', 3500);
   };
 
   section.append(h('div', { class: 'screen' },

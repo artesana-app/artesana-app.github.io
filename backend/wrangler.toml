@@ -1,0 +1,24 @@
+# Backend do artesaná.: um Cloudflare Worker + banco D1 (SQLite).
+# Deploy: ver docs/backend.md. Segredos (nunca neste arquivo): wrangler secret put NOME
+#   ADMIN_USER, ADMIN_SENHA        login do painel /app/admin/
+#   TELEGRAM_TOKEN, TELEGRAM_CHAT  bot que avisa a equipe e recebe as respostas do atendimento
+#   TELEGRAM_SECRET                trecho secreto do endereço do webhook do Telegram
+#   MP_TOKEN                       access token do Mercado Pago (produção)
+#   MP_WEBHOOK_SECRET              assinatura secreta do webhook do Mercado Pago (opcional)
+name = "artesana-api"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = true
+
+[observability]
+enabled = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "artesana"
+database_id = "local"  # troque pelo id que `wrangler d1 create artesana` imprime
+
+[vars]
+SITE_URL = "https://artesana-mktdigital.com.br"
+# origens que podem chamar a API (separadas por vírgula). localhost e 127.0.0.1 sempre podem.
+ORIGENS = "https://artesana-mktdigital.com.br,https://bebezinbtc-droid.github.io"

@@ -11,7 +11,7 @@ function listar(dir) {
   return readdirSync(dir).flatMap((n) => { const p = join(dir, n); return statSync(p).isDirectory() ? listar(p) : p.endsWith('.js') ? [p] : []; });
 }
 
-const arquivos = listar('app/js').filter((p) => !p.includes('vendor'));
+const arquivos = [...listar('app/js'), ...listar('app/admin'), ...listar('backend/src')].filter((p) => !p.includes('vendor'));
 const tmp = mkdtempSync(join(tmpdir(), 'artesana-sintaxe-'));
 
 test('há módulos pra conferir', () => { assert.ok(arquivos.length > 20); });
