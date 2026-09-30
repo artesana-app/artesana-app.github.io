@@ -8,7 +8,7 @@ export const SITE = {
   betaFim: '2026-10-15', // depois desta data os planos passam a valer
   // Endereço do backend (Cloudflare Worker em backend/). Enquanto for null, o app guarda tudo só no aparelho:
   // sem chat com atendente, sem painel de admin, e o perfil enviado fica salvo localmente.
-  backend: null,
+  backend: 'https://artesana-api.artesana.workers.dev',
   // Links de pagamento do Mercado Pago, um por plano. Enquanto forem null, o botão "Assinar" avisa que falta pouco.
   pagamentos: { florescer: null, prosperar: null },
   whatsappEquipe: null,

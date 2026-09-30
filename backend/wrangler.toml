@@ -16,7 +16,7 @@ enabled = true
 [[d1_databases]]
 binding = "DB"
 database_name = "artesana"
-database_id = "local"  # troque pelo id que `wrangler d1 create artesana` imprime
+database_id = "922cdf3a-ea3b-4907-990a-0adeeb34e7ef"  # troque pelo id que `wrangler d1 create artesana` imprime
 
 [vars]
 SITE_URL = "https://artesana-mktdigital.com.br"

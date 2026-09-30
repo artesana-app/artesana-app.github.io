@@ -128,7 +128,7 @@ def passo_app(url):
 
 def passo_teste(url, segredos):
     def pedir(caminho, dados=None, auth=None):
-        r = urllib.request.Request(url + caminho, data=json.dumps(dados).encode() if dados is not None else None, headers={"Content-Type": "application/json", "Origin": "https://artesana-mktdigital.com.br"})
+        r = urllib.request.Request(url + caminho, data=json.dumps(dados).encode() if dados is not None else None, headers={"Content-Type": "application/json", "Origin": "https://artesana-mktdigital.com.br", "User-Agent": "Mozilla/5.0 (artesana publicar-backend)"})
         if auth:
             r.add_header("Authorization", auth)
         with urllib.request.urlopen(r, timeout=30) as resp:
