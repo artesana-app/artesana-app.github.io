@@ -49,6 +49,23 @@ Passos: entrar no Registro.br, abrir o domínio, ir na parte de DNS, escolher o 
 Resultado: quem digita `artesana-mktdigital.com.br` cai no site. A barra do navegador passa a mostrar o endereço
 do GitHub. Para divulgar, escrever `artesana-mktdigital.com.br` sem `https://` na frente.
 
+### Caminho mais curto: IP no modo básico
+
+Na mesma tela do redirecionamento (DNS > Configurar endereçamento), o campo "Endereço do site" aceita, além
+de uma URL, um endereço IP. É um campo só:
+
+1. Apagar o que está no campo (`https://artesana-app.github.io/`).
+2. Digitar `185.199.108.153`.
+3. Deixar "Servidor de e-mail" vazio e clicar em "Salvar alterações".
+
+Isso cria o registro A do domínio apontando para o GitHub Pages, sem sair do modo básico. Fica com um só dos
+quatro IPs do GitHub, o que basta para o site abrir. O que ainda não se sabe, e se confere depois de salvar:
+se o painel também apaga o registro AAAA do redirecionador (se não apagar, quem navega por IPv6 não chega no
+site e é preciso passar para o modo avançado) e se o `www` acompanha.
+
+Do lado do GitHub, `python scripts/ativar-dominio.py --esperar 24` fica conferindo o DNS a cada minuto e vira o
+site sozinho quando o registro A aparecer.
+
 ### Caminho completo: o site morando no domínio
 
 Com as entradas de DNS abaixo, o site abre no próprio domínio, com `https` e sem mostrar o endereço do GitHub.
@@ -94,8 +111,12 @@ GitHub Pages, liga o HTTPS obrigatório e troca os endereços no README.
 Não criar o arquivo `CNAME` à mão antes disso: o endereço antigo passa a redirecionar para um domínio que ainda
 não abre e o site sai do ar.
 
-O site usa só caminhos relativos, então funciona na raiz do domínio sem mudança de código. Os links curtos de
-WhatsApp já criados no endereço antigo continuam funcionando, porque o GitHub redireciona para o domínio novo.
+O site usa só caminhos relativos, então funciona na raiz do domínio sem mudança de código. Os links já criados
+em `artesana-app.github.io` continuam funcionando, porque o GitHub redireciona para o domínio novo.
+
+O repositório anterior, `bebezinbtc-droid/artesana`, fica congelado a partir da virada: o `git push` passa a ir só
+para o repositório oficial. Se o arquivo `CNAME` chegasse lá, o endereço antigo passaria a redirecionar para o
+domínio e quem testava lá perderia o acesso aos próprios dados.
 
 ## Depois de virar
 

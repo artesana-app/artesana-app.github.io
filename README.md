@@ -7,7 +7,7 @@ O app da empreendedora que faz, vende e fotografa. Artesanato, saboaria e beleza
 
 Domínio: `artesana-mktdigital.com.br` redireciona para o site. Detalhes e limites em `docs/dominio.md`.
 
-Endereço anterior, que continua no ar e recebe as mesmas atualizações: https://bebezinbtc-droid.github.io/artesana/
+Endereço anterior, que continua no ar mas congelado na versão 1.3.1: https://bebezinbtc-droid.github.io/artesana/
 
 ## O que tem na v1
 
@@ -33,7 +33,7 @@ python scripts/smoke.py --base https://artesana-app.github.io
 
 ## Publicar
 
-Commit + push na `main`. O `git push` envia para os dois repositórios: `artesana-app/artesana-app.github.io`, que é o endereço oficial, e `bebezinbtc-droid/artesana`, o anterior. GitHub Pages serve a raiz do repo. Ao mudar arquivos do app, suba a constante `CACHE` em `app/sw.js` pra forçar atualização nos celulares.
+Commit + push na `main`. O `git push` envia só para `artesana-app/artesana-app.github.io`, o repositório oficial. O anterior, `bebezinbtc-droid/artesana`, está no remoto `antigo` e não recebe mais push: o arquivo `CNAME` do domínio não pode chegar lá (ver `docs/dominio.md`). GitHub Pages serve a raiz do repo. Ao mudar arquivos do app, suba a constante `CACHE` em `app/sw.js` pra forçar atualização nos celulares.
 
 ## Landing
 
