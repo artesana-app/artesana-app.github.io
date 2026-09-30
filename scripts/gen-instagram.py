@@ -33,6 +33,8 @@ FOTOS = PASTA / "fotos"
 FEED = (1080, 1350)
 STORIES = (1080, 1920)
 PECAS = {
+    "dia1": FEED, "dia2-1": FEED, "dia2-2": FEED, "dia2-3": FEED, "dia2-4": FEED, "dia2-5": FEED, "dia2-6": FEED,
+    "dia4": FEED, "dia5-1": FEED, "dia5-2": FEED, "dia5-3": FEED, "dia5-4": FEED, "dia5-5": FEED, "dia7": FEED,
     "atelie-1": FEED, "atelie-2": FEED, "atelie-3": FEED, "atelie-4": FEED, "atelie-5": FEED, "atelie-6": FEED,
     "post-1": FEED, "post-1b": FEED, "post-2": FEED, "post-2b": FEED, "post-3": FEED, "post-3b": FEED,
     "carrossel-1": FEED, "carrossel-2": FEED, "carrossel-3": FEED, "carrossel-4": FEED, "carrossel-5": FEED,
@@ -149,7 +151,7 @@ MARGEM = 120  # nenhum texto da série ateliê chega mais perto que isso de uma 
 
 
 def conferir_margem(page, nome: str, larg: int, alt: int) -> None:
-    caixas = page.evaluate("""() => [...document.querySelectorAll('.frase, .recado, .aviso, .marca')].map(e => {
+    caixas = page.evaluate("""() => [...document.querySelectorAll('.frase, .recado, .aviso, .marca, .titulo, .sub, .nota, .num, .arraste, .arco text')].map(e => {
         const r = e.getBoundingClientRect();
         return { classe: e.className, x0: r.left, y0: r.top, x1: r.right, y1: r.bottom };
     })""")
@@ -201,7 +203,7 @@ def renderizar(filtro: str) -> None:
             page.evaluate("document.fonts.ready")
             page.wait_for_timeout(400)
             assert not falhas, f"{nome}: arquivo não carregou: {falhas}"
-            if nome.startswith("atelie"):
+            if nome.startswith(("atelie", "dia")):
                 conferir_margem(page, nome, larg, alt)
             if nome in BORDADOS:
                 img = com_bordado(b, page, f"{base}/{nome}.html", nome, larg, alt)
@@ -215,19 +217,26 @@ def renderizar(filtro: str) -> None:
     srv.shutdown()
 
 
+# o que aparece na grade do perfil, na ordem de publicar (capa dos reels e dos carrosséis)
+FEED_ORDEM = ["atelie-1", "atelie-2", "atelie-3", "atelie-4", "atelie-5", "atelie-6",
+              "dia1", "dia2-1", "dia3-capa", "dia4", "dia5-1", "dia6-capa", "dia7"]
+
+
 def grade() -> None:
-    """Prévia de como a série fica na grade do perfil: corte 3:4 no centro, a mais nova em cima à esquerda."""
-    ordem = [6, 5, 4, 3, 2, 1]
+    """Prévia da grade do perfil: corte 3:4 no centro de cada peça, a mais nova em cima à esquerda."""
+    ordem = [n for n in reversed(FEED_ORDEM) if (PASTA / f"{n}.jpg").exists()]
     lado_l, lado_a, vao = 405, 540, 6
-    folha = Image.new("RGB", (3 * lado_l + 2 * vao, 2 * lado_a + vao), "white")
+    linhas = (len(ordem) + 2) // 3
+    folha = Image.new("RGB", (3 * lado_l + 2 * vao, linhas * lado_a + (linhas - 1) * vao), "white")
     for n, peca in enumerate(ordem):
-        im = Image.open(PASTA / f"atelie-{peca}.jpg").convert("RGB")
-        corte = round(im.height * 3 / 4)
-        x0 = (im.width - corte) // 2
-        im = im.crop((x0, 0, x0 + corte, im.height)).resize((lado_l, lado_a), Image.LANCZOS)
+        im = Image.open(PASTA / f"{peca}.jpg").convert("RGB")
+        corte_l = min(im.width, round(im.height * 3 / 4))
+        corte_a = round(corte_l * 4 / 3)
+        x0, y0 = (im.width - corte_l) // 2, (im.height - corte_a) // 2
+        im = im.crop((x0, y0, x0 + corte_l, y0 + corte_a)).resize((lado_l, lado_a), Image.LANCZOS)
         folha.paste(im, ((n % 3) * (lado_l + vao), (n // 3) * (lado_a + vao)))
-    folha.save(PASTA / "grade-atelie.jpg", quality=92, optimize=True)
-    print("grade-atelie.jpg", folha.size)
+    folha.save(PASTA / "grade-perfil.jpg", quality=92, optimize=True)
+    print("grade-perfil.jpg", folha.size, f"{len(ordem)} peças")
 
 
 def main() -> None:

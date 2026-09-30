@@ -80,6 +80,10 @@ PAGINA = """<!doctype html>
     .antigas { max-width: none; margin-top: 40px; }
     .antigas > summary { font-size: 17px; }
     .antigas > p { color: var(--ink-2); font-size: 14px; }
+    .calendario { width: 100%; max-width: 780px; border-collapse: collapse; font-size: 14px; margin: 14px 0 6px; }
+    .calendario th, .calendario td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #ECE4DE; vertical-align: top; }
+    .calendario th { font-family: 'Lexend Exa', sans-serif; font-weight: 400; font-size: 12px; letter-spacing: 0.04em; }
+    .imagens video { width: 100%; border-radius: 4px; border: 1px solid #ECE4DE; background: #000; }
     .fim { padding-block: 28px 48px; font-size: 13px; color: var(--ink-2); }
   </style>
 </head>
@@ -87,14 +91,14 @@ PAGINA = """<!doctype html>
   <header class="topo"><div class="wrap"><a class="wordmark" href="../../">artesaná<b>.</b></a><span>Instagram @artesana.app</span></div></header>
   <main class="wrap">
     <section class="intro">
-      <h1>Série ateliê: seis publicações</h1>
-      <p>Imagem realista de quem faz à mão, frase curta e um recado escrito à mão. Publique na ordem, da 1 à 6. No perfil, a 6 fica em cima à esquerda e a 1 embaixo à direita, como na prévia.</p>
+      <h1>Publicações prontas</h1>
+      <p>Baixe as imagens e os vídeos, copie a legenda e publique. Todas as imagens são geradas por IA: ao publicar, ative o rótulo de IA do Instagram. O guia do estilo, com as ideias de foto pra você fazer em casa, está em <a href="./estilo.html">estilo.html</a>.</p>
       <figure class="grade">
-        <img src="./grade-atelie.jpg" alt="Prévia das seis publicações na grade do perfil, alternando foto inteira e foto com papel embaixo.">
-        <figcaption>Prévia da grade do perfil</figcaption>
+        <img src="./grade-perfil.jpg" alt="Prévia das publicações na grade do perfil, a mais nova em cima à esquerda.">
+        <figcaption>Prévia da grade do perfil com tudo publicado</figcaption>
       </figure>
     </section>
-__NOVAS__
+__SERIES__
 __BIO__
     <details class="antigas">
       <summary>Peças anteriores</summary>
@@ -134,10 +138,15 @@ def bloco(p):
     for im in p["imagens"]:
         arq = im["arquivo"]
         assert (PASTA / arq).exists(), f"falta a imagem {arq}"
-        figuras += (f'        <figure>\n          <figcaption>{e(im["rotulo"])}</figcaption>\n'
-                    f'          <img src="./{arq}" alt="{e(im["alt"], quote=True)}" loading="lazy">\n'
-                    f'          <div class="acoes"><a class="botao" href="./{arq}" download="artesana-{arq}">Baixar</a></div>\n        </figure>\n')
-    s = f'    <article class="peca" id="p{n}">\n      <h2>{n}. {e(p["titulo"])}</h2>\n'
+        if im.get("video"):
+            capa = arq.replace("-reel.mp4", "-capa.jpg")
+            midia = f'          <video src="./{arq}" poster="./{capa}" controls muted playsinline preload="metadata" aria-label="{e(im["alt"], quote=True)}"></video>\n'
+        else:
+            midia = f'          <img src="./{arq}" alt="{e(im["alt"], quote=True)}" loading="lazy">\n'
+        figuras += (f'        <figure>\n          <figcaption>{e(im["rotulo"])}</figcaption>\n' + midia
+                    + f'          <div class="acoes"><a class="botao" href="./{arq}" download="artesana-{arq}">Baixar</a></div>\n        </figure>\n')
+    cabeca = e(p.get("rotulo") or str(n))
+    s = f'    <article class="peca" id="p{n}">\n      <h2>{cabeca}: {e(p["titulo"])}</h2>\n'
     if p.get("como"):
         s += f'      <p class="como">{e(p["como"])}</p>\n'
     s += f'      <div class="imagens">\n{figuras}      </div>\n'
@@ -155,6 +164,87 @@ def bloco(p):
         s += (f'        <pre class="caixa" id="alt-{n}-{i}">{e(im["alt"])}</pre>\n')
     s += '      </details>\n    </article>\n'
     return s
+
+
+SERIES = {
+    "fimdeano": ("Fim de ano: sete dias, de 1 a 7 de outubro",
+                 "Natal, Ano Novo e festas, misturando post único, carrossel e reel. Uma por dia, na ordem da tabela. Os reels saem sem áudio: escolha a música na biblioteca do Instagram na hora de publicar."),
+    "atelie": ("Série ateliê: seis peças prontas", "Imagem realista de quem faz à mão, frase curta e recado escrito à mão. Se ainda não publicou, vá na ordem, da 1 à 6."),
+}
+
+
+def calendario(pubs):
+    linhas = "".join(f'<tr><td>{html.escape(p["rotulo"].split(" · ")[0])}</td><td>{html.escape(p["rotulo"].split(" · ")[1])}</td>'
+                     f'<td>{html.escape(p["rotulo"].split(" · ")[2])}</td><td><a href="#p{p["id"]}">{html.escape(p["titulo"])}</a></td></tr>' for p in pubs)
+    return f'    <table class="calendario"><thead><tr><th>Dia</th><th>Data</th><th>Formato</th><th>Tema</th></tr></thead><tbody>{linhas}</tbody></table>\n'
+
+
+def secoes(pubs):
+    s = ""
+    for chave, (titulo, intro) in SERIES.items():
+        lista = [p for p in pubs if p.get("serie") == chave]
+        if not lista:
+            continue
+        s += f'    <h2 class="secao" id="{chave}">{html.escape(titulo)}</h2>\n    <p>{html.escape(intro)}</p>\n'
+        if chave == "fimdeano":
+            s += calendario(lista)
+        s += "".join(bloco(p) for p in lista)
+    return s
+
+
+def md_para_html(md):
+    """Conversor mínimo pro estilo.md: títulos, listas, parágrafos e código entre crases."""
+    saida, lista = [], False
+    for linha in md.splitlines():
+        t = html.escape(linha.rstrip())
+        t = re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
+        if t.startswith("- "):
+            if not lista:
+                saida.append("<ul>"); lista = True
+            saida.append(f"<li>{t[2:]}</li>")
+            continue
+        if lista:
+            saida.append("</ul>"); lista = False
+        if t.startswith("# "):
+            saida.append(f"<h1>{t[2:]}</h1>")
+        elif t.startswith("## "):
+            saida.append(f"<h2>{t[3:]}</h2>")
+        elif t:
+            saida.append(f"<p>{t}</p>")
+    if lista:
+        saida.append("</ul>")
+    return "\n".join(saida)
+
+
+ESTILO_PAGINA = """<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Estilo das publicações</title>
+  <link rel="icon" href="../../assets/brand/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../app/css/variables.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font); font-size: 15px; line-height: 1.6; color: var(--ink); background: var(--white); }
+    .wrap { width: min(100% - 40px, 760px); margin-inline: auto; padding: 28px 0 60px; }
+    .wordmark { font-size: 26px; letter-spacing: -0.04em; color: var(--peach-d); text-decoration: none; }
+    .wordmark b { font-weight: 700; }
+    h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin: 22px 0 10px; }
+    h2 { font-size: 19px; font-weight: 600; margin: 30px 0 8px; }
+    p { margin: 0 0 10px; } ul { padding-left: 20px; margin: 0 0 12px; } li { margin-bottom: 6px; }
+    code { font-family: Consolas, monospace; font-size: 13px; background: var(--cream); padding: 1px 5px; border-radius: 3px; }
+    a { color: var(--moss); }
+  </style>
+</head>
+<body><div class="wrap"><a class="wordmark" href="./">artesaná<b>.</b></a>
+__CORPO__
+<p><a href="./">Voltar às publicações</a></p>
+</div></body>
+</html>
+"""
 
 
 def contar(texto):
@@ -183,10 +273,10 @@ def bio_em_texto(bio):
 
 
 def texto_puro(pubs):
-    linhas = ["artesaná. Instagram @artesana.app", "Série ateliê: publique na ordem, da 1 à 6.", ""]
+    linhas = ["artesaná. Instagram @artesana.app", "Fim de ano: uma publicação por dia, de 1 a 7 de outubro (d1 a d7). Série ateliê: peças 1 a 6.", ""]
     for p in pubs:
         estado = " (peça anterior)" if p.get("arquivada") else ""
-        linhas += ["=" * 64, f"{p['id']}. {p['titulo']}{estado}", "Imagens: " + ", ".join(im["arquivo"] for im in p["imagens"])]
+        linhas += ["=" * 64, f"{p.get('rotulo') or p['id']}: {p['titulo']}{estado}", "Imagens: " + ", ".join(im["arquivo"] for im in p["imagens"])]
         if p.get("como"):
             linhas.append(p["como"])
         linhas += ["=" * 64, ""]
@@ -229,13 +319,15 @@ def main() -> None:
     bio = json.loads((PASTA / "bio.json").read_text(encoding="utf-8"))
     for o in bio["opcoes"]:
         assert contar(o["texto"]) <= 150, f"bio {o['titulo']} com {contar(o['texto'])} caracteres"
-    pagina = PAGINA.replace("__BIO__", bloco_bio(bio)).replace("__NOVAS__", "".join(bloco(p) for p in novas)).replace("__ANTIGAS__", "".join(bloco(p) for p in antigas))
+    pagina = PAGINA.replace("__BIO__", bloco_bio(bio)).replace("__SERIES__", secoes(novas)).replace("__ANTIGAS__", "".join(bloco(p) for p in antigas))
     (PASTA / "index.html").write_text(pagina, encoding="utf-8", newline="\n")
+    estilo = md_para_html((PASTA / "estilo.md").read_text(encoding="utf-8"))
+    (PASTA / "estilo.html").write_text(ESTILO_PAGINA.replace("__CORPO__", estilo), encoding="utf-8", newline="\n")
     (PASTA / "legendas.txt").write_text((bio_em_texto(bio) + texto_puro(pubs)).replace("\n", "\r\n"), encoding="utf-8-sig", newline="")
     (PASTA / "legendas.md").write_text(markdown(pubs), encoding="utf-8", newline="\n")
     for p in pubs:
-        print(p["id"], "anterior" if p.get("arquivada") else "série   ", len(p["imagens"]), "imagens |", p["titulo"])
-    print("gerados: index.html, legendas.txt, legendas.md")
+        print(p["id"], "anterior" if p.get("arquivada") else p.get("serie", "série"), len(p["imagens"]), "imagens |", p["titulo"])
+    print("gerados: index.html, estilo.html, legendas.txt, legendas.md")
 
 
 if __name__ == "__main__":

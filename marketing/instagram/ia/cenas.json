@@ -52,5 +52,140 @@
       2005
     ],
     "prompt": "amateur 1990s film snapshot of a Brazilian grandmother with gray hair pouring coffee for her granddaughter at a small kitchen table, the girl draws with crayons, sunday morning window light, real skin, wrinkles, slightly imperfect framing, no posing, kodak grain"
+  },
+  {
+    "nome": "embrulho",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      3005
+    ],
+    "prompt": "candid photo of a woman's hands wrapping a small kraft paper gift with twine, a dried orange slice and a pine sprig, on a wooden table lit by a single candle at night, dark warm room, real skin, 50mm, film grain"
+  },
+  {
+    "nome": "papel",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      3101
+    ],
+    "prompt": "overhead photo of a frosted glass candle jar with a gold lid and a blank kraft label, centered on crumpled white tissue paper, soft window daylight, subtle shadows, minimal, lots of empty paper around, film grain"
+  },
+  {
+    "nome": "kit",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      3306
+    ],
+    "prompt": "overhead photo of a christmas gift kit on natural linen: two bars of handmade soap wrapped in kraft paper, a small candle jar, cinnamon sticks, dried orange slices, a pine sprig and a blank kraft tag with twine, soft daylight, minimal, film grain"
+  },
+  {
+    "nome": "ceia",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      3405
+    ],
+    "prompt": "candid photo of a small christmas dinner table at night, lit by candles in handmade ceramic holders, linen napkins, pine branches, wine glasses, blurred window with fairy lights behind, warm dark tones, no people, 35mm, film grain"
+  },
+  {
+    "nome": "produto",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      4003
+    ],
+    "prompt": "photo of three bars of handmade soap stacked on a wooden board, cinnamon sticks and a dried orange slice beside, natural linen behind, soft window light, minimal, warm tones, film grain"
+  },
+  {
+    "nome": "caixa",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      4104
+    ],
+    "prompt": "photo of a woman's hands placing a bar of handmade soap into a small kraft box lined with white tissue paper, wooden table, soft window light, real skin, 50mm, film grain"
+  },
+  {
+    "nome": "tag",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      4201
+    ],
+    "prompt": "close-up photo of a woman's hands tying a blank kraft paper tag with twine onto a small kraft gift box, pine sprig on the table, soft window light, real skin, 50mm, film grain"
+  },
+  {
+    "nome": "entrega",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      4303
+    ],
+    "prompt": "photo of a woman's hands holding a small kraft gift box tied with red ribbon at a house doorway, sunlight, blurred street behind, real skin, 50mm, film grain"
+  },
+  {
+    "nome": "criancas",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      4404
+    ],
+    "prompt": "photo of handmade soap bars shaped like little animals in pastel colors on a wooden tray, a child's hand reaching for one, soft daylight, minimal, film grain"
+  },
+  {
+    "nome": "blackfriday",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      4501
+    ],
+    "prompt": "photo of small kraft boxes and candle jars stacked in a pile on a dark wooden table, blank kraft labels, one candle lit, dark warm tones, 50mm, film grain"
+  },
+  {
+    "nome": "anonovo",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      4604
+    ],
+    "prompt": "overhead photo of white candles in glass jars, white flowers and lemon slices on white linen, bright soft daylight, airy and minimal, film grain"
+  },
+  {
+    "nome": "fosforo_reel",
+    "largura": 864,
+    "altura": 1536,
+    "sementes": [
+      4701
+    ],
+    "prompt": "vertical close-up photo of a woman's hand lighting a white candle in a glass jar with a wooden match at night, dark warm living room blurred behind, the flame lights her fingers, real skin, 50mm, film grain"
+  },
+  {
+    "nome": "presente_reel",
+    "largura": 864,
+    "altura": 1536,
+    "sementes": [
+      4803
+    ],
+    "prompt": "vertical photo of an older woman's hands giving a small kraft wrapped gift to a younger woman's hands, cozy living room with a christmas tree blurred behind, soft daylight, real skin, wrinkles, 50mm, film grain"
+  },
+  {
+    "nome": "presente",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      3506
+    ],
+    "prompt": "photo of an older woman's hands giving a small kraft wrapped gift to a younger woman's hands, cozy living room with a christmas tree blurred behind, soft daylight, real skin, wrinkles, 50mm, film grain"
+  },
+  {
+    "nome": "caderno",
+    "largura": 1024,
+    "altura": 1280,
+    "sementes": [
+      3606
+    ],
+    "prompt": "candid photo of a 50 year old Brazilian woman writing in a notebook at a wooden table at night, lit by a candle and a small lamp, handmade candles and soap bars beside her, dark warm room, real skin, no makeup, 50mm, film grain"
   }
 ]

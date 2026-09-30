@@ -1,0 +1,96 @@
+/* Fim de ano do artesaná. no Instagram — 1080 x 1350 (4:5). Continua a série ateliê (mesmas fontes,
+   mesma margem de 120px, mesma marca) e traz cinco composições que a equipe escolheu nas referências:
+     .noite      foto escura de luz de vela, frase pequena em itálico numa área calma, marca centrada embaixo
+     .arco       frase em caixa alta seguindo um arco em volta da chama
+     .editorial  título em serifa caixa alta centrado sobre papel amassado, produto no meio
+     .grito      frase grande em Poppins leve + negrito, tomando a foto
+     .anotada    recados à mão com setas apontando pro produto
+   Fontes por peça: no máximo três (Fraunces, Homemade Apple, Poppins). */
+@import url('./serie.css');
+
+/* base comum: foto inteira, tom da série */
+.festas .janela { height: 1350px; }
+.festas .janela img { filter: saturate(0.9) contrast(1.02) brightness(1.0) sepia(0.06); }
+.festas .marca.centro { right: auto; left: 50%; transform: translateX(-50%); white-space: nowrap; bottom: 120px; }
+
+/* .noite: frase pequena, leve, itálica */
+.noite .frase { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-variation-settings: 'SOFT' 100, 'WONK' 1; font-size: 44px; line-height: 1.32; letter-spacing: 0; color: var(--cream); text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55); }
+.noite .recado { font-size: 36px; color: var(--peach-l); text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6); }
+.noite .marca { color: var(--cream); text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6); }
+.noite .marca b { color: var(--peach); }
+
+/* .arco: texto em caixa alta num arco (SVG) */
+.arco svg { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; overflow: visible; }
+.arco svg text { font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 34px; letter-spacing: 0.14em; fill: var(--cream); }
+
+/* .editorial: serifa caixa alta centrada + linha pequena em Poppins caixa alta */
+.editorial .texto { text-align: center; }
+.editorial .titulo { margin: 0; font-family: 'Fraunces', serif; font-weight: 500; font-variation-settings: 'SOFT' 50, 'WONK' 0; font-size: 52px; line-height: 1.15; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); }
+.editorial .sub { margin: 22px auto 0; max-width: 640px; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 24px; line-height: 1.45; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); font-weight: 500; }
+.editorial .marca { letter-spacing: 0.02em; font-size: 28px; }
+
+/* .grito: Poppins grande, leve e negrito */
+.grito .frase { font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 88px; line-height: 1.02; letter-spacing: -0.035em; color: var(--cream); text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45); }
+.grito .frase b { font-weight: 700; }
+.grito .veu { left: 0; right: 0; top: 0; height: 900px; background: linear-gradient(180deg, rgba(44, 26, 30, 0.58) 0%, rgba(44, 26, 30, 0.34) 55%, rgba(44, 26, 30, 0) 100%); }
+
+/* .anotada: recados à mão com setas, brancos sobre a foto */
+.anotada .nota { position: absolute; margin: 0; font-family: 'Homemade Apple', cursive; font-size: 34px; line-height: 1.25; color: var(--cream); text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55); white-space: nowrap; }
+.anotada .nota.escura { color: var(--ink); text-shadow: 0 1px 10px rgba(255, 255, 255, 0.6); }
+.anotada svg.setas { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; pointer-events: none; }
+.anotada svg.setas path { fill: none; stroke: var(--cream); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.5)); }
+.anotada svg.setas path.escura { stroke: var(--ink); filter: drop-shadow(0 1px 6px rgba(255, 255, 255, 0.5)); }
+.anotada svg.setas marker path { stroke: var(--ink); }
+.anotada .frase { font-size: 54px; }
+
+/* ---- posições de cada peça (ajustadas depois de escolher a foto) ---- */
+.f1 .janela img { top: 0; }
+.f1 .texto { top: 150px; }
+.f2a .janela img { top: 0; }
+.f2a .texto { left: 330px; right: 120px; top: 186px; }
+.f2a .frase { font-size: 48px; line-height: 1.05; }
+.f2a .n1 { left: 560px; top: 1178px; }
+.f2a .n2 { left: 640px; top: 868px; }
+.f2a .n3 { left: 836px; top: 744px; }
+.f2a .n4 { left: 705px; top: 390px; }
+.f2a .marca { right: 120px; bottom: 120px; }
+.f4 .janela img { top: 0; }
+.f4 .texto { top: 150px; }
+.f5a .janela img { top: 0; }
+.f5a .texto { top: 150px; }
+.f7 .janela img { top: 0; }
+.f7 .texto { top: 150px; }
+
+/* ---- páginas de carrossel: número grande + frase, sobre papel ---- */
+.festas.bilhete .janela { height: 820px; }
+.festas.bilhete .texto { top: 900px; }
+.num { margin: 0 0 6px; font-family: 'Fraunces', serif; font-weight: 500; font-variation-settings: 'SOFT' 100, 'WONK' 0; font-size: 84px; line-height: 1; letter-spacing: -0.03em; color: var(--peach-d); }
+.festas.bilhete .frase { font-size: 52px; line-height: 1.12; }
+.festas.bilhete .recado { font-size: 36px; margin-top: 10px; }
+.papel-so .papel { top: 0; }
+.papel-so .texto { top: 300px; }
+.papel-so .frase { font-size: 62px; }
+.papel-so .recado { font-size: 32px; }
+.papel-so .aviso { margin-top: 40px; font-weight: 400; font-size: 27px; color: var(--ink-2); max-width: 720px; }
+.arraste { position: absolute; left: 0; right: 0; bottom: 122px; margin: 0; text-align: center; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 24px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6); }
+.anotada .arraste { color: var(--ink); text-shadow: none; }
+
+/* ---- reels: 1080 x 1920. O Instagram cobre 250px em cima e 340px embaixo; o texto fica fora disso ---- */
+html.reel-doc, html.reel-doc body { height: 1920px; background: transparent; }
+.reel { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+.reel .camada { position: absolute; }
+.reel .arco { left: 0; top: 0; width: 1080px; height: 1920px; }
+.reel .arco svg { width: 1080px; height: 1920px; }
+.reel .arco text { font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 33px; letter-spacing: 0.16em; text-transform: uppercase; fill: var(--cream); }
+.reel .recado { left: 120px; right: 120px; margin: 0; text-align: center; transform: none; font-family: 'Homemade Apple', cursive; font-size: 54px; line-height: 1.3; color: var(--peach-l); text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6); }
+.reel .assina { left: 120px; right: 120px; display: grid; justify-items: center; gap: 14px; text-align: center; }
+.reel .marca-reel { font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 44px; letter-spacing: -0.04em; color: var(--cream); text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6); }
+.reel .marca-reel b { font-weight: 700; color: var(--peach); }
+.reel .bio { font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 28px; letter-spacing: 0.02em; color: var(--cream); text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6); }
+.r3 .r3-recado { top: 990px; left: 120px; right: auto; width: 560px; text-align: left; font-size: 46px; }
+.r3 .assina { top: 300px; left: auto; right: 120px; justify-items: end; text-align: right; }
+.r6 .frase { left: 120px; right: 120px; margin: 0; font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 76px; line-height: 1.05; letter-spacing: -0.035em; white-space: nowrap; color: var(--cream); text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5); }
+.r6 .frase b { font-weight: 700; }
+.r6 .l1 { top: 330px; } .r6 .l2 { top: 420px; } .r6 .l3 { top: 510px; } .r6 .l4 { top: 600px; }
+.r6 .assina { top: 1090px; left: auto; right: 120px; justify-items: end; text-align: right; }
+.reel .veu-topo { left: 0; top: 0; width: 1080px; height: 900px; background: linear-gradient(180deg, rgba(20, 14, 12, 0.6) 0%, rgba(20, 14, 12, 0.4) 55%, rgba(20, 14, 12, 0) 100%); }

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Estilo das publicações</title>
+  <link rel="icon" href="../../assets/brand/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../app/css/variables.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font); font-size: 15px; line-height: 1.6; color: var(--ink); background: var(--white); }
+    .wrap { width: min(100% - 40px, 760px); margin-inline: auto; padding: 28px 0 60px; }
+    .wordmark { font-size: 26px; letter-spacing: -0.04em; color: var(--peach-d); text-decoration: none; }
+    .wordmark b { font-weight: 700; }
+    h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin: 22px 0 10px; }
+    h2 { font-size: 19px; font-weight: 600; margin: 30px 0 8px; }
+    p { margin: 0 0 10px; } ul { padding-left: 20px; margin: 0 0 12px; } li { margin-bottom: 6px; }
+    code { font-family: Consolas, monospace; font-size: 13px; background: var(--cream); padding: 1px 5px; border-radius: 3px; }
+    a { color: var(--moss); }
+  </style>
+</head>
+<body><div class="wrap"><a class="wordmark" href="./">artesaná<b>.</b></a>
+<h1>Estilo das publicações do artesaná.</h1>
+<p>Guia curto do que a equipe aprovou até aqui, pra toda peça nova sair na mesma linha. Os modelos ficam em</p>
+<p><code>modelos/</code>, o gerador é <code>scripts/gen-instagram.py</code>, as fotos vêm de <code>scripts/gen-fotos-ia.py</code>.</p>
+<h2>O que vale pra tudo</h2>
+<ul>
+<li>Formato 1080 × 1350 (4:5). Nenhum texto a menos de 120 px de qualquer borda: o gerador recusa a peça se passar.</li>
+<li>No máximo três fontes por peça: Fraunces (frase), Homemade Apple (recado à mão), Poppins (marca, avisos, caixa alta).</li>
+<li>A frase da imagem é de conexão, sem venda. O que o app faz vai na legenda, com &quot;o link está na bio&quot;.</li>
+<li>Foto realista, gente de verdade trabalhando, mulheres 40+, mãos, produto. Sem pose, sem estúdio, sem marca de terceiros.</li>
+<li>Cores da marca: creme #FFF5EF, pêssego #FFB18B, musgo #4A6348, tinta #2C1A1E. Dourado só em detalhe.</li>
+<li>A marca aparece pequena, <code>artesaná.</code> em Poppins, com o ponto pêssego.</li>
+<li>Na grade do perfil, peças claras e escuras se alternam (xadrez). Ímpares escuras ou de foto inteira; pares claras.</li>
+</ul>
+<h2>O que a equipe rejeitou</h2>
+<ul>
+<li>Barra creme + bloco + selo (&quot;muito layout&quot;).</li>
+<li>Texto colado na borda, foto sem enquadramento no rosto ou nas mãos.</li>
+<li>Tom comercial na imagem, CTA gritando. Fotos de banco com cara de modelo de estúdio.</li>
+</ul>
+<h2>Composições aprovadas</h2>
+<p>Série ateliê (peças 1 a 6):</p>
+<ul>
+<li><code>inteira</code>: foto na peça toda, texto na área calma, alinhado à esquerda.</li>
+<li><code>bilhete</code>: foto até 820 px e papel creme embaixo com a frase e o recado.</li>
+<li>Bordado: na peça do bastidor, a frase sai bordada no linho (<code>scripts/bordado.py</code>).</li>
+</ul>
+<p>Referências que a equipe curtiu em 30/09/2026 (perfis de vela e saboaria), aplicadas nos sete dias de fim de ano (dia1 a dia7):</p>
+<ul>
+<li><code>noite</code>: foto escura de luz de vela, frase pequena em itálico leve numa área calma, marca centrada embaixo.</li>
+<li><code>arco</code>: frase curta em caixa alta com espaçamento largo, seguindo um arco em volta da chama ou do produto.</li>
+<li><code>editorial</code>: título em serifa caixa alta centrado no alto, linha pequena em Poppins caixa alta, produto no meio de papel de seda amassado.</li>
+<li><code>grito</code>: frase grande em Poppins leve + negrito tomando a foto (&quot;Em terra de IA, o feito à mão é o verdadeiro luxo&quot;).</li>
+<li><code>anotada</code>: recados à mão com setas apontando pro produto, como quem explica o que tem dentro.</li>
+</ul>
+<h2>Reels</h2>
+<ul>
+<li>1080 × 1920, 10 a 12 segundos, foto com zoom lento e o texto entrando em camadas (<code>scripts/gen-reels.py</code>).</li>
+<li>Sem áudio no arquivo: a música entra na hora de publicar, pela biblioteca do Instagram, que é o que faz o reel circular.</li>
+<li>Texto fora da área dos botões: nada acima de 250 px nem abaixo de 340 px do fim. O gerador confere.</li>
+<li>A capa é o último quadro, com tudo visível; no perfil ela aparece cortada em 3:4, então o texto fica no centro.</li>
+</ul>
+<h2>Ideias de foto pra fazer em casa, com o celular</h2>
+<p>Fim de ano:</p>
+<ul>
+<li>Mãos embrulhando um presente em kraft com barbante, fatia de laranja seca e raminho de pinheiro, só com a luz de uma vela.</li>
+<li>Vela ou sabonete no centro de papel de seda amassado, luz da janela, bastante papel vazio em volta.</li>
+<li>Mão acendendo uma vela com fósforo de madeira, ambiente escuro atrás.</li>
+<li>Kit de Natal aberto sobre linho, visto de cima: sabonetes, vela, canela, laranja seca, tag em branco.</li>
+<li>Mesa de ceia pequena à noite, só com velas, guardanapo de linho, ramos de pinheiro, sem gente.</li>
+<li>Duas mãos entregando um presente pequeno, árvore desfocada atrás, luz do dia.</li>
+<li>Caderno aberto na mesa à noite, planejando o ano, com os produtos ao lado.</li>
+</ul>
+<p>Sempre: luz natural ou de vela, fundo limpo, produto sem rótulo de terceiros, uma área calma pro texto.</p>
+<p><a href="./">Voltar às publicações</a></p>
+</div></body>
+</html>

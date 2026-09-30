@@ -2,6 +2,201 @@
 
 Gerado de `publicacoes.json` por `python scripts/gen-instagram-pagina.py`. Edite o JSON, não este arquivo.
 
+## d1. O Natal de quem faz à mão começa em outubro
+
+Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
+
+Imagens: `dia1.jpg`
+
+**Legenda**
+
+Dezembro é quando o Natal acontece. Outubro é quando ele é feito.
+
+Quem faz à mão sabe: sabonete precisa curar, vela precisa descansar, embalagem precisa chegar, e o correio no fim do ano não tem pressa. Por isso as encomendas de Natal abrem agora.
+
+Se você ainda não abriu as suas, este é o empurrão. Escolha os produtos do kit, defina um prazo e avise as clientes hoje.
+
+No artesaná., a aba de datas lembra o que produzir em cada época e monta o rótulo com a frase da data. O link está na bio.
+
+Suas encomendas de Natal já estão abertas? Conta aqui.
+
+#natal2026 #natalartesanal #feitoamao #saboariaartesanal #velasartesanais #artesanato #presentesartesanais #empreendedorismofeminino
+
+**Texto alternativo**
+
+- `dia1.jpg`: Mãos de mulher embrulham um presente pequeno em papel kraft com barbante, fatia de laranja seca e raminho de pinheiro, numa mesa iluminada só por uma vela. Texto: O Natal de quem faz à mão começa em outubro. As encomendas abrem agora.
+
+---
+
+## d2. Kit de Natal em 5 passos
+
+Publicar as seis imagens juntas, como carrossel, nessa ordem. Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
+
+Imagens: `dia2-1.jpg`, `dia2-2.jpg`, `dia2-3.jpg`, `dia2-4.jpg`, `dia2-5.jpg`, `dia2-6.jpg`
+
+**Legenda**
+
+Kit de Natal em 5 passos, pra quem produz, embala e entrega sozinha.
+
+1. Escolha dois ou três produtos que combinem entre si. Canela, laranja e baunilha se dão bem.
+
+2. Caixa de kraft e papel de seda. Simples fica bonito e cabe no correio.
+
+3. Tag com o nome de quem recebe e o rótulo com Feliz Natal. No artesaná. você escolhe a data e o rótulo já sai com a frase.
+
+4. QR do WhatsApp colado na caixa. Quem ganhou o presente acha você depois, e o kit vira cliente.
+
+5. Abra as encomendas agora e feche em 10 de dezembro. Produção leva tempo, e o correio também.
+
+Rótulo, tag e QR ficam prontos no app. Grátis na versão beta, o link está na bio.
+
+Salva pra montar o seu.
+
+#kitdenatal #natalartesanal #feitoamao #saboariaartesanal #velasartesanais #embalagem #rotulos #pequenosnegocios
+
+**Texto alternativo**
+
+- `dia2-1.jpg`: Kit de Natal visto de cima sobre linho: sabonetes em papel kraft, vela em vidro, canela, laranja seca, ramo de pinheiro e tag em branco, com recados escritos à mão apontando cada item. Texto: Kit de Natal em 5 passos.
+- `dia2-2.jpg`: Três sabonetes empilhados numa tábua com canela e laranja seca. Texto: 1. Escolha dois ou três produtos que combinem. Canela, laranja e baunilha se dão bem.
+- `dia2-3.jpg`: Mãos colocam um sabonete numa caixinha de kraft forrada com papel de seda. Texto: 2. Caixa de kraft e papel de seda. Simples fica bonito. E cabe no correio.
+- `dia2-4.jpg`: Mãos amarram uma tag de kraft em branco numa caixinha de presente. Texto: 3. Tag com o nome de quem recebe e o rótulo com Feliz Natal. O app monta o rótulo com a data.
+- `dia2-5.jpg`: Mãos seguram uma caixinha de kraft com fita vermelha na porta de casa. Texto: 4. QR do WhatsApp na caixa. Quem ganhou acha você. É o presente que traz cliente.
+- `dia2-6.jpg`: Página de papel creme. Texto: 5. Abra as encomendas agora. Feche em 10 de dezembro. Produção leva tempo, e o correio também. Rótulo, tag e QR prontos no artesaná. Grátis na versão beta. O link está na bio.
+
+---
+
+## d3. Toda virada de ano começa com uma luz
+
+Reel sem áudio: ao publicar, escolha uma música na biblioteca do Instagram e use a capa como miniatura. Imagem gerada por IA: ative o rótulo de IA.
+
+Imagens: `dia3-reel.mp4`, `dia3-capa.jpg`
+
+**Legenda**
+
+Toda virada de ano começa com uma luz que alguém acendeu.
+
+A vela de Ano Novo é o produto mais simples e mais vendido de dezembro: branca, cítrica, com uma tag de bons desejos. Quem faz vela sabe. Quem faz sabonete pode fazer o par.
+
+No artesaná. a data do Ano Novo já vem com sugestão de kit e a frase pro rótulo. O link está na bio.
+
+Qual é o seu ritual de virada?
+
+#anonovo #reveillon #velasartesanais #velaaromatica #feitoamao #artesanato #saboariaartesanal #pequenosnegocios
+
+**Texto alternativo**
+
+- `dia3-reel.mp4`: Vídeo: uma mão acende uma vela branca com um fósforo, num ambiente escuro. A frase Toda virada de ano começa com uma luz aparece em arco em volta da chama, depois o recado à mão que alguém acendeu, e a marca artesaná.
+- `dia3-capa.jpg`: Mão acendendo uma vela branca com fósforo, ambiente escuro. Texto em arco: Toda virada de ano começa com uma luz. Recado à mão: que alguém acendeu.
+
+---
+
+## d4. O brinde de fim de ano pode ser feito à mão
+
+Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
+
+Imagens: `dia4.jpg`
+
+**Legenda**
+
+O brinde de fim de ano da empresa não precisa vir de catálogo.
+
+Empresas pequenas, escritórios, clínicas e salões encomendam os presentes de fim de ano em outubro. Um sabonete, uma vela ou um doce feito à mão, com o rótulo da sua marca e um cartão com o nome da empresa, custa menos do que parece e marca mais do que qualquer caneta.
+
+Como oferecer: monte um kit de amostra, tire uma foto bonita, escreva o preço por unidade a partir de 20 e mande pelo WhatsApp pra três empresas perto de você. Uma responde.
+
+No artesaná. o rótulo completo, com os dados que a Anvisa pede pra cosmético, e o resumo da sua marca ficam prontos pra mandar. O link está na bio.
+
+#brindescorporativos #presentecorporativo #fimdeano #feitoamao #saboariaartesanal #velasartesanais #empreendedorismofeminino #pequenosnegocios
+
+**Texto alternativo**
+
+- `dia4.jpg`: Vela em vidro, vista de cima, no centro de papel de seda amassado, com luz de janela. Texto: O brinde de fim de ano pode ser feito à mão. Empresas encomendam em outubro. A sua marca pode estar na lista.
+
+---
+
+## d5. Quatro datas que ainda vendem este ano
+
+Publicar as cinco imagens juntas, como carrossel, nessa ordem. Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
+
+Imagens: `dia5-1.jpg`, `dia5-2.jpg`, `dia5-3.jpg`, `dia5-4.jpg`, `dia5-5.jpg`
+
+**Legenda**
+
+Quatro datas que ainda vendem este ano, e o que fazer em cada uma.
+
+12 de outubro, Dia das Crianças: sabonete em formato de bichinho, cores suaves, sem óleo essencial forte. Bom pra lembrancinha de escola.
+
+Novembro, Black Friday: combo com desconto de verdade, não promoção de mentira. Serve pra testar kit novo e girar estoque.
+
+25 de dezembro, Natal: kit presenteável, tag de e para, canela, laranja e pinho. Produza em outubro.
+
+1º de janeiro, Ano Novo: kit de renovação com cítricos, tons claros e a ideia de começo leve.
+
+Todas essas datas ficam na aba de rótulos do artesaná., cada uma com a frase pronta pra etiqueta. O link está na bio.
+
+Salva e marca uma amiga que faz.
+
+#calendariodevendas #diadascriancas #blackfriday #natal #anonovo #feitoamao #artesanato #pequenosnegocios
+
+**Texto alternativo**
+
+- `dia5-1.jpg`: Mesa de ceia pequena à noite, iluminada por velas em castiçais de cerâmica, com guardanapos de linho e ramos de pinheiro. Texto: Quatro datas que ainda vendem este ano. E o que fazer em cada uma.
+- `dia5-2.jpg`: Sabonetes artesanais em formato de bichinhos, em tons pastel, numa bandeja de madeira, com a mão de uma criança pegando um. Texto: 12 out. Dia das Crianças. Sabonete em formato de bichinho, sem óleo essencial forte.
+- `dia5-3.jpg`: Caixinhas de kraft e potes de vela empilhados numa mesa escura, uma vela acesa. Texto: nov. Black Friday. Combo com desconto de verdade: bom pra testar kit e girar estoque.
+- `dia5-4.jpg`: Mãos de uma senhora entregam um presente pequeno em kraft para as mãos de uma mulher mais jovem, árvore de Natal desfocada atrás. Texto: 25 dez. Natal. Kit presenteável, tag de e para, canela, laranja e pinho. Produza em outubro.
+- `dia5-5.jpg`: Velas brancas em vidro, flores brancas e fatias de limão sobre linho branco, vistas de cima. Texto: 1 jan. Ano Novo. Kit de renovação: cítricos, tons claros, começo leve. As datas ficam no app, com a frase do rótulo.
+
+---
+
+## d6. O presente que ninguém devolve
+
+Reel sem áudio: ao publicar, escolha uma música na biblioteca do Instagram e use a capa como miniatura. Imagem gerada por IA: ative o rótulo de IA.
+
+Imagens: `dia6-reel.mp4`, `dia6-capa.jpg`
+
+**Legenda**
+
+O presente que ninguém devolve é o que alguém fez à mão.
+
+Neste Natal, quem compra de você não leva só um sabonete ou uma vela. Leva as suas horas, a sua cozinha, a sua história. É isso que faz o presente ficar.
+
+Conte essa história no rótulo e na bio. No artesaná., a história da marca fica no perfil e vira texto pronto pra usar. O link está na bio.
+
+Marque alguém que merece um presente feito à mão.
+
+#natal #presentefeitoamao #feitoamao #artesanato #saboariaartesanal #velasartesanais #presentesartesanais #empreendedorismofeminino
+
+**Texto alternativo**
+
+- `dia6-reel.mp4`: Vídeo: as mãos de uma senhora entregam um presente pequeno em kraft para as mãos de uma mulher mais jovem, com uma árvore de Natal desfocada atrás. As palavras aparecem uma a uma: O presente que ninguém devolve é o que alguém fez à mão. Depois a marca artesaná.
+- `dia6-capa.jpg`: Mãos entregando um presente pequeno em kraft, árvore de Natal desfocada atrás. Texto: O presente que ninguém devolve é o que alguém fez à mão.
+
+---
+
+## d7. Antes do ano virar, vire a página da marca
+
+Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
+
+Imagens: `dia7.jpg`
+
+**Legenda**
+
+Antes do ano virar, vire a página da marca.
+
+Dezembro chega cheio. Outubro ainda tem espaço pra arrumar o que fica pra depois: o rótulo que precisa de lote e validade, o link do WhatsApp que ainda não está na bio, a história da marca que só você conhece.
+
+No artesaná. isso é uma lista de três coisas, e cada uma leva poucos minutos. Você preenche uma vez e usa o ano inteiro.
+
+Está em versão beta e é grátis. O link está na bio. E se algo faltar, tem um botão de feedback dentro do app: é assim que a gente decide o que vem depois.
+
+#planejamento #marcaautoral #feitoamao #artesanato #saboariaartesanal #velasartesanais #empreendedorismofeminino #pequenosnegocios
+
+**Texto alternativo**
+
+- `dia7.jpg`: Mulher de 50 anos escreve num caderno à mesa, à noite, com um abajur e velas acesas ao lado. Texto: Antes do ano virar, vire a página da marca. Rótulo, link e história em dia.
+
+---
+
 ## 1. As horas que cabem numa peça
 
 Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
