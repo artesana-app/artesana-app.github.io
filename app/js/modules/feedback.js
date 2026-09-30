@@ -3,6 +3,7 @@ import * as store from '../store.js';
 import { NOTAS, validarFeedback, montarFeedback } from '../lib/feedback.js';
 import { montarLink } from '../lib/whatsapp.js';
 import { SITE } from '../site.js';
+import { comDitado } from '../ditado.js';
 
 function aparelho() {
   const ua = navigator.userAgent || '';
@@ -31,7 +32,7 @@ export function montar(section) {
     const ta = h('textarea', { class: 'textarea', id: `fb-${chave}`, rows: '3', placeholder: dica });
     ta.value = estado[chave];
     ta.addEventListener('input', () => { estado[chave] = ta.value; guardar(); erro.classList.add('hidden'); });
-    return h('div', { class: 'field' }, h('label', { for: `fb-${chave}` }, rotulo), ta);
+    return h('div', { class: 'field' }, h('label', { for: `fb-${chave}` }, rotulo), comDitado(ta));
   };
 
   const erro = h('div', { class: 'err-msg hidden', role: 'alert' });

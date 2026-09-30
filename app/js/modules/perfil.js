@@ -1,4 +1,5 @@
 import { h, header, toast, modal, copiar } from '../ui.js';
+import { comDitado, dicaDitado } from '../ditado.js';
 import * as store from '../store.js';
 import { calcularProgresso } from '../lib/progresso.js';
 import { NICHOS, PERSONALIDADES, CAMPOS_OBRIGATORIOS, camposFaltando, resumoPerfil } from '../lib/perfil.js';
@@ -76,7 +77,8 @@ export function montar(section) {
     input.value = estado[onde][id] || '';
     input.addEventListener('input', () => { estado[onde][id] = input.value; mudou(); });
     if (opts.aoSair) input.addEventListener('blur', () => { input.value = opts.aoSair(input.value); estado[onde][id] = input.value; mudou(); });
-    const wrap = h('div', { class: 'field' }, rotulo(id, texto), input, opts.dica ? h('div', { class: 'hint' }, opts.dica) : null, aviso());
+    const falavel = opts.multi || (opts.tipo || 'text') === 'text';
+    const wrap = h('div', { class: 'field' }, rotulo(id, texto), falavel ? comDitado(input) : input, opts.dica ? h('div', { class: 'hint' }, opts.dica) : null, aviso());
     campos[id] = { wrap, foco: input };
     return wrap;
   }
@@ -150,6 +152,7 @@ export function montar(section) {
         etapas),
       h('div', { class: 'group-title' }, 'Sobre você'),
       h('div', { class: 'card' },
+        dicaDitado(),
         campoTexto('user', 'nome', 'Seu nome', { placeholder: 'Como você se chama', auto: 'given-name', caixa: 'words' }),
         campoTexto('user', 'email', 'E-mail de contato', { placeholder: 'voce@exemplo.com', tipo: 'email', auto: 'email', caixa: 'none' })),
       h('div', { class: 'group-title' }, 'Sua marca'),

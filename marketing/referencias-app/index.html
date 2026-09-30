@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Referências de app</title>
+  <meta name="description" content="Dez apps de referência pro novo layout do artesaná., com telas reais e três caminhos possíveis.">
+  <link rel="icon" href="../../assets/brand/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..600,100&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --peach: #FFB18B; --peach-d: #DE9060; --peach-l: #FFD9C4; --cream: #FFF5EF; --moss: #4A6348; --moss-l: #DCE6D9; --ink: #2C1A1E; --ink-2: #6B5A5D; --line: #EADFD6; --white: #fff; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --cream: #1E1416; --white: #2A1D20; --ink: #FFF5EF; --ink-2: #C9B8B3; --line: #4A3A3D; --moss-l: #2F3D2E; --peach-l: #4A3328; } }
+    :root[data-theme="dark"] { --cream: #1E1416; --white: #2A1D20; --ink: #FFF5EF; --ink-2: #C9B8B3; --line: #4A3A3D; --moss-l: #2F3D2E; --peach-l: #4A3328; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: var(--cream); color: var(--ink); font-family: 'Poppins', system-ui, sans-serif; font-size: 15px; line-height: 1.55; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: var(--moss); }
+    :focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
+    .wrap { width: min(100% - 32px, 1040px); margin-inline: auto; }
+    header { padding: 40px 0 8px; }
+    .wordmark { font-size: 28px; letter-spacing: -0.04em; text-decoration: none; color: var(--peach-d); }
+    .wordmark b { font-weight: 700; }
+    h1 { font-family: 'Fraunces', serif; font-variation-settings: 'SOFT' 100; font-weight: 400; font-size: clamp(32px, 5vw, 48px); line-height: 1.05; letter-spacing: -0.02em; margin: 18px 0 12px; max-width: 18ch; }
+    .intro { max-width: 60ch; color: var(--ink-2); margin: 0; }
+    .indice { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 8px; padding: 0; list-style: none; }
+    .indice a { display: inline-block; padding: 6px 12px; border-radius: 999px; background: var(--white); border: 1px solid var(--line); text-decoration: none; color: var(--ink); font-size: 13px; }
+    .app { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 28px; padding: 36px 0; border-top: 1px solid var(--line); align-items: start; }
+    .app h2 { font-family: 'Fraunces', serif; font-variation-settings: 'SOFT' 100; font-weight: 600; font-size: 30px; line-height: 1.1; margin: 0 0 2px; letter-spacing: -0.01em; }
+    .num { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--peach); color: #2C1A1E; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600; vertical-align: 6px; margin-right: 4px; }
+    .meta { color: var(--ink-2); font-size: 13px; margin: 0 0 12px; }
+    .app p { margin: 0 0 10px; }
+    .app b { font-weight: 600; }
+    .telas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .telas img { border-radius: 14px; border: 1px solid var(--line); background: var(--white); }
+    .secao { padding: 44px 0 12px; border-top: 1px solid var(--line); }
+    .secao h2 { font-family: 'Fraunces', serif; font-variation-settings: 'SOFT' 100; font-weight: 400; font-size: clamp(28px, 4vw, 38px); margin: 0 0 8px; line-height: 1.1; }
+    .secao p { max-width: 62ch; margin: 0 0 8px; color: var(--ink-2); }
+    .caminho { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 28px; align-items: center; padding: 28px 0; border-top: 1px solid var(--line); }
+    .caminho h3 { font-family: 'Fraunces', serif; font-variation-settings: 'SOFT' 100; font-weight: 600; font-size: 28px; margin: 0 0 2px; }
+    .letra { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--moss); color: var(--cream); font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600; vertical-align: 5px; margin-right: 4px; }
+    .caminho p { margin: 0 0 8px; }
+    .nota { color: var(--moss); font-weight: 500; }
+    /* celular desenhado, nas cores da marca */
+    .fone { width: 280px; aspect-ratio: 9 / 16; border-radius: 34px; background: #FFF5EF; color: #2C1A1E; border: 8px solid #2C1A1E; display: flex; flex-direction: column; overflow: hidden; margin-inline: auto; font-size: 12px; }
+    .fone-topo { display: flex; justify-content: space-between; align-items: center; padding: 16px 16px 6px; }
+    .marca-mini { font-size: 15px; letter-spacing: -0.04em; color: #DE9060; }
+    .marca-mini b { font-weight: 700; }
+    .passo { font-size: 11px; color: #6B5A5D; }
+    .fone-corpo { flex: 1; padding: 8px 16px; }
+    .pergunta { font-family: 'Fraunces', serif; font-variation-settings: 'SOFT' 100; font-size: 24px; line-height: 1.1; margin: 10px 0 6px; }
+    .pergunta.pequena { font-size: 19px; }
+    .ajuda { color: #6B5A5D; margin: 0 0 12px; font-size: 11.5px; }
+    .campo { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1.5px solid #4A6348; border-radius: 12px; padding: 10px 8px 10px 12px; font-size: 14px; }
+    .mic-mini { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #C0392B; color: #fff; font-size: 9px; box-shadow: 0 0 0 5px rgba(192, 57, 43, 0.18); }
+    .balao { margin: 14px 0 10px; padding: 10px 12px; background: #DCE6D9; border-radius: 14px 14px 14px 4px; font-size: 12.5px; max-width: 88%; }
+    .chips-mini { display: flex; gap: 6px; flex-wrap: wrap; }
+    .chips-mini span { padding: 5px 10px; border-radius: 999px; border: 1px solid #EADFD6; background: #fff; font-size: 11px; }
+    .fone-base { padding: 10px 16px 18px; }
+    .botao-mini { display: block; text-align: center; background: #4A6348; color: #FFF5EF; border-radius: 12px; padding: 11px; font-weight: 500; font-size: 13px; }
+    .galeria { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+    .modelo { background: #fff; border: 1px solid #EADFD6; border-radius: 12px; padding: 10px; display: grid; gap: 6px; justify-items: center; font-size: 11px; }
+    .modelo i { display: block; width: 44px; height: 44px; background: #FFD9C4; }
+    .modelo.redondo i { border-radius: 50%; }
+    .modelo.retang i { width: 60px; height: 34px; border-radius: 4px; }
+    .modelo.tag i { width: 30px; height: 46px; border-radius: 4px 4px 12px 12px; background: #DCE6D9; }
+    .modelo.anvisa i { width: 60px; height: 40px; border-radius: 4px; background: repeating-linear-gradient(#fff 0 4px, #EADFD6 4px 6px); border: 1px solid #EADFD6; }
+    .fotos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .foto { aspect-ratio: 1; border-radius: 12px; background: linear-gradient(160deg, #FFB18B, #DE9060); }
+    .foto.f2 { background: linear-gradient(160deg, #DCE6D9, #4A6348); }
+    .atalhos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 4px 0 14px; text-align: center; font-size: 10.5px; }
+    .atalhos i { display: grid; place-items: center; width: 44px; height: 44px; margin: 0 auto 4px; border-radius: 50%; background: #FFD9C4; color: #2C1A1E; font-style: normal; font-weight: 600; font-size: 14px; }
+    .cartao { display: grid; gap: 2px; background: #fff; border: 1px solid #EADFD6; border-radius: 14px; padding: 10px 12px; margin-bottom: 8px; font-size: 11.5px; }
+    .cartao b { font-weight: 600; font-size: 12.5px; }
+    .cartao span { color: #6B5A5D; }
+    .fala { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; padding: 28px 0 60px; }
+    .fala ul { margin: 8px 0 0; padding-left: 18px; }
+    .fala li { margin-bottom: 6px; }
+    .fim { padding: 20px 0 48px; font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--line); }
+    @media (max-width: 760px) {
+      .app, .caminho, .fala { grid-template-columns: 1fr; gap: 18px; }
+      .telas { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+      .telas img { border-radius: 8px; }
+      .fone { width: min(280px, 100%); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="wordmark" href="../../">artesaná<b>.</b></a>
+      <h1>Dez apps pra olhar antes de redesenhar o nosso</h1>
+      <p class="intro">Telas reais, tiradas da página de cada app na App Store. Em cada um, o que vale trazer pro artesaná. e o que fica lá. No fim, três caminhos possíveis, desenhados nas nossas cores, e como entra o botão de fala.</p>
+      <ul class="indice"><li><a href="#app-1">1. Reflectly</a></li><li><a href="#app-2">2. Headspace</a></li><li><a href="#app-3">3. Airbnb</a></li><li><a href="#app-4">4. Etsy Seller</a></li><li><a href="#app-5">5. Shopify</a></li><li><a href="#app-6">6. Nubank</a></li><li><a href="#app-7">7. Duolingo</a></li><li><a href="#app-8">8. Canva</a></li><li><a href="#app-9">9. Pinterest</a></li><li><a href="#app-10">10. Things 3</a></li><li><a href="#caminhos">Os três caminhos</a></li><li><a href="#fala">Botão de fala</a></li></ul>
+    </header>
+    
+    <article class="app" id="app-1">
+      <div class="app-texto">
+        <h2><span class="num">1</span> Reflectly</h2>
+        <p class="meta">Dinamarca · Diário pessoal</p>
+        <p><b>Trazer pro artesaná.</b> Faz uma pergunta por vez, com o texto grande e um campo só. A resposta vira uma conversa, não um formulário. É o oposto do que o artesaná. tem hoje no perfil e na história da marca.</p>
+        <p><b>Deixar lá.</b> O fundo roxo em degradê e o rostinho animado.</p>
+        <a href="https://apps.apple.com/br/app/id1241229134" target="_blank" rel="noopener">Ver na App Store</a>
+      </div>
+      <div class="telas"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource125/v4/16/df/ca/16dfcad8-aa3f-7c02-697f-3234e39bd9ba/dc41fa69-04c6-4e5e-bc62-4ddbbb612da3_6.5_iOS_screenshot_2.jpg/480x0w.webp" alt="Tela do app Reflectly" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource115/v4/4e/0e/18/4e0e18b6-1c0d-d48d-6839-f05ccfd350f5/732f0678-4c5f-4088-86f3-ee3c5de4b57a_6.5_iOS_screenshot_3.jpg/480x0w.webp" alt="Tela do app Reflectly" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource115/v4/04/53/66/04536696-c62d-3644-f410-20733d004667/030522e0-75cf-4a15-92f1-e25868c88bab_6.5_iOS_screenshot_4.jpg/480x0w.webp" alt="Tela do app Reflectly" loading="lazy"></div>
+    </article>
+    <article class="app" id="app-2">
+      <div class="app-texto">
+        <h2><span class="num">2</span> Headspace</h2>
+        <p class="meta">Reino Unido · Meditação</p>
+        <p><b>Trazer pro artesaná.</b> A home tem um cartão do dia, com uma ação só e ilustração de cor cheia. Sobra ar. A pessoa sabe o que fazer hoje sem procurar.</p>
+        <p><b>Deixar lá.</b> A paleta laranja e amarela; a nossa é pêssego, creme e musgo.</p>
+        <a href="https://apps.apple.com/br/app/id493145008" target="_blank" rel="noopener">Ver na App Store</a>
+      </div>
+      <div class="telas"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource116/v4/df/e0/d3/dfe0d30b-1879-e782-727a-4dbb4ea9441e/e5f63474-084c-480e-b6ea-55ce1cfb0e2a_Portugese-Screen_2__U00281242x2208_U0029.jpg/480x0w.webp" alt="Tela do app Headspace" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/e2/e0/ee/e2e0ee11-b064-1e9c-d14e-d9304c62cdff/e1845bfd-7eb8-4344-954d-dd5f3f57f758_Portugese-Screen_3__U00281242x2208_U0029.jpg/480x0w.webp" alt="Tela do app Headspace" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource116/v4/4a/be/27/4abe27c1-af20-6d0e-0bb0-8bb9b4850cd0/5f334ab2-5747-4b55-98c2-c45c585d7d56_Portugese-Screen_4__U00281242x2208_U0029.jpg/480x0w.webp" alt="Tela do app Headspace" loading="lazy"></div>
+    </article>
+    <article class="app" id="app-3">
+      <div class="app-texto">
+        <h2><span class="num">3</span> Airbnb</h2>
+        <p class="meta">Estados Unidos · Hospedagem</p>
+        <p><b>Trazer pro artesaná.</b> A foto manda: grade de duas colunas, cantos arredondados, texto pequeno embaixo. Rótulos, produtos e fotos da marca ficariam assim, e não numa lista.</p>
+        <p><b>Deixar lá.</b> A quantidade de informação por tela.</p>
+        <a href="https://apps.apple.com/br/app/id401626263" target="_blank" rel="noopener">Ver na App Store</a>
+      </div>
+      <div class="telas"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/54/a4/5c/54a45cda-8979-06d3-a4c0-8ba9e85a25d8/250509_AppStore_Mobile_Airbnb_Carousel_01_pr-BR.jpg/480x0w.webp" alt="Tela do app Airbnb" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/cc/e8/05/cce80580-b275-b982-ebc9-d989271e3ddb/250509_AppStore_Mobile_Airbnb_Carousel_02_pt-BR.jpg/480x0w.webp" alt="Tela do app Airbnb" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/db/55/04/db55047b-5477-e046-c8c6-667c1c9400bf/250509_AppStore_Mobile_Airbnb_Carousel_03_pt-BR.jpg/480x0w.webp" alt="Tela do app Airbnb" loading="lazy"></div>
+    </article>
+    <article class="app" id="app-4">
+      <div class="app-texto">
+        <h2><span class="num">4</span> Etsy Seller</h2>
+        <p class="meta">Estados Unidos · Painel de quem vende artesanato</p>
+        <p><b>Trazer pro artesaná.</b> É o app da vendedora artesã. A home responde &#x27;o que precisa de mim hoje&#x27;: mensagens de clientes, pedidos, números simples. O nosso público é esse.</p>
+        <p><b>Deixar lá.</b> A cara corporativa e o excesso de cinza.</p>
+        <a href="https://apps.apple.com/us/app/id1534619962" target="_blank" rel="noopener">Ver na App Store</a>
+      </div>
+      <div class="telas"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ee/e0/2e/eee02efe-5514-02ab-420b-beaf3b181a8d/2023_Q2_ESA_1242x2688_iPhone_6.5_EN_.jpg/480x0w.webp" alt="Tela do app Etsy Seller" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ba/bf/4e/babf4e98-fc7f-e45e-2f5f-d983bc584ccd/656f7f23-796b-405b-8389-59d612f27a59_2023_Q2_ESA_1242x2688_iPhone_6.5_EN_2.jpg/480x0w.webp" alt="Tela do app Etsy Seller" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/5b/72/e4/5b72e474-1184-ea45-e99f-73e18ae9935d/480af871-c190-4eea-815e-2a7456163ffe_2023_Q2_ESA_1242x2688_iPhone_6.5_EN_4.jpg/480x0w.webp" alt="Tela do app Etsy Seller" loading="lazy"></div>
+    </article>
+    <article class="app" id="app-5">
+      <div class="app-texto">
+        <h2><span class="num">5</span> Shopify</h2>
+        <p class="meta">Canadá · Loja on-line</p>
+        <p><b>Trazer pro artesaná.</b> Tem uma caixa de conversa na home: a pessoa pede (&#x27;escreva a descrição do vaso&#x27;) e o app faz. Com o botão de fala, isso vira pedir falando.</p>
+        <p><b>Deixar lá.</b> A tela de estatísticas cheia de gráficos.</p>
+        <a href="https://apps.apple.com/br/app/id371294472" target="_blank" rel="noopener">Ver na App Store</a>
+      </div>
+      <div class="telas"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/b2/94/82/b2948242-38f2-da80-fed3-58d7b66556b2/App_Store_Screens_-_Growth_-_Standard_-_Product_-_US_-_English_-_iOS_AI_Assistant_-_Static_-_1284x2778.png/480x0w.webp" alt="Tela do app Shopify" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/05/01/f6/0501f637-9e0d-eab9-e3ac-a1f45a7544a7/App_Store_Screens_-_Growth_-_Standard_-_Product_-_US_-_English_-_iOS_AI_Photos_-_Static_-_1284x2778.png/480x0w.webp" alt="Tela do app Shopify" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e3/41/4e/e3414e5a-58d6-84ca-52a3-45adb6ec1c42/App_Store_Screens_-_Growth_-_Standard_-_Product_-_US_-_English_-_iOS_Orders_On_Go_-_Static_-_1284x2778.png/480x0w.webp" alt="Tela do app Shopify" loading="lazy"></div>
+    </article>
+    <article class="app" id="app-6">
+      <div class="app-texto">
+        <h2><span class="num">6</span> Nubank</h2>
+        <p class="meta">Brasil · Banco</p>
+        <p><b>Trazer pro artesaná.</b> A linha de botões redondos com ícone e nome embaixo, tipografia grande, uma ideia por cartão e a linguagem mais simples do mercado brasileiro. Milhões de brasileiras já sabem usar.</p>
+        <p><b>Deixar lá.</b> O roxo.</p>
+        <a href="https://apps.apple.com/br/app/id814456780" target="_blank" rel="noopener">Ver na App Store</a>
+      </div>
+      <div class="telas"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/aa/50/b2/aa50b2d2-72cb-a2b8-e9a2-4de60fcc25c3/PT-02.png/480x0w.webp" alt="Tela do app Nubank" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a1/e9/bd/a1e9bd57-bf6a-7b90-47ba-36a75c2b406a/PT-04.png/480x0w.webp" alt="Tela do app Nubank" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/fa/d7/cd/fad7cd17-224b-670a-96a2-6264f9247763/PT-05.png/480x0w.webp" alt="Tela do app Nubank" loading="lazy"></div>
+    </article>
+    <article class="app" id="app-7">
+      <div class="app-texto">
+        <h2><span class="num">7</span> Duolingo</h2>
+        <p class="meta">Estados Unidos · Idiomas</p>
+        <p><b>Trazer pro artesaná.</b> Progresso sempre visível, botão grande de &#x27;toque para falar&#x27; e uma comemoração quando termina. É a referência do botão de fala e da barra de progresso da marca.</p>
+        <p><b>Deixar lá.</b> O mascote e o tom infantil.</p>
+        <a href="https://apps.apple.com/br/app/id570060128" target="_blank" rel="noopener">Ver na App Store</a>
+      </div>
+      <div class="telas"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/59/c5/2d/59c52d7e-3fbd-eb91-b2ce-b02004a03875/e83b4306-bad3-4478-a742-241f1749e950_pt-br_iphone6.5_screen_3.png/480x0w.webp" alt="Tela do app Duolingo" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/e4/71/ee/e471ee08-a382-2452-729d-3e41058c1f64/15bbbec0-0d40-48ae-aa54-9080bec329a2_pt-br_iphone6.5_screen_4.png/480x0w.webp" alt="Tela do app Duolingo" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/df/b6/04/dfb604df-4833-4390-55eb-c36a4588d797/80a09220-640e-4a0a-b9cd-f1e544f2a42d_pt-br_iphone6.5_screen_6.png/480x0w.webp" alt="Tela do app Duolingo" loading="lazy"></div>
+    </article>
+    <article class="app" id="app-8">
+      <div class="app-texto">
+        <h2><span class="num">8</span> Canva</h2>
+        <p class="meta">Austrália · Design</p>
+        <p><b>Trazer pro artesaná.</b> Galeria de modelos prontos em miniatura: escolhe um e ajusta. O rótulo e o post do artesaná. deveriam nascer assim, de uma galeria, e não de um formulário em branco.</p>
+        <p><b>Deixar lá.</b> A densidade de ferramentas do editor.</p>
+        <a href="https://apps.apple.com/br/app/id897446215" target="_blank" rel="noopener">Ver na App Store</a>
+      </div>
+      <div class="telas"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/0d/a2/f9/0da2f919-e180-28db-77de-bc21d1065805/1.png/480x0w.webp" alt="Tela do app Canva" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/28/3e/91/283e91ba-1224-e6ed-c9e5-b878bd53bed2/2.png/480x0w.webp" alt="Tela do app Canva" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/31/4f/4e/314f4eba-96a8-fa3b-0d6c-081b2e69b751/3.png/480x0w.webp" alt="Tela do app Canva" loading="lazy"></div>
+    </article>
+    <article class="app" id="app-9">
+      <div class="app-texto">
+        <h2><span class="num">9</span> Pinterest</h2>
+        <p class="meta">Estados Unidos · Descoberta visual</p>
+        <p><b>Trazer pro artesaná.</b> Grade de fotos de alturas diferentes, sem borda, rolagem sem fim. Serve pra área de referências e ideias da identidade da marca: salvar o que inspira.</p>
+        <p><b>Deixar lá.</b> A bagunça de conteúdo e os anúncios.</p>
+        <a href="https://apps.apple.com/br/app/id429047995" target="_blank" rel="noopener">Ver na App Store</a>
+      </div>
+      <div class="telas"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple122/v4/b8/67/93/b86793bf-9b00-7cf1-8ecd-769b154c2031/e44c2ca0-1a2f-43e4-875d-b53a6837f311_220114_AppStore_Evergreen_iOS_6.5-Inch_4_pt-BR_.jpg/480x0w.webp" alt="Tela do app Pinterest" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple122/v4/83/e9/6b/83e96be6-4eaf-bc3f-f105-fb7e2f54b9a0/fecb90f6-db01-42b1-89a3-4c0204364334_220114_AppStore_Evergreen_iOS_6.5-inch_2_pt-BR_.jpg/480x0w.webp" alt="Tela do app Pinterest" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple122/v4/95/18/54/95185402-27dd-5334-cd30-d9c9d3a34a73/a4fe8a68-45c9-482d-a361-f839aa4a5eef_220114_AppStore_Evergreen_iOS_6.5-inch_3_pt-BR_.jpg/480x0w.webp" alt="Tela do app Pinterest" loading="lazy"></div>
+    </article>
+    <article class="app" id="app-10">
+      <div class="app-texto">
+        <h2><span class="num">10</span> Things 3</h2>
+        <p class="meta">Alemanha · Lista de tarefas</p>
+        <p><b>Trazer pro artesaná.</b> O checklist mais bonito do mercado: espaço em branco, uma fonte só, um risco por item concluído. É como o checklist da identidade e o &#x27;hoje&#x27; da marca deveriam ser.</p>
+        <p><b>Deixar lá.</b> A seriedade de escritório.</p>
+        <a href="https://apps.apple.com/br/app/id904237743" target="_blank" rel="noopener">Ver na App Store</a>
+      </div>
+      <div class="telas"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/06/0b/49/060b49b0-5da8-d148-4f13-bffa7ce2faab/iPhone_14_Pro_Max_-_1.png/480x0w.webp" alt="Tela do app Things 3" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/53/69/89/536989d1-c4d2-5974-e3b1-935920dcd6be/iPhone_14_Pro_Max_-_2.png/480x0w.webp" alt="Tela do app Things 3" loading="lazy"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/87/c9/e9/87c9e981-99b5-d20e-9666-a5004b8952c1/iPhone_14_Pro_Max_-_4.png/480x0w.webp" alt="Tela do app Things 3" loading="lazy"></div>
+    </article>
+    <section class="secao" id="caminhos">
+      <h2>Três caminhos pro artesaná.</h2>
+      <p>Cada um junta três referências de cima. Os celulares ao lado são rascunhos nas cores da marca, não telas prontas: servem pra escolher a direção.</p>
+    </section>
+    
+    <article class="caminho">
+      <div>
+        <h3><span class="letra">A</span> Conversa</h3>
+        <p class="meta">Reflectly + Shopify + Duolingo</p>
+        <p>O app conversa com a pessoa: uma pergunta por tela, letra grande, campo com microfone. O perfil, a história da marca e o pedido de rótulo viram uma conversa. É o caminho que mais se afasta do &#x27;formulário do Forms&#x27;.</p>
+        <p class="nota">Recomendado pra começar: resolve a queixa principal e é onde o botão de fala faz mais diferença.</p>
+      </div>
+      
+<div class="fone">
+  <div class="fone-topo"><span class="marca-mini">artesaná<b>.</b></span><span class="passo">2 de 7</span></div>
+  <div class="fone-corpo">
+    <p class="pergunta">Como se chama a sua marca?</p>
+    <p class="ajuda">Pode ser o nome que já está na etiqueta.</p>
+    <div class="campo"><span class="digitado">Flor de Sal</span><span class="mic-mini" aria-hidden="true">&#9679;</span></div>
+    <div class="balao">Bonito. E o que a Flor de Sal faz?</div>
+    <div class="chips-mini"><span>Sabonetes</span><span>Velas</span><span>Cosméticos</span></div>
+  </div>
+  <div class="fone-base"><span class="botao-mini">Continuar</span></div>
+</div>
+    </article>
+    <article class="caminho">
+      <div>
+        <h3><span class="letra">B</span> Ateliê visual</h3>
+        <p class="meta">Airbnb + Canva + Pinterest</p>
+        <p>A foto manda. Rótulos e posts nascem de uma galeria de modelos; a home mostra o que a pessoa já criou em fotos grandes; as referências viram uma grade tipo Pinterest.</p>
+        <p class="nota">Combina com o caminho A: A pra preencher, B pra escolher e ver.</p>
+      </div>
+      
+<div class="fone">
+  <div class="fone-topo"><span class="marca-mini">artesaná<b>.</b></span><span class="passo">Rótulos</span></div>
+  <div class="fone-corpo">
+    <p class="pergunta pequena">Escolha um modelo</p>
+    <div class="galeria">
+      <div class="modelo redondo"><i></i><small>Redondo</small></div>
+      <div class="modelo retang"><i></i><small>Retangular</small></div>
+      <div class="modelo tag"><i></i><small>Tag</small></div>
+      <div class="modelo anvisa"><i></i><small>Anvisa</small></div>
+    </div>
+    <p class="ajuda">Seus rótulos</p>
+    <div class="fotos"><div class="foto f1"></div><div class="foto f2"></div></div>
+  </div>
+  <div class="fone-base"><span class="botao-mini">Criar rótulo</span></div>
+</div>
+    </article>
+    <article class="caminho">
+      <div>
+        <h3><span class="letra">C</span> Painel do dia</h3>
+        <p class="meta">Etsy Seller + Nubank + Things 3</p>
+        <p>A home responde &#x27;o que precisa de mim hoje&#x27;: próximo passo da marca, links, rótulos pendentes, com botões redondos em linha e números grandes. Limpo e direto.</p>
+        <p class="nota">Bom pra depois, quando houver mais dados no app (pedidos, mensagens, métricas).</p>
+      </div>
+      
+<div class="fone">
+  <div class="fone-topo"><span class="marca-mini">artesaná<b>.</b></span><span class="passo">Hoje</span></div>
+  <div class="fone-corpo">
+    <p class="pergunta pequena">Bom dia, Maria</p>
+    <div class="atalhos"><div><i>W</i><small>WhatsApp</small></div><div><i>R</i><small>Rótulo</small></div><div><i>F</i><small>Foto</small></div><div><i>+</i><small>Mais</small></div></div>
+    <div class="cartao"><b>Sua marca está 4 de 5</b><span>Falta a história. Leva dois minutos.</span></div>
+    <div class="cartao"><b>Link do WhatsApp</b><span>wa.me/5511900000000</span></div>
+    <div class="cartao"><b>Rótulo de lavanda</b><span>Pronto pra imprimir</span></div>
+  </div>
+  <div class="fone-base"><span class="botao-mini">Continuar a história</span></div>
+</div>
+    </article>
+    <section class="secao" id="fala">
+      <h2>Botão de fala</h2>
+      <p>Já está no app, na versão 1.4.0: um microfone dentro dos campos de texto do perfil, da mensagem do WhatsApp e do feedback. A pessoa toca, fala, o texto entra. Pontuação falada vira sinal ("vírgula", "ponto").</p>
+    </section>
+    <div class="fala">
+      <div>
+        <p><b>Onde funciona</b></p>
+        <ul>
+          <li>Chrome no Android e no computador: funciona, precisa de internet pra reconhecer.</li>
+          <li>Safari no iPhone: funciona no navegador. Instalado na tela inicial, depende da versão do iOS; se não funcionar, o teclado do iPhone tem o próprio microfone.</li>
+          <li>Onde o navegador não tem reconhecimento, o botão nem aparece e o campo fica normal.</li>
+        </ul>
+      </div>
+      <div>
+        <p><b>O que vem depois, se a direção for a Conversa</b></p>
+        <ul>
+          <li>Falar a resposta e o app já passar pra próxima pergunta.</li>
+          <li>Pedir por voz: "faz um rótulo redondo pro sabonete de lavanda".</li>
+          <li>Ler a pergunta em voz alta pra quem prefere ouvir.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fim">As imagens dos apps são as capturas públicas de cada um na App Store e pertencem aos seus donos. Página de trabalho, sem indexação.</p>
+  </div>
+</body>
+</html>

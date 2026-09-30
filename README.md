@@ -15,6 +15,8 @@ Endereço anterior, que continua no ar mas congelado na versão 1.3.1: https://b
 - App PWA em `app/`: HTML/CSS/JS puro, sem build, instalável no celular, funciona offline.
 - Funcionando sem backend: link do WhatsApp com QR, checklist de identidade com upload, gerador de lista INCI (~150 ingredientes), rótulo redondo/retangular/tag exportado em PDF (folha A4, vetorial), tutoriais, onboarding progressivo, perfil, planos, configurações.
 - Funções de IA e Meta Business aparecem como "em breve" (`app/js/data/roadmap.js`).
+- Falar em vez de digitar (`app/js/ditado.js`): microfone nos campos de texto do perfil, do WhatsApp e do feedback, com o reconhecimento de voz do navegador. Onde não existe, o campo fica normal.
+- Referências pro redesenho do app em `marketing/referencias-app/` (dez apps, três caminhos).
 
 ## Rodar local
 

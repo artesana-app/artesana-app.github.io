@@ -2,6 +2,7 @@ import { h, header, toast, copiar } from '../ui.js';
 import * as store from '../store.js';
 import { validar, numeroFormatado, versoesDoLink, SUGESTOES_MENSAGEM } from '../lib/whatsapp.js';
 import { baseLinkCurto, semProtocolo } from '../site.js';
+import { comDitado } from '../ditado.js';
 
 // QR em data URL (PNG) usando qrcode-generator (window.qrcode). px = lado em pixels.
 export function gerarQrDataUrl(texto, px = 512, cor = '#2C1A1E') {
@@ -93,7 +94,7 @@ export function montar(section) {
       h('div', { class: 'card' },
         h('div', { class: 'field' }, h('label', {}, 'Seu número'),
           h('div', { class: 'inline' }, h('span', { class: 'prefix' }, '+55'), ddd, numero), erro),
-        h('div', { class: 'field' }, h('label', {}, 'Mensagem automática'), msg, chips,
+        h('div', { class: 'field' }, h('label', {}, 'Mensagem automática'), comDitado(msg), chips,
           h('div', { class: 'hint' }, 'Opcional. Vale pro link com mensagem e pro QR code.')),
         h('button', { class: 'btn peach block', onClick: () => gerar() }, 'Gerar link'),
       ),

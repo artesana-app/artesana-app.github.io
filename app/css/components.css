@@ -106,6 +106,19 @@
 .err-msg { color: var(--erro); font-size: 12px; margin-top: 4px; }
 .inline { display: flex; gap: 8px; align-items: center; }
 .inline .input { flex: 1; }
+/* falar em vez de digitar: microfone dentro do campo */
+.ditado { position: relative; }
+.ditado .input, .ditado .textarea { padding-right: 50px; }
+.mic { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; border: 0; padding: 0; background: var(--cream); color: var(--moss); display: grid; place-items: center; cursor: pointer; }
+.mic svg { width: 18px; height: 18px; }
+.mic:hover { background: var(--peach-l); }
+.mic:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+.ditado.multi .mic { top: auto; bottom: 8px; transform: none; }
+.mic.on { background: var(--erro); color: var(--white); animation: mic-pulso 1.2s ease-in-out infinite; }
+@keyframes mic-pulso { 0%, 100% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.45); } 50% { box-shadow: 0 0 0 9px rgba(192, 57, 43, 0); } }
+@media (prefers-reduced-motion: reduce) { .mic.on { animation: none; } }
+.dica-ditado { display: flex; align-items: center; gap: 6px; margin: 0 0 12px; font-size: 13px; color: var(--ink-2); }
+.dica-ditado svg { width: 16px; height: 16px; color: var(--moss); flex: 0 0 auto; }
 .prefix { min-height: 44px; padding: 10px 12px; border-radius: var(--radius-s); background: var(--line); font-weight: 600; }
 
 .switch { position: relative; width: 46px; height: 26px; flex-shrink: 0; }
