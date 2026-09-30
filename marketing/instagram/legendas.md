@@ -317,7 +317,7 @@ Imagens: `anuncio.jpg`, `anuncio-stories.jpg`
 
 **Botão:** Saiba mais
 
-**Link de destino:** https://artesana-app.github.io/
+**Link de destino:** https://artesana-mktdigital.com.br/
 
 **Texto alternativo**
 

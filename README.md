@@ -2,8 +2,8 @@
 
 O app da empreendedora que faz, vende e fotografa. Artesanato, saboaria e beleza natural.
 
-- **Site:** https://artesana-app.github.io/
-- **App (PWA):** https://artesana-app.github.io/app/
+- **Site:** https://artesana-mktdigital.com.br/
+- **App (PWA):** https://artesana-mktdigital.com.br/app/
 
 Domínio: `artesana-mktdigital.com.br` redireciona para o site. Detalhes e limites em `docs/dominio.md`.
 
@@ -28,7 +28,7 @@ python -m http.server 8080
 ```bash
 node --test tests/*.test.mjs      # lógica pura (whatsapp, inci, rótulo, progresso)
 python scripts/smoke.py           # Playwright: abre todas as rotas, falha em erro de console
-python scripts/smoke.py --base https://artesana-app.github.io
+python scripts/smoke.py --base https://artesana-mktdigital.com.br
 ```
 
 ## Publicar

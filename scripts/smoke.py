@@ -2,7 +2,7 @@
 
 Uso:
   python scripts/smoke.py                      # sobe http.server local na raiz do repo
-  python scripts/smoke.py --base https://artesana-app.github.io
+  python scripts/smoke.py --base https://artesana-mktdigital.com.br
 """
 import argparse
 import functools
