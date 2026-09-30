@@ -34,7 +34,7 @@ SW = RAIZ / "app" / "sw.js"
 
 def sh(*args, cwd=BACKEND, entrada=None, ok_falhar=False):
     print("$", " ".join(args))
-    r = subprocess.run(list(args), cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace", input=entrada, shell=(args[0] in ("npx", "git")))
+    r = subprocess.run(list(args), cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace", input=entrada, shell=(args[0] == "npx"))
     if r.returncode != 0 and not ok_falhar:
         sys.exit(f"falhou ({r.returncode}):\n{r.stdout}\n{r.stderr}")
     return r.stdout + r.stderr
