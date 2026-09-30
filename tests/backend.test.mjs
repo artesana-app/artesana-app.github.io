@@ -73,7 +73,11 @@ test('aviso de suporte traz o #c e o histórico', () => {
   assert.match(t, /Ana, marca Velas da Ana/);
   assert.match(t, /Como faço o QR\?/);
   assert.match(t, /eu: oi/);
+  assert.match(t, /No Telegram/);
   assert.match(textoAvisoSuporte({ conversa: 1 }), /pediu pra falar/);
+  const w = textoAvisoSuporte({ conversa: 2, painel: 'https://x/app/admin/#suporte', telegram: false });
+  assert.match(w, /No painel: https:\/\/x\/app\/admin\/#suporte/);
+  assert.doesNotMatch(w, /Telegram/);
 });
 
 test('basic auth', () => {

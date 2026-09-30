@@ -5,8 +5,11 @@ const params = new URLSearchParams(location.search);
 const BACKEND = (params.get('backend') || SITE.backend || '').replace(/\/$/, '');
 const tela = document.getElementById('tela');
 const abas = document.getElementById('abas');
-let auth = sessionStorage.getItem('artesana_admin_auth') || '';
-let abaAtual = 'resumo';
+const guardado = (() => { try { return localStorage.getItem('artesana_admin_auth') || ''; } catch { return ''; } })();
+let auth = guardado;
+const ABA_INICIAL = (location.hash || '').replace('#', '');
+let abaAtual = ['resumo', 'visitantes', 'perfis', 'feedbacks', 'suporte', 'pagamentos'].includes(ABA_INICIAL) ? ABA_INICIAL : 'resumo';
+const guardar = (v) => { try { if (v) localStorage.setItem('artesana_admin_auth', v); else localStorage.removeItem('artesana_admin_auth'); } catch { /* sem armazenamento */ } };
 
 const h = (tag, attrs = {}, ...filhos) => {
   const el = document.createElement(tag);
@@ -23,7 +26,7 @@ const dataCurta = (t) => (t ? new Date(Number(t)).toLocaleDateString('pt-BR', { 
 
 async function api(caminho, opts = {}) {
   const r = await fetch(`${BACKEND}${caminho}`, { ...opts, headers: { Authorization: auth, 'Content-Type': 'application/json', ...(opts.headers || {}) } });
-  if (r.status === 401) { auth = ''; sessionStorage.removeItem('artesana_admin_auth'); login('Usuário ou senha errados.'); throw new Error('login'); }
+  if (r.status === 401) { auth = ''; guardar(''); login('Usuário ou senha errados.'); throw new Error('login'); }
   return r.json();
 }
 
@@ -43,8 +46,8 @@ function login(erro = '') {
     try {
       const r = await fetch(`${BACKEND}/admin/resumo`, { headers: { Authorization: auth } });
       if (r.status === 401) { msg.textContent = 'Usuário ou senha errados.'; auth = ''; return; }
-      sessionStorage.setItem('artesana_admin_auth', auth);
-      abrir('resumo');
+      guardar(auth);
+      abrir(abaAtual);
     } catch { msg.textContent = 'Não consegui falar com o backend.'; }
   };
   tela.append(h('form', { class: 'login', onSubmit: entrar }, h('h2', {}, 'Entrar no painel'), u, s, msg, h('button', { class: 'btn', type: 'submit' }, 'Entrar')));
@@ -57,7 +60,7 @@ function montarAbas() {
   abas.classList.remove('hidden');
   abas.innerHTML = '';
   for (const [id, nome] of ABAS) abas.append(h('button', { class: id === abaAtual ? 'on' : '', onClick: () => abrir(id) }, nome));
-  abas.append(h('button', { onClick: () => { auth = ''; sessionStorage.removeItem('artesana_admin_auth'); login(); } }, 'Sair'));
+  abas.append(h('button', { onClick: () => { auth = ''; guardar(''); login(); } }, 'Sair'));
 }
 
 function barras(lista, total) {
@@ -157,6 +160,7 @@ const TELAS = { resumo, visitantes, perfis, feedbacks, suporte, pagamentos };
 
 async function abrir(aba) {
   abaAtual = aba;
+  if (location.hash !== `#${aba}`) history.replaceState(null, '', `#${aba}`);
   montarAbas();
   tela.innerHTML = '';
   tela.append(h('p', { class: 'nota' }, 'carregando...'));
@@ -168,4 +172,4 @@ async function abrir(aba) {
   }
 }
 
-if (auth && BACKEND) abrir('resumo'); else login();
+if (auth && BACKEND) abrir(abaAtual); else login();

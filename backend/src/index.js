@@ -32,7 +32,22 @@ async function lerJson(req) {
   try { return await req.json(); } catch { return null; }
 }
 
-// ---------- Telegram (avisos pra equipe) ----------
+// ---------- avisos pra equipe: Telegram e/ou WhatsApp (Green API), o que estiver configurado ----------
+async function whatsapp(env, texto) {
+  if (!env.WA_INSTANCE || !env.WA_TOKEN || !env.WA_DESTINO) return null;
+  try {
+    const r = await fetch(`https://api.green-api.com/waInstance${env.WA_INSTANCE}/sendMessage/${env.WA_TOKEN}`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chatId: `${String(env.WA_DESTINO).replace(/\D/g, '')}@c.us`, message: texto.slice(0, 4000) }),
+    });
+    return await r.json().catch(() => null);
+  } catch { return null; }
+}
+
+async function avisar(env, texto) {
+  await Promise.all([telegram(env, texto), whatsapp(env, texto)]);
+}
+
 async function telegram(env, texto, extra = {}) {
   if (!env.TELEGRAM_TOKEN || !env.TELEGRAM_CHAT) return null;
   try {
@@ -76,7 +91,7 @@ async function eventos(req, env, ctx) {
     await env.DB.batch(linhas.map((l) => env.DB.prepare('INSERT INTO eventos (visitante, t, tipo, rota, dados) VALUES (?, ?, ?, ?, ?)').bind(b.visitante, l.t, l.tipo, l.rota, l.dados)));
   }
   await atualizarVisitante(env, b.visitante, campos, paginas);
-  if (campos.email) ctx.waitUntil(telegram(env, `📧 E-mail novo no app: ${campos.email}`));
+  if (campos.email) ctx.waitUntil(avisar(env, `📧 E-mail novo no app: ${campos.email}`));
   return json({ ok: true, recebidos: linhas.length });
 }
 
@@ -91,7 +106,7 @@ async function perfil(req, env, ctx) {
     .bind(b.visitante, agora, c.nome, c.marca, c.email, resumo, JSON.stringify(b.dados || {}).slice(0, 20000)).run();
   const campos = Object.fromEntries(Object.entries(c).filter(([, v]) => v != null));
   await atualizarVisitante(env, b.visitante, { ...campos, perfil_enviado: 1 });
-  ctx.waitUntil(telegram(env, `📋 Perfil enviado\n\n${resumo}`));
+  ctx.waitUntil(avisar(env, `📋 Perfil enviado\n\n${resumo}`));
   return json({ ok: true });
 }
 
@@ -104,7 +119,7 @@ async function feedback(req, env, ctx) {
   await registrarVisitante(env, req, b.visitante, b.aparelho, agora);
   await env.DB.prepare('INSERT INTO feedbacks (visitante, t, nota, nome, marca, email, texto, dados) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
     .bind(b.visitante, agora, nota, String(b.nome || '').slice(0, 80), String(b.marca || '').slice(0, 80), String(b.email || '').slice(0, 120), texto, JSON.stringify(b.dados || {}).slice(0, 10000)).run();
-  ctx.waitUntil(telegram(env, `⭐ Avaliação ${nota != null ? `${nota}/5` : ''}\n\n${texto}`));
+  ctx.waitUntil(avisar(env, `⭐ Avaliação ${nota != null ? `${nota}/5` : ''}\n\n${texto}`));
   return json({ ok: true });
 }
 
@@ -126,7 +141,8 @@ async function suporteEnviar(req, env, ctx) {
   }
   const textoCliente = pergunta || historico.filter((l) => l.startsWith('eu:')).pop()?.slice(3).trim() || '(pediu pra falar com uma atendente)';
   await env.DB.prepare("INSERT INTO mensagens (conversa, t, de, texto, origem) VALUES (?, ?, 'cliente', ?, 'app')").bind(conv.id, agora, textoCliente).run();
-  ctx.waitUntil(telegram(env, textoAvisoSuporte({ conversa: conv.id, nome, marca, pergunta: textoCliente, historico })));
+  const painel = `${env.SITE_URL || 'https://artesana-mktdigital.com.br'}/app/admin/#suporte`;
+  ctx.waitUntil(avisar(env, textoAvisoSuporte({ conversa: conv.id, nome, marca, pergunta: textoCliente, historico, painel, telegram: !!env.TELEGRAM_TOKEN })));
   return json({ ok: true, ticket: conv.id });
 }
 
@@ -221,7 +237,7 @@ async function mpWebhook(req, env, ctx) {
     const resumo = JSON.stringify({ tipo, id, status, atualizado: Date.now() }).slice(0, 2000);
     if (existente) await env.DB.prepare('UPDATE pagamentos SET status = ?, mp_id = ?, valor = COALESCE(?, valor), email = COALESCE(?, email), dados = ? WHERE id = ?').bind(status, String(id), valor, email, resumo, existente.id).run();
     else await env.DB.prepare('INSERT INTO pagamentos (visitante, t, plano, email, referencia, mp_id, status, valor, dados) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)').bind(Date.now(), (referencia || '').split('-')[0] || 'desconhecido', email, referencia, String(id), status, valor, resumo).run();
-    if (!existente || existente.status !== status) await telegram(env, `💰 Pagamento ${status} · ${(existente && existente.plano) || (referencia || '').split('-')[0]} · ${email || ''} · R$ ${valor ?? '?'}`);
+    if (!existente || existente.status !== status) await avisar(env, `💰 Pagamento ${status} · ${(existente && existente.plano) || (referencia || '').split('-')[0]} · ${email || ''} · R$ ${valor ?? '?'}`);
   })();
   ctx.waitUntil(tarefa);
   return json({ ok: true });

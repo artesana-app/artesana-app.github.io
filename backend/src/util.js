@@ -65,10 +65,13 @@ export function interpretarRespostaTelegram(msg = {}) {
 }
 
 // Texto que vai pro Telegram quando uma cliente pede atendente. O #c<id> é o que liga a resposta à conversa.
-export function textoAvisoSuporte({ conversa, nome, marca, pergunta, historico = [] }) {
+export function textoAvisoSuporte({ conversa, nome, marca, pergunta, historico = [], painel = '', telegram = true }) {
   const quem = [nome || 'sem nome', marca ? `marca ${marca}` : ''].filter(Boolean).join(', ');
   const ultimas = historico.slice(-4).map((l) => `  ${String(l).slice(0, 200)}`).join('\n');
-  return [`💬 #c${conversa} · ${quem}`, '', pergunta ? String(pergunta).slice(0, 1000) : '(pediu pra falar com uma atendente)', ultimas ? `\nAntes disso:\n${ultimas}` : '', '', 'Pra responder, use "Responder" nesta mensagem (ou /r ' + conversa + ' sua resposta).'].join('\n');
+  const como = [];
+  if (telegram) como.push(`No Telegram: use "Responder" nesta mensagem (ou /r ${conversa} sua resposta).`);
+  if (painel) como.push(`No painel: ${painel}`);
+  return [`💬 #c${conversa} · ${quem}`, '', pergunta ? String(pergunta).slice(0, 1000) : '(pediu pra falar com uma atendente)', ultimas ? `\nAntes disso:\n${ultimas}` : '', '', 'Pra responder:', ...como].join('\n');
 }
 
 export function basicAuthOk(cabecalho, usuario, senha) {

@@ -20,7 +20,9 @@ na entrada, faixa etária e cidade que ela mesma informou, e-mails deixados, per
 atendimento (com resposta direto do painel) e pagamentos. Cada visitante abre o caminho completo, evento por evento.
 
 O número de WhatsApp da equipe nunca aparece pra cliente: ela conversa na tela Ajuda do app, e a equipe responde no
-Telegram ou no painel. (WhatsApp direto ficaria caro: precisa de conta na API oficial da Meta ou de serviço pago.)
+Telegram ou no painel (`/app/admin/#suporte`, o link vai em todo aviso). Os avisos podem sair também por WhatsApp
+através de uma instância Green API já existente (segredos `WA_INSTANCE`, `WA_TOKEN`, `WA_DESTINO`): nesse caso o aviso
+chega no WhatsApp e a resposta é dada pelo link do painel. Sem nada configurado, tudo continua no painel.
 
 ## Publicar (uma vez)
 
