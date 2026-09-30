@@ -1,4 +1,4 @@
-import { h, header, toast } from '../ui.js';
+import { h, header, toast, navegacao } from '../ui.js';
 import * as store from '../store.js';
 import * as router from '../router.js';
 import { PAGINA_FB_MOBILE, PAGINA_FB_DESKTOP } from '../data/tutoriais.js';
@@ -23,10 +23,11 @@ export function montar(section) {
   };
   render();
   section.append(h('div', { class: 'screen' },
-    header({ titulo: 'Criar página no Facebook', sub: '7 passos, uns 10 minutos', voltar: '#mais' }),
+    header({ titulo: 'Criar página no Facebook', sub: '7 passos, uns 10 minutos', voltar: '#redes' }),
     h('div', { class: 'content' },
       tabs, corpo,
-      h('button', { class: 'btn peach block', style: { marginTop: '12px' }, onClick: () => { store.set('meta', { conectado: true, temPagina: true }); toast('Página conectada ✅'); router.ir('#meta'); } }, 'Já criei, conectar agora'),
+      h('button', { class: 'btn peach block', style: { marginTop: '12px' }, onClick: () => { store.patch('user', { redes: { ...(store.usuario().redes || {}), facebook: true } }); toast('Página anotada'); router.ir('#redes'); } }, 'Já criei a página'),
+      navegacao({ atual: 'social', voltar: 'redes', seguir: 'social' }),
     ),
   ));
 }

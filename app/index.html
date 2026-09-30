@@ -4,53 +4,77 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>artesaná.</title>
-  <meta name="description" content="O app da empreendedora que faz, vende e fotografa. Artesanato, saboaria e beleza natural.">
-  <meta name="theme-color" content="#4A6348">
+  <meta name="description" content="O app de quem faz, vende e divulga sozinha. Artesanato, saboaria e beleza natural.">
+  <meta name="theme-color" content="#FFF5EF">
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" href="../assets/brand/icon-192.png">
   <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="artesaná.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,100;1,9..144,300..600,100&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/variables.css">
   <link rel="stylesheet" href="./css/global.css">
   <link rel="stylesheet" href="./css/components.css">
   <link rel="stylesheet" href="./css/modules.css">
+  <link rel="stylesheet" href="./css/layout.css">
   <link rel="stylesheet" href="./css/print.css">
 </head>
 <body>
   <div class="app">
+    <nav class="lateral hidden" aria-label="Navegação principal">
+      <a class="lateral-marca" href="#home">artesaná<b>.</b></a>
+      <ul>
+        <li><a href="#home" data-tab="home"><i>⌂</i>Início</a></li>
+        <li><a href="#identidade" data-tab="identidade"><i>◐</i>Identidade</a></li>
+        <li><a href="#rotulos" data-tab="rotulos"><i>▭</i>Rótulos</a></li>
+        <li><a href="#whatsapp" data-tab="whatsapp"><i>☏</i>WhatsApp</a></li>
+        <li><a href="#social" data-tab="social"><i>▣</i>Social</a></li>
+        <li><a href="#fotos" data-tab="fotos"><i>◉</i>Fotos</a></li>
+        <li><a href="#referencias" data-tab="referencias"><i>✎</i>Referências</a></li>
+        <li><a href="#suporte" data-tab="suporte"><i>?</i>Ajuda</a></li>
+        <li><a href="#mais" data-tab="mais"><i>⋯</i>Mais</a></li>
+      </ul>
+      <a class="lateral-beta" href="#feedback">Beta: avaliar o app</a>
+    </nav>
     <main>
       <section data-route="login"></section>
+      <section data-route="conversa"></section>
       <section data-route="home"></section>
       <section data-route="social"></section>
       <section data-route="rotulos"></section>
       <section data-route="fotos"></section>
+      <section data-route="editor"></section>
       <section data-route="mais"></section>
       <section data-route="identidade"></section>
+      <section data-route="criar"></section>
       <section data-route="feedback"></section>
+      <section data-route="suporte"></section>
       <section data-route="inpi"></section>
       <section data-route="perfil"></section>
+      <section data-route="ajuda-instagram"></section>
       <section data-route="planos"></section>
       <section data-route="config"></section>
       <section data-route="whatsapp"></section>
+      <section data-route="redes"></section>
+      <section data-route="referencias"></section>
       <section data-route="meta"></section>
       <section data-route="tutorial-meta"></section>
       <section data-route="detalhe"></section>
     </main>
     <nav class="tabbar hidden" aria-label="Navegação principal">
       <ul>
-        <li><a href="#home" data-tab="home"><span class="ico">🏠</span>Home</a></li>
-        <li><a href="#social" data-tab="social"><span class="ico">📱</span>Social</a></li>
-        <li><a href="#rotulos" data-tab="rotulos"><span class="ico">🏷️</span>Rótulos</a></li>
-        <li><a href="#fotos" data-tab="fotos"><span class="ico">📸</span>Fotos</a></li>
+        <li><a href="#home" data-tab="home"><span class="ico">⌂</span>Início</a></li>
+        <li><a href="#social" data-tab="social"><span class="ico">▣</span>Social</a></li>
+        <li><a href="#rotulos" data-tab="rotulos"><span class="ico">▭</span>Rótulos</a></li>
+        <li><a href="#fotos" data-tab="fotos"><span class="ico">◉</span>Fotos</a></li>
         <li><a href="#mais" data-tab="mais"><span class="ico">⋯</span>Mais</a></li>
       </ul>
     </nav>
+    <a id="fab-beta" class="fab-beta hidden" href="#feedback" title="Versão beta: avalie o app">Beta<small>avaliar</small></a>
   </div>
   <div id="toast" role="status" aria-live="polite"></div>
   <div id="modal"></div>

@@ -1,33 +1,41 @@
-import { h, header } from '../ui.js';
-import { SITE } from '../site.js';
-
-const PLANOS = [
-  { id: 'semente', emoji: '🌱', nome: 'Semente', preco: 'Grátis', desc: 'Pra começar', itens: ['Link do WhatsApp com QR', 'Checklist de identidade', 'Gerador INCI', 'Rótulo básico em PDF', 'Tutoriais'] },
-  { id: 'florescer', emoji: '🌸', nome: 'Florescer', preco: 'R$ 47/mês', desc: 'Uso profissional', itens: ['Tudo do Semente', 'Logo e frase com IA', 'Legendas e calendário', 'Edição de foto com IA', 'Métricas do Instagram'] },
-  { id: 'prosperar', emoji: '🌳', nome: 'Prosperar', preco: 'R$ 127/mês', desc: 'Operação completa + Academia', itens: ['Tudo do Florescer', 'Reels com voz IA', 'Agendamento via Meta', 'Academia artesaná.', 'Suporte prioritário'] },
-];
+import { h, header, toast, navegacao } from '../ui.js';
+import * as store from '../store.js';
+import * as analitica from '../analitica.js';
+import { SITE, diasDeBeta } from '../site.js';
+import { PLANOS, precoFormatado } from '../lib/planos.js';
 
 export function montar(section) {
+  const atual = store.get('plano', 'semente');
+  const dias = diasDeBeta();
   section.innerHTML = '';
   const aviso = SITE.beta
     ? h('div', { class: 'card moss' },
-      h('h3', {}, 'Teste beta: tudo liberado'),
-      h('p', { style: { margin: '6px 0 12px', fontSize: '13.5px' } }, 'Durante o teste você usa o app inteiro sem pagar e sem limite. Nenhum plano precisa ser escolhido.'),
+      h('h3', {}, dias > 0 ? `Beta: tudo liberado por mais ${dias} ${dias === 1 ? 'dia' : 'dias'}` : 'O beta terminou'),
+      h('p', { style: { margin: '6px 0 12px', fontSize: '13.5px' } }, `Até ${new Date(`${SITE.betaFim}T12:00:00`).toLocaleDateString('pt-BR')} você usa o app inteiro sem pagar. Depois, cada conta passa pro plano que escolher; quem não escolher fica no Semente, grátis.`),
       h('a', { class: 'btn soft block', href: '#feedback' }, 'Contar como foi o teste'))
     : null;
+
+  const assinar = (p) => {
+    analitica.evento('plano_clique', { plano: p.id });
+    const link = SITE.pagamentos[p.id];
+    if (!p.preco) { store.set('plano', 'semente'); toast('Plano Semente escolhido'); return; }
+    if (!link) { toast('O pagamento abre em breve. Durante o beta está tudo liberado.', 3500); return; }
+    window.open(link, '_blank', 'noopener');
+  };
 
   section.append(h('div', { class: 'screen' },
     header({ titulo: 'Planos', sub: SITE.beta ? 'Como vai ficar depois do teste' : 'Cresça no seu ritmo', voltar: '#mais', peach: true }),
     h('div', { class: 'content' },
       aviso,
-      ...PLANOS.map((p) => h('div', { class: 'card' },
-        h('div', { class: 'row' },
-          h('div', { class: 'grow' }, h('h3', {}, `${p.emoji} ${p.nome}`), h('div', { class: 'muted' }, p.desc)),
-          h('b', {}, p.preco)),
-        h('ul', { style: { margin: '10px 0' } }, ...p.itens.map((i) => h('li', { style: { fontSize: '13.5px', padding: '2px 0' } }, `✓ ${i}`))),
-        h('span', { class: 'badge soft' }, SITE.beta ? 'liberado no teste' : 'em breve'),
-      )),
-      h('p', { class: 'muted center' }, 'Valores de referência. Os preços finais serão definidos antes de ativar o pagamento.'),
+      h('div', { class: 'planos' }, ...PLANOS.map((p) => h('div', { class: `card plano ${p.id === 'prosperar' ? 'destaque' : ''} ${p.id === atual && !SITE.beta ? 'atual' : ''}` },
+        p.id === 'prosperar' ? h('span', { class: 'badge gold' }, 'mais completo') : null,
+        h('h3', {}, `${p.emoji} ${p.nome}`), h('div', { class: 'muted' }, p.desc),
+        h('div', { class: 'preco' }, precoFormatado(p)),
+        h('ul', {}, ...p.itens.map((i) => h('li', {}, `✓ ${i}`))),
+        h('button', { class: `btn block ${p.id === 'prosperar' ? 'peach' : p.preco ? '' : 'white'}`, type: 'button', onClick: () => assinar(p) },
+          SITE.beta ? (p.preco ? 'Assinar depois do beta' : 'Grátis') : (p.preco ? 'Assinar' : 'Ficar no Semente'))))),
+      h('p', { class: 'muted center' }, 'Pagamento pelo Mercado Pago: PIX, cartão ou boleto. O anual pode ser parcelado no cartão.'),
+      navegacao({ atual: 'planos', seguir: '' }),
     ),
   ));
 }

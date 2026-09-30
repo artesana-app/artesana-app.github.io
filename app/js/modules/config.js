@@ -21,7 +21,7 @@ export function montar(section) {
       ])),
       grupo('Sobre', lista([
         { emoji: '🍑', titulo: 'artesaná.', sub: `Versão ${VERSAO} · beta`, static: true },
-        { emoji: '📄', titulo: 'Termos de uso', sub: 'Em breve', static: true },
+        { emoji: '📄', titulo: 'Privacidade', sub: 'Seus dados ficam neste aparelho. O que você envia à equipe (perfil, avaliação, ajuda) vai só pra ela.', static: true },
       ])),
       grupo('Dados', lista([
         { emoji: '🗑️', titulo: 'Limpar dados', sub: 'Apaga tudo deste aparelho e volta pro login', onClick: async () => {

@@ -79,12 +79,13 @@ ul, ol { padding: 0; list-style: none; }
 .selo-frase { font-style: italic; font-size: 11.5px; margin-top: 4px; }
 .selo-peso { font-weight: 600; font-size: 11.5px; margin-top: 4px; }
 .tag {
-  position: absolute; left: 20%; bottom: 0; width: 128px; height: 204px; border-radius: 6px;
-  background: var(--moss); color: var(--cream); padding: 46px 14px 14px; transform: rotate(8deg);
+  position: absolute; right: calc(8% + 168px); bottom: 26px; width: 128px; height: 204px; border-radius: 6px;
+  background: var(--moss); color: var(--cream); padding: 46px 14px 14px; transform: rotate(-11deg);
   display: flex; flex-direction: column; gap: 12px;
   box-shadow: 0 16px 28px -14px rgba(44, 26, 30, 0.55);
 }
 .tag-furo { position: absolute; top: 14px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--peach); }
+.tag-furo::after { content: ''; position: absolute; left: 5px; bottom: 6px; width: 54px; height: 40px; border: 2px solid var(--cream); border-color: transparent transparent transparent var(--cream); border-radius: 50%; transform: rotate(32deg); opacity: 0.8; }
 .tag-marca { font-size: 17px; letter-spacing: -0.03em; text-align: center; margin-bottom: 6px; white-space: nowrap; }
 .tag-texto { font-size: 11.5px; display: flex; align-items: flex-end; gap: 6px; }
 .tag-texto i { flex: 1; border-bottom: 1px solid rgba(255, 245, 239, 0.6); height: 14px; }
@@ -214,7 +215,7 @@ ul, ol { padding: 0; list-style: none; }
   .cena { height: 420px; }
   .fone { width: 196px; right: 2%; }
   .selo { width: 176px; left: 0; }
-  .tag { left: 16%; }
+  .tag { right: calc(2% + 150px); }
   .grade { grid-template-columns: repeat(2, 1fr); }
   .vantagens ul { grid-template-columns: repeat(2, 1fr); gap: 22px 16px; }
   .vantagens li { justify-content: flex-start; }
@@ -240,7 +241,7 @@ ul, ol { padding: 0; list-style: none; }
   .selo { width: 160px; left: 0; top: 0; padding: 20px; }
   .selo-marca { font-size: 19px; }
   .selo-produto { font-size: 12.5px; }
-  .tag { width: 112px; height: 178px; left: 12%; bottom: 14px; padding: 42px 12px 12px; }
+  .tag { width: 112px; height: 178px; left: auto; right: 132px; bottom: 14px; padding: 42px 12px 12px; }
   .tag-marca { font-size: 14.5px; }
 
   .vitrine { padding-block: 46px 16px; }

@@ -19,13 +19,14 @@ LADO = 375  # viewport do app
 
 SEMENTE = """() => {
   const s = (k, v) => localStorage.setItem('artesana_' + k, JSON.stringify(v));
-  s('user', {logado: true, nome: 'Maria', marca: 'Flor de Sal', loginTipo: 'instagram'});
-  s('onboarding', {nicho: 'sabonetes', historia: 'Comecei fazendo sabonetes pra família.', personalidade: 'delicada',
+  s('user', {logado: true, nome: 'Maria', marca: 'Flor de Sal', loginTipo: 'instagram', redes: {instagram: true, facebook: false}});
+  s('onboarding', {nichos: ['sabonetes'], historia: 'Comecei fazendo sabonetes pra família.', personalidade: 'delicada',
     publicoAlvo: 'mulheres que valorizam o natural', tipoProduto: 'Sabonete de lavanda',
     vistos: {identidade: true, social: true, rotulos: true}});
   s('instagram', {arroba: '@flordesal', perfisReferencia: []});
   s('whatsapp', {ddd: '11', numero: '900000000', mensagem: 'Olá! Quero fazer um pedido',
-    link: 'https://wa.me/5511900000000?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido'});
+    link: 'https://wa.me/5511900000000?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido',
+    linkCurto: 'https://wa.me/5511900000000'});
   s('identidade', {itens: {paleta: true, logo: true, frase: false, endcard: false, fotos: false},
     arquivos: [{item: 'logo', nome: 'logo-flor-de-sal.png'}, {item: 'paleta', nome: 'paleta.pdf'}]});
   s('rotulos', {inciAlergenos: true,
@@ -83,6 +84,7 @@ def main() -> None:
 
         page.goto(base + "#home")
         page.wait_for_timeout(500)
+        page.add_style_tag(content=".fab-beta{display:none!important}")
         salvar(page.screenshot(), "tela-home.png", 540)
 
         # tela do link do WhatsApp, usada dentro do celular nas peças do Instagram
@@ -95,12 +97,12 @@ def main() -> None:
         page.wait_for_timeout(300)
         salvar(page.screenshot(), "tela-whatsapp.png", 540)
 
-        page.add_style_tag(content=".tabbar{display:none!important}")
+        page.add_style_tag(content=".tabbar,.fab-beta{display:none!important}")
         for rota, seletor, nome, lado, centrar in [
             ("#rotulos", ".rot", "rotulo.png", 210, True),
             ("#rotulos/inci", ".sel-list", "inci.png", 300, False),
             ("#whatsapp", ".wa-result img", "whatsapp.png", 212, True),
-            ("#identidade", ".list", "identidade.png", 340, False),
+            ("#identidade", ".ident-lista", "identidade.png", 340, False),
         ]:
             page.goto(base + rota)
             page.wait_for_timeout(500)

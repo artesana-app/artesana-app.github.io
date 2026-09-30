@@ -16,10 +16,10 @@ const FERRAMENTAS = [
 ];
 
 const ATALHOS = [
-  { ico: 'W', nome: 'WhatsApp', href: '#whatsapp' },
-  { ico: 'R', nome: 'Rótulo', href: '#rotulos' },
-  { ico: 'F', nome: 'Foto', href: '#editor' },
-  { ico: 'L', nome: 'Legenda', href: '#criar/legendas' },
+  { ico: '💬', nome: 'WhatsApp', href: '#whatsapp' },
+  { ico: '🏷️', nome: 'Rótulo', href: '#rotulos' },
+  { ico: '📷', nome: 'Foto', href: '#editor' },
+  { ico: '✍️', nome: 'Legenda', href: '#criar/legendas' },
 ];
 
 export function montar(section) {

@@ -1,12 +1,13 @@
 // Aba "Anvisa" da tela de rótulos: contra-rótulo com os dados que a norma exige.
 import { h, toast, modal } from '../ui.js';
+import { campo as campoVoz, area as areaVoz } from '../campos.js';
 import * as store from '../store.js';
 import { gerarInci } from '../lib/inci.js';
 import { gradeA4 } from '../lib/rotulo.js';
 import { numeroFormatado } from '../lib/whatsapp.js';
 import { NORMA, CAMPOS, TAMANHOS, conferir, composicaoEmPortugues, linhasDoRotulo } from '../lib/rotulo-anvisa.js';
 
-const ESCALA = 3; // px por mm no preview
+const ESCALA = 4; // px por mm no preview
 const FONTE_MAX = 2.6; // mm
 const FONTE_MIN = 1.3; // mm
 
@@ -88,14 +89,13 @@ export function abaAnvisa() {
   };
 
   const campo = (c) => {
-    const input = c.multi
-      ? h('textarea', { class: 'textarea', id: `rc-${c.id}`, rows: '3', placeholder: `Ex: ${c.exemplo}` })
-      : h('input', { class: 'input', id: `rc-${c.id}`, placeholder: `Ex: ${c.exemplo}` });
-    input.value = d[c.id] || '';
-    input.addEventListener('input', () => { d[c.id] = input.value; atualizar(); });
+    const cv = c.multi
+      ? areaVoz({ valor: d[c.id] || '', id: `rc-${c.id}`, rows: '3', placeholder: `Ex: ${c.exemplo}` })
+      : campoVoz({ valor: d[c.id] || '', id: `rc-${c.id}`, placeholder: `Ex: ${c.exemplo}` });
+    cv.input.addEventListener('input', () => { d[c.id] = cv.input.value; atualizar(); });
     return h('div', { class: 'field' },
       h('label', { for: `rc-${c.id}` }, c.rotulo, c.obrigatorio ? h('span', { class: 'obrig' }, ' *') : null),
-      input, c.nota ? h('div', { class: 'hint' }, c.nota) : null);
+      cv.el, c.nota ? h('div', { class: 'hint' }, c.nota) : null);
   };
 
   const tamanho = h('select', { class: 'select', id: 'rc-tamanho' }, ...TAMANHOS.map((t) => h('option', { value: t.id }, t.nome)));
@@ -128,14 +128,15 @@ export function abaAnvisa() {
 
   const grupo = (titulo, ids) => h('div', { class: 'card' }, h('h3', { style: { marginBottom: '10px' } }, titulo), ...CAMPOS.filter((c) => ids.includes(c.id)).map(campo));
 
-  const corpo = h('div', {},
+  const corpo = h('div', { class: 'rot-layout' },
+    h('div', { class: 'rot-lado' }, h('div', { class: 'rot-preview-wrap' }, palco, aviso)),
+    h('div', { class: 'rot-form' },
     h('div', { class: 'card' },
       h('h3', {}, 'Os dados que a Anvisa exige no rótulo'),
       h('p', { class: 'muted', style: { marginTop: '6px' } }, `Campos da ${NORMA.nome}, ${NORMA.artigo}, com a composição também em português (${NORMA.composicaoPt}). Conferido em ${NORMA.conferidoEm}.`),
       h('div', { class: 'progress-label', style: { marginTop: '12px' } }, contagem),
       h('div', { class: 'progress dark' }, barra),
       lista),
-    h('div', { class: 'rot-preview-wrap' }, palco, aviso),
     h('div', { class: 'card' },
       h('div', { class: 'field' }, h('label', { for: 'rc-tamanho' }, 'Tamanho da etiqueta'), tamanho),
       h('div', { class: 'check', style: { padding: '4px 0' } },
@@ -148,7 +149,7 @@ export function abaAnvisa() {
     grupo('Uso', ['modoUso', 'advertencias']),
     h('div', { class: 'card' },
       h('button', { class: 'btn peach block', type: 'button', onClick: exportar }, 'Exportar PDF com os dados da Anvisa'),
-      h('p', { class: 'muted', style: { marginTop: '10px' } }, 'O app organiza o rótulo com os campos da norma. A regularização do produto e da empresa na Anvisa é um passo seu, e o conteúdo informado é de sua responsabilidade.')),
+      h('p', { class: 'muted', style: { marginTop: '10px' } }, 'O app organiza o rótulo com os campos da norma. A regularização do produto e da empresa na Anvisa é um passo seu, e o conteúdo informado é de sua responsabilidade.'))),
   );
   // o preview precisa estar no documento pra medir se o texto cabe
   requestAnimationFrame(atualizar);

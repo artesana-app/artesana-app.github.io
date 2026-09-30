@@ -16,8 +16,11 @@ from playwright.sync_api import sync_playwright
 
 RAIZ = Path(__file__).resolve().parent.parent
 ROTAS = [
-    "home", "social", "rotulos", "fotos", "mais", "identidade", "feedback", "inpi",
-    "perfil", "planos", "config", "whatsapp", "meta", "tutorial-meta", "detalhe/logo-ia",
+    "home", "conversa/nome", "conversa/nichos", "conversa/resumo", "social", "rotulos", "rotulos/anvisa", "fotos", "editor", "mais",
+    "identidade", "criar/paleta", "criar/logo", "criar/frase", "criar/endcard", "criar/fotos-coringas", "criar/legendas", "criar/calendario",
+    "criar/analise-instagram", "criar/perfis-referencia", "criar/analise-publico", "criar/agendar", "criar/metricas", "criar/reels",
+    "criar/locucao", "criar/editar-video", "feedback", "suporte", "inpi", "perfil", "ajuda-instagram", "planos", "config", "whatsapp",
+    "redes", "referencias", "tutorial-meta",
 ]
 
 
@@ -72,18 +75,24 @@ def main() -> int:
         page.goto(f"{base}/app/#login", wait_until="networkidle")
         if not page.locator("section[data-route=login].active").count():
             falhas.append("tela de login não ativou")
-        page.evaluate("localStorage.setItem('artesana_user', JSON.stringify({logado:true,nome:'Teste',marca:'Marca Teste',loginTipo:'email'}))")
+        page.evaluate("localStorage.setItem('artesana_user', JSON.stringify({logado:true,nome:'Teste',marca:'Marca Teste',loginTipo:'instagram',redes:{instagram:true,facebook:false}}))")
 
-        for rota in ROTAS:
-            page.goto(f"{base}/app/#{rota}")
-            page.wait_for_timeout(250)
-            nome = rota.split("/")[0]
-            sec = page.locator(f"section[data-route='{nome}'].active")
-            if not sec.count():
-                falhas.append(f"#{rota}: section não ativou")
-                continue
-            if len((sec.inner_text() or "").strip()) < 3:
-                falhas.append(f"#{rota}: section vazia")
+        for largura, nome_tela in ((375, "celular"), (1280, "computador")):
+            page.set_viewport_size({"width": largura, "height": 900 if largura > 400 else 812})
+            for rota in ROTAS:
+                page.goto(f"{base}/app/#{rota}")
+                page.wait_for_timeout(250)
+                nome = rota.split("/")[0]
+                sec = page.locator(f"section[data-route='{nome}'].active")
+                if not sec.count():
+                    falhas.append(f"#{rota} ({nome_tela}): section não ativou")
+                    continue
+                if len((sec.inner_text() or "").strip()) < 3:
+                    falhas.append(f"#{rota} ({nome_tela}): section vazia")
+                if page.evaluate("document.documentElement.scrollWidth > window.innerWidth + 1"):
+                    falhas.append(f"#{rota} ({nome_tela}): rolagem lateral")
+            if largura > 400 and not page.locator(".lateral:not(.hidden)").count():
+                falhas.append("computador: barra lateral não aparece")
 
         browser.close()
     if srv:
@@ -94,7 +103,7 @@ def main() -> int:
     for f in falhas:
         print("FALHA", f)
     ok = not erros and not falhas
-    print("SMOKE", "OK" if ok else "FALHOU", f"({len(ROTAS)} rotas + landing em {base})")
+    print("SMOKE", "OK" if ok else "FALHOU", f"({len(ROTAS)} rotas x 2 tamanhos + landing em {base})")
     return 0 if ok else 1
 
 

@@ -1,4 +1,4 @@
-import { h, header, toast, copiar } from '../ui.js';
+import { h, header, toast, copiar, navegacao } from '../ui.js';
 import * as store from '../store.js';
 import { validar, numeroFormatado, versoesDoLink, SUGESTOES_MENSAGEM } from '../lib/whatsapp.js';
 import { baseLinkCurto, semProtocolo } from '../site.js';
@@ -89,7 +89,7 @@ export function montar(section) {
   };
 
   section.append(h('div', { class: 'screen' },
-    header({ titulo: 'Link do WhatsApp', sub: 'Curto, pra bio e pra embalagem', voltar: '#mais' }),
+    header({ titulo: 'Link do WhatsApp', sub: 'Curto, pra bio e pra embalagem', voltar: '#home' }),
     h('div', { class: 'content' },
       h('div', { class: 'card' },
         h('div', { class: 'field' }, h('label', {}, 'Seu número'),
@@ -99,6 +99,7 @@ export function montar(section) {
         h('button', { class: 'btn peach block', onClick: () => gerar() }, 'Gerar link'),
       ),
       resultado,
+      navegacao({ atual: 'whatsapp' }),
     ),
   ));
   if (salvo.ddd && salvo.numero) gerar(true);
