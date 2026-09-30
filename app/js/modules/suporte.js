@@ -87,5 +87,12 @@ export function montar(section, param) {
   ));
   desenhar();
   buscarRespostas();
+  // enquanto a tela estiver aberta, confere a cada 15 s se a equipe respondeu; para sozinho ao sair da tela
+  const relogio = setInterval(() => {
+    if (!section.classList.contains('active') || !document.body.contains(lista)) { clearInterval(relogio); return; }
+    if (document.visibilityState === 'visible') buscarRespostas();
+  }, 15000);
+  const aoVoltar = () => { if (document.visibilityState === 'visible' && section.classList.contains('active')) buscarRespostas(); else if (!document.body.contains(lista)) document.removeEventListener('visibilitychange', aoVoltar); };
+  document.addEventListener('visibilitychange', aoVoltar);
   if (param === 'atendente') chamarAtendente('');
 }

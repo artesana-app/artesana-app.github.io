@@ -30,10 +30,11 @@ function despachar() {
   if (!SITE.backend || !fila.length) { fila.length = 0; return; }
   const corpo = JSON.stringify({ visitante: visitante(), aparelho: aparelho(), eventos: fila.splice(0, fila.length) });
   const url = `${SITE.backend}/v1/eventos`;
+  // text/plain: sem preflight de CORS, então o beacon sai mesmo com a página fechando. O backend lê o JSON do corpo.
   try {
-    if (navigator.sendBeacon && navigator.sendBeacon(url, new Blob([corpo], { type: 'application/json' }))) return;
+    if (navigator.sendBeacon && navigator.sendBeacon(url, new Blob([corpo], { type: 'text/plain;charset=UTF-8' }))) return;
   } catch { /* cai pro fetch */ }
-  fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: corpo, keepalive: true }).catch(() => {});
+  fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: corpo, keepalive: true }).catch(() => {});
 }
 
 export function evento(tipo, dados = {}) {

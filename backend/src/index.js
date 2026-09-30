@@ -19,8 +19,10 @@ const json = (dados, status = 200, extra = {}) =>
 function cors(req, env) {
   const origem = req.headers.get('Origin') || '';
   const ok = origemPermitida(origem, env.ORIGENS);
+  // sendBeacon manda cookies (credentials: include): sem Allow-Credentials o navegador descarta a resposta do preflight
   return {
     'Access-Control-Allow-Origin': ok ? origem : (env.SITE_URL || 'https://artesana-mktdigital.com.br'),
+    'Access-Control-Allow-Credentials': 'true',
     'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     'Access-Control-Max-Age': '86400',
