@@ -16,10 +16,11 @@ REMOTO = "antigo"
 
 
 def git(*args: str, entrada: str | None = None) -> str:
-    r = subprocess.run(["git", *args], cwd=RAIZ, capture_output=True, text=True, encoding="utf-8", input=entrada)
+    # entrada vai em bytes: em modo texto o Windows trocaria \n por \r\n e o mktree gravaria "\r" nos nomes
+    r = subprocess.run(["git", *args], cwd=RAIZ, capture_output=True, input=entrada.encode("utf-8") if entrada is not None else None)
     if r.returncode != 0:
-        sys.exit(f"falhou: git {' '.join(args)}\n{r.stderr}")
-    return r.stdout.strip()
+        sys.exit(f"falhou: git {' '.join(args)}\n{r.stderr.decode('utf-8', 'replace')}")
+    return r.stdout.decode("utf-8").strip()
 
 
 def main() -> None:
