@@ -43,3 +43,24 @@ export function corTexto(hexFundo) {
   const L = 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
   return L > 0.4 ? '#2C1A1E' : '#FFF5EF';
 }
+
+// Tamanhos menores que rendem mais rótulos por folha A4, a partir do tamanho atual.
+// Devolve até `qtd` opções, da mais próxima pra menor, cada uma com quantos cabem.
+export function sugestoesA4({ largura, altura, tipo = 'retangular' } = {}, qtd = 3) {
+  const l = num(largura); const a = num(altura);
+  if (!l || !a) return [];
+  const atual = gradeA4({ largura: l, altura: a }).total;
+  const passos = [0.9, 0.8, 0.7, 0.6, 0.5];
+  const vistos = new Set([atual]);
+  const saida = [];
+  for (const f of passos) {
+    const nl = Math.max(20, Math.round(l * f)); const na = tipo === 'redondo' ? nl : Math.max(15, Math.round(a * f));
+    const g = gradeA4({ largura: nl, altura: na });
+    if (g.total > atual && !vistos.has(g.total)) {
+      vistos.add(g.total);
+      saida.push({ largura: nl, altura: na, total: g.total, colunas: g.colunas, linhas: g.linhas, ganho: g.total - atual });
+    }
+    if (saida.length >= qtd) break;
+  }
+  return saida;
+}

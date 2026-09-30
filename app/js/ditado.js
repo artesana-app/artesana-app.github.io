@@ -21,7 +21,10 @@ function icone() {
 // comDitado(campo) -> o campo dentro de um envelope com o botão do microfone.
 // Quem chama continua ouvindo 'input' no campo: o ditado dispara esse evento a cada trecho.
 export function comDitado(campo) {
-  if (!Reconhecedor) return campo;
+  if (!Reconhecedor) {
+    const aviso = h('button', { type: 'button', class: 'mic off', 'aria-label': 'Ditado indisponível neste navegador', title: 'Ditado indisponível neste navegador', onClick: () => toast('Este navegador não tem ditado por voz. Use o Chrome, no celular ou no computador.', 3500) }, icone());
+    return h('div', { class: `ditado ${campo.tagName === 'TEXTAREA' ? 'multi' : ''}` }, campo, aviso);
+  }
   const multi = campo.tagName === 'TEXTAREA';
   const btn = h('button', { type: 'button', class: 'mic', 'aria-label': ROTULO, title: ROTULO }, icone());
   const wrap = h('div', { class: `ditado ${multi ? 'multi' : ''}` }, campo, btn);
@@ -65,5 +68,5 @@ export function comDitado(campo) {
 
 // Linha de dica pra mostrar uma vez por tela, só onde o ditado existe.
 export function dicaDitado() {
-  return Reconhecedor ? h('p', { class: 'dica-ditado' }, icone(), ' Pode falar em vez de digitar: toque no microfone do campo.') : null;
+  return h('p', { class: 'dica-ditado' }, icone(), Reconhecedor ? ' Pode falar em vez de digitar: toque no microfone do campo.' : ' Pra falar em vez de digitar, abra no Chrome.');
 }

@@ -1,63 +1,67 @@
-import { h, header, saudacao, inicial, copiar } from '../ui.js';
+// Início: o que precisa de você hoje, atalhos redondos e as ferramentas.
+import { h, header, saudacao, inicial, copiar, avisoBeta, navegacao } from '../ui.js';
 import * as store from '../store.js';
+import * as router from '../router.js';
 import * as onboarding from '../onboarding.js';
-import { SITE } from '../site.js';
+import { proximas } from '../data/datas.js';
+import { semProtocolo } from '../site.js';
 
-const MODULOS = [
-  { emoji: '🎨', titulo: 'Identidade Visual', href: '#identidade', pendente: (p) => !p.etapas[1].ok || !p.etapas[2].ok },
-  { emoji: '📱', titulo: 'Conteúdo Social', href: '#social', pendente: (p) => !p.etapas[4].ok },
-  { emoji: '🏷️', titulo: 'Rótulos & Etiquetas', href: '#rotulos', pendente: () => !store.get('rotulos', {}).ultimoRotulo },
-  { emoji: '📸', titulo: 'Fotos & Vídeos', href: '#fotos', pendente: () => false },
-  { emoji: '💬', titulo: 'Feedback', href: '#feedback', pendente: () => false },
-  { emoji: '🔍', titulo: 'Verificação INPI', href: '#inpi', pendente: () => false },
+const FERRAMENTAS = [
+  { emoji: '🎨', titulo: 'Identidade', sub: 'Logo, frase, paleta e end card', href: '#identidade' },
+  { emoji: '🏷️', titulo: 'Rótulos', sub: 'Etiqueta, INCI e Anvisa', href: '#rotulos' },
+  { emoji: '📱', titulo: 'Social', sub: 'Legendas, calendário e análise', href: '#social' },
+  { emoji: '📸', titulo: 'Fotos', sub: 'Editor e tutoriais', href: '#fotos' },
+  { emoji: '📌', titulo: 'Referências', sub: 'Pinterest filtrado pra você', href: '#referencias' },
+  { emoji: '💬', titulo: 'Ajuda', sub: 'Chat com respostas na hora', href: '#suporte' },
 ];
 
-const PLANOS = { semente: '🌱 Semente', florescer: '🌸 Florescer', prosperar: '🌳 Prosperar' };
+const ATALHOS = [
+  { ico: 'W', nome: 'WhatsApp', href: '#whatsapp' },
+  { ico: 'R', nome: 'Rótulo', href: '#rotulos' },
+  { ico: 'F', nome: 'Foto', href: '#editor' },
+  { ico: 'L', nome: 'Legenda', href: '#criar/legendas' },
+];
 
 export function montar(section) {
-  const render = () => {
-    const user = store.usuario();
-    const p = onboarding.progresso();
-    const d = onboarding.dica(p);
-    const wa = store.get('whatsapp', {});
-    const plano = store.get('plano', 'semente');
-    section.innerHTML = '';
+  const user = store.usuario();
+  if (!user.nome) { router.ir('#conversa/nome'); return; }
+  const p = onboarding.progresso();
+  const d = onboarding.dica(p);
+  const wa = store.get('whatsapp', {});
+  const datas = proximas(2);
+  section.innerHTML = '';
 
-    const barra = h('div', { style: { marginTop: '14px' } },
-      h('div', { class: 'progress-label' }, h('span', {}, `Perfil da marca: ${p.feitas} de ${p.total}`), h('span', {}, p.completo ? '✓ completo' : '')),
-      h('div', { class: 'progress' }, h('i', { style: { width: `${(p.feitas / p.total) * 100}%` } })),
-      p.completo ? null : h('div', { style: { fontSize: '12px', opacity: 0.8, marginTop: '6px' } }, 'Complete pra desbloquear sugestões personalizadas'),
-    );
+  const continuar = p.completo ? null : h('a', { class: 'card continuar', href: d.rota || '#conversa/nome' },
+    h('div', { class: 'row' },
+      h('div', { class: 'grow' }, h('b', {}, `Sua marca está ${p.feitas} de ${p.total}`), h('p', { class: 'muted', style: { margin: 0 } }, d.texto)),
+      h('span', { class: 'btn peach sm' }, 'Continuar')),
+    h('div', { class: 'progress dark', style: { marginTop: '10px' } }, h('i', { style: { width: `${(p.feitas / p.total) * 100}%` } })));
 
-    const grid = h('div', { class: 'home-grid' },
-      ...MODULOS.map((m) => h('a', { class: 'mod-card', href: m.href },
-        h('span', { class: 'emoji' }, m.emoji), h('b', {}, m.titulo), m.pendente(p) ? h('span', { class: 'dot', title: 'ação pendente' }) : null)),
-    );
+  const atalhos = h('div', { class: 'atalhos' }, ...ATALHOS.map((a) => h('a', { class: 'atalho', href: a.href }, h('i', {}, a.ico), h('small', {}, a.nome))));
 
-    const cardDica = h('a', { class: 'card gold tip', href: d.rota || '#perfil', style: { display: 'flex', textDecoration: 'none', color: 'inherit' } },
-      h('span', { class: 'emoji' }, d.emoji), h('div', {}, h('b', {}, 'Dica de hoje'), h('p', { class: 'muted', style: { margin: 0 } }, d.texto)));
+  const cardWa = wa.linkCurto || wa.link
+    ? h('div', { class: 'card moss' }, h('div', { class: 'row' },
+      h('div', { class: 'grow' }, h('b', {}, 'Seu link do WhatsApp'), h('div', { class: 'wa-curto' }, semProtocolo(wa.linkCurto || wa.link))),
+      h('button', { class: 'btn soft sm', onClick: () => copiar(wa.linkCurto || wa.link, 'Link copiado! Cole na bio.') }, 'Copiar')))
+    : h('a', { class: 'card moss', href: '#whatsapp', style: { display: 'block', textDecoration: 'none' } }, h('div', { class: 'row' },
+      h('div', { class: 'grow' }, h('b', {}, 'Crie seu link do WhatsApp'), h('div', { style: { fontSize: '13px', opacity: 0.9 } }, 'Curto, pra bio e pra embalagem')),
+      h('span', { class: 'badge' }, 'Criar')));
 
-    const cardWa = wa.link
-      ? h('div', { class: 'card moss' }, h('div', { class: 'row' },
-        h('div', { class: 'grow' }, h('b', {}, 'Seu link do WhatsApp'), h('div', { style: { fontSize: '13px', wordBreak: 'break-all', opacity: 0.9 } }, (wa.linkCurto || wa.link).replace(/^https?:\/\//, ''))),
-        h('button', { class: 'btn soft sm', onClick: () => copiar(wa.linkCurto || wa.link, 'Link copiado!') }, 'Copiar')))
-      : h('a', { class: 'card moss', href: '#whatsapp', style: { display: 'block', textDecoration: 'none' } }, h('div', { class: 'row' },
-        h('div', { class: 'grow' }, h('b', {}, 'Crie seu link do WhatsApp'), h('div', { style: { fontSize: '13px', opacity: 0.9 } }, 'Pra bio, rótulo e end card')),
-        h('span', { class: 'badge' }, 'Criar')));
+  const cardDatas = h('div', { class: 'card' },
+    h('h3', {}, 'Próximas datas pra vender'),
+    ...datas.map((x) => h('p', { style: { margin: '6px 0 0', fontSize: '13.5px' } }, h('b', {}, `${x.emoji} ${x.nome} · ${x.data.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })}`), h('span', { class: 'muted' }, ` ${x.gancho}`))),
+    h('a', { class: 'btn ghost sm', href: '#criar/calendario', style: { marginTop: '10px' } }, 'Ver o calendário do mês'));
 
-    const cardPlano = SITE.beta
-      ? h('div', { class: 'card gold-border' }, h('div', { class: 'row' },
-        h('div', { class: 'grow' }, h('b', {}, 'Teste beta: tudo liberado'), h('div', { class: 'muted' }, 'Use à vontade e conte o que achou')),
-        h('a', { class: 'btn ghost sm', href: '#feedback' }, 'Dar feedback')))
-      : h('div', { class: 'card gold-border' }, h('div', { class: 'row' },
-        h('div', { class: 'grow' }, h('b', {}, `Plano ${PLANOS[plano] || PLANOS.semente}`), h('div', { class: 'muted' }, plano === 'semente' ? 'Grátis' : 'Obrigada por apoiar')),
-        h('a', { class: 'btn ghost sm', href: '#planos' }, 'Evoluir')));
+  const grade = h('div', { class: 'home-grid' }, ...FERRAMENTAS.map((m) => h('a', { class: 'mod-card', href: m.href }, h('span', { class: 'emoji' }, m.emoji), h('b', {}, m.titulo), h('span', { class: 'muted' }, m.sub))));
 
-    section.append(h('div', { class: 'screen' },
-      header({ titulo: `${saudacao()}, ${user.nome || 'artesã'}!`, sub: user.marca || 'sua marca ainda sem nome', avatar: inicial(user.marca || user.nome), extra: barra }),
-      h('div', { class: 'content' }, cardDica, grid, cardWa, cardPlano),
-    ));
-  };
-  render();
-  onboarding.primeiroAcesso(render);
+  section.append(h('div', { class: 'screen' },
+    header({ titulo: `${saudacao()}, ${user.nome.split(' ')[0]}`, sub: user.marca || 'sua marca ainda sem nome', avatar: inicial(user.nome) }),
+    h('div', { class: 'content' },
+      avisoBeta(),
+      h('div', { class: 'home-duas' },
+        h('div', {}, continuar, atalhos, cardWa),
+        h('div', {}, cardDatas, grade)),
+      navegacao({ atual: 'home', voltar: '' }),
+    ),
+  ));
 }

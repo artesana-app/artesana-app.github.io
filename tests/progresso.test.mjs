@@ -38,7 +38,7 @@ test('proxima etapa faltante', () => {
   assert.equal(p.proxima.id, 'nicho');
   assert.equal(calcularProgresso({
     user: { nome: 'B', marca: 'M' },
-    onboarding: { nicho: 'x', historia: 'y', personalidade: 'z', publicoAlvo: 'w' },
-    instagram: { arroba: '@x' },
+    onboarding: { nichos: ['velas'], historia: 'y', personalidade: 'z', publicoAlvo: 'w' },
+    instagram: { semConta: true },
   }).proxima, null);
 });

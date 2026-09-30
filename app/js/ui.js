@@ -1,5 +1,6 @@
-// Helpers de DOM: criação de elementos, toast, modal, lista iOS, copiar.
+// Helpers de DOM: criação de elementos, toast, modal, lista, navegação entre telas, copiar.
 import * as router from './router.js';
+import { SITE, diasDeBeta } from './site.js';
 
 export function h(tag, attrs = {}, ...children) {
   const el = document.createElement(tag);
@@ -33,12 +34,33 @@ export function header(opts = {}) {
   const top = h('div', { class: 'top' });
   if (opts.voltar) top.append(h('button', { class: 'back', 'aria-label': 'Voltar', onClick: () => router.voltar(typeof opts.voltar === 'string' ? opts.voltar : '#home') }, '←'));
   top.append(wordmark(opts.peach ? 'ink' : 'cream'));
-  if (opts.avatar) top.append(h('div', { class: 'avatar' }, opts.avatar));
+  if (opts.avatar) top.append(h('div', { class: 'avatar', title: 'Seu perfil', onClick: () => router.ir('#perfil') }, opts.avatar));
   const head = h('div', { class: `header ${opts.peach ? 'peach' : ''}` }, top);
   if (opts.titulo) head.append(h('h1', {}, opts.titulo));
   if (opts.sub) head.append(h('div', { class: 'sub' }, opts.sub));
   if (opts.extra) head.append(opts.extra);
   return head;
+}
+
+// Pergunta grande, no estilo de conversa. pergunta(texto, ajuda)
+export function pergunta(texto, ajuda) {
+  return h('div', { class: 'pergunta-bloco' }, h('h2', { class: 'pergunta' }, texto), ajuda ? h('p', { class: 'ajuda' }, ajuda) : null);
+}
+
+// Barra de Voltar e Seguir no fim da tela. navegacao({ atual, voltar, seguir, textoSeguir, aoSeguir })
+export function navegacao(opts = {}) {
+  const atual = opts.atual || router.atual().nome;
+  const seg = opts.seguir !== undefined ? opts.seguir : router.proximo(atual);
+  const ant = opts.voltar !== undefined ? opts.voltar : router.anterior(atual);
+  const bar = h('div', { class: 'navegacao' });
+  if (ant) bar.append(h('a', { class: 'btn white', href: `#${String(ant).replace(/^#/, '')}` }, `← ${router.NOME_DA_ROTA[ant] || 'Voltar'}`));
+  if (seg) {
+    const texto = opts.textoSeguir || `Seguir: ${router.NOME_DA_ROTA[seg] || seg}`;
+    bar.append(opts.aoSeguir
+      ? h('button', { class: 'btn peach', type: 'button', onClick: opts.aoSeguir }, `${texto} →`)
+      : h('a', { class: 'btn peach', href: `#${String(seg).replace(/^#/, '')}` }, `${texto} →`));
+  }
+  return bar;
 }
 
 let toastTimer = null;
@@ -61,6 +83,14 @@ export async function copiar(texto, msg = 'Copiado!') {
     ta.remove();
   }
   toast(msg);
+}
+
+// baixar(dataUrlOuBlob, nomeDoArquivo)
+export function baixar(conteudo, nome) {
+  const url = conteudo instanceof Blob ? URL.createObjectURL(conteudo) : conteudo;
+  const a = h('a', { href: url, download: nome, style: { display: 'none' } });
+  document.body.append(a); a.click(); a.remove();
+  if (conteudo instanceof Blob) setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 
 // modal({titulo, corpo (Node|string), botoes:[{texto, classe, onClick}], fechavel})
@@ -94,7 +124,7 @@ export function confirmar(titulo, texto, textoOk = 'Confirmar') {
   });
 }
 
-// lista([{emoji, titulo, sub, badge, badgeClasse, href, onClick, static}])
+// lista([{emoji, titulo, sub, badge, badgeClasse, href, onClick, static, extra}])
 export function lista(itens) {
   const ul = h('ul', { class: 'list' });
   for (const it of itens) {
@@ -117,6 +147,36 @@ export function grupo(titulo, ...nodes) {
   return h('div', {}, h('div', { class: 'group-title' }, titulo), ...nodes);
 }
 
+// Galeria de cartões (Canva): cartoes([{titulo, sub, href, onClick, capa (Node), on}])
+export function cartoes(itens, classe = '') {
+  return h('div', { class: `galeria ${classe}`.trim() }, ...itens.map((it) => {
+    const miolo = [h('div', { class: 'capa' }, it.capa || null), h('b', {}, it.titulo), it.sub ? h('span', {}, it.sub) : null];
+    return it.href
+      ? h('a', { class: `cartao ${it.on ? 'on' : ''}`, href: it.href }, ...miolo)
+      : h('button', { type: 'button', class: `cartao ${it.on ? 'on' : ''}`, onClick: it.onClick }, ...miolo);
+  }));
+}
+
+// Chips de escolha. chips({ opcoes:[{id, nome, emoji}], valor (string|array), multi, aoMudar }) -> elemento
+export function chips({ opcoes, valor, multi = false, aoMudar }) {
+  let atual = multi ? [...(valor || [])] : (valor || '');
+  const box = h('div', { class: 'chips', role: 'group' });
+  const desenhar = () => {
+    box.innerHTML = '';
+    for (const o of opcoes) {
+      const on = multi ? atual.includes(o.id) : atual === o.id;
+      box.append(h('button', { type: 'button', class: `chip ${on ? 'on' : ''}`, 'aria-pressed': String(on), onClick: () => {
+        if (multi) atual = on ? atual.filter((x) => x !== o.id) : [...atual, o.id];
+        else atual = o.id;
+        desenhar();
+        aoMudar(atual);
+      } }, `${o.emoji || ''} ${o.nome}`.trim()));
+    }
+  };
+  desenhar();
+  return box;
+}
+
 export function saudacao() {
   const hora = new Date().getHours();
   if (hora < 12) return 'Bom dia';
@@ -126,4 +186,12 @@ export function saudacao() {
 
 export function inicial(nome) {
   return (nome || 'a').trim().charAt(0).toUpperCase() || 'A';
+}
+
+// Aviso do beta: quanto falta e o que vem depois.
+export function avisoBeta() {
+  if (!SITE.beta) return null;
+  const dias = diasDeBeta();
+  const texto = dias > 0 ? `Versão beta: tudo liberado por mais ${dias} ${dias === 1 ? 'dia' : 'dias'}. Depois entram os planos.` : 'O beta terminou. Os planos passam a valer.';
+  return h('a', { class: 'aviso-beta', href: '#planos' }, texto);
 }

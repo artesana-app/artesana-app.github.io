@@ -1,18 +1,28 @@
-// Dados do site. Troque aqui quando mudar domínio ou contato.
+// Constantes do site. Muda aqui, muda em todo lugar.
 export const SITE = {
   dominio: 'artesana-mktdigital.com.br',
+  url: 'https://artesana-mktdigital.com.br',
   instagram: 'artesana.app',
-  versao: '1.4.0',
-  // Teste beta: tudo liberado, sem trava de plano. Troque pra false quando os planos entrarem em vigor.
+  versao: '2.0.0',
   beta: true,
-  // WhatsApp da equipe artesaná. que recebe os perfis enviados, no formato { ddd: '51', numero: '999999999' }.
-  // Enquanto estiver vazio, quem envia o perfil escolhe o contato na hora.
+  betaFim: '2026-10-15', // depois desta data os planos passam a valer
+  // Endereço do backend (Cloudflare Worker em backend/). Enquanto for null, o app guarda tudo só no aparelho:
+  // sem chat com atendente, sem painel de admin, e o perfil enviado fica salvo localmente.
+  backend: null,
+  // Links de pagamento do Mercado Pago, um por plano. Enquanto forem null, o botão "Assinar" avisa que falta pouco.
+  pagamentos: { florescer: null, prosperar: null },
   whatsappEquipe: null,
 };
 
-// Endereço da página que abre os links curtos (pasta /w/ ao lado de /app/).
+// Base do link curto identificado: <site>/w/ ao lado de /app/
 export function baseLinkCurto() {
   return new URL('../w/', location.href.split('#')[0]).href;
 }
 
 export const semProtocolo = (url) => String(url ?? '').replace(/^https?:\/\//, '');
+
+// Dias que faltam pro fim do beta (0 se já passou).
+export function diasDeBeta(hoje = new Date()) {
+  const fim = new Date(`${SITE.betaFim}T23:59:59`);
+  return Math.max(0, Math.ceil((fim - hoje) / 86400000));
+}

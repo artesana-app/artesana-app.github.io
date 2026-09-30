@@ -47,3 +47,12 @@ test('presets cobrem os 3 tipos', () => {
   assert.ok(PRESETS.some((p) => p.tipo === 'retangular'));
   assert.ok(PRESETS.some((p) => p.tipo === 'tag'));
 });
+
+test('sugere tamanhos menores que rendem mais por folha', async () => {
+  const { sugestoesA4 } = await import('../app/js/lib/rotulo.js');
+  const s = sugestoesA4({ largura: 50, altura: 50, tipo: 'redondo' });
+  assert.ok(s.length >= 1 && s.length <= 3);
+  assert.ok(s.every((x) => x.total > 15 && x.largura < 50 && x.largura === x.altura));
+  assert.ok(s[0].ganho === s[0].total - 15);
+  assert.deepEqual(sugestoesA4({ largura: 0, altura: 0 }), []);
+});
