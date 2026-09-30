@@ -28,8 +28,8 @@ body { color: var(--ink); -webkit-font-smoothing: antialiased; }
 /* texto */
 .texto { position: absolute; left: 120px; right: 120px; }
 .frase { margin: 0; font-family: 'Fraunces', serif; font-weight: 400; font-variation-settings: 'SOFT' 100, 'WONK' 0; font-size: 70px; line-height: 1.07; letter-spacing: -0.022em; }
-.recado { width: fit-content; max-width: 100%; margin: 12px 0 0; font-family: 'Homemade Apple', cursive; font-size: 42px; line-height: 1.5; color: var(--moss); }
-.aviso { margin: 26px 0 0; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 28px; line-height: 1.35; letter-spacing: -0.005em; }
+.recado { width: fit-content; max-width: 100%; margin: 6px 0 0; font-family: 'Homemade Apple', cursive; font-size: 42px; line-height: 1.3; color: var(--moss); }
+.aviso { margin: 14px 0 0; font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 28px; line-height: 1.35; letter-spacing: -0.005em; }
 .marca { position: absolute; right: 120px; bottom: 120px; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 32px; letter-spacing: -0.04em; line-height: 1; }
 .marca b { font-weight: 700; color: var(--peach-d); }
 
@@ -44,19 +44,24 @@ body { color: var(--ink); -webkit-font-smoothing: antialiased; }
 .bilhete .texto { top: 916px; }
 
 /* 1 — as horas que cabem numa peça (costureira): texto na parede escura, à esquerda */
-.a1 .janela img { top: 0; }
-.a1 .veu { left: 0; top: 0; width: 700px; height: 760px; background: radial-gradient(ellipse at 22% 30%, rgba(255, 245, 239, 0.55) 0%, rgba(255, 245, 239, 0.3) 45%, rgba(255, 245, 239, 0) 72%); }
-.a1 .texto { top: 132px; right: auto; width: 520px; }
+/* o rosto fica fora do quadro: a foto é ampliada e cortada pela direita; o texto vai na porta do armário */
+.a1 .janela img { width: 1560px; left: 0; top: -150px; }
+.a1 .veu { left: 200px; top: 0; width: 880px; height: 640px; background: radial-gradient(ellipse at 55% 35%, rgba(44, 26, 30, 0.34) 0%, rgba(44, 26, 30, 0.16) 45%, rgba(44, 26, 30, 0) 72%); }
+.a1 .texto { top: 132px; left: 400px; right: auto; width: 560px; }
+.a1 .recado { color: #F1E6D6; text-shadow: 0 1px 3px rgba(44, 26, 30, 0.8), 0 0 18px rgba(44, 26, 30, 0.6); }
 
 /* 2 — o rótulo é o primeiro oi (pote com faixa de papel e barbante) */
 .a2 .janela img { top: -60px; }
+.a2 .veu { left: 0; top: 0; width: 1080px; height: 600px; background: radial-gradient(ellipse at 30% 48%, rgba(44, 26, 30, 0.42) 0%, rgba(44, 26, 30, 0.22) 45%, rgba(44, 26, 30, 0) 72%); }
 .a2 .texto { top: 150px; right: auto; width: 620px; }
+.a2 .recado { text-shadow: 0 1px 10px rgba(44, 26, 30, 0.35); }
 
 /* 3 — ponto por ponto (bordado): a frase fica dentro do bastidor, no centro vazio da guirlanda */
 .a3 .janela img { top: 0; }
 .a3 .texto { left: 270px; right: 270px; top: 590px; text-align: center; }
 .a3 .frase { font-size: 60px; }
-.a3 .recado { margin: 12px auto 0; font-size: 38px; }
+.a3 .recado { margin: 8px auto 0; font-size: 38px; }
+.a3 .marca { right: auto; bottom: auto; left: 50%; top: 860px; transform: translateX(-50%); font-size: 34px; }
 
 /* 4 — toda venda começa numa conversa (celular) */
 .a4 .janela img { top: 0; }
@@ -64,8 +69,8 @@ body { color: var(--ink); -webkit-font-smoothing: antialiased; }
 /* 5 — pode chegar (janela): enquadramento fechado no rosto, texto na parede branca */
 .a5 .janela img { top: 0; }
 .a5 .texto { top: 140px; right: auto; width: 640px; }
-.a5 .recado { font-size: 38px; white-space: nowrap; }
-.a5 .aviso { margin-top: 22px; white-space: nowrap; }
+.a5 .recado { font-size: 38px; white-space: nowrap; margin-top: 0; line-height: 1.2; }
+.a5 .aviso { margin-top: 10px; white-space: nowrap; }
 
 /* 6 — a marca em dia, o domingo livre (avó e neta) */
 .a6 .janela img { top: -120px; }

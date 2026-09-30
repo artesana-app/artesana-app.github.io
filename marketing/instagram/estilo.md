@@ -43,6 +43,9 @@ Referências que a equipe curtiu em 30/09/2026 (perfis de vela e saboaria), apli
 - Reel tem que ser vídeo de verdade (Pexels ou gravado), com texto animado alinhado.
 - Foto de pessoa: banco de imagens ou IA conferida em zoom; rosto deformado não passa.
 - A marca pode virar só "a." discreto quando a foto já é forte.
+- Letra de mão: bege claro com sombra quando está sobre foto; a distância pra frase de cima é curta (metade de uma linha).
+- Reels: só a marca embaixo do texto, sem linha de apoio.
+- Bordado: linha bege pro recado e pro ponto da marca; a marca vai dentro do bastidor. Foto sem mãos: scripts/bordado-sem-maos.py.
 
 ## Reels
 

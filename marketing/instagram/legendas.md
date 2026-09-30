@@ -30,7 +30,7 @@ Suas encomendas de Natal já estão abertas? Conta aqui.
 
 ## d2. Kit de Natal em 5 passos
 
-Publicar as seis imagens juntas, como carrossel, nessa ordem. Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
+Publicar as seis imagens juntas, como carrossel, nessa ordem. Páginas 4 e 5 são fotos de banco (Pexels); as outras, imagens geradas por IA. Ao publicar, ative o rótulo de IA do Instagram.
 
 Imagens: `dia2-1.jpg`, `dia2-2.jpg`, `dia2-3.jpg`, `dia2-4.jpg`, `dia2-5.jpg`, `dia2-6.jpg`
 
@@ -58,9 +58,9 @@ Salva pra montar o seu.
 
 - `dia2-1.jpg`: Kit de Natal visto de cima sobre linho: sabonetes em papel kraft, vela em vidro, canela, laranja seca, ramo de pinheiro e tag em branco, com recados escritos à mão apontando cada item. Texto: Kit de Natal em 5 passos.
 - `dia2-2.jpg`: Três sabonetes empilhados numa tábua com canela e laranja seca. Texto: 1. Escolha dois ou três produtos que combinem. Canela, laranja e baunilha se dão bem.
-- `dia2-3.jpg`: Mãos colocam um sabonete numa caixinha de kraft forrada com papel de seda. Texto: 2. Caixa de kraft e papel de seda. Simples fica bonito. E cabe no correio.
-- `dia2-4.jpg`: Mãos amarram uma tag de kraft em branco numa caixinha de presente. Texto: 3. Tag com o nome de quem recebe e o rótulo com Feliz Natal. O app monta o rótulo com a data.
-- `dia2-5.jpg`: Mãos seguram uma caixinha de kraft com fita vermelha na porta de casa. Texto: 4. QR do WhatsApp na caixa. Quem ganhou acha você. É o presente que traz cliente.
+- `dia2-3.jpg`: Mãos colocam um sabonete numa caixinha de kraft forrada com papel de seda. Texto: 2. Caixa de kraft e papel de seda. Simples fica bonito. O cuidado começa na caixa.
+- `dia2-4.jpg`: Mãos amarram barbante num pacote de papel kraft, sobre fundo escuro. Texto: 3. Tag com o nome de quem recebe e o rótulo com Feliz Natal. O app monta o rótulo com a data.
+- `dia2-5.jpg`: Duas mãos em concha seguram uma caixinha de kraft com laço de barbante vermelho, com um suéter claro ao fundo. Texto: 4. QR do WhatsApp na caixa. Quem ganhou acha você. É o presente que traz cliente.
 - `dia2-6.jpg`: Agenda aberta com listas escritas à mão, caixinhas de kraft e rolo de etiquetas na mesa. Painel creme com o texto: 5. Abra as encomendas agora. Feche em 10 de dezembro. Produção leva tempo, e o correio também. Rótulo, tag e QR prontos no artesaná. Grátis na versão beta. O link está na bio.
 
 ---
@@ -116,7 +116,7 @@ No artesaná. o rótulo completo, com os dados que a Anvisa pede pra cosmético,
 
 ## d5. Quatro datas que ainda vendem este ano
 
-Publicar as cinco imagens juntas, como carrossel, nessa ordem. Imagem gerada por IA. Ao publicar, ative o rótulo de IA do Instagram.
+Publicar as cinco imagens juntas, como carrossel, nessa ordem. A página 4 é foto de banco (Pexels); as outras, imagens geradas por IA. Ao publicar, ative o rótulo de IA do Instagram.
 
 Imagens: `dia5-1.jpg`, `dia5-2.jpg`, `dia5-3.jpg`, `dia5-4.jpg`, `dia5-5.jpg`
 
@@ -143,14 +143,14 @@ Salva e marca uma amiga que faz.
 - `dia5-1.jpg`: Mesa de ceia pequena à noite, iluminada por velas em castiçais de cerâmica, com guardanapos de linho e ramos de pinheiro. Texto: Quatro datas que ainda vendem este ano. E o que fazer em cada uma.
 - `dia5-2.jpg`: Sabonetes artesanais em formato de bichinhos, em tons pastel, numa bandeja de madeira, com a mão de uma criança pegando um. Texto: 12 out. Dia das Crianças. Sabonete em formato de bichinho, sem óleo essencial forte.
 - `dia5-3.jpg`: Caixinhas de kraft e potes de vela empilhados numa mesa escura, uma vela acesa. Texto: nov. Black Friday. Combo com desconto de verdade: bom pra testar kit e girar estoque.
-- `dia5-4.jpg`: Mãos de uma senhora entregam um presente pequeno em kraft para as mãos de uma mulher mais jovem, árvore de Natal desfocada atrás. Texto: 25 dez. Natal. Kit presenteável, tag de e para, canela, laranja e pinho. Produza em outubro.
+- `dia5-4.jpg`: Mãos com suéter de lã seguram um presente embrulhado em kraft com laço de fita vermelha, com as luzes da árvore de Natal atrás. Texto: 25 dez. Natal. Kit presenteável, tag de e para, canela, laranja e pinho. Produza em outubro.
 - `dia5-5.jpg`: Velas brancas em vidro, flores brancas e fatias de limão sobre linho branco, vistas de cima. Texto: 1 jan. Ano Novo. Kit de renovação: cítricos, tons claros, começo leve. As datas ficam no app, com a frase do rótulo.
 
 ---
 
 ## d6. O presente que ninguém devolve
 
-Reel sem áudio: ao publicar, escolha uma música na biblioteca do Instagram e use a capa como miniatura. Imagem gerada por IA: ative o rótulo de IA.
+Reel sem áudio: ao publicar, escolha uma música na biblioteca do Instagram e use a capa como miniatura. Vídeo de banco de imagens (Pexels).
 
 Imagens: `dia6-reel.mp4`, `dia6-capa.jpg`
 
@@ -168,8 +168,8 @@ Marque alguém que merece um presente feito à mão.
 
 **Texto alternativo**
 
-- `dia6-reel.mp4`: Vídeo: as mãos de uma senhora entregam um presente pequeno em kraft para as mãos de uma mulher mais jovem, com uma árvore de Natal desfocada atrás. As palavras aparecem uma a uma: O presente que ninguém devolve é o que alguém fez à mão. Depois a marca artesaná.
-- `dia6-capa.jpg`: Mãos entregando um presente pequeno em kraft, árvore de Natal desfocada atrás. Texto: O presente que ninguém devolve é o que alguém fez à mão.
+- `dia6-reel.mp4`: Vídeo: duas mãos em concha seguram uma caixinha de kraft com laço de barbante vermelho. As palavras aparecem uma a uma: O presente que ninguém devolve é o que alguém fez à mão. Depois a marca artesaná.
+- `dia6-capa.jpg`: Mãos em concha com uma caixinha de kraft e laço vermelho. Texto: O presente que ninguém devolve é o que alguém fez à mão.
 
 ---
 
@@ -219,7 +219,7 @@ Conta pra gente: qual é a sua peça mais demorada?
 
 **Texto alternativo**
 
-- `atelie-1.jpg`: Costureira de cabelos brancos sorri enquanto guia um tecido listrado na máquina de costura, num ateliê claro. Texto: Ninguém vê as horas que cabem numa peça. A gente vê.
+- `atelie-1.jpg`: Mãos de costureira guiam um tecido listrado na máquina de costura, num ateliê claro; texto na porta do armário: Ninguém vê as horas que cabem numa peça. A gente vê.
 
 ---
 
@@ -267,7 +267,7 @@ Grátis na versão beta. O link está na bio.
 
 **Texto alternativo**
 
-- `atelie-3.jpg`: Bastidor grande de bordado visto de cima, com uma guirlanda de flores miúdas bordada no linho e duas mãos passando a linha na agulha. Dentro da guirlanda, bordado em linha escura e verde: Ponto por ponto, a marca ganha rosto. A sua já começou.
+- `atelie-3.jpg`: Bastidor grande de bordado visto de cima, sobre linho, com uma guirlanda de flores miúdas bordada. Dentro da guirlanda, bordado em linha escura e bege: Ponto por ponto, a marca ganha rosto. A sua já começou. artesaná.
 
 ---
 
@@ -531,6 +531,9 @@ Banco Pexels, licença livre para uso comercial, sem obrigação de crédito. As
 
 | Peça | Autor | Página |
 |---|---|---|
+| dia2-4 | Anna Shvets | https://www.pexels.com/photo/4865722/ |
+| dia2-5 | Liza Summer | https://www.pexels.com/photo/crop-faceless-woman-showing-small-gift-box-on-palms-6348104/ |
+| dia5-4 | Ioana Motoc | https://www.pexels.com/photo/woman-holding-a-christmas-present-wrapped-with-red-ribbon-19149300/ |
 | atelie-1 | Harriet Fletcher | https://www.pexels.com/photo/senior-woman-sewing-at-home-with-machine-37937447/ |
 | atelie-2 | Vie Studio | https://www.pexels.com/photo/person-holding-a-brown-glass-spray-bottle-7006154/ |
 | atelie-6 | cottonbro studio | https://www.pexels.com/photo/elderly-woman-talking-to-her-grand-daugther-5585288/ |

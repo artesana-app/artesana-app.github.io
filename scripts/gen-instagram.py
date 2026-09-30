@@ -47,6 +47,9 @@ PECAS = {
 
 # id Pexels -> (onde é usada, autor, página)
 CREDITOS = {
+    4865722: ("dia2-4", "Anna Shvets", "https://www.pexels.com/photo/4865722/"),
+    6348104: ("dia2-5", "Liza Summer", "https://www.pexels.com/photo/crop-faceless-woman-showing-small-gift-box-on-palms-6348104/"),
+    19149300: ("dia5-4", "Ioana Motoc", "https://www.pexels.com/photo/woman-holding-a-christmas-present-wrapped-with-red-ribbon-19149300/"),
     37937447: ("atelie-1", "Harriet Fletcher", "https://www.pexels.com/photo/senior-woman-sewing-at-home-with-machine-37937447/"),
     7006154: ("atelie-2", "Vie Studio", "https://www.pexels.com/photo/person-holding-a-brown-glass-spray-bottle-7006154/"),
     5585288: ("atelie-6", "cottonbro studio", "https://www.pexels.com/photo/elderly-woman-talking-to-her-grand-daugther-5585288/"),
@@ -66,7 +69,7 @@ CREDITOS = {
 
 # textos que saem bordados no tecido em vez de impressos: peça -> [(seletor, cor da linha, opções)]
 BORDADOS = {
-    "atelie-3": [(".frase", "#3D2325", {}), (".recado", "#DE9060", {"engrossar": 2, "espaco": 1.7}), (".marca", "#3D2325", {"engrossar": 1, "espaco": 1.6}), (".marca b", "#FFB18B", {"engrossar": 2, "espaco": 1.6})],
+    "atelie-3": [(".frase", "#3D2325", {}), (".recado", "#F1E6D6", {"engrossar": 2, "espaco": 1.7}), (".marca", "#3D2325", {"engrossar": 1, "espaco": 1.6}), (".marca b", "#F1E6D6", {"engrossar": 2, "espaco": 1.6})],
 }
 
 # etiquetas em branco que recebem o texto da marca: foto -> (ponto dentro da etiqueta, limiar de claro, linhas)

@@ -67,5 +67,5 @@ test('as imagens da série são as geradas por IA e estão no repositório', () 
   }
   for (const c of cenas) assert.ok(existsSync(new URL(`ia/${c.nome}.jpg`, PASTA)), `falta ia/${c.nome}.jpg`);
   // cada publicação diz de onde vem a imagem: gerada por IA ou banco de imagens
-  for (const p of serie) assert.match(p.como, /gerada por IA|banco de imagens/);
+  for (const p of serie) assert.match(p.como, /gerad[ao]s? por IA|banco/);
 });

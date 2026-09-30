@@ -36,12 +36,13 @@ SEGURO = {"topo": 250, "base": 340, "lado": 120}
 # vídeos do Pexels (licença livre para uso comercial): id -> (arquivo, autor, página)
 VIDEOS = {
     6753499: ("https://videos.pexels.com/video-files/6753499/6753499-uhd_2160_3840_25fps.mp4", "Vlada Karpovich", "https://www.pexels.com/video/a-person-lighting-a-candle-6753499/"),
+    6342240: ("https://videos.pexels.com/video-files/6342240/6342240-uhd_2160_3840_25fps.mp4", "Liza Summer", "https://www.pexels.com/video/a-person-holding-a-small-gift-box-6342240/"),
 }
 
 # nome do arquivo -> modelo HTML, fonte (foto ou vídeo), duração em segundos, zoom final (foto) ou início do trecho (vídeo)
 REELS = {
     "dia3-reel": {"modelo": "reel-dia3.html", "video": 6753499, "inicio": 2.0, "dur": 12.0},
-    "dia6-reel": {"modelo": "reel-dia6.html", "foto": "ia/presente_reel.jpg", "dur": 8.0, "zoom": 1.08},
+    "dia6-reel": {"modelo": "reel-dia6.html", "video": 6342240, "inicio": 0.5, "dur": 8.0},
 }
 
 
