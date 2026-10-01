@@ -192,6 +192,7 @@ export function inicial(nome) {
 export function avisoBeta() {
   if (!SITE.beta) return null;
   const dias = diasDeBeta();
-  const texto = dias > 0 ? `Versão beta: tudo liberado por mais ${dias} ${dias === 1 ? 'dia' : 'dias'}. Depois entram os planos.` : 'O beta terminou. Os planos passam a valer.';
+  const fim = new Date(`${SITE.betaFim}T12:00:00`).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' });
+  const texto = dias > 0 ? `Versão beta: tudo liberado, grátis até ${fim}. Depois entram os planos.` : 'O beta terminou. Os planos passam a valer.';
   return h('a', { class: 'aviso-beta', href: '#planos' }, texto);
 }

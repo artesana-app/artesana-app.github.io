@@ -113,6 +113,8 @@ export function montar(section) {
           dicaDitado(),
           campoTexto('user', 'nome', 'Seu nome', { placeholder: 'Como você se chama', auto: 'given-name', caixa: 'words' }),
           campoTexto('user', 'email', 'E-mail de contato', { placeholder: 'voce@exemplo.com', tipo: 'email', auto: 'email', caixa: 'none' }),
+          campoTexto('user', 'telefone', 'Seu WhatsApp ou telefone', { placeholder: '(47) 99999-9999', tipo: 'tel', auto: 'tel-national', caixa: 'none' }),
+          campoOpcoes('user', 'novidades', 'Quer receber novidades do artesaná.?', [{ id: 'sim', nome: 'Sim, por e-mail ou WhatsApp' }, { id: 'nao', nome: 'Agora não' }]),
           campoOpcoes('user', 'faixaEtaria', 'Quantos anos você tem?', FAIXAS_ETARIAS.map((f) => ({ id: f, nome: f }))),
           campoTexto('user', 'cidade', 'De onde você é?', { placeholder: 'Cidade e estado', caixa: 'words' }))),
       h('div', { class: 'coluna' },

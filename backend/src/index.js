@@ -311,7 +311,7 @@ async function admin(req, env, url, caminho) {
   const dia = 86400000;
   if (caminho === '/admin/resumo') {
     const q = (sql, ...b) => env.DB.prepare(sql).bind(...b);
-    const [tot, hoje, sete, trinta, emails, perfis, fb, notas, abertas, pagos, porDia, porPais, porCidade, porAparelho, porRedes, porFaixa, porRota, porPasso, rotasVistas, entradas] = await env.DB.batch([
+    const [tot, hoje, sete, trinta, emails, perfis, fb, notas, abertas, pagos, porDia, porPais, porCidade, porAparelho, porRedes, porFaixa, porRota, porPasso, rotasVistas, entradas, buscas, perguntas, porNovidades, telefones] = await env.DB.batch([
       q('SELECT COUNT(*) n FROM visitantes'),
       q('SELECT COUNT(*) n FROM visitantes WHERE ultimo >= ?', agora - dia),
       q('SELECT COUNT(*) n FROM visitantes WHERE ultimo >= ?', agora - 7 * dia),
@@ -332,6 +332,10 @@ async function admin(req, env, url, caminho) {
       q('SELECT COALESCE(passo, \'não começou\') k, COUNT(*) n FROM visitantes GROUP BY k ORDER BY n DESC LIMIT 20'),
       q("SELECT COALESCE(rota, '?') k, COUNT(*) n FROM eventos WHERE tipo = 'pagina' GROUP BY k ORDER BY n DESC LIMIT 25"),
       q("SELECT COUNT(*) n FROM eventos WHERE tipo = 'entrada'"),
+      q("SELECT COALESCE(json_extract(dados, '$.termos'), '?') k, COUNT(*) n FROM eventos WHERE tipo = 'busca' GROUP BY k ORDER BY n DESC LIMIT 20"),
+      q("SELECT COALESCE(json_extract(dados, '$.texto'), '?') k, COUNT(*) n FROM eventos WHERE tipo = 'suporte_pergunta' GROUP BY k ORDER BY n DESC LIMIT 20"),
+      q("SELECT CASE novidades WHEN 1 THEN 'quer novidades' WHEN 0 THEN 'não quer' ELSE 'não respondeu' END k, COUNT(*) n FROM visitantes GROUP BY k ORDER BY n DESC"),
+      q("SELECT COUNT(*) n FROM visitantes WHERE telefone IS NOT NULL AND telefone <> ''"),
     ]);
     const um = (r) => (r.results && r.results[0]) || {};
     const lista = (r) => r.results || [];
@@ -340,17 +344,18 @@ async function admin(req, env, url, caminho) {
       totais: {
         visitantes: um(tot).n, hoje: um(hoje).n, seteDias: um(sete).n, novosTrintaDias: um(trinta).n, emails: um(emails).n,
         perfis: um(perfis).n, feedbacks: um(fb).n, notaMedia: um(notas).media, conversasEsperando: um(abertas).n,
-        pagamentos: um(pagos).n, receita: um(pagos).total, entradas: um(entradas).n,
+        pagamentos: um(pagos).n, receita: um(pagos).total, entradas: um(entradas).n, telefones: um(telefones).n,
       },
       porDia: lista(porDia), porPais: lista(porPais), porCidade: lista(porCidade), porAparelho: lista(porAparelho), porRedes: lista(porRedes),
       porFaixa: lista(porFaixa), porRota: lista(porRota), porPasso: lista(porPasso), rotasVistas: lista(rotasVistas),
+      buscas: lista(buscas), perguntas: lista(perguntas), porNovidades: lista(porNovidades),
     });
   }
   if (caminho === '/admin/visitantes') {
     const limite = Math.min(1000, Number(url.searchParams.get('limite')) || 300);
     const r = await env.DB.prepare('SELECT * FROM visitantes ORDER BY ultimo DESC LIMIT ?').bind(limite).all();
     if (url.searchParams.get('formato') === 'csv') {
-      return new Response('﻿' + csv(r.results || [], ['id', 'primeiro', 'ultimo', 'aparelho', 'pais', 'regiao', 'cidade', 'idioma', 'navegador', 'redes', 'email', 'nome', 'marca', 'faixa', 'cidade_informada', 'ultima_rota', 'passo', 'paginas', 'perfil_enviado']),
+      return new Response('﻿' + csv(r.results || [], ['id', 'primeiro', 'ultimo', 'aparelho', 'pais', 'regiao', 'cidade', 'idioma', 'navegador', 'redes', 'email', 'telefone', 'novidades', 'nome', 'marca', 'faixa', 'cidade_informada', 'ultima_rota', 'passo', 'paginas', 'perfil_enviado']),
         { headers: { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="visitantes.csv"' } });
     }
     return json({ ok: true, visitantes: r.results || [] });

@@ -41,6 +41,8 @@ export function resumirEventos(eventos, agora = Date.now()) {
     if (tipo === 'email' && typeof e.email === 'string' && e.email.includes('@')) campos.email = e.email.trim().slice(0, 120);
     if (tipo === 'entrada' && e.redes) campos.redes = String(e.redes).slice(0, 20);
     if (tipo === 'perfil_enviado') campos.perfil_enviado = 1;
+    if (tipo === 'telefone' && e.telefone) { const n = String(e.telefone).replace(/\D/g, ''); if (n.length >= 10) campos.telefone = n.slice(0, 20); }
+    if (tipo === 'novidades') campos.novidades = e.aceita === true || e.aceita === 'sim' ? 1 : 0;
   }
   return { linhas, campos, paginas };
 }
@@ -49,7 +51,9 @@ export function resumirEventos(eventos, agora = Date.now()) {
 export function camposDoPerfil(dados = {}) {
   const u = (dados && dados.user) || {};
   const limpa = (v, n = 120) => (typeof v === 'string' && v.trim() ? v.trim().slice(0, n) : null);
-  return { nome: limpa(u.nome, 80), marca: limpa(u.marca, 80), email: limpa(u.email), faixa: limpa(u.faixaEtaria, 20), cidade_informada: limpa(u.cidade, 80) };
+  const tel = typeof u.telefone === 'string' ? u.telefone.replace(/\D/g, '') : '';
+  const novidades = u.novidades === 'sim' || u.novidades === true ? 1 : u.novidades === 'nao' || u.novidades === false ? 0 : null;
+  return { nome: limpa(u.nome, 80), marca: limpa(u.marca, 80), email: limpa(u.email), faixa: limpa(u.faixaEtaria, 20), cidade_informada: limpa(u.cidade, 80), telefone: tel.length >= 10 ? tel.slice(0, 20) : null, novidades };
 }
 
 // Mensagem do Telegram vinda da equipe: responde uma conversa por "reply" ou por "/r <id> texto".
@@ -88,8 +92,8 @@ export function basicAuthOk(cabecalho, usuario, senha) {
 }
 
 export const PLANOS_PAGOS = {
-  florescer: { tipo: 'assinatura', valor: 49.9, titulo: 'artesaná. plano Florescer (mensal)' },
-  prosperar: { tipo: 'unico', valor: 297, parcelas: 12, titulo: 'artesaná. plano Prosperar (anual)' },
+  florescer: { tipo: 'assinatura', valor: 52.9, titulo: 'artesaná. plano Florescer (mensal)' },
+  prosperar: { tipo: 'unico', valor: 312, parcelas: 12, titulo: 'artesaná. plano Prosperar (anual)' },
 };
 
 export function csv(linhas, colunas) {

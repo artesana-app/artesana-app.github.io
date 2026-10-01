@@ -73,7 +73,7 @@ async function resumo() {
   const t = d.totais;
   const cards = [
     [t.visitantes, 'aparelhos que abriram o app'], [t.hoje, 'ativos nas últimas 24 h'], [t.seteDias, 'ativos em 7 dias'], [t.novosTrintaDias, 'novos em 30 dias'],
-    [t.entradas, 'entraram (escolheram rede)'], [t.emails, 'deixaram e-mail'], [t.perfis, 'perfis enviados'], [`${t.feedbacks}${t.notaMedia ? ` · ${Number(t.notaMedia).toFixed(1)}★` : ''}`, 'avaliações'],
+    [t.entradas, 'entraram (escolheram rede)'], [t.emails, 'deixaram e-mail'], [t.telefones, 'deixaram telefone'], [t.perfis, 'perfis enviados'], [`${t.feedbacks}${t.notaMedia ? ` · ${Number(t.notaMedia).toFixed(1)}★` : ''}`, 'avaliações'],
     [t.conversasEsperando, 'conversas esperando resposta'], [`${t.pagamentos} · R$ ${Number(t.receita || 0).toFixed(0)}`, 'pagamentos aprovados'],
   ];
   const max = Math.max(1, ...d.porDia.map((x) => x.n));
@@ -89,7 +89,10 @@ async function resumo() {
       h('div', {}, h('h2', {}, 'Faixa etária'), h('div', { class: 'card' }, barras(d.porFaixa, t.visitantes))),
       h('div', {}, h('h2', {}, 'Aparelho'), h('div', { class: 'card' }, barras(d.porAparelho, t.visitantes))),
       h('div', {}, h('h2', {}, 'Rede escolhida na entrada'), h('div', { class: 'card' }, barras(d.porRedes, t.visitantes))),
+      h('div', {}, h('h2', {}, 'Quer receber novidades?'), h('div', { class: 'card' }, barras(d.porNovidades || [], t.visitantes))),
       h('div', {}, h('h2', {}, 'Telas mais abertas'), h('div', { class: 'card' }, barras(d.rotasVistas))),
+      h('div', {}, h('h2', {}, 'O que buscaram no Pinterest'), h('div', { class: 'card' }, (d.buscas || []).length ? barras(d.buscas) : h('p', { class: 'nota' }, 'Nenhuma busca ainda.'))),
+      h('div', {}, h('h2', {}, 'O que perguntaram na Ajuda'), h('div', { class: 'card' }, (d.perguntas || []).length ? barras(d.perguntas) : h('p', { class: 'nota' }, 'Nenhuma pergunta ainda.'))),
     ),
   );
 }
@@ -104,9 +107,11 @@ async function visitantes() {
   const d = await api('/admin/visitantes?limite=500');
   tela.append(
     h('p', { class: 'nota' }, `${d.visitantes.length} mais recentes. `, h('a', { href: '#', onClick: async (e) => { e.preventDefault(); const r = await fetch(`${BACKEND}/admin/visitantes?formato=csv&limite=1000`, { headers: { Authorization: auth } }); const b = await r.blob(); const a = h('a', { href: URL.createObjectURL(b), download: 'visitantes.csv' }); a.click(); } }, 'Baixar CSV')),
-    tabela([['ultimo', 'Última vez'], ['primeiro', 'Primeira'], ['nome', 'Nome'], ['marca', 'Marca'], ['email', 'E-mail'], ['faixa', 'Idade'], ['cidade', 'Cidade (IP)'], ['cidade_informada', 'Cidade (disse)'], ['aparelho', 'Aparelho'], ['redes', 'Rede'], ['ultima_rota', 'Parou em'], ['passo', 'Passo'], ['paginas', 'Telas'], ['perfil_enviado', 'Perfil']],
+    tabela([['ultimo', 'Última vez'], ['primeiro', 'Primeira'], ['nome', 'Nome'], ['marca', 'Marca'], ['email', 'E-mail'], ['telefone', 'Telefone'], ['novidades', 'Novidades'], ['faixa', 'Idade'], ['cidade', 'Cidade (IP)'], ['cidade_informada', 'Cidade (disse)'], ['aparelho', 'Aparelho'], ['redes', 'Rede'], ['ultima_rota', 'Parou em'], ['passo', 'Passo'], ['paginas', 'Telas'], ['perfil_enviado', 'Perfil']],
       d.visitantes, {
         ultimo: quando, primeiro: dataCurta,
+        telefone: (v) => (v ? v.replace(/^55(\d{2})(\d{4,5})(\d{4})$/, '($1) $2-$3') : ''),
+        novidades: (v) => (v === 1 ? h('span', { class: 'tag ok' }, 'sim') : v === 0 ? h('span', { class: 'tag' }, 'não') : ''),
         cidade: (v, l) => [v, l.regiao, l.pais].filter(Boolean).join(' · '),
         perfil_enviado: (v) => (v ? h('span', { class: 'tag ok' }, 'enviado') : ''),
         ultima_rota: (v, l) => h('a', { href: '#', onClick: async (e) => { e.preventDefault(); detalhe(l.id); } }, v || '?'),

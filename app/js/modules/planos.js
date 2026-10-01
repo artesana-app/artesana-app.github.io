@@ -2,7 +2,7 @@ import { h, header, toast, navegacao, modal } from '../ui.js';
 import * as store from '../store.js';
 import * as analitica from '../analitica.js';
 import { SITE, diasDeBeta } from '../site.js';
-import { PLANOS, precoFormatado } from '../lib/planos.js';
+import { PLANOS, precoFormatado, precoTotal } from '../lib/planos.js';
 
 export function montar(section, param) {
   const atual = store.get('plano', 'semente');
@@ -18,7 +18,7 @@ export function montar(section, param) {
   }
   const aviso = SITE.beta
     ? h('div', { class: 'card moss' },
-      h('h3', {}, dias > 0 ? `Beta: tudo liberado por mais ${dias} ${dias === 1 ? 'dia' : 'dias'}` : 'O beta terminou'),
+      h('h3', {}, dias > 0 ? `Beta: tudo liberado, grátis até ${new Date(`${SITE.betaFim}T12:00:00`).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' })}` : 'O beta terminou'),
       h('p', { style: { margin: '6px 0 12px', fontSize: '13.5px' } }, `Até ${new Date(`${SITE.betaFim}T12:00:00`).toLocaleDateString('pt-BR')} você usa o app inteiro sem pagar. Depois, cada conta passa pro plano que escolher; quem não escolher fica no Semente, grátis.`),
       h('a', { class: 'btn soft block', href: '#feedback' }, 'Contar como foi o teste'))
     : null;
@@ -61,6 +61,7 @@ export function montar(section, param) {
         p.id === 'prosperar' ? h('span', { class: 'badge gold' }, 'mais completo') : null,
         h('h3', {}, `${p.emoji} ${p.nome}`), h('div', { class: 'muted' }, p.desc),
         h('div', { class: 'preco' }, precoFormatado(p)),
+        precoTotal(p) ? h('div', { class: 'muted', style: { marginTop: '-6px', marginBottom: '10px', fontSize: '13px' } }, `${precoTotal(p)}, no cartão em até ${p.parcelas}x ou PIX à vista`) : null,
         h('ul', {}, ...p.itens.map((i) => h('li', {}, `✓ ${i}`))),
         h('button', { class: `btn block ${p.id === 'prosperar' ? 'peach' : p.preco ? '' : 'white'}`, type: 'button', onClick: () => assinar(p) },
           p.preco ? 'Assinar' : (SITE.beta ? 'Grátis' : 'Ficar no Semente'))))),

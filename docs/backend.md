@@ -79,8 +79,9 @@ a resposta aparece na tela Ajuda dela (o app confere a cada 15 segundos enquanto
 
 ## Mercado Pago
 
-Planos: Florescer é assinatura mensal (R$ 49,90, cobrada todo mês no cartão) e Prosperar é cobrança única anual
-(R$ 297, em até 12x no cartão, ou PIX e boleto à vista). O app chama `POST /v1/pagar/<plano>` e abre o link que o
+Planos: Florescer é assinatura mensal (R$ 52,90, cobrada todo mês no cartão) e Prosperar é cobrança única anual
+(R$ 312, em até 12x de R$ 26 no cartão, ou PIX e boleto à vista). Os valores ficam em `app/js/lib/planos.js` e
+`backend/src/util.js` (PLANOS_PAGOS), e o teste `tests/backend.test.mjs` garante que os dois batem. O app chama `POST /v1/pagar/<plano>` e abre o link que o
 Mercado Pago devolve; o aviso de pagamento volta pelo webhook e fica na aba Pagamentos do painel.
 
 1. Em https://www.mercadopago.com.br/developers, crie uma aplicação ("artesaná", modelo de integração: Checkout Pro,

@@ -16,8 +16,11 @@ CREATE TABLE IF NOT EXISTS visitantes (
   ultima_rota TEXT,                   -- última tela aberta
   passo TEXT,                         -- último passo da conversa de perfil
   paginas INTEGER NOT NULL DEFAULT 0,
-  perfil_enviado INTEGER NOT NULL DEFAULT 0
+  perfil_enviado INTEGER NOT NULL DEFAULT 0,
+  telefone TEXT,                      -- quando entrou ou se identificou pelo número
+  novidades INTEGER                   -- 1 aceita receber novidades, 0 não quer, NULL não respondeu
 );
+-- Banco criado antes de 01/10/2026: aplicar também migracoes/2026-10-01-telefone-novidades.sql
 
 CREATE TABLE IF NOT EXISTS eventos (
   id INTEGER PRIMARY KEY AUTOINCREMENT,

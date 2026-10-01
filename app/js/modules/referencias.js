@@ -3,6 +3,7 @@
 import { h, header, toast, copiar, navegacao, chips } from '../ui.js';
 import { campo } from '../campos.js';
 import * as store from '../store.js';
+import * as analitica from '../analitica.js';
 import { NICHOS, PERSONALIDADES, nichosDe } from '../lib/perfil.js';
 
 const TEMAS = [
@@ -30,7 +31,7 @@ export function montar(section) {
   const termos = h('p', { class: 'termos' });
   const atualizar = () => { termos.textContent = termosDeBusca({ onboarding: o, tema, extra: extra.input.value }); };
   extra.input.addEventListener('input', atualizar);
-  const abrir = () => { const q = termosDeBusca({ onboarding: o, tema, extra: extra.input.value }); window.open(`https://br.pinterest.com/search/pins/?q=${encodeURIComponent(q)}`, '_blank', 'noopener'); };
+  const abrir = () => { const q = termosDeBusca({ onboarding: o, tema, extra: extra.input.value }); analitica.evento('busca', { termos: q.slice(0, 120) }); window.open(`https://br.pinterest.com/search/pins/?q=${encodeURIComponent(q)}`, '_blank', 'noopener'); };
 
   const link = campo({ placeholder: 'Cole o link do pin ou da pasta que você gostou', type: 'url' });
   const nota = campo({ placeholder: 'Por que gostou? (opcional)' });

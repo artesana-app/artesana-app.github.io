@@ -36,12 +36,16 @@ test('resumirEventos: linhas e campos derivados', () => {
     { tipo: 'email', email: ' maria@exemplo.com ' },
     { tipo: 'entrada', redes: 'instagram' },
     { tipo: 'perfil_enviado' },
+    { tipo: 'telefone', telefone: '5547999999999' },
+    { tipo: 'novidades', aceita: 'sim' },
     { tipo: '' }, null, 'lixo',
   ], 1700000005000);
-  assert.equal(linhas.length, 6);
+  assert.equal(linhas.length, 8);
   assert.equal(linhas[2].t, 1700000005000);
   assert.equal(paginas, 2);
-  assert.deepEqual(campos, { ultima_rota: 'conversa/nome', passo: 'nichos', email: 'maria@exemplo.com', redes: 'instagram', perfil_enviado: 1 });
+  assert.deepEqual(campos, { ultima_rota: 'conversa/nome', passo: 'nichos', email: 'maria@exemplo.com', redes: 'instagram', perfil_enviado: 1, telefone: '5547999999999', novidades: 1 });
+  assert.equal(resumirEventos([{ tipo: 'novidades', aceita: 'nao' }]).campos.novidades, 0);
+  assert.ok(!('telefone' in resumirEventos([{ tipo: 'telefone', telefone: '123' }]).campos));
   assert.equal(JSON.parse(linhas[0].dados).rota, 'home');
   assert.ok(!('tipo' in JSON.parse(linhas[0].dados)));
 });
@@ -53,9 +57,10 @@ test('resumirEventos: limita tamanho e ignora e-mail inválido', () => {
 });
 
 test('camposDoPerfil pega só o que interessa do user', () => {
-  const c = camposDoPerfil({ user: { nome: ' Maria ', marca: 'Flor de Sal', email: 'm@x.com', faixaEtaria: '25 a 34', cidade: 'Joinville', senha: 'nao' }, onboarding: {} });
-  assert.deepEqual(c, { nome: 'Maria', marca: 'Flor de Sal', email: 'm@x.com', faixa: '25 a 34', cidade_informada: 'Joinville' });
-  assert.deepEqual(camposDoPerfil({}), { nome: null, marca: null, email: null, faixa: null, cidade_informada: null });
+  const c = camposDoPerfil({ user: { nome: ' Maria ', marca: 'Flor de Sal', email: 'm@x.com', faixaEtaria: '25 a 34', cidade: 'Joinville', senha: 'nao', telefone: '(47) 99999-9999', novidades: 'sim' }, onboarding: {} });
+  assert.deepEqual(c, { nome: 'Maria', marca: 'Flor de Sal', email: 'm@x.com', faixa: '25 a 34', cidade_informada: 'Joinville', telefone: '47999999999', novidades: 1 });
+  assert.deepEqual(camposDoPerfil({}), { nome: null, marca: null, email: null, faixa: null, cidade_informada: null, telefone: null, novidades: null });
+  assert.equal(camposDoPerfil({ user: { novidades: 'nao' } }).novidades, 0);
 });
 
 test('resposta do Telegram por reply ou /r', () => {
