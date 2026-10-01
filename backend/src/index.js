@@ -174,7 +174,9 @@ async function pagar(req, env, plano, urlBase) {
   if (!codigoVisitanteValido(b.visitante)) return json({ ok: false }, 400);
   const email = typeof b.email === 'string' && b.email.includes('@') ? b.email.trim().slice(0, 120) : '';
   const agora = Date.now();
-  const referencia = `${plano}-${b.visitante.slice(0, 12)}-${agora.toString(36)}`;
+  const aVista = b.modo === 'avista' && p.avista > 0;
+  const valor = aVista ? p.avista : p.valor;
+  const referencia = `${plano}-${b.visitante.slice(0, 12)}-${agora.toString(36)}${aVista ? '-av' : ''}`;
   const site = env.SITE_URL || 'https://artesana-mktdigital.com.br';
   let r;
   if (p.tipo === 'assinatura') {
@@ -185,17 +187,18 @@ async function pagar(req, env, plano, urlBase) {
       back_url: `${site}/app/#planos/obrigada`,
     }, referencia);
   } else {
+    // à vista: PIX, boleto ou débito, sem cartão de crédito (é o que justifica o desconto); parcelado: cartão em até 12x
     r = await mp(env, '/checkout/preferences', {
-      items: [{ id: plano, title: p.titulo, quantity: 1, unit_price: p.valor, currency_id: 'BRL' }],
+      items: [{ id: plano, title: aVista ? `${p.titulo}, à vista` : p.titulo, quantity: 1, unit_price: valor, currency_id: 'BRL' }],
       payer: email ? { email } : undefined, external_reference: referencia, statement_descriptor: 'ARTESANA',
-      payment_methods: { installments: p.parcelas || 1 },
+      payment_methods: aVista ? { excluded_payment_types: [{ id: 'credit_card' }], installments: 1 } : { installments: p.parcelas || 1 },
       back_urls: { success: `${site}/app/#planos/obrigada`, pending: `${site}/app/#planos/pendente`, failure: `${site}/app/#planos` },
       auto_return: 'approved', notification_url: `${urlBase}/mp/webhook`,
     }, referencia);
   }
   if (!r.ok || !r.dados.init_point) return json({ ok: false, erro: 'Mercado Pago recusou', detalhe: r.dados && (r.dados.message || r.dados.error) }, 502);
   await env.DB.prepare('INSERT INTO pagamentos (visitante, t, plano, email, referencia, mp_id, status, valor, dados) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
-    .bind(b.visitante, agora, plano, email || null, referencia, String(r.dados.id || ''), 'criado', p.valor, JSON.stringify({ init_point: r.dados.init_point }).slice(0, 2000)).run();
+    .bind(b.visitante, agora, plano, email || null, referencia, String(r.dados.id || ''), 'criado', valor, JSON.stringify({ init_point: r.dados.init_point, modo: aVista ? 'avista' : 'parcelado' }).slice(0, 2000)).run();
   return json({ ok: true, url: r.dados.init_point, referencia });
 }
 

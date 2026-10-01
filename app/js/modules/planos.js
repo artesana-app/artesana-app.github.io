@@ -2,7 +2,7 @@ import { h, header, toast, navegacao, modal } from '../ui.js';
 import * as store from '../store.js';
 import * as analitica from '../analitica.js';
 import { SITE, diasDeBeta } from '../site.js';
-import { PLANOS, precoFormatado, precoTotal } from '../lib/planos.js';
+import { PLANOS, precoFormatado, precoTotal, precoAVista, descontoAVista, economiaAnual } from '../lib/planos.js';
 
 export function montar(section, param) {
   const atual = store.get('plano', 'semente');
@@ -23,8 +23,8 @@ export function montar(section, param) {
       h('a', { class: 'btn soft block', href: '#feedback' }, 'Contar como foi o teste'))
     : null;
 
-  const assinar = async (p, confirmado = false) => {
-    analitica.evento('plano_clique', { plano: p.id });
+  const assinar = async (p, confirmado = false, modo = 'parcelado') => {
+    analitica.evento('plano_clique', { plano: p.id, modo });
     if (!p.preco) { store.set('plano', 'semente'); toast('Plano Semente escolhido'); return; }
     if (SITE.beta && dias > 0 && !confirmado) {
       modal({
@@ -32,7 +32,7 @@ export function montar(section, param) {
         corpo: h('p', {}, `Até ${new Date(`${SITE.betaFim}T12:00:00`).toLocaleDateString('pt-BR')} você usa o app inteiro sem pagar. Se quiser garantir o ${p.nome} desde já, o pagamento abre agora e o plano já fica no seu nome.`),
         botoes: [
           { texto: 'Esperar o fim do beta', classe: 'white' },
-          { texto: `Assinar o ${p.nome} agora`, classe: 'peach', onClick: () => assinar(p, true) },
+          { texto: `Assinar o ${p.nome} agora`, classe: 'peach', onClick: () => assinar(p, true, modo) },
         ],
       });
       return;
@@ -48,8 +48,8 @@ export function montar(section, param) {
       store.patch('user', { email });
     }
     toast('Abrindo o pagamento...');
-    const r = await analitica.enviar(`/v1/pagar/${p.id}`, { email });
-    if (r.ok && r.url) { store.set('pagamento_pendente', { plano: p.id, referencia: r.referencia, t: Date.now() }); window.open(r.url, '_blank', 'noopener'); return; }
+    const r = await analitica.enviar(`/v1/pagar/${p.id}`, { email, modo });
+    if (r.ok && r.url) { store.set('pagamento_pendente', { plano: p.id, modo, referencia: r.referencia, t: Date.now() }); window.open(r.url, '_blank', 'noopener'); return; }
     toast(r.semPagamento ? 'O pagamento ainda não está ligado. Durante o beta está tudo liberado.' : 'Não consegui abrir o pagamento agora. Tente de novo em instantes.', 3500);
   };
 
@@ -58,14 +58,20 @@ export function montar(section, param) {
     h('div', { class: 'content' },
       aviso,
       h('div', { class: 'planos' }, ...PLANOS.map((p) => h('div', { class: `card plano ${p.id === 'prosperar' ? 'destaque' : ''} ${p.id === atual && !SITE.beta ? 'atual' : ''}` },
-        p.id === 'prosperar' ? h('span', { class: 'badge gold' }, 'mais completo') : null,
+        p.id === 'prosperar' ? h('span', { class: 'badge gold' }, 'melhor valor') : null,
         h('h3', {}, `${p.emoji} ${p.nome}`), h('div', { class: 'muted' }, p.desc),
         h('div', { class: 'preco' }, precoFormatado(p)),
-        precoTotal(p) ? h('div', { class: 'muted', style: { marginTop: '-6px', marginBottom: '10px', fontSize: '13px' } }, `${precoTotal(p)}, no cartão em até ${p.parcelas}x ou PIX à vista`) : null,
+        precoTotal(p) ? h('div', { class: 'muted', style: { marginTop: '-6px', fontSize: '13px' } }, `${precoTotal(p)} no cartão`) : null,
+        precoAVista(p) ? h('div', { class: 'avista' }, `ou ${precoAVista(p)} à vista no PIX`, h('small', {}, ` (${descontoAVista(p)}% de desconto)`)) : null,
+        p.id === 'prosperar' ? h('div', { class: 'muted', style: { fontSize: '12.5px', margin: '4px 0 10px' } }, `Dá R$ ${(p.preco / 12).toFixed(2).replace('.', ',')} por mês. Doze meses de Florescer custam R$ ${(economiaAnual() + p.preco).toFixed(2).replace('.', ',')}: você economiza R$ ${economiaAnual().toFixed(2).replace('.', ',')} no ano.`) : null,
         h('ul', {}, ...p.itens.map((i) => h('li', {}, `✓ ${i}`))),
-        h('button', { class: `btn block ${p.id === 'prosperar' ? 'peach' : p.preco ? '' : 'white'}`, type: 'button', onClick: () => assinar(p) },
-          p.preco ? 'Assinar' : (SITE.beta ? 'Grátis' : 'Ficar no Semente'))))),
-      h('p', { class: 'muted center' }, 'Pagamento pelo Mercado Pago: PIX, cartão ou boleto. O anual pode ser parcelado no cartão.'),
+        p.avista
+          ? h('div', { class: 'btn-col' },
+            h('button', { class: 'btn block peach', type: 'button', onClick: () => assinar(p, false, 'parcelado') }, `Assinar em ${p.parcelas}x de R$ ${(p.preco / p.parcelas).toFixed(2).replace('.', ',')}`),
+            h('button', { class: 'btn block', type: 'button', onClick: () => assinar(p, false, 'avista') }, `Assinar à vista por ${precoAVista(p)}`))
+          : h('button', { class: `btn block ${p.preco ? '' : 'white'}`, type: 'button', onClick: () => assinar(p) },
+            p.preco ? 'Assinar' : (SITE.beta ? 'Grátis' : 'Ficar no Semente'))))),
+      h('p', { class: 'muted center' }, 'Pagamento pelo Mercado Pago. Parcelado: cartão de crédito. À vista: PIX, boleto ou débito.'),
       navegacao({ atual: 'planos', seguir: '' }),
     ),
   ));

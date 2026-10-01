@@ -93,7 +93,7 @@ export function basicAuthOk(cabecalho, usuario, senha) {
 
 export const PLANOS_PAGOS = {
   florescer: { tipo: 'assinatura', valor: 52.9, titulo: 'artesaná. plano Florescer (mensal)' },
-  prosperar: { tipo: 'unico', valor: 312, parcelas: 12, titulo: 'artesaná. plano Prosperar (anual)' },
+  prosperar: { tipo: 'unico', valor: 312, parcelas: 12, avista: 279, titulo: 'artesaná. plano Prosperar (anual)' },
 };
 
 export function csv(linhas, colunas) {

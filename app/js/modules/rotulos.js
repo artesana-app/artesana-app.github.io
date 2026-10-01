@@ -9,6 +9,7 @@ import { nichoPrincipal } from '../lib/perfil.js';
 import { gerarQrDataUrl } from './whatsapp.js';
 import { abaAnvisa } from './rotulo-completo.js';
 import { identidade } from './identidade.js';
+import { conferirLimite, registrarExportacao } from '../exportacoes.js';
 
 const ESCALA = 4; // px por mm no preview
 
@@ -136,6 +137,11 @@ function abaCriar(section, render) {
   const exportar = () => {
     const g = gradeA4({ largura: r.largura, altura: r.altura });
     if (!g.total) { toast('Esse tamanho não cabe numa folha A4'); return; }
+    const limite = conferirLimite();
+    if (!limite.pode) {
+      modal({ titulo: 'Limite do mês', corpo: h('p', {}, limite.mensagem), botoes: [{ texto: 'Depois', classe: 'white' }, { texto: 'Ver planos', classe: 'peach', onClick: () => { location.hash = '#planos'; } }] });
+      return;
+    }
     const folha = document.getElementById('folha-a4');
     folha.innerHTML = '';
     for (const pos of g.posicoes) {
@@ -145,8 +151,8 @@ function abaCriar(section, render) {
     }
     modal({
       titulo: 'Exportar PDF',
-      corpo: h('div', {}, h('p', {}, `Vai abrir a janela de impressão com ${g.total} rótulos numa folha A4.`), h('p', { class: 'muted' }, 'Escolha "Salvar como PDF" no destino. Sai vetorial, pronto pra gráfica ou pra imprimir em casa em adesivo A4.'), h('p', { class: 'muted' }, 'Casa: papel adesivo brilhante A4. Gráfica: couchê adesivo 90g.')),
-      botoes: [{ texto: 'Cancelar', classe: 'white' }, { texto: 'Abrir impressão', classe: 'peach', onClick: () => { requestAnimationFrame(() => setTimeout(() => window.print(), 150)); } }],
+      corpo: h('div', {}, h('p', {}, `Vai abrir a janela de impressão com ${g.total} rótulos numa folha A4.`), h('p', { class: 'muted' }, 'Escolha "Salvar como PDF" no destino. Sai vetorial, pronto pra gráfica ou pra imprimir em casa em adesivo A4.'), h('p', { class: 'muted' }, 'Casa: papel adesivo brilhante A4. Gráfica: couchê adesivo 90g.'), limite.mensagem ? h('p', { class: 'muted' }, limite.mensagem) : null),
+      botoes: [{ texto: 'Cancelar', classe: 'white' }, { texto: 'Abrir impressão', classe: 'peach', onClick: () => { registrarExportacao(); requestAnimationFrame(() => setTimeout(() => window.print(), 150)); } }],
     });
   };
 

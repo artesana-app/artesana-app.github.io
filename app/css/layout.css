@@ -213,3 +213,8 @@
   #modal .sheet { border-radius: 24px; max-width: 560px; }
   #toast { bottom: 24px; }
 }
+
+/* planos: preço à vista e dois botões empilhados */
+.plano .avista { font-weight: 600; color: var(--moss-d); margin: 4px 0 6px; font-size: 14.5px; }
+.plano .avista small { font-weight: 400; color: var(--ink-2); }
+.btn-col { display: grid; gap: 8px; }

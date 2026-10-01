@@ -6,6 +6,7 @@ import { gerarInci } from '../lib/inci.js';
 import { gradeA4 } from '../lib/rotulo.js';
 import { numeroFormatado } from '../lib/whatsapp.js';
 import { NORMA, CAMPOS, TAMANHOS, conferir, camposObrigatorios, composicaoEmPortugues, linhasDoRotulo } from '../lib/rotulo-anvisa.js';
+import { conferirLimite, registrarExportacao } from '../exportacoes.js';
 
 const ESCALA = 4; // px por mm no preview
 const FONTE_MAX = 2.6; // mm
@@ -112,6 +113,11 @@ export function abaAnvisa() {
 
   const exportar = () => {
     if (!ajuste.cabe) { toast('O texto não cabe nesse tamanho de etiqueta'); return; }
+    const limite = conferirLimite();
+    if (!limite.pode) {
+      modal({ titulo: 'Limite do mês', corpo: h('p', {}, limite.mensagem), botoes: [{ texto: 'Depois', classe: 'white' }, { texto: 'Ver planos', classe: 'peach', onClick: () => { location.hash = '#planos'; } }] });
+      return;
+    }
     const t = TAMANHOS.find((x) => x.id === d.tamanho) || TAMANHOS[1];
     const g = gradeA4({ largura: t.largura, altura: t.altura });
     const folha = document.getElementById('folha-a4');
@@ -127,8 +133,9 @@ export function abaAnvisa() {
       corpo: h('div', {},
         h('p', {}, `Vai abrir a janela de impressão com ${g.total} etiquetas numa folha A4.`),
         r.completo ? null : h('p', { class: 'rc-aviso erro' }, `Atenção: ${r.faltando.length === 1 ? 'falta 1 dado obrigatório' : `faltam ${r.faltando.length} dados obrigatórios`} (${r.faltando.map((c) => c.rotulo.toLowerCase()).join(', ')}).`),
-        h('p', { class: 'muted' }, 'Na janela de impressão, escolha "Salvar como PDF".')),
-      botoes: [{ texto: 'Cancelar', classe: 'white' }, { texto: 'Abrir impressão', classe: 'peach', onClick: () => { requestAnimationFrame(() => setTimeout(() => window.print(), 150)); } }],
+        h('p', { class: 'muted' }, 'Na janela de impressão, escolha "Salvar como PDF".'),
+        limite.mensagem ? h('p', { class: 'muted' }, limite.mensagem) : null),
+      botoes: [{ texto: 'Cancelar', classe: 'white' }, { texto: 'Abrir impressão', classe: 'peach', onClick: () => { registrarExportacao(); requestAnimationFrame(() => setTimeout(() => window.print(), 150)); } }],
     });
   };
 

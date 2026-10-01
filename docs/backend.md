@@ -79,8 +79,10 @@ a resposta aparece na tela Ajuda dela (o app confere a cada 15 segundos enquanto
 
 ## Mercado Pago
 
-Planos: Florescer é assinatura mensal (R$ 52,90, cobrada todo mês no cartão) e Prosperar é cobrança única anual
-(R$ 312, em até 12x de R$ 26 no cartão, ou PIX e boleto à vista). Os valores ficam em `app/js/lib/planos.js` e
+Planos: Semente grátis (3 rótulos por mês), Florescer é assinatura mensal (R$ 52,90, cobrada todo mês no cartão; 15
+rótulos por mês) e Prosperar é cobrança única anual (R$ 312 em até 12x de R$ 26 no cartão, ou R$ 279 à vista no PIX,
+boleto ou débito; `modo: 'avista'` no `/v1/pagar/prosperar` cria a preferência sem cartão de crédito). O limite de
+rótulos só vale depois do beta (`podeExportar` em `app/js/lib/planos.js`). Os valores ficam em `app/js/lib/planos.js` e
 `backend/src/util.js` (PLANOS_PAGOS), e o teste `tests/backend.test.mjs` garante que os dois batem. O app chama `POST /v1/pagar/<plano>` e abre o link que o
 Mercado Pago devolve; o aviso de pagamento volta pelo webhook e fica na aba Pagamentos do painel.
 

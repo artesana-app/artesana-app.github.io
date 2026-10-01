@@ -1,5 +1,5 @@
 // Service worker do artesaná. — bump CACHE a cada deploy.
-const CACHE = 'artesana-v2.0.5';
+const CACHE = 'artesana-v2.0.6';
 const FONTES = 'artesana-fonts';
 
 const PRECACHE = [
@@ -7,7 +7,7 @@ const PRECACHE = [
   './index.html',
   './manifest.json',
   './css/variables.css', './css/global.css', './css/components.css', './css/modules.css', './css/layout.css', './css/print.css',
-  './js/app.js', './js/router.js', './js/store.js', './js/ui.js', './js/onboarding.js', './js/site.js', './js/ditado.js', './js/campos.js', './js/analitica.js',
+  './js/app.js', './js/router.js', './js/store.js', './js/ui.js', './js/onboarding.js', './js/site.js', './js/ditado.js', './js/campos.js', './js/analitica.js', './js/exportacoes.js',
   './js/lib/progresso.js', './js/lib/whatsapp.js', './js/lib/inci.js', './js/lib/rotulo.js', './js/lib/perfil.js', './js/lib/feedback.js', './js/lib/rotulo-anvisa.js', './js/lib/ditado.js', './js/lib/suporte.js', './js/lib/geradores.js', './js/lib/planos.js',
   './js/data/ingredientes.js', './js/data/datas.js', './js/data/roadmap.js', './js/data/tutoriais.js',
   './js/modules/login.js', './js/modules/conversa.js', './js/modules/home.js', './js/modules/social.js', './js/modules/rotulos.js', './js/modules/rotulo-completo.js',

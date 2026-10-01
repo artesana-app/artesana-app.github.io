@@ -104,5 +104,6 @@ test('planos pagos batem com o app', async () => {
   for (const p of PLANOS.filter((x) => x.preco)) {
     assert.ok(PLANOS_PAGOS[p.id], `falta ${p.id} no backend`);
     assert.equal(PLANOS_PAGOS[p.id].valor, p.preco);
+    assert.equal(PLANOS_PAGOS[p.id].avista, p.avista, `à vista de ${p.id} difere`);
   }
 });
