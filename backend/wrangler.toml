@@ -13,6 +13,10 @@ workers_dev = true
 [observability]
 enabled = true
 
+# confere pagamentos em aberto no Mercado Pago de meia em meia hora (ver atualizarPagamentos em src/index.js)
+[triggers]
+crons = ["*/30 * * * *"]
+
 [[d1_databases]]
 binding = "DB"
 database_name = "artesana"

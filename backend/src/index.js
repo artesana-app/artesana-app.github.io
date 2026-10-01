@@ -245,6 +245,31 @@ async function mpWebhook(req, env, ctx) {
   return json({ ok: true });
 }
 
+// Sem depender do webhook: pergunta ao Mercado Pago o status dos pagamentos em aberto (até 20 por vez, dos últimos 60 dias).
+const STATUS_FINAIS = new Set(['approved', 'authorized', 'rejected', 'cancelled', 'refunded', 'charged_back']);
+async function atualizarPagamentos(env) {
+  if (!env.MP_TOKEN) return;
+  const abertos = (await env.DB.prepare("SELECT id, plano, referencia, mp_id, status FROM pagamentos WHERE t >= ? AND (status IS NULL OR status NOT IN ('approved','authorized','rejected','cancelled','refunded','charged_back')) ORDER BY t DESC LIMIT 20")
+    .bind(Date.now() - 60 * 86400000).all()).results || [];
+  for (const p of abertos) {
+    try {
+      let status = null; let valor = null; let email = null; let mpId = p.mp_id;
+      if (p.plano === 'florescer' && p.mp_id) {
+        const r = await mp(env, `/preapproval/${p.mp_id}`);
+        if (r.ok) { status = r.dados.status; email = r.dados.payer_email; valor = r.dados.auto_recurring && r.dados.auto_recurring.transaction_amount; }
+      } else if (p.referencia) {
+        const r = await mp(env, `/v1/payments/search?external_reference=${encodeURIComponent(p.referencia)}&sort=date_created&criteria=desc`);
+        const pg = r.ok && r.dados.results && r.dados.results[0];
+        if (pg) { status = pg.status; valor = pg.transaction_amount; email = pg.payer && pg.payer.email; mpId = String(pg.id); }
+      }
+      if (status && status !== p.status) {
+        await env.DB.prepare('UPDATE pagamentos SET status = ?, mp_id = ?, valor = COALESCE(?, valor), email = COALESCE(?, email) WHERE id = ?').bind(status, mpId, valor, email, p.id).run();
+        if (STATUS_FINAIS.has(status)) await avisar(env, `💰 Pagamento ${status} · ${p.plano} · ${email || ''} · R$ ${valor ?? '?'}`);
+      }
+    } catch (e) { console.error('atualizarPagamentos', p.id, e); }
+  }
+}
+
 // ---------- Telegram webhook: resposta da equipe ----------
 async function telegramWebhook(req, env, segredo) {
   if (!env.TELEGRAM_SECRET || segredo !== env.TELEGRAM_SECRET) return json({ ok: false }, 404);
@@ -348,6 +373,7 @@ async function admin(req, env, url, caminho) {
     return json({ ok: true, feedbacks: r.results || [] });
   }
   if (caminho === '/admin/pagamentos') {
+    await atualizarPagamentos(env); // consulta o Mercado Pago pelos que ainda não fecharam: funciona mesmo sem webhook
     const r = await env.DB.prepare('SELECT id, visitante, t, plano, email, referencia, mp_id, status, valor FROM pagamentos ORDER BY t DESC LIMIT 300').all();
     return json({ ok: true, pagamentos: r.results || [] });
   }
@@ -379,6 +405,10 @@ async function admin(req, env, url, caminho) {
 }
 
 export default {
+  // de meia em meia hora confere no Mercado Pago os pagamentos em aberto e avisa a equipe (não depende do webhook)
+  async scheduled(evento, env, ctx) {
+    ctx.waitUntil(atualizarPagamentos(env));
+  },
   async fetch(req, env, ctx) {
     const url = new URL(req.url);
     const caminho = url.pathname.replace(/\/+$/, '') || '/';
