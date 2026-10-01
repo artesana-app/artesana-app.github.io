@@ -83,6 +83,8 @@ def capturar_camadas(navegador, url: str):
     page.wait_for_timeout(400)
     assert not falhas, f"arquivo não carregou: {falhas}"
     page.evaluate("() => { for (const e of [document.documentElement, document.body]) e.style.background = 'transparent'; }")
+    # sem logo nos reels (grade "mais foto", 01/10/2026): a camada de assinatura sai antes de capturar
+    page.evaluate("() => document.querySelectorAll('.camada.assina').forEach(e => e.remove())")
     n = page.locator(".camada").count()
     assert n, "modelo sem .camada"
     camadas = []
@@ -166,15 +168,17 @@ def renderizar(nome: str, spec: dict, navegador, base_url: str) -> None:
     cmd = [ffmpeg_exe(), "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{LARG}x{ALT}", "-r", str(FPS), "-i", "-",
            "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(destino)]
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
-    ultimo = None
+    primeiro = None
     n = 0
     for q in quadros:
         proc.stdin.write(q.tobytes())
-        ultimo = q
+        if primeiro is None:
+            primeiro = q
         n += 1
     proc.stdin.close()
-    assert proc.wait() == 0 and ultimo is not None, "ffmpeg falhou"
-    ultimo.save(PASTA / f"{nome.replace('-reel', '')}-capa.jpg", quality=92, optimize=True)
+    assert proc.wait() == 0 and primeiro is not None, "ffmpeg falhou"
+    # capa = primeiro quadro, antes de qualquer texto: na grade do perfil ela aparece como foto pura
+    primeiro.save(PASTA / f"{nome.replace('-reel', '')}-capa.jpg", quality=92, optimize=True)
     print(f"{destino.name}  {n / FPS:.1f}s  {destino.stat().st_size // 1024} KB  + capa")
 
 

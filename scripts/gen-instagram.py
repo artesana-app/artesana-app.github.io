@@ -45,6 +45,15 @@ PECAS = {
     "anuncio": FEED, "anuncio-stories": STORIES,
 }
 
+# Grade "mais foto" (pedido de 01/10/2026): logo em peça nenhuma, e só três peças da grade com uma escrita.
+# As outras saem como foto pura; os slides internos dos carrosséis mantêm o texto (sem logo).
+SEM_LOGO_CSS = ".marca, .marca-reel, .camada.assina, .aviso { display: none !important; }"
+SO_FOTO_CSS = (".texto, .veu, .nota, .setas, .tira, .tiras, .papel, .arco svg, .num, .arraste { display: none !important; }"
+               " .bilhete .janela, .festas.bilhete .janela { height: 1350px !important; }"
+               " .bilhete .janela img, .festas.bilhete .janela img { width: 1080px !important; height: 1350px !important; top: 0 !important; left: 0 !important; object-fit: cover; object-position: center top; }")
+COM_TEXTO = {"atelie-3", "atelie-5", "dia7"}
+SO_FOTO = {"atelie-1", "atelie-2", "atelie-4", "atelie-6", "dia1", "dia2-1", "dia4", "dia5-1"}
+
 # id Pexels -> (onde é usada, autor, página)
 CREDITOS = {
     4865722: ("dia2-4", "Anna Shvets", "https://www.pexels.com/photo/4865722/"),
@@ -168,7 +177,7 @@ def conferir_margem(page, nome: str, larg: int, alt: int) -> None:
     caixas = page.evaluate("""() => [...document.querySelectorAll('.frase, .recado, .aviso, .marca, .titulo, .sub, .nota, .num, .arraste, .arco text')].map(e => {
         const r = e.getBoundingClientRect();
         return { classe: e.className, x0: r.left, y0: r.top, x1: r.right, y1: r.bottom };
-    })""")
+    }).filter(c => c.x1 > c.x0 && c.y1 > c.y0)""")
     assert caixas, f"{nome}: não achei texto pra conferir"
     folga = min(min(c["x0"], c["y0"], larg - c["x1"], alt - c["y1"]) for c in caixas)
     assert folga >= MARGEM - 1, f"{nome}: texto a {folga:.0f}px da borda, o mínimo é {MARGEM}px: {caixas}"
@@ -183,6 +192,7 @@ def com_bordado(navegador, page, url, nome, larg, alt):
     grande = navegador.new_page(viewport={"width": larg, "height": alt}, device_scale_factor=bordado.ESCALA)
     grande.goto(url, wait_until="networkidle")
     grande.evaluate("document.fonts.ready")
+    grande.add_style_tag(content=SEM_LOGO_CSS)  # sem logo bordada também
     grande.wait_for_timeout(300)
     grande.evaluate("""() => {
         for (const e of [document.documentElement, document.body, document.querySelector('.peca')]) e.style.background = 'transparent';
@@ -226,7 +236,10 @@ def renderizar(filtro: str) -> None:
             page.wait_for_timeout(400)
             assert not falhas, f"{nome}: arquivo não carregou: {falhas}"
             if nome.startswith(("atelie", "dia")):
-                conferir_margem(page, nome, larg, alt)
+                page.add_style_tag(content=SEM_LOGO_CSS + (SO_FOTO_CSS if nome in SO_FOTO else ""))
+                page.wait_for_timeout(100)
+                if nome not in SO_FOTO:
+                    conferir_margem(page, nome, larg, alt)
             if nome in BORDADOS:
                 img = com_bordado(b, page, f"{base}/{nome}.html", nome, larg, alt)
             else:

@@ -67,3 +67,14 @@ Fim de ano:
 - Caderno aberto na mesa à noite, planejando o ano, com os produtos ao lado.
 
 Sempre: luz natural ou de vela, fundo limpo, produto sem rótulo de terceiros, uma área calma pro texto.
+
+## Grade "mais foto" (01/10/2026)
+
+Pedido literal: "tô achando com muita escrita, acho que quero só mais foto, pode ter uma escrita ou outra, não precisa nem de logo".
+
+- Logo (a marca "artesaná.") não entra em peça nenhuma, nem nos reels. A marca é o perfil.
+- Da grade de 13, só três peças têm texto: o bordado (atelie-3, a frase é parte da foto), "Pode chegar." (atelie-5) e "Antes do ano virar" (dia7). Todo o resto é foto pura.
+- Capa dos reels = primeiro quadro, sem texto. O texto do reel continua dentro do vídeo.
+- Slides internos dos carrosséis mantêm o texto (é o conteúdo), mas sem logo.
+- A mensagem vai na legenda. A foto tem que se sustentar sozinha: gente real trabalhando, luz natural ou de vela, uma coisa só por quadro.
+- Como fazer: `python scripts/gen-instagram.py atelie`, `... dia`, `python scripts/gen-reels.py` e `python scripts/gen-instagram-pagina.py`. Os conjuntos SO_FOTO e COM_TEXTO ficam no gen-instagram.py.
