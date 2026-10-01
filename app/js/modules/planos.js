@@ -39,7 +39,7 @@ export function montar(section, param) {
     }
     const fixo = SITE.pagamentos[p.id];
     if (fixo) { window.open(fixo, '_blank', 'noopener'); return; }
-    if (!SITE.backend) { toast('O pagamento abre em breve. Durante o beta está tudo liberado.', 3500); return; }
+    if (!SITE.backend) { toast('O pagamento não está disponível agora. Tente mais tarde.', 3500); return; }
     const user = store.usuario();
     let email = user.email || '';
     if (!email && p.id === 'florescer') {

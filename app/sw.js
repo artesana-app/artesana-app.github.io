@@ -1,5 +1,5 @@
 // Service worker do artesaná. — bump CACHE a cada deploy.
-const CACHE = 'artesana-v2.0.6';
+const CACHE = 'artesana-v2.0.7';
 const FONTES = 'artesana-fonts';
 
 const PRECACHE = [

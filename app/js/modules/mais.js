@@ -14,7 +14,7 @@ export function montar(section) {
   const quais = redes.instagram && redes.facebook ? 'Instagram e Facebook' : redes.facebook ? 'Facebook' : redes.instagram ? 'Instagram' : 'Nenhuma ainda';
   section.innerHTML = '';
   section.append(h('div', { class: 'screen' },
-    header({ titulo: user.marca || user.nome || 'Sua marca', sub: SITE.beta ? `Beta: tudo liberado por mais ${diasDeBeta()} dias` : `Plano ${plano.emoji} ${plano.nome}`, avatar: inicial(user.nome) }),
+    header({ titulo: user.marca || user.nome || 'Sua marca', sub: SITE.beta && diasDeBeta() > 0 ? `Beta: tudo liberado, grátis até ${new Date(`${SITE.betaFim}T12:00:00`).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' })}` : `Plano ${plano.emoji} ${plano.nome}`, avatar: inicial(user.nome) }),
     h('div', { class: 'content duas-colunas' },
       h('div', { class: 'coluna' },
         grupo('Sua conta', lista([
