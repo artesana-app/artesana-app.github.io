@@ -98,7 +98,7 @@ PAGINA = """<!doctype html>
   <main class="wrap">
     <section class="intro">
       <h1>Publicações prontas</h1>
-      <p>Baixe as imagens e os vídeos, copie a legenda e publique. Todas as imagens são geradas por IA: ao publicar, ative o rótulo de IA do Instagram. O guia do estilo, com as ideias de foto pra você fazer em casa, está em <a href="./estilo.html">estilo.html</a>.</p>
+      <p>Baixe as imagens e os vídeos, copie a legenda e publique. Todas as imagens são geradas por IA: ao publicar, ative o rótulo de IA do Instagram. O guia do estilo, com as ideias de foto pra você fazer em casa, está em <a href="./estilo.html">estilo.html</a>. Os destaques do perfil (capas e stories) estão em <a href="./destaques/">destaques</a>.</p>
       <figure class="grade">
         <img src="./grade-perfil.jpg?v=__GRADE__" alt="Prévia das publicações na grade do perfil, a mais nova em cima à esquerda.">
         <figcaption>Prévia da grade do perfil com tudo publicado</figcaption>
