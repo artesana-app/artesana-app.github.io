@@ -131,3 +131,7 @@
 .rc-lista .marca { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line); display: inline-flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; }
 .rc-lista .ok { color: var(--ink); }
 .rc-lista .ok .marca { background: var(--moss); border-color: var(--moss); color: var(--cream); }
+
+/* campo que só existe com CNPJ: some da lista quando a pessoa usa CPF */
+.field.dispensado { opacity: 0.55; }
+.field.dispensado .obrig { display: none; }

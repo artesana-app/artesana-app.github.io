@@ -5,7 +5,7 @@ import * as store from '../store.js';
 import { gerarInci } from '../lib/inci.js';
 import { gradeA4 } from '../lib/rotulo.js';
 import { numeroFormatado } from '../lib/whatsapp.js';
-import { NORMA, CAMPOS, TAMANHOS, conferir, composicaoEmPortugues, linhasDoRotulo } from '../lib/rotulo-anvisa.js';
+import { NORMA, CAMPOS, TAMANHOS, conferir, camposObrigatorios, composicaoEmPortugues, linhasDoRotulo } from '../lib/rotulo-anvisa.js';
 
 const ESCALA = 4; // px por mm no preview
 const FONTE_MAX = 2.6; // mm
@@ -82,10 +82,16 @@ export function abaAnvisa() {
     contagem.textContent = `${r.preenchidos} de ${r.obrigatorios} dados obrigatórios`;
     barra.style.width = `${(r.preenchidos / r.obrigatorios) * 100}%`;
     lista.innerHTML = '';
-    for (const c of CAMPOS.filter((x) => x.obrigatorio)) {
+    for (const c of camposObrigatorios(d)) {
       const ok = !r.faltando.some((f) => f.id === c.id);
       lista.append(h('li', { class: ok ? 'ok' : '' }, h('span', { class: 'marca' }, ok ? '✓' : ''), c.rotulo));
     }
+    const cpf = r.documento === 'cpf';
+    for (const el of corpo.querySelectorAll('[data-so-com-cnpj]')) el.classList.toggle('dispensado', cpf);
+    const nota = corpo.querySelector('#rc-nota-documento');
+    if (nota) nota.textContent = cpf
+      ? 'Com CPF o rótulo sai como produto artesanal, sem AFE e processo. Pra atender a norma da Anvisa é preciso CNPJ: o MEI dá um na hora, de graça.'
+      : (CAMPOS.find((c) => c.id === 'cnpj').nota);
   };
 
   const campo = (c) => {
@@ -93,9 +99,9 @@ export function abaAnvisa() {
       ? areaVoz({ valor: d[c.id] || '', id: `rc-${c.id}`, rows: '3', placeholder: `Ex: ${c.exemplo}` })
       : campoVoz({ valor: d[c.id] || '', id: `rc-${c.id}`, placeholder: `Ex: ${c.exemplo}` });
     cv.input.addEventListener('input', () => { d[c.id] = cv.input.value; atualizar(); });
-    return h('div', { class: 'field' },
+    return h('div', { class: 'field', 'data-so-com-cnpj': c.soComCnpj ? '1' : null },
       h('label', { for: `rc-${c.id}` }, c.rotulo, c.obrigatorio ? h('span', { class: 'obrig' }, ' *') : null),
-      cv.el, c.nota ? h('div', { class: 'hint' }, c.nota) : null);
+      cv.el, c.nota ? h('div', { class: 'hint', id: c.id === 'cnpj' ? 'rc-nota-documento' : null }, c.nota) : null);
   };
 
   const tamanho = h('select', { class: 'select', id: 'rc-tamanho' }, ...TAMANHOS.map((t) => h('option', { value: t.id }, t.nome)));

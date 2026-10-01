@@ -68,3 +68,27 @@ test('data de fabricação aparece quando informada', () => {
   const l = linhasDoRotulo({ ...COMPLETO, fabricacao: '09/2026' }).find((x) => x.rotulo === 'Fabricação');
   assert.equal(l.texto, '09/2026');
 });
+
+test('CPF no lugar do CNPJ: aceito, e AFE/processo deixam de ser obrigatórios', async () => {
+  const { tipoDocumento, camposObrigatorios, conferir, linhasDoRotulo } = await import('../app/js/lib/rotulo-anvisa.js');
+  assert.equal(tipoDocumento('11.222.333/0001-81'), 'cnpj');
+  assert.equal(tipoDocumento('123.456.789-09'), 'cpf');
+  assert.equal(tipoDocumento('12345678909'), 'cpf');
+  assert.equal(tipoDocumento('123'), '');
+  assert.equal(tipoDocumento(''), '');
+  const comCpf = { produto: 'Sabonete', marca: 'Flor de Sal', conteudo: '90 g', lote: 'L1', validade: '09/2027', inci: 'Aqua', composicaoPt: 'água',
+    titular: 'Maria da Silva', cnpj: '123.456.789-09', afe: '', processo: '', atendimento: '(11) 90000-0000', origem: 'Brasil' };
+  const r = conferir(comCpf);
+  assert.equal(r.documento, 'cpf');
+  assert.ok(r.completo, JSON.stringify(r.faltando.map((c) => c.id)));
+  assert.equal(r.obrigatorios, 11);
+  assert.ok(!camposObrigatorios(comCpf).some((c) => c.id === 'afe' || c.id === 'processo'));
+  // com CNPJ, AFE e processo continuam obrigatórios
+  const r2 = conferir({ ...comCpf, cnpj: '11.222.333/0001-81' });
+  assert.deepEqual(r2.faltando.map((c) => c.id), ['afe', 'processo']);
+  assert.equal(r2.obrigatorios, 13);
+  // o rótulo escreve CPF, não CNPJ
+  const linhas = linhasDoRotulo(comCpf);
+  assert.ok(linhas.some((l) => l.rotulo === 'CPF' && l.texto === '123.456.789-09'));
+  assert.ok(!linhas.some((l) => l.rotulo === 'CNPJ'));
+});

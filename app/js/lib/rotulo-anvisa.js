@@ -20,9 +20,9 @@ export const CAMPOS = [
   { id: 'inci', rotulo: 'Ingredientes (INCI)', obrigatorio: true, multi: true, exemplo: 'Sodium Olivate, Aqua, Glycerin' },
   { id: 'composicaoPt', rotulo: 'Composição em português', obrigatorio: true, multi: true, exemplo: 'oliva saponificada, água, glicerina' },
   { id: 'titular', rotulo: 'Nome ou razão social do titular', obrigatorio: true, exemplo: 'Flor de Sal Cosméticos Ltda' },
-  { id: 'cnpj', rotulo: 'CNPJ do titular', obrigatorio: true, exemplo: '00.000.000/0001-00' },
-  { id: 'afe', rotulo: 'Número da AFE', obrigatorio: true, nota: 'Autorização de Funcionamento de Empresa', exemplo: '2.00000.0' },
-  { id: 'processo', rotulo: 'Número do processo de regularização', obrigatorio: true, exemplo: '25351.000000/2026-00' },
+  { id: 'cnpj', rotulo: 'CNPJ ou CPF do titular', obrigatorio: true, exemplo: '00.000.000/0001-00 ou 000.000.000-00', nota: 'A Anvisa pede CNPJ (o MEI dá um na hora, de graça). Sem CNPJ ainda, use o CPF: o rótulo sai como produto artesanal.' },
+  { id: 'afe', rotulo: 'Número da AFE', obrigatorio: true, soComCnpj: true, nota: 'Autorização de Funcionamento de Empresa. Só existe com CNPJ.', exemplo: '2.00000.0' },
+  { id: 'processo', rotulo: 'Número do processo de regularização', obrigatorio: true, soComCnpj: true, nota: 'Só existe com CNPJ.', exemplo: '25351.000000/2026-00' },
   { id: 'atendimento', rotulo: 'Atendimento ao consumidor', obrigatorio: true, nota: 'telefone, e-mail, site ou outro meio', exemplo: '(11) 90000-0000' },
   { id: 'origem', rotulo: 'País de origem', obrigatorio: true, exemplo: 'Brasil' },
   { id: 'modoUso', rotulo: 'Modo de uso', obrigatorio: false, nota: 'se for o caso', multi: true, exemplo: 'Aplicar sobre a pele úmida e enxaguar.' },
@@ -31,10 +31,24 @@ export const CAMPOS = [
 
 const texto = (v) => (typeof v === 'string' ? v.trim() : '');
 
+// 'cnpj' (14 dígitos), 'cpf' (11 dígitos) ou '' (vazio ou incompleto). Só olha os números.
+export function tipoDocumento(valor) {
+  const n = texto(valor).replace(/\D/g, '');
+  if (n.length === 14) return 'cnpj';
+  if (n.length === 11) return 'cpf';
+  return '';
+}
+
+// Com CPF não existe AFE nem processo na Anvisa: esses dois saem da lista de obrigatórios.
+export function camposObrigatorios(dados = {}) {
+  const cpf = tipoDocumento((dados || {}).cnpj) === 'cpf';
+  return CAMPOS.filter((c) => c.obrigatorio && !(cpf && c.soComCnpj));
+}
+
 export function conferir(dados = {}) {
-  const obrig = CAMPOS.filter((c) => c.obrigatorio);
+  const obrig = camposObrigatorios(dados);
   const faltando = obrig.filter((c) => !texto(dados[c.id]));
-  return { faltando, obrigatorios: obrig.length, preenchidos: obrig.length - faltando.length, completo: faltando.length === 0 };
+  return { faltando, obrigatorios: obrig.length, preenchidos: obrig.length - faltando.length, completo: faltando.length === 0, documento: tipoDocumento((dados || {}).cnpj) };
 }
 
 export function composicaoEmPortugues(itens = []) {
@@ -67,7 +81,7 @@ export function linhasDoRotulo(dados = {}) {
   por('Fabricação', d.fabricacao);
   por('Validade', d.validade);
   por('Fabricado por', d.titular);
-  por('CNPJ', d.cnpj);
+  por(tipoDocumento(d.cnpj) === 'cpf' ? 'CPF' : 'CNPJ', d.cnpj);
   por('AFE', d.afe);
   por('Processo', d.processo);
   por('Atendimento', d.atendimento);
