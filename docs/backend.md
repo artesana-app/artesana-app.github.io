@@ -1,5 +1,10 @@
 # Backend: painel, atendimento e pagamentos
 
+Publicado em 30/09/2026: Worker `https://artesana-api.artesana.workers.dev` (conta Cloudflare da titular), banco D1 `artesana`,
+painel em `/app/admin/`, Mercado Pago ligado (aplicação "Artesaná", Checkout Pro + assinaturas), bot do Telegram
+`@Artesanabot`. Segredos ficam em `backend/.segredos.json` (fora do git) e no Worker. Pra republicar depois de uma
+mudança no backend: `python scripts/publicar-backend.py`.
+
 O app funciona sem servidor: tudo fica no aparelho da pessoa. O que precisa sair do aparelho passa pelo backend em
 `backend/`, um Cloudflare Worker (grátis até 100 mil chamadas por dia) com banco D1 (SQLite, grátis até 5 GB):
 

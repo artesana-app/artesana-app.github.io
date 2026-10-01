@@ -1,4 +1,4 @@
-import { h, header, toast, navegacao } from '../ui.js';
+import { h, header, toast, navegacao, modal } from '../ui.js';
 import * as store from '../store.js';
 import * as analitica from '../analitica.js';
 import { SITE, diasDeBeta } from '../site.js';
@@ -23,9 +23,20 @@ export function montar(section, param) {
       h('a', { class: 'btn soft block', href: '#feedback' }, 'Contar como foi o teste'))
     : null;
 
-  const assinar = async (p) => {
+  const assinar = async (p, confirmado = false) => {
     analitica.evento('plano_clique', { plano: p.id });
     if (!p.preco) { store.set('plano', 'semente'); toast('Plano Semente escolhido'); return; }
+    if (SITE.beta && dias > 0 && !confirmado) {
+      modal({
+        titulo: 'Ainda está tudo liberado',
+        corpo: h('p', {}, `Até ${new Date(`${SITE.betaFim}T12:00:00`).toLocaleDateString('pt-BR')} você usa o app inteiro sem pagar. Se quiser garantir o ${p.nome} desde já, o pagamento abre agora e o plano já fica no seu nome.`),
+        botoes: [
+          { texto: 'Esperar o fim do beta', classe: 'white' },
+          { texto: `Assinar o ${p.nome} agora`, classe: 'peach', onClick: () => assinar(p, true) },
+        ],
+      });
+      return;
+    }
     const fixo = SITE.pagamentos[p.id];
     if (fixo) { window.open(fixo, '_blank', 'noopener'); return; }
     if (!SITE.backend) { toast('O pagamento abre em breve. Durante o beta está tudo liberado.', 3500); return; }
@@ -52,7 +63,7 @@ export function montar(section, param) {
         h('div', { class: 'preco' }, precoFormatado(p)),
         h('ul', {}, ...p.itens.map((i) => h('li', {}, `✓ ${i}`))),
         h('button', { class: `btn block ${p.id === 'prosperar' ? 'peach' : p.preco ? '' : 'white'}`, type: 'button', onClick: () => assinar(p) },
-          SITE.beta ? (p.preco ? 'Assinar depois do beta' : 'Grátis') : (p.preco ? 'Assinar' : 'Ficar no Semente'))))),
+          p.preco ? 'Assinar' : (SITE.beta ? 'Grátis' : 'Ficar no Semente'))))),
       h('p', { class: 'muted center' }, 'Pagamento pelo Mercado Pago: PIX, cartão ou boleto. O anual pode ser parcelado no cartão.'),
       navegacao({ atual: 'planos', seguir: '' }),
     ),
