@@ -75,7 +75,7 @@ export function montar(section) {
       h('div', { class: 'card wa-result' },
         h('div', { class: 'wa-rotulo' }, 'QR code pra embalagem e rótulo'),
         qrUrl ? h('img', { src: qrUrl, alt: `QR code do WhatsApp de ${marca || 'sua marca'}` }) : h('p', { class: 'muted' }, 'QR indisponível'),
-        qrUrl ? h('a', { class: 'btn soft block', href: qrUrl, download: 'qr-whatsapp.png', onClick: () => analitica.evento('baixou', { tipo: 'QR do WhatsApp' }) }, 'Baixar QR') : null,
+        qrUrl ? h('a', { class: 'btn soft block', href: qrUrl, download: 'qr-whatsapp.png', onClick: () => analitica.evento('baixou', { item: 'QR do WhatsApp' }) }, 'Baixar QR') : null,
         h('p', { class: 'muted', style: { marginTop: '10px' } }, links.comMensagem ? 'O QR abre a conversa já com a mensagem pronta.' : 'O QR abre a conversa com você.'),
         h('details', { class: 'wa-direto' },
           h('summary', {}, 'Ver o link com o nome da marca'),

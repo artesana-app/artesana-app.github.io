@@ -105,7 +105,7 @@ export function baixar(conteudo, nome) {
   const a = h('a', { href: url, download: nome, style: { display: 'none' } });
   document.body.append(a); a.click(); a.remove();
   if (conteudo instanceof Blob) setTimeout(() => URL.revokeObjectURL(url), 2000);
-  analitica.evento('baixou', { tipo: tipoDoArquivo(nome) });
+  analitica.evento('baixou', { item: tipoDoArquivo(nome) });
 }
 
 // modal({titulo, corpo (Node|string), botoes:[{texto, classe, onClick}], fechavel})

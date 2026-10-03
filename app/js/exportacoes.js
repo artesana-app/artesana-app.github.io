@@ -19,5 +19,5 @@ export function registrarExportacao(tipo = 'rótulo em PDF') {
   const limpa = (Array.isArray(lista) ? lista : []).filter((t) => Number(t) > Date.now() - 400 * 86400000);
   limpa.push(Date.now());
   store.set('rotulos_exportados', limpa);
-  analitica.evento('baixou', { tipo });
+  analitica.evento('baixou', { item: tipo });
 }

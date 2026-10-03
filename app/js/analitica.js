@@ -39,7 +39,8 @@ function despachar() {
 
 export function evento(tipo, dados = {}) {
   if (!SITE.backend) return;
-  fila.push({ t: Date.now(), tipo, ...dados });
+  // o tipo do evento vem por último: nenhum campo do payload pode sobrescrevê-lo
+  fila.push({ ...dados, t: Date.now(), tipo });
   clearTimeout(timer);
   timer = setTimeout(despachar, 1500);
 }

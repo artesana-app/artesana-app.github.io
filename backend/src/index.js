@@ -340,7 +340,7 @@ async function admin(req, env, url, caminho) {
       q("SELECT CASE novidades WHEN 1 THEN 'quer novidades' WHEN 0 THEN 'não quer' ELSE 'não respondeu' END k, COUNT(*) n FROM visitantes GROUP BY k ORDER BY n DESC"),
       q("SELECT COUNT(*) n FROM visitantes WHERE telefone IS NOT NULL AND telefone <> ''"),
       q("SELECT COUNT(*) n, COUNT(DISTINCT visitante) pessoas FROM eventos WHERE tipo = 'baixou'"),
-      q("SELECT COALESCE(json_extract(dados, '$.tipo'), '?') k, COUNT(*) n, COUNT(DISTINCT visitante) pessoas FROM eventos WHERE tipo = 'baixou' GROUP BY k ORDER BY n DESC LIMIT 20"),
+      q("SELECT COALESCE(json_extract(dados, '$.item'), '?') k, COUNT(*) n, COUNT(DISTINCT visitante) pessoas FROM eventos WHERE tipo = 'baixou' GROUP BY k ORDER BY n DESC LIMIT 20"),
     ]);
     const um = (r) => (r.results && r.results[0]) || {};
     const lista = (r) => r.results || [];
