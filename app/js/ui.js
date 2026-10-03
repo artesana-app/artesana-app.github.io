@@ -1,5 +1,6 @@
 // Helpers de DOM: criação de elementos, toast, modal, lista, navegação entre telas, copiar.
 import * as router from './router.js';
+import * as analitica from './analitica.js';
 import { SITE, diasDeBeta } from './site.js';
 
 export function h(tag, attrs = {}, ...children) {
@@ -86,11 +87,25 @@ export async function copiar(texto, msg = 'Copiado!') {
 }
 
 // baixar(dataUrlOuBlob, nomeDoArquivo)
+// Nome legível do que foi baixado, pro painel (o nome do arquivo leva a marca da pessoa; o tipo não).
+export function tipoDoArquivo(nome) {
+  const n = String(nome || '').toLowerCase();
+  if (n.startsWith('logo')) return 'logo';
+  if (n.startsWith('end-card')) return 'end card';
+  if (n.startsWith('locucao')) return 'locução';
+  if (n.startsWith('capa')) return 'capa do reel';
+  if (n.endsWith('.ics')) return 'agenda';
+  if (n.startsWith('foto')) return 'foto editada';
+  if (n.startsWith('qr')) return 'QR do WhatsApp';
+  return n.replace(/\.[a-z0-9]+$/, '') || 'arquivo';
+}
+
 export function baixar(conteudo, nome) {
   const url = conteudo instanceof Blob ? URL.createObjectURL(conteudo) : conteudo;
   const a = h('a', { href: url, download: nome, style: { display: 'none' } });
   document.body.append(a); a.click(); a.remove();
   if (conteudo instanceof Blob) setTimeout(() => URL.revokeObjectURL(url), 2000);
+  analitica.evento('baixou', { tipo: tipoDoArquivo(nome) });
 }
 
 // modal({titulo, corpo (Node|string), botoes:[{texto, classe, onClick}], fechavel})

@@ -314,7 +314,7 @@ async function admin(req, env, url, caminho) {
   const dia = 86400000;
   if (caminho === '/admin/resumo') {
     const q = (sql, ...b) => env.DB.prepare(sql).bind(...b);
-    const [tot, hoje, sete, trinta, emails, perfis, fb, notas, abertas, pagos, porDia, porPais, porCidade, porAparelho, porRedes, porFaixa, porRota, porPasso, rotasVistas, entradas, buscas, perguntas, porNovidades, telefones] = await env.DB.batch([
+    const [tot, hoje, sete, trinta, emails, perfis, fb, notas, abertas, pagos, porDia, porPais, porCidade, porAparelho, porRedes, porFaixa, porRota, porPasso, rotasVistas, entradas, buscas, perguntas, porNovidades, telefones, baixados, porBaixado] = await env.DB.batch([
       q('SELECT COUNT(*) n FROM visitantes'),
       q('SELECT COUNT(*) n FROM visitantes WHERE ultimo >= ?', agora - dia),
       q('SELECT COUNT(*) n FROM visitantes WHERE ultimo >= ?', agora - 7 * dia),
@@ -339,6 +339,8 @@ async function admin(req, env, url, caminho) {
       q("SELECT COALESCE(json_extract(dados, '$.texto'), '?') k, COUNT(*) n FROM eventos WHERE tipo = 'suporte_pergunta' GROUP BY k ORDER BY n DESC LIMIT 20"),
       q("SELECT CASE novidades WHEN 1 THEN 'quer novidades' WHEN 0 THEN 'não quer' ELSE 'não respondeu' END k, COUNT(*) n FROM visitantes GROUP BY k ORDER BY n DESC"),
       q("SELECT COUNT(*) n FROM visitantes WHERE telefone IS NOT NULL AND telefone <> ''"),
+      q("SELECT COUNT(*) n, COUNT(DISTINCT visitante) pessoas FROM eventos WHERE tipo = 'baixou'"),
+      q("SELECT COALESCE(json_extract(dados, '$.tipo'), '?') k, COUNT(*) n, COUNT(DISTINCT visitante) pessoas FROM eventos WHERE tipo = 'baixou' GROUP BY k ORDER BY n DESC LIMIT 20"),
     ]);
     const um = (r) => (r.results && r.results[0]) || {};
     const lista = (r) => r.results || [];
@@ -348,7 +350,9 @@ async function admin(req, env, url, caminho) {
         visitantes: um(tot).n, hoje: um(hoje).n, seteDias: um(sete).n, novosTrintaDias: um(trinta).n, emails: um(emails).n,
         perfis: um(perfis).n, feedbacks: um(fb).n, notaMedia: um(notas).media, conversasEsperando: um(abertas).n,
         pagamentos: um(pagos).n, receita: um(pagos).total, entradas: um(entradas).n, telefones: um(telefones).n,
+        downloads: um(baixados).n, pessoasQueBaixaram: um(baixados).pessoas,
       },
+      porBaixado: lista(porBaixado),
       porDia: lista(porDia), porPais: lista(porPais), porCidade: lista(porCidade), porAparelho: lista(porAparelho), porRedes: lista(porRedes),
       porFaixa: lista(porFaixa), porRota: lista(porRota), porPasso: lista(porPasso), rotasVistas: lista(rotasVistas),
       buscas: lista(buscas), perguntas: lista(perguntas), porNovidades: lista(porNovidades),

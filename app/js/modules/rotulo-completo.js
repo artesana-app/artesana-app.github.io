@@ -135,7 +135,7 @@ export function abaAnvisa() {
         r.completo ? null : h('p', { class: 'rc-aviso erro' }, `Atenção: ${r.faltando.length === 1 ? 'falta 1 dado obrigatório' : `faltam ${r.faltando.length} dados obrigatórios`} (${r.faltando.map((c) => c.rotulo.toLowerCase()).join(', ')}).`),
         h('p', { class: 'muted' }, 'Na janela de impressão, escolha "Salvar como PDF".'),
         limite.mensagem ? h('p', { class: 'muted' }, limite.mensagem) : null),
-      botoes: [{ texto: 'Cancelar', classe: 'white' }, { texto: 'Abrir impressão', classe: 'peach', onClick: () => { registrarExportacao(); requestAnimationFrame(() => setTimeout(() => window.print(), 150)); } }],
+      botoes: [{ texto: 'Cancelar', classe: 'white' }, { texto: 'Abrir impressão', classe: 'peach', onClick: () => { registrarExportacao('rótulo Anvisa em PDF'); requestAnimationFrame(() => setTimeout(() => window.print(), 150)); } }],
     });
   };
 

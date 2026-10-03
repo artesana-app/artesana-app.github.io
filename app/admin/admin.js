@@ -75,6 +75,7 @@ async function resumo() {
     [t.visitantes, 'aparelhos que abriram o app'], [t.hoje, 'ativos nas últimas 24 h'], [t.seteDias, 'ativos em 7 dias'], [t.novosTrintaDias, 'novos em 30 dias'],
     [t.entradas, 'entraram (escolheram rede)'], [t.emails, 'deixaram e-mail'], [t.telefones, 'deixaram telefone'], [t.perfis, 'perfis enviados'], [`${t.feedbacks}${t.notaMedia ? ` · ${Number(t.notaMedia).toFixed(1)}★` : ''}`, 'avaliações'],
     [t.conversasEsperando, 'conversas esperando resposta'], [`${t.pagamentos} · R$ ${Number(t.receita || 0).toFixed(0)}`, 'pagamentos aprovados'],
+    [`${t.pessoasQueBaixaram ?? 0} · ${t.downloads ?? 0}`, 'pessoas que baixaram algo · downloads'],
   ];
   const max = Math.max(1, ...d.porDia.map((x) => x.n));
   tela.append(
@@ -91,6 +92,7 @@ async function resumo() {
       h('div', {}, h('h2', {}, 'Rede escolhida na entrada'), h('div', { class: 'card' }, barras(d.porRedes, t.visitantes))),
       h('div', {}, h('h2', {}, 'Quer receber novidades?'), h('div', { class: 'card' }, barras(d.porNovidades || [], t.visitantes))),
       h('div', {}, h('h2', {}, 'Telas mais abertas'), h('div', { class: 'card' }, barras(d.rotasVistas))),
+      h('div', {}, h('h2', {}, 'O que baixaram'), h('div', { class: 'card' }, (d.porBaixado || []).length ? barras(d.porBaixado.map((x) => ({ k: `${x.k} (${x.pessoas} ${x.pessoas === 1 ? 'pessoa' : 'pessoas'})`, n: x.n }))) : h('p', { class: 'nota' }, 'Nenhum download ainda. Conta rótulo em PDF, logo, end card, QR, foto editada, agenda, locução e capa do reel.'))),
       h('div', {}, h('h2', {}, 'O que buscaram no Pinterest'), h('div', { class: 'card' }, (d.buscas || []).length ? barras(d.buscas) : h('p', { class: 'nota' }, 'Nenhuma busca ainda.'))),
       h('div', {}, h('h2', {}, 'O que perguntaram na Ajuda'), h('div', { class: 'card' }, (d.perguntas || []).length ? barras(d.perguntas) : h('p', { class: 'nota' }, 'Nenhuma pergunta ainda.'))),
     ),
